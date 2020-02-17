@@ -1,5 +1,5 @@
 package main;
 
-public interface TargetItem {
+public interface TargetItem extends Item{
 
 }

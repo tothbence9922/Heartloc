@@ -1,5 +1,5 @@
 package main;
 
-public class Rope {
+public class Rope implements OptionalItem{
 
 }

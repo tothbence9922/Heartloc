@@ -1,5 +1,5 @@
 package main;
 
-public class Food {
+public class Food implements OptionalItem {
 
 }

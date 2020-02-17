@@ -1,5 +1,5 @@
 package main;
 
-public class Shovel {
+public class Shovel implements OptionalItem{
 
 }

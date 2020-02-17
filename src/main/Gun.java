@@ -1,5 +1,5 @@
 package main;
 
-public class Gun {
+public class Gun implements TargetItem {
 
 }

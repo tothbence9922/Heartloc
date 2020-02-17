@@ -1,5 +1,5 @@
 package main;
 
-public class Wetsuit {
+public class Wetsuit implements OptionalItem{
 
 }

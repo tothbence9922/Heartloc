@@ -1,5 +1,5 @@
 package main;
 
-public class Beacon {
+public class Beacon implements TargetItem {
 
 }

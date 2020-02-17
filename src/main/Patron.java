@@ -1,5 +1,5 @@
 package main;
 
-public class Patron {
+public class Patron implements TargetItem {
 
 }
