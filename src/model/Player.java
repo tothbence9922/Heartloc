@@ -6,7 +6,7 @@ public abstract class Player implements Drawable{
 	
 	protected Tile curTile;
 	
-	protected ArrayList<Item> items = new ArrayList<Item>();
+	public ArrayList<Item> items = new ArrayList<Item>();
 
 	protected boolean isActive;
 	
