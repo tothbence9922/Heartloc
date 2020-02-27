@@ -18,4 +18,10 @@ public class InstabileTile extends Tile {
 		limit = _limit;
 		this.players = new ArrayList<Player>();
 	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+		
+	}
 }

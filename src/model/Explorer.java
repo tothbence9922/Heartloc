@@ -1,6 +1,6 @@
 package model;
 
-public class Explorer extends Player {
+public class Explorer extends Player{
 
 	public Explorer() {
 		this.bodyTemp = 4;
@@ -8,6 +8,12 @@ public class Explorer extends Player {
 	}
 	
 	public void explore(Tile t) {
+		
+	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
 		
 	}
 }

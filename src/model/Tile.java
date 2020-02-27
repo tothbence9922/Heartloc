@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Tile {
+public abstract class Tile implements Drawable {
 	
 	protected ArrayList<Player> players;
 
