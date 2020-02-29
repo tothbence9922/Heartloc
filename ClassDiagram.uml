@@ -938,7 +938,11 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="Points" type="Points">312,123;351,168</XPD:ATTR>
+=======
+<XPD:ATTR name="Points" type="Points">314,123;356,168</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="Points" type="Points">314,123;356,168</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -1020,7 +1024,11 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="Points" type="Points">442,123;429,168</XPD:ATTR>
+=======
+<XPD:ATTR name="Points" type="Points">442,123;430,168</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="Points" type="Points">442,123;430,168</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -1050,7 +1058,11 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="Points" type="Points">486,320;469,301</XPD:ATTR>
+=======
+<XPD:ATTR name="Points" type="Points">489,320;463,288</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="Points" type="Points">489,320;463,288</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -1338,7 +1350,11 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="Points" type="Points">470,232;576,228</XPD:ATTR>
+=======
+<XPD:ATTR name="Points" type="Points">474,228;576,227</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="Points" type="Points">474,228;576,227</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -2258,7 +2274,11 @@
 <XPD:REF name="Specializations[0]">EgwNlzow/kqLGFh6Nd45iAAA</XPD:REF>
 <XPD:REF name="Specializations[1]">VrqeqyI8CEmazROxKLO7fwAA</XPD:REF>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="#Operations" type="integer">4</XPD:ATTR>
+=======
+<XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -2304,6 +2324,7 @@
 <XPD:REF name="Owner">PviKHcllZk2i5ytjgYQ28wAA</XPD:REF>
 </XPD:OBJ>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="#Instances" type="integer">5</XPD:ATTR>
 <XPD:REF name="Instances[0]">UlhNQlY/0kW3nLUHndH1VwAA</XPD:REF>
 <XPD:REF name="Instances[1]">RvzRR9fzuEKjcJjP5beIkQAA</XPD:REF>
@@ -2311,10 +2332,15 @@
 <XPD:REF name="Instances[3]">y6cdSgK7qU610Hf3fXSXzwAA</XPD:REF>
 <XPD:REF name="Instances[4]">uqqxZyHUn06WEDhYgimjgQAA</XPD:REF>
 =======
+=======
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 <XPD:ATTR name="#Instances" type="integer">3</XPD:ATTR>
 <XPD:REF name="Instances[0]">UlhNQlY/0kW3nLUHndH1VwAA</XPD:REF>
 <XPD:REF name="Instances[1]">RvzRR9fzuEKjcJjP5beIkQAA</XPD:REF>
 <XPD:REF name="Instances[2]">PdmGuMxo5kuJLP1HLjUJcwAA</XPD:REF>
+<<<<<<< HEAD
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
+=======
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[6]" type="UMLClass" guid="+HrTjwJ4UEWGdFZjPOysXAAA">
@@ -2389,6 +2415,7 @@
 <XPD:REF name="BehavioralFeature">Kkhs+KwBEUmU7263TVKa9gAA</XPD:REF>
 </XPD:OBJ>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
 <XPD:REF name="CallActions[0]">AwJl/4Vh7E6ZGUzxCz40iAAA</XPD:REF>
 </XPD:OBJ>
@@ -2401,6 +2428,8 @@
 <XPD:ATTR name="TypeExpression" type="string">boolean</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">YejSDQ6AbUyFMGN24f9HawAA</XPD:REF>
 </XPD:OBJ>
+=======
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 </XPD:OBJ>
@@ -3195,7 +3224,11 @@
 <XPD:ATTR name="StereotypeName" type="string">analysisModel</XPD:ATTR>
 <XPD:REF name="Namespace">vV+lVvLRmk6GsdXnm8UmAQAA</XPD:REF>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <XPD:ATTR name="#OwnedCollaborationInstanceSets" type="integer">9</XPD:ATTR>
+=======
+<XPD:ATTR name="#OwnedCollaborationInstanceSets" type="integer">7</XPD:ATTR>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 =======
 <XPD:ATTR name="#OwnedCollaborationInstanceSets" type="integer">7</XPD:ATTR>
 >>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
@@ -7266,8 +7299,13 @@
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="Tdl7FdNHdEm82BOBpnwzpgAA">
 <XPD:REF name="Model">6di+DKm2zUyN4MaAZBMieAAA</XPD:REF>
 <XPD:REF name="Diagram">6di+DKm2zUyN4MaAZBMieAAA</XPD:REF>
+<<<<<<< HEAD
 </XPD:OBJ>
 </XPD:OBJ>
+=======
+</XPD:OBJ>
+</XPD:OBJ>
+>>>>>>> parent of 7b7500f... Player Dies and Players Win sd created
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
