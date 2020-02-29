@@ -35,7 +35,7 @@
 <XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="LVaBYlUjz0ejm1Hpmt5V3AAA">
 <XPD:REF name="Model">ltFzPWkkX0Wxg4awz7XoVQAA</XPD:REF>
 <XPD:REF name="Diagram">ltFzPWkkX0Wxg4awz7XoVQAA</XPD:REF>
-<XPD:ATTR name="#OwnedViews" type="integer">47</XPD:ATTR>
+<XPD:ATTR name="#OwnedViews" type="integer">48</XPD:ATTR>
 <XPD:OBJ name="OwnedViews[0]" type="UMLClassView" guid="ot4CKo0hCEWgQu1rnV5XOwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
@@ -225,8 +225,8 @@
 <XPD:OBJ name="OwnedViews[6]" type="UMLClassView" guid="QoSO12/qgUOqsTtOK8lhrwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">212</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">40</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">4</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">208</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">80</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
 <XPD:REF name="Model">+HrTjwJ4UEWGdFZjPOysXAAA</XPD:REF>
@@ -2007,6 +2007,17 @@
 <XPD:ATTR name="Height" type="integer">8</XPD:ATTR>
 <XPD:REF name="Model">osuckaukz0CkO3kZEa/6RAAA</XPD:REF>
 </XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedViews[47]" type="UMLNoteView" guid="z+feiOMSLEuREvkAgVF1NwAA">
+<XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
+<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">68</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">40</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">493</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">54</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">legyen egy useAbility() a Player-ben, ami fel&#252;l van &#237;rva az Explorerben &#233;s az Eskimoban?
+(a buildIglu &#233;s explore helyett, mert akkor lehet &#250;gy sz&#233;bontani, ahogy a szekvenci&#225;kn&#225;l tervezt&#252;k
+</XPD:ATTR>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
