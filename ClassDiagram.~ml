@@ -3301,9 +3301,8 @@
 <XPD:REF name="BehavioralFeature">GNXh7QEdrUyqKpi97Yz+lgAA</XPD:REF>
 <XPD:REF name="Type_">djLWxfSwEUC7G3F7s8+sPwAA</XPD:REF>
 </XPD:OBJ>
-<XPD:ATTR name="#CallActions" type="integer">2</XPD:ATTR>
+<XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
 <XPD:REF name="CallActions[0]">NILoiKO9NU+PvsqEXxtXgwAA</XPD:REF>
-<XPD:REF name="CallActions[1]">I7YMdv8KW0G+5ehZ+mh4DAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[8]" type="UMLOperation" guid="+HkbXPn7/UeR71Em9WXmLwAA">
 <XPD:ATTR name="Name" type="string">buildIgloo</XPD:ATTR>
@@ -3319,6 +3318,8 @@
 <XPD:REF name="BehavioralFeature">+HkbXPn7/UeR71Em9WXmLwAA</XPD:REF>
 <XPD:REF name="Type_">djLWxfSwEUC7G3F7s8+sPwAA</XPD:REF>
 </XPD:OBJ>
+<XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
+<XPD:REF name="CallActions[0]">I7YMdv8KW0G+5ehZ+mh4DAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[9]" type="UMLOperation" guid="gd6sBzagkkeqLnfqzPZKcAAA">
 <XPD:ATTR name="Name" type="string">pushToWater</XPD:ATTR>
@@ -17041,7 +17042,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedCollaborationInstanceSets[17]" type="UMLCollaborationInstanceSet" guid="+Lyyo+UFskWFN+LJvuPM3AAA">
-<XPD:ATTR name="Name" type="string">Eskimo uses Ability</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Eskimo builds Igloo</XPD:ATTR>
 <XPD:REF name="RepresentedClassifier">0/vLERdpbE2Qwim7jq8XsgAA</XPD:REF>
 <XPD:ATTR name="#InteractionInstanceSets" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="InteractionInstanceSets[0]" type="UMLInteractionInstanceSet" guid="5q9mJWnoE06cG9s5ST+2qwAA">
@@ -17049,7 +17050,7 @@
 <XPD:REF name="Context">+Lyyo+UFskWFN+LJvuPM3AAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="lxPXXi0Ue02kpnbMRjHrAAAA">
-<XPD:ATTR name="Name" type="string">Eskimo uses Ability</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Eskimo builds Igloo</XPD:ATTR>
 <XPD:ATTR name="MessageSignature" type="UMLMessageSignatureKind">mskNameOnly</XPD:ATTR>
 <XPD:REF name="DiagramOwner">5q9mJWnoE06cG9s5ST+2qwAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="ipXevv525EauT9ck01F2pQAA">
@@ -17065,7 +17066,7 @@
 <XPD:ATTR name="Height" type="integer">497</XPD:ATTR>
 <XPD:REF name="Model">ar2BAOxsu0SPlCZ0h+3YHwAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="LabelView" guid="oqxakt6Wc0eEQxfNHAiR1AAA">
-<XPD:ATTR name="Text" type="string">Eskimo uses Ability</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Eskimo builds Igloo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="FrameTypeLabel" type="LabelView" guid="q+O1c8lfb0ir5OqkOOkEHgAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
@@ -17364,7 +17365,7 @@
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="bbJvE1w8kEyeXUtphflLwwAA">
 <XPD:ATTR name="Alpha" type="real">1,5707953267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">45</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">4 : useAbility(t)</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">4 : buildIgloo(t)</XPD:ATTR>
 <XPD:REF name="Model">AbDy1dcFhkGxRB7Fbm0/7gAA</XPD:REF>
 <XPD:REF name="HostEdge">8tRSR3Zeo0Sw6HmKGkaACAAA</XPD:REF>
 </XPD:OBJ>
@@ -17471,9 +17472,9 @@
 <XPD:REF name="Head">3qbE6cNFoEmeh5UEHPm5ngAA</XPD:REF>
 <XPD:REF name="Tail">4rc12ZOOpkCgiCqkPGukAwAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="Od+j9oqWVk2gq26J5B6WXAAA">
-<XPD:ATTR name="Alpha" type="real">1,5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">7 : receive(e)</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">-4,17196956181875</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">11,6619037896906</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">7 : receive(i)</XPD:ATTR>
 <XPD:REF name="Model">WqiUK+L5Qk+WmOPzdwNxxQAA</XPD:REF>
 <XPD:REF name="HostEdge">JGa0mxGGLUiILR3cfJadJQAA</XPD:REF>
 </XPD:OBJ>
@@ -17623,7 +17624,7 @@
 <XPD:REF name="Receiver">VkmQhQL9l0S3kRKNC6QS8wAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="I7YMdv8KW0G+5ehZ+mh4DAAA">
 <XPD:REF name="Stimulus">AbDy1dcFhkGxRB7Fbm0/7gAA</XPD:REF>
-<XPD:REF name="Operation">GNXh7QEdrUyqKpi97Yz+lgAA</XPD:REF>
+<XPD:REF name="Operation">+HkbXPn7/UeR71Em9WXmLwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:REF name="InteractionInstanceSet">5q9mJWnoE06cG9s5ST+2qwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
@@ -17659,6 +17660,7 @@
 <XPD:REF name="Views[3]">/rZzQlZcHE+asW3A7xZcDgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[6]" type="UMLStimulus" guid="WqiUK+L5Qk+WmOPzdwNxxQAA">
+<XPD:ATTR name="Arguments" type="string">i</XPD:ATTR>
 <XPD:REF name="Sender">VkmQhQL9l0S3kRKNC6QS8wAA</XPD:REF>
 <XPD:REF name="Receiver">faIU+NQomESbfidXQbLG5AAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="O3Zv6RLUzU2XAQJ/QX3KVQAA">
@@ -17729,7 +17731,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedFrames" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="OwnedFrames[0]" type="UMLFrame" guid="ar2BAOxsu0SPlCZ0h+3YHwAA">
-<XPD:ATTR name="Name" type="string">Eskimo uses Ability</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Eskimo builds Igloo</XPD:ATTR>
 <XPD:ATTR name="FrameKind" type="string">sd</XPD:ATTR>
 <XPD:REF name="InteractionInstanceSet">5q9mJWnoE06cG9s5ST+2qwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">1</XPD:ATTR>
