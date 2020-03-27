@@ -1,6 +1,6 @@
 package entity.player;
 
-import model.Tile;
+import tiles.Tile;
 
 public class Explorer extends Player{
 

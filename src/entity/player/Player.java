@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import entity.item.Item;
 import model.Drawable;
-import model.Tile;
+import tiles.Tile;
 
 public abstract class Player implements Drawable{
 	

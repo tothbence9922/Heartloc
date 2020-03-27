@@ -1,10 +1,11 @@
-package model;
+package tiles;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import entity.item.Item;
 import entity.player.Player;
+import model.Drawable;
 
 public abstract class Tile implements Drawable {
 	

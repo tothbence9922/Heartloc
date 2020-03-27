@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import tiles.Tile;
+
 public class Field implements Drawable {
 	private ArrayList<Tile> tiles;
 	

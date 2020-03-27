@@ -23,6 +23,18 @@ public class Main {
 		for (Item i : Pali.items) {
 			i.use();
 		}
+		
+		int c = -1;
+		System.out.println("Choose");
+		
+		switch(c) {
+		case 0:
+			break;
+		case 1: 
+			break;
+		case 2: 
+			break;
+		}
 	}
 }
 
