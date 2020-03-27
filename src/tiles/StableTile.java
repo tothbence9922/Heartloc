@@ -15,4 +15,13 @@ public class StableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void dig(int i) {
+		System.out.println("StableTile\tvoid dig(int)\tparam: " + i );
+		
+	}
+
+	public void removeSnow(int i) {
+		System.out.println("StableTile\tvoid removeSnow(int)\tparam:" + i);
+	}
 }
