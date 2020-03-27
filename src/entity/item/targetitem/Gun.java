@@ -1,4 +1,4 @@
-package model;
+package entity.item.targetitem;
 
 public class Gun implements TargetItem {
 	@Override

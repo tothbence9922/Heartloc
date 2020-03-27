@@ -1,4 +1,4 @@
-package model;
+package entity.item.optionalitem;
 
 public class Rope implements OptionalItem{
 	@Override

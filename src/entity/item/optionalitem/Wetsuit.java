@@ -1,4 +1,4 @@
-package model;
+package entity.item.optionalitem;
 
 public class Wetsuit implements OptionalItem{
 	

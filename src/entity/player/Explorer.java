@@ -1,4 +1,6 @@
-package model;
+package entity.player;
+
+import model.Tile;
 
 public class Explorer extends Player{
 

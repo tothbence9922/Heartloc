@@ -1,6 +1,10 @@
-package model;
+package entity.player;
 
 import java.util.ArrayList;
+
+import entity.item.Item;
+import model.Drawable;
+import model.Tile;
 
 public abstract class Player implements Drawable{
 	

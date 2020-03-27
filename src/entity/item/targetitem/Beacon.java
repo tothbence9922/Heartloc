@@ -1,4 +1,4 @@
-package model;
+package entity.item.targetitem;
 
 public class Beacon implements TargetItem {
 	@Override

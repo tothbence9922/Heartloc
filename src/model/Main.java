@@ -1,5 +1,12 @@
 package model;
 
+import entity.item.Item;
+import entity.item.optionalitem.Food;
+import entity.item.optionalitem.Rope;
+import entity.item.optionalitem.Wetsuit;
+import entity.item.targetitem.Beacon;
+import entity.player.Eskimo;
+
 public class Main {
 	public static void main(String[] args) {
 		Eskimo Pali = new Eskimo();

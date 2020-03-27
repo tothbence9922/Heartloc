@@ -1,4 +1,4 @@
-package model;
+package entity.player;
 
 public class Eskimo extends Player {
 

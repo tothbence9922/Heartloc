@@ -2,9 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class StabileTile extends Tile {
+import entity.player.Player;
 
-	public StabileTile() {
+public class StableTile extends Tile {
+
+	public StableTile() {
 		this.players = new ArrayList<Player>();
 	}
 

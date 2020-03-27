@@ -2,7 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-public class InstabileTile extends Tile {
+import entity.player.Player;
+
+public class UnstableTile extends Tile {
 
 	private int limit;
 		
@@ -14,7 +16,7 @@ public class InstabileTile extends Tile {
 		return true;
 	}
 	
-	public InstabileTile(int _limit) {
+	public UnstableTile(int _limit) {
 		limit = _limit;
 		this.players = new ArrayList<Player>();
 	}

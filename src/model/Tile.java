@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import entity.item.Item;
+import entity.player.Player;
+
 public abstract class Tile implements Drawable {
 	
 	protected ArrayList<Player> players;
