@@ -6,4 +6,8 @@ public class Food implements OptionalItem {
 			System.out.println("Food :3");
 		return false;
 	}
+
+	public void pickup() {
+		System.out.println("Food\tvoid pickup()\tparam: -");
+	}
 }
