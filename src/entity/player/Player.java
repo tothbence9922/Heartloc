@@ -2,11 +2,12 @@ package entity.player;
 
 import java.util.ArrayList;
 
+import entity.Entity;
 import entity.item.Item;
 import model.Drawable;
 import tiles.Tile;
 
-public abstract class Player implements Drawable{
+public abstract class Player extends Entity implements Drawable{
 	
 	protected Tile curTile;
 	
@@ -18,7 +19,7 @@ public abstract class Player implements Drawable{
 	protected int bodyTemp= 4;
 	
 	public int getEnergy() {
-		System.out.println("Player\tint getCap()\tparam: -");
+		System.out.println("Player\tint getEnergy()\tparam: -");
 		return energy;
 	}
 	
@@ -36,8 +37,8 @@ public abstract class Player implements Drawable{
 		return false;
 	}
 	
-	public void move() {
-		
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
 	}
 	
 	public void feed(Player p) {
@@ -49,7 +50,7 @@ public abstract class Player implements Drawable{
 	}
 	
 	public void scream() {
-		
+		System.out.println("Player\t void scream()\tparam: -");
 	}
 	
 	public void useItem() {
@@ -70,6 +71,15 @@ public abstract class Player implements Drawable{
 	 */
 	public void showActions() {
 		
+	}
+	public void pushToWater() {
+		System.out.println("Player\tvoid pushToWater()\tparam: -");
+	}
+	public void setInWater(boolean inWater) {
+		System.out.println("Player\t void setInWater()\tparam: -");
+	}
+	public void savePlayer(Player p) {
+		System.out.println("Player\t void savePlayer(Player)\t param: Player");
 	}
 	
 }
