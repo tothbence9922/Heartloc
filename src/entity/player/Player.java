@@ -2,11 +2,12 @@ package entity.player;
 
 import java.util.ArrayList;
 
+import entity.Entity;
 import entity.item.Item;
 import model.Drawable;
 import tiles.Tile;
 
-public abstract class Player implements Drawable{
+public abstract class Player extends Entity implements Drawable{ 
 	
 	protected Tile curTile;
 	
