@@ -12,6 +12,10 @@ public class Explorer extends Player{
 	public void explore(Tile t) {
 		
 	}
+	
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move(Tile)\tparam: st1");
+	}
 
 	@Override
 	public void draw() {
