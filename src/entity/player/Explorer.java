@@ -29,7 +29,7 @@ public class Explorer extends Player{
 
 	public int getEnergy() {
 		System.out.println("Player\tint getEnergy()\tparam: -");
-		return this.workCap;
+		return this.energy;
 	}
 	
 	public void heal(int amount) {
