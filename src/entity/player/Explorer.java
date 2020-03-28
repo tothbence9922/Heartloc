@@ -6,7 +6,7 @@ public class Explorer extends Player{
 
 	public Explorer() {
 		this.bodyTemp = 4;
-		this.workCap = 4;
+		this.energy = 4;
 	}
 	
 	public void explore(Tile t) {
@@ -16,9 +16,5 @@ public class Explorer extends Player{
 	@Override
 	public void draw() {
 		
-	}
-
-	public void step() {
-		System.out.println("Player\tvoid step()\tparam: -");
 	}
 }

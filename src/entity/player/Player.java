@@ -14,15 +14,20 @@ public abstract class Player implements Drawable{
 
 	protected boolean isActive;
 	
-	protected int workCap = 4;
+	protected int energy= 4;
 	protected int bodyTemp= 4;
 	
-	public int getCap() {
-		return workCap;
+	public int getEnergy() {
+		System.out.println("Player\tint getCap()\tparam: -");
+		return energy;
 	}
 	
 	public int getTemp() {
 		return bodyTemp;
+	}
+	
+	public void step() {
+		System.out.println("Player\tvoid step()\tparam: -");
 	}
 	
 	public boolean hit() {
