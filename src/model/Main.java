@@ -10,6 +10,7 @@ import entity.item.targetitem.Beacon;
 import entity.player.Eskimo;
 import sequences.Seq04;
 import sequences.Seq10;
+import sequences.Seq18;
 import sequences.Seq02;
 
 public class Main {
@@ -21,19 +22,23 @@ public class Main {
 		case 0:
 			sc.close();
 			break;
-		case 1: 
+		case 1:
 			sc.close();
 			break;
 		case 2:
 			Seq02 seq02 = new Seq02();
 			sc.close();
 			break;
+		case 4:
+			Seq04 seq04 = new Seq04();
+			sc.close();
+			break;
 		case 10:
 			Seq10 seq10 = new Seq10();
 			sc.close();
 			break;
-		case -1:
-			Seq04 seq01 = new Seq04();
+		case 18:
+			Seq18 seq18 = new Seq18();
 			sc.close();
 			break;
 		default:

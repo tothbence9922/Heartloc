@@ -7,9 +7,16 @@ public class Eskimo extends Player {
 		this.bodyTemp = 5;
 		this.energy = 4;
 	}
-	
-	public void build(Tile t) {
+	/**
+	 * bool buildIgloo(Tile chosenTile): Az õsosztályból származó metódus, mely
+	 * itt az Eszkimó képességét valósítja meg: épít egy iglut arra a jégtáblára, ahol
+	 * az Eszkimó áll.
+	 * @param t - Az a Tile ami áll az Eszkimó
+	 * @return - A sikeresen felépített Iglu esetén true, ellenkezõ esetben false.
+	 */
+	public boolean buildIgloo(Tile t) {
 		System.out.println("Eskimo\tvoid build()\tparam: Tile");
+		return false;
 	}
 
 	@Override

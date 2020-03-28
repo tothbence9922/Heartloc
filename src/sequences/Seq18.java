@@ -11,6 +11,7 @@ public class Seq18 {
 	Rocket r = new Rocket();
 	Game g = new Game();
 	public Seq18() {
+		System.out.println("Seq: Explorer uses TargetItem and it works");
 		ex.step();
 		st.assembleRocket();
 		st.getNumOfTargetItems();
@@ -18,6 +19,10 @@ public class Seq18 {
 		System.out.println("\t(assmebleRocket) returned");
 		r.useTargetItem();
 		System.out.println("\t(useTargetItem) returned");
-		
+		g.victory();
+		g.EndGame();
+		System.out.println("\t(EndGame) returned");
+		System.out.println("\t(assmebleRocket) returned");
+		System.out.println("\t(step) returned");	
 	}
 }

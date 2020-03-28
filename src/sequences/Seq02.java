@@ -20,7 +20,7 @@ public class Seq02 {
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		if (in == 1) {
-			es.build(ut);
+			es.buildIgloo(ut);
 			System.out.println("\t(build) returned");
 			ut.receive(i);
 			System.out.println("\t(receive) returned");
