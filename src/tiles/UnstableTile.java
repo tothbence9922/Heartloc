@@ -2,6 +2,7 @@ package tiles;
 
 import java.util.ArrayList;
 
+import entity.Entity;
 import entity.player.Player;
 
 public class UnstableTile extends Tile {
@@ -26,4 +27,6 @@ public class UnstableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 }
