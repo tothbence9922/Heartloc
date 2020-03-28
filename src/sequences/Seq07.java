@@ -6,10 +6,11 @@ import entity.player.Explorer;
 import tiles.StableTile;
 
 public class Seq07 {
-	
 	Explorer ex = new Explorer();
 	Food f = new Food();
+	
 	public Seq07() {
+		System.out.println("Seq: Explorer eats Food");
 		ex.step();
 		System.out.println("Explorers energy : ");
 		ex.getEnergy();
