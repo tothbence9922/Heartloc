@@ -25,8 +25,34 @@ public abstract class Tile implements Drawable {
 			p.hit();
 		}
 	}
-	public boolean receive(Entity e) {
+
+	public Tile[] getNeighbours() {
+		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
 		
+		Tile t1=new StableTile();
+		Tile t2=new StableTile();
+		Tile[] tiles= {t1,t2};
+		return tiles;
+	}
+	
+	public boolean alarmTile(Entity e) {
+		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: ex");
 		return false;
 	}
+	
+	public boolean getHasHole(){
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return this.hasHole;
+	}
+	
+	public boolean receive(Entity e){
+		System.out.println("Tile\tboolean receive(Entity)\tparam: ex");
+		return true;
+	}
+	
+	public boolean remove(Entity e){
+		System.out.println("Tile\tboolean remove(Entity)\tparam: ex");
+		return true;
+	}
+	
 }
