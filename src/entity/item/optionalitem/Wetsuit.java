@@ -11,4 +11,9 @@ public class Wetsuit implements OptionalItem{
 			System.out.println("Wetsuit is not usable");
 		return false;
 	}
+	
+	public boolean wear() {
+		System.out.println("Wetsuit\tboolean wear()\tparam: -");
+		return false;
+	}
 }
