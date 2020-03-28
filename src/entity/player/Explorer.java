@@ -18,4 +18,15 @@ public class Explorer extends Player{
 		// TODO Auto-generated method stub
 		
 	}
+<<<<<<< Updated upstream
+=======
+
+	public void step() {
+		System.out.println("Player\tvoid step()\tparam: -");
+	}
+	
+	public int getEnergy() {
+		return this.workCap;
+	}
+>>>>>>> Stashed changes
 }
