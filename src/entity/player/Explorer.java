@@ -15,7 +15,10 @@ public class Explorer extends Player{
 
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
 		
+	}
+
+	public void step() {
+		System.out.println("Player\tvoid step()\tparam: -");
 	}
 }
