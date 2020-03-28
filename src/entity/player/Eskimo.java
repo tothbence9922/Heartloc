@@ -7,9 +7,6 @@ public class Eskimo extends Player {
 		this.bodyTemp = 5;
 		this.energy = 4;
 	}
-	public void step() {
-		System.out.println("Eskimo\tvoid step()\tparam: -");
-	}
 	
 	public void build(Tile t) {
 		System.out.println("Eskimo\tvoid build()\tparam: Tile");
