@@ -9,6 +9,7 @@ import entity.item.optionalitem.Wetsuit;
 import entity.item.targetitem.Beacon;
 import entity.player.Eskimo;
 import sequences.Seq04;
+import sequences.Seq10;
 import sequences.Seq02;
 
 public class Main {
@@ -25,6 +26,10 @@ public class Main {
 			break;
 		case 2:
 			Seq02 seq02 = new Seq02();
+			sc.close();
+			break;
+		case 10:
+			Seq10 seq10 = new Seq10();
 			sc.close();
 			break;
 		case -1:

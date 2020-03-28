@@ -18,6 +18,8 @@ public abstract class Tile implements Drawable {
 	
 	protected boolean hasHole = false;	// Felesleges szerintem külön osztályt szánni neki TB
 	
+	protected int numOfTargetItems;
+	
 	public boolean getHasHole() {
 		System.out.println("Tile\tboolean getHasHole()\tparam: -");
 		return this.hasHole;
@@ -37,5 +39,13 @@ public abstract class Tile implements Drawable {
 	}
 	public void remove(Entity e) {
 		System.out.println("Tile\tvoid remove()\tparam: Entity");
+	}
+	public boolean assembleRocket() {
+		System.out.println("Tile\tbooelan assembleRocket()\tparam: -");
+		return false;
+	}
+	public int getNumOfTargetItems() {
+		System.out.println("Tile\tint getNumOfTargetItems()\tparam: -");
+		return this.numOfTargetItems;
 	}
 }

@@ -9,6 +9,7 @@ public class Seq10 {
 	UnstableTile ut2 = new UnstableTile(2);
 	
 	public Seq10() {
+		System.out.println("Seq: Explorer moves to UnstableTile without hole and it doesn’t turn over");
 		ex.move(ut);
 		ut.receive(ex);
 		ut.getHasHole();
