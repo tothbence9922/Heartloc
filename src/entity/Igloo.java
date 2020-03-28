@@ -1,5 +1,5 @@
 package entity;
 
-public class Igloo {
+public class Igloo extends Entity {
 
 }

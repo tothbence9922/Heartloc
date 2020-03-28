@@ -3,6 +3,7 @@ package tiles;
 import java.util.ArrayList;
 import java.util.Random;
 
+import entity.Entity;
 import entity.item.Item;
 import entity.player.Player;
 import model.Drawable;
@@ -23,5 +24,9 @@ public abstract class Tile implements Drawable {
 		for (Player p : players) {
 			p.hit();
 		}
+	}
+	public boolean receive(Entity e) {
+		
+		return false;
 	}
 }
