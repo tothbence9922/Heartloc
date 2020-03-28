@@ -8,7 +8,7 @@ import tiles.StableTile;
 public class Seq18 {
 	Explorer ex = new Explorer();
 	StableTile st = new  StableTile();
-	Rocket r = new Rocket();
+	Rocket r;
 	Game g = new Game();
 	public Seq18() {
 		System.out.println("Seq: Explorer uses TargetItem and it works");
@@ -16,6 +16,7 @@ public class Seq18 {
 		st.assembleRocket();
 		st.getNumOfTargetItems();
 		System.out.println("\t(getNumOTargetItems) returned");
+		r = new Rocket();
 		System.out.println("\t(assmebleRocket) returned");
 		r.useTargetItem();
 		System.out.println("\t(useTargetItem) returned");

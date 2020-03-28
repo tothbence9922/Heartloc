@@ -1,6 +1,10 @@
 package entity.item.targetitem;
 
 public class Rocket implements TargetItem {
+	
+	public Rocket() {
+		System.out.println("Rocket has been created");
+	}
 	@Override
 	public boolean use() {
 			System.out.println("Rocket is not yet usable");
