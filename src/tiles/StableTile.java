@@ -18,24 +18,10 @@ public class StableTile extends Tile {
 		
 	}
 	
-	public boolean receive(Entity e){
-		System.out.println("StableTile\tboolean receive(Entity)\tparam: ex");
-		return true;
-	}
-	
-	public boolean remove(Entity e){
-		System.out.println("StableTile\tboolean remove(Entity)\tparam: ex");
-		return true;
-	}
 
 	public void dig(int i) {
 		System.out.println("StableTile\tvoid dig(int)\tparam:" + i );
 		
-	}
-	
-	public boolean getHasHole(){
-		System.out.println("StableTile\tboolean getHasHole()\tparam: -");
-		return this.hasHole;
 	}
 
 	public void removeSnow(int i) {
