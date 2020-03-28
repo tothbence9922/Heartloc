@@ -2,11 +2,12 @@ package entity.player;
 
 import java.util.ArrayList;
 
+import entity.Entity;
 import entity.item.Item;
 import model.Drawable;
 import tiles.Tile;
 
-public abstract class Player implements Drawable{
+public abstract class Player extends Entity implements Drawable{
 	
 	protected Tile curTile;
 	
@@ -36,8 +37,8 @@ public abstract class Player implements Drawable{
 		return false;
 	}
 	
-	public void move() {
-		
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move()\tparam: Tile");
 	}
 	
 	public void feed(Player p) {

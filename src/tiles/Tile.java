@@ -17,6 +17,11 @@ public abstract class Tile implements Drawable {
 	protected Item item = null;
 	
 	protected boolean hasHole = false;	// Felesleges szerintem külön osztályt szánni neki TB
+	
+	public boolean getHasHole() {
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return this.hasHole;
+	}
 
 	public void storm(Random r) {
 		snow += r.nextInt(3);
@@ -25,8 +30,12 @@ public abstract class Tile implements Drawable {
 			p.hit();
 		}
 	}
+
 	public boolean receive(Entity e) {
-		
+		System.out.println("Tile\tboolean receive()\tparam: Entity");
 		return false;
+	}
+	public void remove(Entity e) {
+		System.out.println("Tile\tvoid remove()\tparam: Entity");
 	}
 }
