@@ -18,13 +18,13 @@ public class StableTile extends Tile {
 		
 	}
 	
-	public boolean receive(Explorer e){
-		System.out.println("StableTile\tboolean receive(Explorer)\tparam: ex");
+	public boolean receive(Entity e){
+		System.out.println("StableTile\tboolean receive(Entity)\tparam: ex");
 		return true;
 	}
 	
-	public boolean remove(Explorer e){
-		System.out.println("StableTile\tboolean remove(Explorer)\tparam: ex");
+	public boolean remove(Entity e){
+		System.out.println("StableTile\tboolean remove(Entity)\tparam: ex");
 		return true;
 	}
 
