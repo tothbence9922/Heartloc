@@ -7,6 +7,7 @@ import entity.item.optionalitem.Wetsuit;
 import entity.item.targetitem.Beacon;
 import entity.player.Eskimo;
 import sequences.Seq04;
+import sequences.Seq02;
 
 public class Main {
 	public static void main(String[] args) {
@@ -33,7 +34,7 @@ public class Main {
 			break;
 		case 1: 
 			break;
-		case 2: 
+		case 2: Seq02 seq02 = new Seq02();
 			break;
 		case -1:
 			Seq04 seq01 = new Seq04();
