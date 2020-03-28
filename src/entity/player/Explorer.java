@@ -17,6 +17,7 @@ public class Explorer extends Player{
 		System.out.println("Player\tvoid move(Tile)\tparam: st1");
 	}
 
+
 	@Override
 	public void draw() {
 		
