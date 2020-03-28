@@ -8,11 +8,6 @@ import entity.item.targetitem.Beacon;
 import entity.player.Eskimo;
 import sequences.Seq04;
 
-import sequences.Seq06;
-import sequences.Seq07;
-import sequences.Seq09;
-
-import sequences.Seq02;
 
 
 public class Main {
@@ -43,8 +38,7 @@ public class Main {
 		case 2: Seq02 seq02 = new Seq02();
 			break;
 		case -1:
-			//Seq04 seq01 = new Seq04();
-			Seq09 s=new Seq09();
+			Seq04 seq01 = new Seq04();
 			break;
 		}
 	}
