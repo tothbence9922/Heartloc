@@ -8,7 +8,7 @@ public class Shovel implements OptionalItem{
 	}
 	
 	public boolean dig() {
-		System.out.println("You can dig with the Shovel");
+		System.out.println("Shovel\tboolean dig()\tparam: -");
 		return true;
 	}
 }
