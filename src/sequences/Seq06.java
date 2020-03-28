@@ -21,7 +21,6 @@ public class Seq06 {
 		ex.getEnergy();
 		if(ex.getEnergy()>0) {
 			s.dig();
-			System.out.println("s.dig() returns true");
 			st.dig(2);
 			st.removeSnow(2);
 			System.out.println("Find item? Enter 0 or 1");
