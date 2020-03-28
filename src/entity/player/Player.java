@@ -41,6 +41,15 @@ public abstract class Player extends Entity implements Drawable{
 		
 	}
 	
+	
+	public void pushToWater() {
+		System.out.println("Player\tvoid pushToWater()\tparam: -");
+	}
+	
+	public void setInWater(boolean b) {
+		System.out.println("Player\tvoid setInWater(boolean)\tparam:"+b);
+	}
+	
 	public void feed(Player p) {
 		p.bodyTemp += 1;
 	}
@@ -49,8 +58,9 @@ public abstract class Player extends Entity implements Drawable{
 		scream();
 	}
 	
-	public void scream() {
-		
+	public int scream() {
+		System.out.println("Player\tint scream()\tparam: -");
+		return 1;
 	}
 	
 	public void useItem() {
@@ -61,8 +71,13 @@ public abstract class Player extends Entity implements Drawable{
 		
 	}
 	
-	public void dig() {
-		
+	public boolean savePlayer(Player p) {
+		System.out.println("Player\tboolean savePlayer(Player)\tparam: ex");
+		return false;
+	}
+	
+	public void die() {
+		System.out.println("Player\tvoid die()\tparam: -");
 	}
 	/**
 	 * megjelenitjuk a lehetseges cselekveseket,
