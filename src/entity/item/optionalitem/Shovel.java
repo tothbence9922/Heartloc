@@ -1,5 +1,7 @@
 package entity.item.optionalitem;
 
+import entity.player.Player;
+
 public class Shovel implements OptionalItem{
 	@Override
 	public boolean use() {
@@ -7,9 +9,16 @@ public class Shovel implements OptionalItem{
 		return false;
 	}
 
+	public boolean dig() {
+		System.out.println("Shovel\tboolean dig()\tparam: -");
+		return true;
+	}
+
 	@Override
 	public boolean wear() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+  
+	public boolean pull(Player p) {return false;}
 }

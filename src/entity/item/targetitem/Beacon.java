@@ -1,9 +1,11 @@
 package entity.item.targetitem;
 
+import entity.player.Player;
+
 public class Beacon implements TargetItem {
 	@Override
 	public boolean use() {
-			System.out.println("Beacon is not yet usable");
+			System.out.println("Beacon is not yet usable!");
 		return false;
 	}
 
@@ -12,4 +14,6 @@ public class Beacon implements TargetItem {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public boolean pull(Player p) {return false;}
 }

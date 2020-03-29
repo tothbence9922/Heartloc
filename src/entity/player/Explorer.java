@@ -30,4 +30,14 @@ public class Explorer extends Player{
 	public void draw() {
 		
 	}
+	public int getEnergy() {
+		System.out.println("Player\tint getEnergy()\tparam: -");
+		return this.energy;
+	}
+	
+	public void heal(int amount) {
+		//this.bodyTemp+=amount; nem tudom kell-e bele
+		System.out.println("Player\tvoid heal(int)\tparam:" + amount);
+		
+	}
 }

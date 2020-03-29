@@ -7,10 +7,11 @@ public class UnstableTile extends Tile {
 
 	private int load;
 	private int capacity;
+
 		
 	/**
-	 *  A tábla forog ha túlterhelõdik. Hívhatja a rajta álló emberek Fall fgv-ét vagy valami
-	 * @return
+	 *  A tÃ¡bla forog ha tÃºlterhelÃµdik. HÃ­vhatja a rajta Ã¡llÃ³ emberek Fall fgv-Ã©t vagy valami
+	 * @return Ha sikeresen Ã¡tfordult true Ã©rÃ©kkel tÃ©r vissza, ha nem akkor false-al.
 	 */
 	public boolean rotate() {
 		return true;
@@ -40,8 +41,8 @@ public class UnstableTile extends Tile {
 	}
 	
 	/**
-	 * A függvény megadja mennyi a terhelés.
-	 * @return - A terhelés nagyságával tér vissza.
+	 * A fÃ¼ggvÃ©ny megadja mennyi a terhelÃ©s.
+	 * @return - A terhelÃ©s nagysÃ¡gÃ¡val tÃ©r vissza.
 	 */
 	public int getLoad() {
 		System.out.println("UnstableTile\tint getLoad()\tparam: -");
@@ -49,12 +50,20 @@ public class UnstableTile extends Tile {
 	}
 	
 	/**
-	 * A függvény megadja mennyi a kapacitás.
-	 * @return - A kapacitás nagyságával tér vissza.
+	 * A fÃ¼ggvÃ©ny megadja mennyi a kapacitÃ¡s.
+	 * @return - A kapacitÃ¡s nagysÃ¡gÃ¡val tÃ©r vissza.
 	 */
 	public int getCapacity() {
 		System.out.println("UnstableTile\tint getCapacity()\tparam: -");
 		return this.capacity;
+
+	/**
+	 * A fÃ¼ggvÃ©ny megadja mennyi a terhelÃ©s.
+	 * @return - A terhelÃ©s nagysÃ¡gÃ¡val tÃ©r vissza.
+	 */
+	public int getLoad() {
+		System.out.println("UnstableTile\tint getLoad()\tparam: -");
+		return this.load;
 	}
 
 	@Override
@@ -62,7 +71,7 @@ public class UnstableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
-
+    
 	@Override
 	public boolean getHasHole() {
 		System.out.println("UnstableTile\tboolean getHasHole()\tparam: -");
