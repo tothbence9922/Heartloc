@@ -8,7 +8,7 @@ import tiles.UnstableTile;
 public class Seq02 {
 	Eskimo es = new Eskimo();
 	UnstableTile ut = new UnstableTile(3);
-	Igloo i = new Igloo();
+	Igloo i;
 	
 	public Seq02() {
 		System.out.println("Seq: Eskimo builds Igloo on UnstableTile and it doesn't turn over");
@@ -20,9 +20,14 @@ public class Seq02 {
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		if (in == 1) {
-			es.build(ut);
+			es.buildIgloo(ut);
+			i = new Igloo();
+			System.out.println("\t(build) returned");
 			ut.receive(i);
+			System.out.println("\t(receive) returned");
 		}
+		System.out.println("\t(step) returned");
+		sc.close();
 	}
 }
 
