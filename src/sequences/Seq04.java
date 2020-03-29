@@ -6,13 +6,13 @@ import entity.player.Explorer;
 import model.Helper;
 import tiles.StableTile;
 
-public class Seq01 {
+public class Seq04 {
 
 	Explorer ex = new Explorer();
 	StableTile st = new StableTile();
 	Food f = new Food();
 	
-	public Seq01() {
+	public Seq04() {
 		System.out.println("Seq: Explorer digs with Hand and get an Item");
 		ex.step();
 		st.dig(1);

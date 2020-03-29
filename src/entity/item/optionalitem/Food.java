@@ -10,4 +10,10 @@ public class Food implements OptionalItem {
 	public void pickup() {
 		System.out.println("Food\tvoid pickup()\tparam: -");
 	}
+
+	@Override
+	public boolean wear() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

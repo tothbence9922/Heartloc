@@ -1,43 +1,33 @@
 package model;
 
-import entity.item.Item;
-import entity.item.optionalitem.Food;
-import entity.item.optionalitem.Rope;
-import entity.item.optionalitem.Wetsuit;
-import entity.item.targetitem.Beacon;
-import entity.player.Eskimo;
+import java.util.Scanner;
+
 import sequences.Seq01;
+import sequences.Seq04;
+import sequences.Seq16;
 
 public class Main {
 	public static void main(String[] args) {
-		Eskimo Pali = new Eskimo();
-		Beacon b = new Beacon();
-		Food f = new Food();
-		Wetsuit w = new Wetsuit();
-		
-		Pali.items.add(b);
-		Pali.items.add(f);
-		Pali.items.add(w);
-		Pali.items.add(new Rope());
-
-		
-		for (Item i : Pali.items) {
-			i.use();
-		}
-		
-		int c = -1;
 		System.out.println("Choose");
+		Scanner sc = new Scanner(System.in);
+		int  c = sc.nextInt();
 		
 		switch(c) {
 		case 0:
 			break;
 		case 1: 
+			Seq01 seq01 = new Seq01();
 			break;
 		case 2: 
 			break;
-		case -1:
-			Seq01 seq01 = new Seq01();
+		case 4:
+			Seq04 seq04 = new Seq04();
 			break;
+		case 16:
+			Seq16 seq16 = new Seq16();
+			break;
+		default:
+			sc.close();
 		}
 	}
 }

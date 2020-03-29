@@ -6,4 +6,10 @@ public class Gun implements TargetItem {
 			System.out.println("Gun is not yet usable");
 		return false;
 	}
+
+	@Override
+	public boolean wear() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
