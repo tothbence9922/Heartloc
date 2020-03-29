@@ -9,12 +9,9 @@ import tiles.Tile;
 
 public abstract class Player extends Entity implements Drawable{
 	
-	protected Tile curTile;
-	
 	public ArrayList<Item> items = new ArrayList<Item>();
-
+	protected Tile curTile;
 	protected boolean isActive;
-	
 	protected int energy = 4;
 	protected int bodyTemp= 4;
 	
@@ -37,8 +34,8 @@ public abstract class Player extends Entity implements Drawable{
 		return false;
 	}
 	
-	public void move() {
-		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move(Tile)\tparam: " + t);
 	}
 	
 	public void feed(Player p) {
@@ -64,6 +61,9 @@ public abstract class Player extends Entity implements Drawable{
 	public void dig() {
 		
 	}
+	
+	public abstract void die();
+	
 	/**
 	 * megjelenitjuk a lehetseges cselekveseket,
 	 * ha 0 az ereje ne tudja kivalasztani, ne kivalasztas utan ellenorizze
@@ -81,9 +81,11 @@ public abstract class Player extends Entity implements Drawable{
 	public void pushToWater() {
 		System.out.println("Player\tvoid pushToWater()\tparam: -");
 	}
+	
 	public void setInWater(boolean inWater) {
 		System.out.println("Player\t void setInWater()\tparam: -");
 	}
+	
 	public void savePlayer(Player p) {
 		System.out.println("Player\t void savePlayer(Player)\t param: Player");
 	}	

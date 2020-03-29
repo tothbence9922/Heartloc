@@ -12,13 +12,22 @@ public class Explorer extends Player{
 	public void explore(Tile t) {
 		
 	}
-
-	@Override
-	public void draw() {
-		
+	
+	public void move(Tile t) {
+		System.out.println("Explorer\tvoid move(Tile)\tparam: " + t);
 	}
 
 	public void step() {
 		System.out.println("Player\tvoid step()\tparam: -");
+	}
+
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void draw() {
+		
 	}
 }

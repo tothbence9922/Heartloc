@@ -14,13 +14,21 @@ public class Eskimo extends Player {
 		return true;
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
+	public void move(Tile t) {
+		System.out.println("Eskimo\tvoid move(Tile)\tparam: " + t);
 	}
 
 	public void step() {
 		System.out.println("Eskimo\tint step()\tparam: -");
+	}
+
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
 	}
 }

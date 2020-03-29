@@ -1,7 +1,5 @@
 package tiles;
 
-import java.util.ArrayList;
-
 import entity.Entity;
 import entity.player.Player;
 
@@ -22,6 +20,11 @@ public class UnstableTile extends Tile {
 		load = l;
 	}
 	
+	public void dig(int i) {
+		System.out.println("UnstableTile\tvoid dig(int)\tparam: " + i );
+		
+	}
+	
 	public boolean receive(Entity e) {
 		System.out.println("UnstableTile\tboolean receive(Entity)\tparam: " + e);
 		return true;
@@ -30,6 +33,10 @@ public class UnstableTile extends Tile {
 	public boolean remove(Entity e) {
 		System.out.println("UnstableTile\tboolean remove(Entity)\tparam: " + e);
 		return true;
+	}
+	
+	public void removeSnow(int i) {
+		System.out.println("UnstableTile\tvoid removeSnow(int)\tparam:" + i);
 	}
 	
 	/**
@@ -60,5 +67,16 @@ public class UnstableTile extends Tile {
 	public boolean getHasHole() {
 		System.out.println("UnstableTile\tboolean getHasHole()\tparam: -");
 		return true;
+	}
+
+	@Override
+	public Tile getNeighbours() {
+		return null;
+	}
+
+	@Override
+	public boolean alarmTile(Player p) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

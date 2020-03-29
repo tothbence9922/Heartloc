@@ -41,4 +41,15 @@ public class StableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Tile getNeighbours() {
+		return null;
+	}
+
+	@Override
+	public boolean alarmTile(Player p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

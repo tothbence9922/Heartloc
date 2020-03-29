@@ -31,4 +31,8 @@ public abstract class Tile implements Drawable {
 	public abstract boolean remove(Entity e);
 	
 	public abstract boolean getHasHole();
+	
+	public abstract Tile getNeighbours();
+	
+	public abstract boolean alarmTile(Player p);
 }
