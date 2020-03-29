@@ -5,7 +5,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+
+import entity.item.Item;
+import entity.item.optionalitem.Food;
+import entity.item.optionalitem.Rope;
+import entity.item.optionalitem.Wetsuit;
+import entity.item.targetitem.Beacon;
+import entity.player.Eskimo;
+
+import sequences.Seq02;
+import sequences.Seq04;
+
+
+import sequences.Seq04;
+import sequences.Seq10;
+import sequences.Seq18;
+import sequences.Seq02;
+
 import sequences.*;
+
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {	
