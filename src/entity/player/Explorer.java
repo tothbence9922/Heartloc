@@ -2,6 +2,12 @@ package entity.player;
 
 import tiles.Tile;
 
+/**
+ * A játékban szereplõ egyik entitás. Kezdésként 4 egységnyi testhõje van, valamint
+ * egy különleges képessége is: meg tudja nézni a legfeljebb 3 távolságra lévõ
+ * jégtábláról, hogy mekkora a teherbírása. Ez fontos és hasznos képesség, ugyanis az
+ * instabil jégtáblák nagy veszélyt jelentenek.
+ */
 public class Explorer extends Player{
 
 	public Explorer() {
@@ -9,15 +15,13 @@ public class Explorer extends Player{
 		this.energy = 4;
 	}
 	
-	public void move(Tile t) {
-		System.out.println("Explorer\tvoid move(Tile)\tparam: " + t);
-	}
-
-	public int step() {
-		System.out.println("Explorer\tvoid step()\tparam: -");
-		return 0;
-	}
-
+	/**
+	 * Az õsosztályból származó metódus, mely itt az Explorer képességét valósítja meg: a
+	 * játékos pozíciójától legfeljebb 3 távolságra lévõ jégtáblák közül egyrõl 
+	 * megállapítja a teherbírását
+	 * @param chosenTile a kiválasztott Tile
+	 * @return a Tile teherbírása
+	 */
 	@Override
 	public int exploreTile(Tile chosenTile) {
 		System.out.println("Explorer\tint ExploreTile()\tparam: " + chosenTile);
