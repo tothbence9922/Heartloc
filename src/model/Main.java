@@ -6,6 +6,7 @@ import entity.item.optionalitem.Rope;
 import entity.item.optionalitem.Wetsuit;
 import entity.item.targetitem.Beacon;
 import entity.player.Eskimo;
+import sequences.Seq02;
 import sequences.Seq04;
 
 
