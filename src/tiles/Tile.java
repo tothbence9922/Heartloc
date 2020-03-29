@@ -48,6 +48,25 @@ public abstract class Tile implements Drawable {
 			p.hit();
 		}
 	}
+	public Tile[] getNeighbours() {
+		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
+		
+		Tile t1=new StableTile();
+		Tile t2=new StableTile();
+		Tile[] tiles= {t1,t2};
+		return tiles;
+	}
+	
+	public boolean alarmTile(Entity e) {
+		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: ex");
+		return false;
+	}
+	
+	public boolean getHasHole(){
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return this.hasHole;
+	}
+	
 	/**
 	 * a paraméterben kapott entitást a jégtáblára mozgatja.
 	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
@@ -62,7 +81,7 @@ public abstract class Tile implements Drawable {
 	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
 	 */
 	public void remove(Entity e) {
-		System.out.println("Tile\tvoid remove()\tparam: Entity");
+		System.out.println("Tile\tvoid remove()\tparam: " + e);
 	}
 	/**
 	 * A rakéta összeszerelését végzi el a függvény.
@@ -81,8 +100,4 @@ public abstract class Tile implements Drawable {
 	public void alarmTile(Player p) {
 		System.out.println("Tile\t void alarmTile(Player)\tparam: player");
 	}
-	public void remove(Entity e) {
-		System.out.println("Tile\t void remove(Entity)\t param: Entity");
-	}
-	
 }

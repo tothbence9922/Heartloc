@@ -13,6 +13,19 @@ public class Food implements OptionalItem {
 		System.out.println("Food\tvoid pickup()\tparam: -");
 	}
 
+	public void setIsVisible(boolean trueorfalse) {
+		boolean testVisible=trueorfalse;
+		if(trueorfalse==true) {
+			System.out.println("Food\tvoid setIsVisible(boolean)\tparam: true");
+		}
+	}
+	
+	public boolean eat() {
+		System.out.println("Food\tboolean eat()\tparam: -");
+		return true;
+	}
+
+
 	public boolean wear() {return false;}
 	public boolean pull(Player p) {return false;}
 
@@ -21,5 +34,4 @@ public class Food implements OptionalItem {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

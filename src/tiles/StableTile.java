@@ -2,6 +2,8 @@ package tiles;
 
 import java.util.ArrayList;
 
+import entity.Entity;
+import entity.player.Explorer;
 import entity.player.Player;
 
 public class StableTile extends Tile {
@@ -15,9 +17,10 @@ public class StableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	public void dig(int i) {
-		System.out.println("StableTile\tvoid dig(int)\tparam: " + i );
+		System.out.println("StableTile\tvoid dig(int)\tparam:" + i );
 		
 	}
 
