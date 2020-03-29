@@ -39,20 +39,16 @@ public class StableTile extends Tile {
 	
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
 		
 	}
-	
-
-
-	@Override
-	public Tile getNeighbours() {
-		return null;
-  }
 
 	@Override
 	public boolean alarmTile(Player p) {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void setCapacityVisible(boolean b) {
+		
 	}
 }

@@ -26,8 +26,9 @@ public class Eskimo extends Player {
 		System.out.println("Eskimo\tvoid move(Tile)\tparam: " + t);
 	}
 
-	public void step() {
+	public int step() {
 		System.out.println("Eskimo\tint step()\tparam: -");
+		return 0;
 	}
 
 	@Override
@@ -38,5 +39,10 @@ public class Eskimo extends Player {
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public int exploreTile(Tile chosenTile) {
+		return -1;
 	}
 }

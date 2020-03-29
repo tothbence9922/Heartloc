@@ -11,7 +11,6 @@ public abstract class Player extends Entity implements Drawable{
 	
 	protected Tile curTile;
 	public ArrayList<Item> items = new ArrayList<Item>();
-	protected Tile curTile;
 	protected boolean isActive;
 
 	protected int energy= 4;
@@ -41,10 +40,6 @@ public abstract class Player extends Entity implements Drawable{
 		return energy;
 	}
 	
-	public void step() {
-		System.out.println("Player\tvoid step()\tparam: -");
-	}
-	
 	public boolean hit() {
 		bodyTemp--;
 		if (bodyTemp == 0) return true;
@@ -59,14 +54,6 @@ public abstract class Player extends Entity implements Drawable{
 	 */
 	public void move(Tile t) {
 		System.out.println("Player\tvoid move(Tile)\tparam: " + t);
-  }
-	
-	public void pushToWater() {
-		System.out.println("Player\tvoid pushToWater()\tparam: -");
-	}
-	
-	public void setInWater(boolean b) {
-		System.out.println("Player\tvoid setInWater(boolean)\tparam:"+b);
 	}
 	
 	public void feed(Player p) {
@@ -90,15 +77,6 @@ public abstract class Player extends Entity implements Drawable{
 		
 	}
 	
-	public boolean savePlayer(Player p) {
-		System.out.println("Player\tboolean savePlayer(Player)\tparam: ex");
-		return false;
-	}
-	
-	public void die() {
-		System.out.println("Player\tvoid die()\tparam: -");
-	}
-	
 	public abstract void die();
 	
 	/**
@@ -115,24 +93,15 @@ public abstract class Player extends Entity implements Drawable{
 	public void setInWater(boolean inWater) {
 		System.out.println("Player\t void setInWater()\tparam: -");
 	}
-	public void savePlayer(Player p) {
-		System.out.println("Player\t void savePlayer(Player)\t param: Player");
+	public boolean savePlayer(Player p) {
+		System.out.println("Player\t void savePlayer(Player)\t param: " + p);
+		return true;
 	}
 	
 	public boolean buildIgloo(Tile chosenTile) {
 		System.out.println("Player\tboolean buildIgloo(Tile\tparam: " + chosenTile);
 		return false;
-	}
-	
-	public void pushToWater() {
-		System.out.println("Player\tvoid pushToWater()\tparam: -");
-	}
-	
-	public void setInWater(boolean inWater) {
-		System.out.println("Player\t void setInWater()\tparam: -");
-	}
-	
-	public void savePlayer(Player p) {
-		System.out.println("Player\t void savePlayer(Player)\t param: Player");
 	}	
+	
+	public abstract int exploreTile(Tile chosenTile);
 }

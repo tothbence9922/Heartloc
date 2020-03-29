@@ -9,16 +9,13 @@ public class Explorer extends Player{
 		this.energy = 4;
 	}
 	
-	public void explore(Tile t) {
-		
-	}
-	
 	public void move(Tile t) {
 		System.out.println("Explorer\tvoid move(Tile)\tparam: " + t);
 	}
 
-	public void step() {
+	public int step() {
 		System.out.println("Player\tvoid step()\tparam: -");
+		return 0;
 	}
 
 	@Override
@@ -39,5 +36,11 @@ public class Explorer extends Player{
 		//this.bodyTemp+=amount; nem tudom kell-e bele
 		System.out.println("Player\tvoid heal(int)\tparam:" + amount);
 		
+	}
+
+	@Override
+	public int exploreTile(Tile chosenTile) {
+		System.out.println("Explorer\tint ExploreTile()\tparam: " + chosenTile);
+		return 5;
 	}
 }

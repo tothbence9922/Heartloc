@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.targetitem.Rocket;
 import entity.player.Explorer;
 import tiles.StableTile;
@@ -15,6 +17,21 @@ public class Seq17 {
 		st.assembleRocket();
 		st.getNumOfTargetItems();
 		System.out.println("\tgetNumOfTargetItems returned");
-		r.
+		
+		System.out.println("Is number of target items == 3? Enter 0 or 1");
+		Scanner sc = new Scanner(System.in);
+		int in = -1;
+		if (sc.hasNext()) in = sc.nextInt();
+		
+		if (in == 1) {
+			r = new Rocket();
+		}
+		
+		System.out.println("\tassembleRocket returned");
+		
+		r.useTargetItem();
+		
+		System.out.println("\tuseTargetItem returned");
+		sc.close();
 	}
 }

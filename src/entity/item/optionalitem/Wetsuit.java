@@ -2,7 +2,7 @@ package entity.item.optionalitem;
 
 import entity.player.Player;
 
-public class Wetsuit implements OptionalItem{
+public class Wetsuit extends OptionalItem{
 
 	@Override
 	public boolean use() {
@@ -16,4 +16,10 @@ public class Wetsuit implements OptionalItem{
 		return true;
 	}
 	public boolean pull(Player p) {return false;}
+
+	@Override
+	public boolean useTargetItem() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

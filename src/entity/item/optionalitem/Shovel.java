@@ -2,7 +2,7 @@ package entity.item.optionalitem;
 
 import entity.player.Player;
 
-public class Shovel implements OptionalItem{
+public class Shovel extends OptionalItem{
 	@Override
 	public boolean use() {
 			System.out.println("Shovel is usable");
@@ -21,4 +21,10 @@ public class Shovel implements OptionalItem{
 	}
   
 	public boolean pull(Player p) {return false;}
+
+	@Override
+	public boolean useTargetItem() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

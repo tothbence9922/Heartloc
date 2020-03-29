@@ -19,15 +19,7 @@ public abstract class Tile implements Drawable {
 	protected boolean hasHole = false;
 	
 	protected int numOfTargetItems;
-	/**
-	 * Megadja, hogy található-e a lyuk a Tile-on.
-	 * 
-	 * @return Ha van Hole akkor true, ha nincs akkor false.
-	 */
-	public boolean getHasHole() {
-		System.out.println("Tile\tboolean getHasHole()\tparam: -");
-		return this.hasHole;
-	}
+	
 	/**
 	 * Megkaphatjuk a TargetItem-ek számát.
 	 * @return Visszatér a TargetItem-ek számával.
@@ -45,13 +37,20 @@ public abstract class Tile implements Drawable {
 		}
 	}
 	
+	/**
+	 * a paraméterben kapott entitást a jégtáblára mozgatja.
+	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
+	 * @return - Az elhelyezés sikeressége true, ellenkezõleg false.
+	 */
 	public abstract boolean receive(Entity e);
 	
+	/**
+	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
+	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
+	 */
 	public abstract boolean remove(Entity e);
 	
 	public abstract boolean getHasHole();
-	
-	public abstract Tile getNeighbours();
 	
 	public abstract boolean alarmTile(Player p);
 
@@ -65,31 +64,10 @@ public abstract class Tile implements Drawable {
 	}
 	
 	public boolean alarmTile(Entity e) {
-		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: ex");
+		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: " + e);
 		return false;
 	}
 	
-	public boolean getHasHole(){
-		System.out.println("Tile\tboolean getHasHole()\tparam: -");
-		return this.hasHole;
-	}
-	
-	/**
-	 * a paraméterben kapott entitást a jégtáblára mozgatja.
-	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
-	 * @return - Az elhelyezés sikeressége true, ellenkezõleg false.
-	 */
-	public boolean receive(Entity e) {
-		System.out.println("Tile\tboolean recieve(Entity)\tparam: " + e);
-		return false;
-	}
-	/**
-	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
-	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
-	 */
-	public void remove(Entity e) {
-		System.out.println("Tile\tvoid remove()\tparam: " + e);
-	}
 	/**
 	 * A rakéta összeszerelését végzi el a függvény.
 	 * 
@@ -100,11 +78,11 @@ public abstract class Tile implements Drawable {
 		System.out.println("Tile\tbooelan assembleRocket()\tparam: -");
 		return false;
 	}
-	public ArrayList<Tile> getNeighbours(){
-		System.out.println("Tile\tArrayList<Tile> getNeighbours()\tparams: -");
-		return null;
+	
+	public int getDistance() {
+		System.out.println("StableTile\t int getDistance()\tparam: -");
+		return 2;
 	}
-	public void alarmTile(Player p) {
-		System.out.println("Tile\t void alarmTile(Player)\tparam: player");
-	}
+	
+	public abstract void setCapacityVisible(boolean b);
 }

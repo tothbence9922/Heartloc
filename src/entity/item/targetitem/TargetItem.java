@@ -2,6 +2,6 @@ package entity.item.targetitem;
 
 import entity.item.Item;
 
-public interface TargetItem extends Item{
+public abstract class TargetItem extends Item {
 
 }

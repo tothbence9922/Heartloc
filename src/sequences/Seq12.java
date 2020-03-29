@@ -29,7 +29,7 @@ public class Seq12 {
 		System.out.println("\t(setInWater() returned)");
 		ex.scream();
 		System.out.println("\t(scream() returned)");
-		Tile[] tiles=ut.getNeighbours();
+		Tile[] tiles = ut.getNeighbours();
 		System.out.println("\t(getNeighbours() returned)");
 		for(int i=0;i<2;i++) {
 			tiles[i].alarmTile(ex);

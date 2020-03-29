@@ -2,11 +2,17 @@ package entity.item;
 
 import entity.player.Player;
 
-public interface Item {
-	public boolean use();
+public abstract class Item {
+	public boolean isVisible = false;
+	
+	public abstract boolean use();
 
-	public boolean wear();
-	public boolean pull(Player p);
+	public abstract boolean wear();
+	public abstract boolean pull(Player p);
 
-	public boolean useTargetItem();
+	public abstract boolean useTargetItem();
+	
+	public void setIsVisible(boolean b) {
+		System.out.println("Food\tvoid setIsVisible()\t param: - ");
+	}
 }

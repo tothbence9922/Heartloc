@@ -2,7 +2,7 @@ package entity.item.optionalitem;
 
 import entity.player.Player;
 
-public class Food implements OptionalItem {
+public class Food extends OptionalItem {
 	@Override
 	public boolean use() {
 			System.out.println("Food :3");

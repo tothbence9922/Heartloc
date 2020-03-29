@@ -7,6 +7,7 @@ public class UnstableTile extends Tile {
 
 	private int load;
 	private int capacity;
+	private boolean showCapacity;
 
 		
 	/**
@@ -56,14 +57,6 @@ public class UnstableTile extends Tile {
 	public int getCapacity() {
 		System.out.println("UnstableTile\tint getCapacity()\tparam: -");
 		return this.capacity;
-
-	/**
-	 * A függvény megadja mennyi a terhelés.
-	 * @return - A terhelés nagyságával tér vissza.
-	 */
-	public int getLoad() {
-		System.out.println("UnstableTile\tint getLoad()\tparam: -");
-		return this.load;
 	}
 
 	@Override
@@ -79,13 +72,14 @@ public class UnstableTile extends Tile {
 	}
 
 	@Override
-	public Tile getNeighbours() {
-		return null;
-	}
-
-	@Override
 	public boolean alarmTile(Player p) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void setCapacityVisible(boolean b) {
+		System.out.println("StableTile\t void setCapacityVisible(boolean)\tparam: -" + b);
+		this.showCapacity = b;
 	}
 }

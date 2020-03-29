@@ -21,8 +21,8 @@ public class Seq03 {
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		if (in == 1) {
-			es.build(ut);
-			i.create();
+			es.buildIgloo(ut);
+			i = new Igloo();
 			System.out.println("\tcreate returned");
 			ut.receive(i);
 			System.out.println("Will the UnstableTile turn over? 0 - No\t1 - Yes");
