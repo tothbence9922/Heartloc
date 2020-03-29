@@ -9,14 +9,24 @@ public class Cartridge extends TargetItem {
     private Cartridge() { 
     	System.out.println("Cartridge has been created");
     } 
-  
+    /**
+     * a Singleton tervezesi mintat kovetve visszater egy
+	 * referenciaval
+     * @return single_instance: Cartridge tipusu valtozo
+     */
     public static Cartridge getInstance() { 
         if (single_instance == null) 
             single_instance = new Cartridge(); 
   
         return single_instance; 
     } 
-    
+    /**
+     *  Mivel a Cartridge az Entity ososztalybol
+	 *	szarmaztatott osztaly, es minden ososztalya absztrakt, igy implementalnia kell
+	 *	ezt a metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 *	technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
 	public boolean useTargetItem() {
 		System.out.println("Cartridge\tboolean useTargetItem()\tparam: -");

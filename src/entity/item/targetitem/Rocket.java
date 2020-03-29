@@ -9,14 +9,25 @@ public class Rocket extends TargetItem {
     private Rocket() { 
     	System.out.println("Rocket has been created");
     } 
-  
+  /**
+   *  a Singleton tervezesi mintat kovetve visszater egy
+   *  referenciaval
+   * 
+   * @return single_instance: Rocket tipsu valtozo
+   */
     public static Rocket getInstance() { 
         if (single_instance == null) 
             single_instance = new Rocket(); 
   
         return single_instance; 
     } 
-    
+    /**
+     *  Mivel a Rocket az Entity ososztalybol szarmaztatott
+     *	osztaly, es minden ososztalya absztrakt, igy implementalnia kell ezt a
+	 *	metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 *	technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
 	public boolean useTargetItem() {
 		System.out.println("Rocket\tboolean useTargetItem()\tparam: -");
