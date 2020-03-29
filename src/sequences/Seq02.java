@@ -10,13 +10,14 @@ public class Seq02 {
 	UnstableTile ut = new UnstableTile(3);
 	Igloo i;
 	
-	public Seq02() {
+	public Seq02(Scanner sc) {
 		System.out.println("Seq: Eskimo builds Igloo on UnstableTile and it doesn't turn over");
+		
 		es.step();
 		es.getEnergy();
 		System.out.println("\tgetEnergy returned");
 		System.out.println("Has enough energy? Enter 0 or 1");
-		Scanner sc = new Scanner(System.in);
+
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		if (in == 1) {
@@ -28,8 +29,6 @@ public class Seq02 {
 		}
 
 		System.out.println("\t(step) returned");
-
-		sc.close();
 	}
 }
 

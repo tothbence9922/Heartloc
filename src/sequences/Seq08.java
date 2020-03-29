@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.player.Explorer;
 import tiles.StableTile;
 
@@ -8,7 +10,7 @@ public class Seq08 {
 	Explorer ex = new Explorer();
 	StableTile st = new StableTile();
 	
-	public Seq08(){
+	public Seq08(Scanner sc){
 		System.out.println("Seq: Explorer explores StableTile");
 		ex.step();
 		int getEnergy = ex.getEnergy();

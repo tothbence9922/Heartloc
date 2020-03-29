@@ -12,7 +12,7 @@ public class Seq16 {
 	UnstableTile ut2 = new UnstableTile(4);
 	Wetsuit w = new Wetsuit();
 	
-	public Seq16() {
+	public Seq16(Scanner sc) {
 		System.out.println("Seq: Explorer moves to UnstableTile with Wetsuit without hole and it turns over");
 		ex.step();
 		
@@ -23,7 +23,7 @@ public class Seq16 {
 		System.out.println("\t(getLoad returned)");
 		
 		System.out.println("Is load larger than capacity? Enter 0 or 1");
-		Scanner sc = new Scanner(System.in);
+		
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		
@@ -41,6 +41,5 @@ public class Seq16 {
 		ut2.remove(ex);
 		System.out.println("\t(remove returned)");
 		System.out.println("\t(step returned)");
-		sc.close();	
 	}
 }

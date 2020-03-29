@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.player.Explorer;
 import tiles.UnstableTile;
 
@@ -8,7 +10,7 @@ public class Seq10 {
 	UnstableTile ut = new UnstableTile(2);
 	UnstableTile ut2 = new UnstableTile(2);
 	
-	public Seq10() {
+	public Seq10(Scanner sc) {
 		System.out.println("Seq: Explorer moves to UnstableTile without hole and it doesn’t turn over");
 		ex.move(ut);
 		ut.receive(ex);
@@ -20,5 +22,5 @@ public class Seq10 {
 		ut2.remove(ex);
 		System.out.println("\t(remove) returned");
 		System.out.println("\t(move) returned");
-		}
+	}
 }

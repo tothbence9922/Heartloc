@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.targetitem.Rocket;
 import entity.player.Explorer;
 import model.Game;
@@ -10,7 +12,8 @@ public class Seq18 {
 	StableTile st = new  StableTile();
 	Rocket r;
 	Game g = new Game();
-	public Seq18() {
+	
+	public Seq18(Scanner sc) {
 		System.out.println("Seq: Explorer uses TargetItem and it works");
 		ex.step();
 		st.assembleRocket();

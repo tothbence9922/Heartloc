@@ -11,14 +11,13 @@ public class Seq05 {
 	StableTile st = new StableTile();
 	Food f = new Food();
 	
-	public Seq05() {
+	public Seq05(Scanner sc) {
 		System.out.println("Seq: Explorer digs with Hand");
 		ex.step();
 		st.dig(1);
 		st.removeSnow(1);
 		System.out.println("\t(removeSnow) returned");
 		
-		Scanner sc = new Scanner(System.in);
 		int in = 0;
 		if (sc.hasNext()) in = sc.nextInt();
 		if (in == 0) {
@@ -27,7 +26,5 @@ public class Seq05 {
 		}
 		System.out.println("\t(dig) returned");
 		System.out.println("\t(step returned)");
-		sc.close();
-	
 	}
 }

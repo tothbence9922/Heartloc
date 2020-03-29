@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.optionalitem.Wetsuit;
 import entity.player.Explorer;
 import tiles.StableTile;
@@ -12,7 +14,7 @@ public class Seq11 {
 	Wetsuit w = new Wetsuit();
 	StableTile st = new StableTile();
 	
-	public Seq11() {
+	public Seq11(Scanner sc) {
 		ex.move(ut);
 		boolean hashole = ut.getHasHole();
 		System.out.println("\t getHasHole() returned");

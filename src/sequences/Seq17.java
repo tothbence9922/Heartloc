@@ -11,7 +11,7 @@ public class Seq17 {
 	StableTile st = new StableTile();
 	Rocket r = new Rocket();
 	
-	public Seq17() {
+	public Seq17(Scanner sc) {
 		System.out.println("Seq: Explorer uses TargetItem and it doesn't work");
 		ex.step();
 		st.assembleRocket();
@@ -19,7 +19,7 @@ public class Seq17 {
 		System.out.println("\tgetNumOfTargetItems returned");
 		
 		System.out.println("Is number of target items == 3? Enter 0 or 1");
-		Scanner sc = new Scanner(System.in);
+
 		int in = -1;
 		if (sc.hasNext()) in = sc.nextInt();
 		
@@ -32,6 +32,5 @@ public class Seq17 {
 		r.useTargetItem();
 		
 		System.out.println("\tuseTargetItem returned");
-		sc.close();
 	}
 }
