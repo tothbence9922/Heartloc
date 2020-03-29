@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.optionalitem.Rope;
 import entity.item.optionalitem.Wetsuit;
 import entity.player.Explorer;
@@ -14,7 +16,7 @@ public class Seq13 {
 	Explorer ex2 = new Explorer();
 	Rope r = new Rope();
 	
-	public Seq13() {
+	public Seq13(Scanner sc) {
 		System.out.println("Seq: explorer moves to UnstableTile with Hole without Wetsuit and survives");
 		ex.move(ut);
 		ut.receive(ex);

@@ -1,6 +1,6 @@
 package sequences;
 
-import entity.item.optionalitem.Shovel;
+import java.util.Scanner;
 import entity.player.Explorer;
 import tiles.StableTile;
 
@@ -10,7 +10,7 @@ public class Seq09 {
 	StableTile st1 = new StableTile();
 	StableTile st2 = new StableTile();
 	
-	public Seq09() {
+	public Seq09(Scanner sc) {
 		System.out.println("Seq: Explorer moves to StableTile without Hole");
 		ex.move(st1);
 		st1.receive(ex);

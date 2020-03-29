@@ -1,15 +1,15 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.optionalitem.Food;
-import entity.item.optionalitem.Shovel;
 import entity.player.Explorer;
-import tiles.StableTile;
 
 public class Seq07 {
 	Explorer ex = new Explorer();
 	Food f = new Food();
 	
-	public Seq07() {
+	public Seq07(Scanner sc) {
 		System.out.println("Seq: Explorer eats Food");
 		ex.step();
 		System.out.println("Explorers energy : ");

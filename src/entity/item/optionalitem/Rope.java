@@ -2,15 +2,12 @@ package entity.item.optionalitem;
 
 import entity.player.Player;
 
-public class Rope implements OptionalItem{
-	@Override
-	public boolean use() {
-		return true;
-	}
-	public boolean wear() {return false;}
-	
+public class Rope extends OptionalItem{
+  
+	@Override	
 	public boolean pull(Player p) {
-		System.out.println("Rope\tboolean pull(Player)\tparam: Player");
+		System.out.println("Rope\tboolean pull(Player)\tparam: " + p);
 		return true;
 	}
+	
 }

@@ -1,11 +1,7 @@
 package entity;
 
-/**
- * 
- * @author vabe9
- *
- */
 public class Entity {
+	private int weight;
 	
 	public int step() {
 		return -1;

@@ -5,39 +5,28 @@ import tiles.Tile;
 public class Explorer extends Player{
 
 	public Explorer() {
-		this.bodyTemp = 4;
+		this.bodyTemperature = 4;
 		this.energy = 4;
 	}
 	
-	public void explore(Tile t) {
-		
-	}
-	
 	public void move(Tile t) {
-		System.out.println("Player\tvoid move(Tile)\tparam: st1");
+		System.out.println("Explorer\tvoid move(Tile)\tparam: " + t);
 	}
 
+	public int step() {
+		System.out.println("Explorer\tvoid step()\tparam: -");
+		return 0;
+	}
+
+	@Override
+	public int exploreTile(Tile chosenTile) {
+		System.out.println("Explorer\tint ExploreTile()\tparam: " + chosenTile);
+		return 5;
+	}
 
 	@Override
 	public void draw() {
+		// TODO Auto-generated method stub
 		
 	}
-
-	
-	public void step() {
-		System.out.println("Player\tvoid step()\tparam: -");
-	}
-
-	public int getEnergy() {
-		System.out.println("Player\tint getEnergy()\tparam: -");
-		return this.energy;
-	}
-	
-	public void heal(int amount) {
-		//this.bodyTemp+=amount; nem tudom kell-e bele
-		System.out.println("Player\tvoid heal(int)\tparam:" + amount);
-		
-	}
-
-
 }

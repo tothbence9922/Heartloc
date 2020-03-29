@@ -1,19 +1,11 @@
 package entity.item.optionalitem;
 
-import entity.player.Player;
-
-public class Shovel implements OptionalItem{
+public class Shovel extends OptionalItem{
+	
 	@Override
-	public boolean use() {
-			System.out.println("Shovel is usable");
-		return false;
-	}
-
 	public boolean dig() {
 		System.out.println("Shovel\tboolean dig()\tparam: -");
 		return true;
 	}
-
-	public boolean wear() {return false;}
-	public boolean pull(Player p) {return false;}
+	
 }

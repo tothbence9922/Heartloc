@@ -1,5 +1,7 @@
 package sequences;
 
+import java.util.Scanner;
+
 import entity.item.optionalitem.Wetsuit;
 import entity.player.Explorer;
 import tiles.StableTile;
@@ -15,7 +17,7 @@ public class Seq12 {
 	StableTile st = new StableTile();
 	Explorer ex2=new Explorer();
 	
-	public Seq12() {
+	public Seq12(Scanner sc) {
 		System.out.println("Explorer moves to Unstable Tile with Hole without Wetsuit and dies");
 		ex.move(st);
 		ut.receive(ex);
@@ -29,7 +31,7 @@ public class Seq12 {
 		System.out.println("\t(setInWater() returned)");
 		ex.scream();
 		System.out.println("\t(scream() returned)");
-		Tile[] tiles=ut.getNeighbours();
+		Tile[] tiles = ut.getNeighbours();
 		System.out.println("\t(getNeighbours() returned)");
 		for(int i=0;i<2;i++) {
 			tiles[i].alarmTile(ex);
