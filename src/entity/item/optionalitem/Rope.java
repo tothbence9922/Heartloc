@@ -7,10 +7,15 @@ public class Rope implements OptionalItem{
 	public boolean use() {
 		return true;
 	}
-	public boolean wear() {return false;}
+  
+	@Override
+	public boolean wear() {
+		// TODO Auto-generated method stub
+		return false;
+  }
 	
 	public boolean pull(Player p) {
-		System.out.println("Rope\tboolean pull(Player)\tparam: Player");
+		System.out.println("Rope\tboolean pull(Player)\tparam: " + p);
 		return true;
 	}
 }

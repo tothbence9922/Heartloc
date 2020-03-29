@@ -1,29 +1,65 @@
 package tiles;
 
-import java.util.ArrayList;
-
 import entity.Entity;
 import entity.player.Player;
 
 public class UnstableTile extends Tile {
 
 	private int load;
+	private int capacity;
+
 		
 	/**
-	 *  A t·bla forog ha t˙lterhelıdik. HÌvhatja a rajta ·llÛ emberek Fall fgv-Èt vagy valami
-	 * @return Ha sikeresen ·tfordult true ÈrÈkkel tÈr vissza, ha nem akkor false-al.
+	 *  A t√°bla forog ha t√∫lterhel√µdik. H√≠vhatja a rajta √°ll√≥ emberek Fall fgv-√©t vagy valami
+	 * @return Ha sikeresen √°tfordult true √©r√©kkel t√©r vissza, ha nem akkor false-al.
 	 */
 	public boolean rotate() {
 		return true;
 	}
 	
-	public UnstableTile(int _load) {
-		load = _load;
-		this.players = new ArrayList<Player>();
+	public UnstableTile(int l) {
+		load = l;
 	}
+	
+	public void dig(int i) {
+		System.out.println("UnstableTile\tvoid dig(int)\tparam: " + i );
+		
+	}
+	
+	public boolean receive(Entity e) {
+		System.out.println("UnstableTile\tboolean receive(Entity)\tparam: " + e);
+		return true;
+	}
+	
+	public boolean remove(Entity e) {
+		System.out.println("UnstableTile\tboolean remove(Entity)\tparam: " + e);
+		return true;
+	}
+	
+	public void removeSnow(int i) {
+		System.out.println("UnstableTile\tvoid removeSnow(int)\tparam:" + i);
+	}
+	
 	/**
-	 * A f¸ggvÈny megadja mennyi a terhelÈs.
-	 * @return - A terhelÈs nagys·g·val tÈr vissza.
+	 * A f√ºggv√©ny megadja mennyi a terhel√©s.
+	 * @return - A terhel√©s nagys√°g√°val t√©r vissza.
+	 */
+	public int getLoad() {
+		System.out.println("UnstableTile\tint getLoad()\tparam: -");
+		return this.load;
+	}
+	
+	/**
+	 * A f√ºggv√©ny megadja mennyi a kapacit√°s.
+	 * @return - A kapacit√°s nagys√°g√°val t√©r vissza.
+	 */
+	public int getCapacity() {
+		System.out.println("UnstableTile\tint getCapacity()\tparam: -");
+		return this.capacity;
+
+	/**
+	 * A f√ºggv√©ny megadja mennyi a terhel√©s.
+	 * @return - A terhel√©s nagys√°g√°val t√©r vissza.
 	 */
 	public int getLoad() {
 		System.out.println("UnstableTile\tint getLoad()\tparam: -");
@@ -35,6 +71,21 @@ public class UnstableTile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
-	
+    
+	@Override
+	public boolean getHasHole() {
+		System.out.println("UnstableTile\tboolean getHasHole()\tparam: -");
+		return true;
+	}
 
+	@Override
+	public Tile getNeighbours() {
+		return null;
+	}
+
+	@Override
+	public boolean alarmTile(Player p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

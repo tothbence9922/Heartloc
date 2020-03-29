@@ -12,7 +12,7 @@ public class Food implements OptionalItem {
 	public void pickup() {
 		System.out.println("Food\tvoid pickup()\tparam: -");
 	}
-
+  
 	public void setIsVisible(boolean trueorfalse) {
 		boolean testVisible=trueorfalse;
 		if(trueorfalse==true) {

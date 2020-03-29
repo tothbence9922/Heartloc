@@ -16,7 +16,7 @@ public abstract class Tile implements Drawable {
 	
 	protected Item item = null;
 	
-	protected boolean hasHole = false;	// Felesleges szerintem külön osztályt szánni neki TB
+	protected boolean hasHole = false;
 	
 	protected int numOfTargetItems;
 	/**
@@ -37,10 +37,6 @@ public abstract class Tile implements Drawable {
 		return this.numOfTargetItems;
 	}
 
-	public boolean getHasHole() {
-		System.out.println("Tile\tboolean getHasHole()\tparam: -");
-		return hasHole;
-	}
 	public void storm(Random r) {
 		snow += r.nextInt(3);
 		if (snow > 5) snow = 5;
@@ -48,6 +44,17 @@ public abstract class Tile implements Drawable {
 			p.hit();
 		}
 	}
+	
+	public abstract boolean receive(Entity e);
+	
+	public abstract boolean remove(Entity e);
+	
+	public abstract boolean getHasHole();
+	
+	public abstract Tile getNeighbours();
+	
+	public abstract boolean alarmTile(Player p);
+
 	public Tile[] getNeighbours() {
 		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
 		

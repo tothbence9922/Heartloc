@@ -3,10 +3,6 @@ package entity.item.optionalitem;
 import entity.player.Player;
 
 public class Wetsuit implements OptionalItem{
-	
-	public void henlo() {
-		System.out.println("Hello");
-	}
 
 	@Override
 	public boolean use() {
@@ -14,6 +10,7 @@ public class Wetsuit implements OptionalItem{
 		return false;
 	}
 
+  @Override
 	public boolean wear() {
 		System.out.println("Wetsuit\t boolean wear()\tparam: -");
 		return true;

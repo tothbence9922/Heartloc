@@ -9,5 +9,4 @@ public interface Item {
 	public boolean pull(Player p);
 
 	public boolean useTargetItem();
-
 }

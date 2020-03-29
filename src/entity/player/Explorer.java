@@ -14,20 +14,22 @@ public class Explorer extends Player{
 	}
 	
 	public void move(Tile t) {
-		System.out.println("Player\tvoid move(Tile)\tparam: st1");
+		System.out.println("Explorer\tvoid move(Tile)\tparam: " + t);
 	}
 
-
-	@Override
-	public void draw() {
-		
-	}
-
-	
 	public void step() {
 		System.out.println("Player\tvoid step()\tparam: -");
 	}
 
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void draw() {
+		
+	}
 	public int getEnergy() {
 		System.out.println("Player\tint getEnergy()\tparam: -");
 		return this.energy;
@@ -38,6 +40,4 @@ public class Explorer extends Player{
 		System.out.println("Player\tvoid heal(int)\tparam:" + amount);
 		
 	}
-
-
 }

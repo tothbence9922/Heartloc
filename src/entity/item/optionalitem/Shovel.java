@@ -14,6 +14,11 @@ public class Shovel implements OptionalItem{
 		return true;
 	}
 
-	public boolean wear() {return false;}
+	@Override
+	public boolean wear() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+  
 	public boolean pull(Player p) {return false;}
 }

@@ -10,11 +10,10 @@ import tiles.Tile;
 public abstract class Player extends Entity implements Drawable{
 	
 	protected Tile curTile;
-	
 	public ArrayList<Item> items = new ArrayList<Item>();
-
+	protected Tile curTile;
 	protected boolean isActive;
-	
+
 	protected int energy= 4;
 	protected int bodyTemp= 4;
 	/**
@@ -42,15 +41,16 @@ public abstract class Player extends Entity implements Drawable{
 		return energy;
 	}
 	
+	public void step() {
+		System.out.println("Player\tvoid step()\tparam: -");
+	}
+	
 	public boolean hit() {
-		bodyTemp --;
+		bodyTemp--;
 		if (bodyTemp == 0) return true;
 		return false;
 	}
-	
-	public void move(Tile t) {
-		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
-
+  
 	/**
 	 *  ezzel a metódussal kerül át a játékos egyik jégtábláról a
 	 *  másikra. Mivel a Player absztrakt osztály, így itt csak deklarálásra kerül, a
@@ -58,9 +58,8 @@ public abstract class Player extends Entity implements Drawable{
 	 * @param t - A Tile amire a játékos mozogni szeretne
 	 */
 	public void move(Tile t) {
-		System.out.println("Player\tvoid move()\tparam: Tile");
-	}
-	
+		System.out.println("Player\tvoid move(Tile)\tparam: " + t);
+  }
 	
 	public void pushToWater() {
 		System.out.println("Player\tvoid pushToWater()\tparam: -");
@@ -77,7 +76,7 @@ public abstract class Player extends Entity implements Drawable{
 	public void fall() {
 		scream();
 	}
-	
+
 	public int scream() {
 		System.out.println("Player\tint scream()\tparam: -");
 		return 1;
@@ -99,6 +98,9 @@ public abstract class Player extends Entity implements Drawable{
 	public void die() {
 		System.out.println("Player\tvoid die()\tparam: -");
 	}
+	
+	public abstract void die();
+	
 	/**
 	 * megjelenitjuk a lehetseges cselekveseket,
 	 * ha 0 az ereje ne tudja kivalasztani, ne kivalasztas utan ellenorizze
@@ -117,4 +119,20 @@ public abstract class Player extends Entity implements Drawable{
 		System.out.println("Player\t void savePlayer(Player)\t param: Player");
 	}
 	
+	public boolean buildIgloo(Tile chosenTile) {
+		System.out.println("Player\tboolean buildIgloo(Tile\tparam: " + chosenTile);
+		return false;
+	}
+	
+	public void pushToWater() {
+		System.out.println("Player\tvoid pushToWater()\tparam: -");
+	}
+	
+	public void setInWater(boolean inWater) {
+		System.out.println("Player\t void setInWater()\tparam: -");
+	}
+	
+	public void savePlayer(Player p) {
+		System.out.println("Player\t void savePlayer(Player)\t param: Player");
+	}	
 }
