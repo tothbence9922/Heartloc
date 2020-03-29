@@ -17,18 +17,29 @@ public abstract class Player extends Entity implements Drawable{
 	
 	protected int energy= 4;
 	protected int bodyTemp= 4;
-	
+	/**
+	 * @return energy - Visszatér a játékos munkakedvével.
+	 */
 	public int getEnergy() {
 		System.out.println("Player\tint getEnergy()\tparam: -");
 		return energy;
 	}
-	
+
 	public int getTemp() {
 		return bodyTemp;
 	}
-	
-	public void step() {
-		System.out.println("Player\tvoid step()\tparam: -");
+	/**
+	 * 	A játékos adott körben történő cselekvéseit beindító függvény.
+	 *  Visszatérési értéke megadja, hogy mennyi munkakedve van még a
+	 *	játékosnak. Mivel a Player absztrakt osztály, így itt csak deklarálásra kerül, a
+	 *	pontos működés a leszármazottakban valósul meg.
+	 *  @return energy - A megmaradt munkakedv értéke
+	 * 
+	 */
+	@Override
+	public int  step() {
+		System.out.println("Player\tint step()\tparam: -");
+		return energy;
 	}
 	
 	public boolean hit() {
@@ -39,6 +50,15 @@ public abstract class Player extends Entity implements Drawable{
 	
 	public void move(Tile t) {
 		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
+
+	/**
+	 *  ezzel a metódussal kerül át a játékos egyik jégtábláról a
+	 *  másikra. Mivel a Player absztrakt osztály, így itt csak deklarálásra kerül, a
+	 *  pontos működés a leszármazottakban valósul meg.
+	 * @param t - A Tile amire a játékos mozogni szeretne
+	 */
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move()\tparam: Tile");
 	}
 	
 	public void feed(Player p) {

@@ -16,7 +16,26 @@ public abstract class Tile implements Drawable {
 	
 	protected Item item = null;
 	
-	protected boolean hasHole = false;	// Felesleges szerintem k�l�n oszt�lyt sz�nni neki TB
+	protected boolean hasHole = false;	// Felesleges szerintem külön osztályt szánni neki TB
+	
+	protected int numOfTargetItems;
+	/**
+	 * Megadja, hogy található-e a lyuk a Tile-on.
+	 * 
+	 * @return Ha van Hole akkor true, ha nincs akkor false.
+	 */
+	public boolean getHasHole() {
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return this.hasHole;
+	}
+	/**
+	 * Megkaphatjuk a TargetItem-ek számát.
+	 * @return Visszatér a TargetItem-ek számával.
+	 */
+	public int getNumOfTargetItems() {
+		System.out.println("Tile\tint getNumOfTargetItems()\tparam: -");
+		return this.numOfTargetItems;
+	}
 
 	public boolean getHasHole() {
 		System.out.println("Tile\tboolean getHasHole()\tparam: -");
@@ -29,8 +48,30 @@ public abstract class Tile implements Drawable {
 			p.hit();
 		}
 	}
+	/**
+	 * a paraméterben kapott entitást a jégtáblára mozgatja.
+	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
+	 * @return - Az elhelyezés sikeressége true, ellenkezõleg false.
+	 */
 	public boolean receive(Entity e) {
-		System.out.println("Tile\tboolean recieve(Entity)\tparam: Entity");
+		System.out.println("Tile\tboolean recieve(Entity)\tparam: " + e);
+		return false;
+	}
+	/**
+	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
+	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
+	 */
+	public void remove(Entity e) {
+		System.out.println("Tile\tvoid remove()\tparam: Entity");
+	}
+	/**
+	 * A rakéta összeszerelését végzi el a függvény.
+	 * 
+	 * @return  true értékkel tér vissza, ha az adott jégtáblán
+		összeszerelhetõ a jelzõrakéta, egyébként false.
+	 */
+	public boolean assembleRocket() {
+		System.out.println("Tile\tbooelan assembleRocket()\tparam: -");
 		return false;
 	}
 	public ArrayList<Tile> getNeighbours(){

@@ -12,6 +12,14 @@ public class Food implements OptionalItem {
 	public void pickup() {
 		System.out.println("Food\tvoid pickup()\tparam: -");
 	}
+
 	public boolean wear() {return false;}
 	public boolean pull(Player p) {return false;}
+
+	@Override
+	public boolean useTargetItem() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

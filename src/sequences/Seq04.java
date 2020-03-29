@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import entity.item.optionalitem.Food;
 import entity.player.Explorer;
-import model.Helper;
 import tiles.StableTile;
 
 public class Seq04 {
