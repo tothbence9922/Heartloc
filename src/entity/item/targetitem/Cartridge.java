@@ -1,25 +1,26 @@
 package entity.item.targetitem;
 
-import entity.player.Player;
-
 public class Cartridge extends TargetItem {
-	@Override
-	public boolean use() {
-			System.out.println("Patron is not yet usable");
-		return false;
-	}
-
-	@Override
-	public boolean wear() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
-	public boolean pull(Player p) {return false;}
-
+	// static variable single_instance of type Singleton 
+    private static Cartridge single_instance = null; 
+  
+    // private constructor restricted to this class itself 
+    private Cartridge() { 
+    	System.out.println("Cartridge has been created");
+    } 
+  
+    public static Cartridge getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Cartridge(); 
+  
+        return single_instance; 
+    } 
+    
 	@Override
 	public boolean useTargetItem() {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Cartridge\tboolean useTargetItem()\tparam: -");
+		return true;
 	}
+	
 }

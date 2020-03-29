@@ -1,25 +1,26 @@
 package entity.item.targetitem;
 
-import entity.player.Player;
-
 public class Beacon extends TargetItem {
-	@Override
-	public boolean use() {
-			System.out.println("Beacon is not yet usable!");
-		return false;
-	}
 
-	@Override
-	public boolean wear() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean pull(Player p) {return false;}
-
+	// static variable single_instance of type Singleton 
+    private static Beacon single_instance = null; 
+  
+    // private constructor restricted to this class itself 
+    private Beacon() { 
+    	System.out.println("Beacon has been created");
+    } 
+  
+    public static Beacon getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Beacon(); 
+  
+        return single_instance; 
+    } 
+    
 	@Override
 	public boolean useTargetItem() {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Beacon\tboolean useTargetItem()\tparam: -");
+		return true;
 	}
+	
 }

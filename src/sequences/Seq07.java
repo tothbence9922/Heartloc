@@ -3,9 +3,7 @@ package sequences;
 import java.util.Scanner;
 
 import entity.item.optionalitem.Food;
-import entity.item.optionalitem.Shovel;
 import entity.player.Explorer;
-import tiles.StableTile;
 
 public class Seq07 {
 	Explorer ex = new Explorer();

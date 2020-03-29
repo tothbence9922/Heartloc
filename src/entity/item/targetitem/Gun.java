@@ -1,26 +1,26 @@
 package entity.item.targetitem;
 
-import entity.player.Player;
-
 public class Gun extends TargetItem {
-	@Override
-	public boolean use() {
-			System.out.println("Gun is not yet usable");
-		return false;
-	}
+	
+	// static variable single_instance of type Singleton 
+    private static Gun single_instance = null; 
   
-	@Override
-	public boolean wear() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean pull(Player p) {return false;}
-
+    // private constructor restricted to this class itself 
+    private Gun() { 
+    	System.out.println("Gun has been created");
+    } 
+  
+    public static Gun getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Gun(); 
+  
+        return single_instance; 
+    } 
+    
 	@Override
 	public boolean useTargetItem() {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Gun\tboolean useTargetItem()\tparam: -");
+		return true;
 	}
 
 }

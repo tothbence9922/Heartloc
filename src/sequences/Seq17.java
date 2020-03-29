@@ -9,7 +9,7 @@ import tiles.StableTile;
 public class Seq17 {
 	Explorer ex = new Explorer();
 	StableTile st = new StableTile();
-	Rocket r = new Rocket();
+	Rocket r;
 	
 	public Seq17(Scanner sc) {
 		System.out.println("Seq: Explorer uses TargetItem and it doesn't work");
@@ -24,7 +24,7 @@ public class Seq17 {
 		if (sc.hasNext()) in = sc.nextInt();
 		
 		if (in == 1) {
-			r = new Rocket();
+			r = Rocket.getInstance();
 		}
 		
 		System.out.println("\tassembleRocket returned");

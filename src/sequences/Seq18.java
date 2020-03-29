@@ -19,7 +19,7 @@ public class Seq18 {
 		st.assembleRocket();
 		st.getNumOfTargetItems();
 		System.out.println("\t(getNumOTargetItems) returned");
-		r = new Rocket();
+		r = Rocket.getInstance();
 		System.out.println("\t(assmebleRocket) returned");
 		r.useTargetItem();
 		System.out.println("\t(useTargetItem) returned");

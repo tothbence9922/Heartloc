@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import entity.Entity;
+import entity.Igloo;
 import entity.item.Item;
 import entity.player.Player;
 import model.Drawable;
@@ -11,14 +12,19 @@ import model.Drawable;
 public abstract class Tile implements Drawable {
 	
 	protected ArrayList<Player> players;
-
-	protected int snow = 0; 
-	
 	protected Item item = null;
 	
 	protected boolean hasHole = false;
-	
+	protected boolean hasItem = false;
+	protected int amountOfSnow;
 	protected int numOfTargetItems;
+	protected int capacity;
+	
+	protected boolean showCapacity;
+	
+	public Item dig(int amount) {
+		return null;
+	}
 	
 	/**
 	 * Megkaphatjuk a TargetItem-ek számát.
@@ -28,13 +34,10 @@ public abstract class Tile implements Drawable {
 		System.out.println("Tile\tint getNumOfTargetItems()\tparam: -");
 		return this.numOfTargetItems;
 	}
-
-	public void storm(Random r) {
-		snow += r.nextInt(3);
-		if (snow > 5) snow = 5;
-		for (Player p : players) {
-			p.hit();
-		}
+	
+	public boolean initTile() {
+		System.out.println("Tile\tboolean initTile()\tparam: -");
+		return true;
 	}
 	
 	/**
@@ -42,30 +45,14 @@ public abstract class Tile implements Drawable {
 	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
 	 * @return - Az elhelyezés sikeressége true, ellenkezõleg false.
 	 */
-	public abstract boolean receive(Entity e);
-	
-	/**
-	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
-	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
-	 */
-	public abstract boolean remove(Entity e);
-	
-	public abstract boolean getHasHole();
-	
-	public abstract boolean alarmTile(Player p);
-
-	public Tile[] getNeighbours() {
-		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
-		
-		Tile t1=new StableTile();
-		Tile t2=new StableTile();
-		Tile[] tiles= {t1,t2};
-		return tiles;
+	public boolean receive(Entity e) {
+		System.out.println("Tile\tboolean receive(Entity)\tparam: " + e);
+		return true;
 	}
 	
-	public boolean alarmTile(Entity e) {
-		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: " + e);
-		return false;
+	public boolean getHasHole() {
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return true;
 	}
 	
 	/**
@@ -79,10 +66,74 @@ public abstract class Tile implements Drawable {
 		return false;
 	}
 	
-	public int getDistance() {
-		System.out.println("StableTile\t int getDistance()\tparam: -");
-		return 2;
+	public Tile[] getNeighbours() {
+		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
+		
+		Tile t1 = new StableTile();
+		Tile t2 = new StableTile();
+		Tile[] tiles = {t1,t2};
+		return tiles;
 	}
 	
-	public abstract void setCapacityVisible(boolean b);
+	public boolean alarmTile(Player p) {
+		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: " + p);
+		return false;
+	}
+	
+	public void addSnow(int amount) {
+		amountOfSnow += amount;
+		System.out.println("Tile\tvoid addSnow(int)\tparam: " + amount);
+	}
+	
+	public void removeSnow(int amount) {
+		amountOfSnow -= amount;
+		System.out.println("Tile\tvoid removeSnow(int)\tparam: " + amount);
+	}
+	
+	public void setCapacityVisible(boolean b) {
+		System.out.println("Tile\tvoid setCapacityVisible(boolean)\tparam: -" + b);
+		this.showCapacity = b;
+	}
+	
+	public int getDistance() {
+		System.out.println("Tile\tint getDistance()\tparam: -");
+		return 2;
+	}
+
+	public void storm(Random r) {
+		System.out.println("Tile\tvoid storm(Random)\tparam: " + r);
+		amountOfSnow += r.nextInt(3);
+		if (amountOfSnow > 5) amountOfSnow = 5;
+		for (Player p : players) {
+			p.damage(1);
+		}
+	}
+	
+	public Player[] getPlayers() {
+		System.out.println("Tile\tPlayer[] getPlayers()\tparam: -");
+		return null;
+	}
+	
+	public Igloo getIgloo() {
+		System.out.println("Tile\tIgloo getIgloo()\tparam: -");
+		return null;
+	}
+	
+	/**
+	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
+	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
+	 */
+	public void remove(Entity e) {
+		System.out.println("Tile\tvoid remove(Entity)\tparam: " + e);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

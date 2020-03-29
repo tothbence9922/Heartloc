@@ -20,16 +20,16 @@ public class Seq11 {
 		System.out.println("\t getHasHole() returned");
 		if(hashole) {
 			ex.pushToWater();
-			boolean wear = w.wear();
+			w.wear();
 			System.out.println("\twear() returned");
 			ex.setInWater(true);
 			System.out.println("\t setInWater() returned");
 			System.out.println("\t pushtoWater() returned");
 			
 		}
-		boolean received = ut.receive(ex);
+		ut.receive(ex);
 		System.out.println("\t receive(ex) returned");
-		boolean remove = st.remove(ex);
+		st.remove(ex);
 		System.out.println("\t remove(ex) returned");
 		System.out.println("\t move(ut) returned");
 	}

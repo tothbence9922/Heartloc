@@ -6,7 +6,6 @@ import entity.item.optionalitem.Rope;
 import entity.item.optionalitem.Wetsuit;
 import entity.player.Explorer;
 import tiles.StableTile;
-import tiles.Tile;
 import tiles.UnstableTile;
 
 public class Seq15 {
@@ -31,18 +30,18 @@ public class Seq15 {
 			w.wear();
 			System.out.println("\t wear() returned");
 			ex.setInWater(true);
-			int scream = ex.scream();
+			ex.scream();
 			System.out.println("\t scream() returned");
-			Tile neighbours[] = ut.getNeighbours();
+			ut.getNeighbours();
 			System.out.println("\t getNeighbours() returned");
-			boolean alarmtile = st.alarmTile(ex);
+			st.alarmTile(ex);
 			ex2.savePlayer(ex);
-			boolean pull = r.pull(ex);
+			r.pull(ex);
 			System.out.println("\t pull(ex) returned");
 			ex.move(ut);
-			boolean remove = ut.remove(ex);
+			ut.remove(ex);
 			System.out.println("\t remove(ex) returned");
-			boolean receive = st.receive(ex);
+			st.receive(ex);
 			System.out.println("\t receive(ex) returned");
 			System.out.println("\t move(ut) returned");
 			System.out.println("\t savePlayer() returned");

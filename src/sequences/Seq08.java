@@ -1,7 +1,6 @@
 package sequences;
 
 import java.util.Scanner;
-
 import entity.player.Explorer;
 import tiles.StableTile;
 
@@ -20,7 +19,7 @@ public class Seq08 {
 			int distance = st.getDistance();
 			System.out.println("\t(getDistance() returned");
 			System.out.println("\t(exploreTile(st) returned");
-			int capacity = ex.exploreTile(st);
+			ex.exploreTile(st);
 			if(distance < 4) {
 				st.setCapacityVisible(true);
 				System.out.println("\t(setCapacityVisible(boolean) returned");
