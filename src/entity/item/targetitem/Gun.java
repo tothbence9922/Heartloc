@@ -9,14 +9,25 @@ public class Gun extends TargetItem {
     private Gun() { 
     	System.out.println("Gun has been created");
     } 
-  
+    /**
+     *  a Singleton tervezesi mintat kovetve visszater egy
+	 *	referenciaval
+     * 
+     * @return single_instance: Gun tipusu valtozo
+     */
     public static Gun getInstance() { 
         if (single_instance == null) 
             single_instance = new Gun(); 
   
         return single_instance; 
     } 
-    
+    /**
+     *  Mivel a Gun az Entity ososztalybol szarmaztatott
+     *	osztaly, es minden ososztalya absztrakt, igy implementalnia kell ezt a
+	 *	metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 *	technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
 	public boolean useTargetItem() {
 		System.out.println("Gun\tboolean useTargetItem()\tparam: -");
