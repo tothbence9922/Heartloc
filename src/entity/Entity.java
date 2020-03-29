@@ -6,5 +6,8 @@ package entity;
  *
  */
 public class Entity {
-
+	
+	public int step() {
+		return -1;
+	}
 }
