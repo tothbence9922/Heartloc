@@ -16,11 +16,11 @@ public abstract class Tile implements Drawable {
 	
 	protected Item item = null;
 	
-	protected boolean hasHole = false;	// Felesleges szerintem külön osztályt szánni neki TB
+	protected boolean hasHole = false;	// Felesleges szerintem kÃ¼lÃ¶n osztÃ¡lyt szÃ¡nni neki TB
 	
 	protected int numOfTargetItems;
 	/**
-	 * Megadja, hogy található-e a lyuk a Tile-on.
+	 * Megadja, hogy talÃ¡lhatÃ³-e a lyuk a Tile-on.
 	 * 
 	 * @return Ha van Hole akkor true, ha nincs akkor false.
 	 */
@@ -29,14 +29,18 @@ public abstract class Tile implements Drawable {
 		return this.hasHole;
 	}
 	/**
-	 * Megkaphatjuk a TargetItem-ek számát.
-	 * @return Visszatér a TargetItem-ek számával.
+	 * Megkaphatjuk a TargetItem-ek szÃ¡mÃ¡t.
+	 * @return VisszatÃ©r a TargetItem-ek szÃ¡mÃ¡val.
 	 */
 	public int getNumOfTargetItems() {
 		System.out.println("Tile\tint getNumOfTargetItems()\tparam: -");
 		return this.numOfTargetItems;
 	}
 
+	public boolean getHasHole() {
+		System.out.println("Tile\tboolean getHasHole()\tparam: -");
+		return hasHole;
+	}
 	public void storm(Random r) {
 		snow += r.nextInt(3);
 		if (snow > 5) snow = 5;
@@ -45,29 +49,40 @@ public abstract class Tile implements Drawable {
 		}
 	}
 	/**
-	 * a paraméterben kapott entitást a jégtáblára mozgatja.
-	 * @param e - Egy Entity változó amit hozzáadunka Tile-hoz.
-	 * @return - Az elhelyezés sikeressége true, ellenkezõleg false.
+	 * a paramÃ©terben kapott entitÃ¡st a jÃ©gtÃ¡blÃ¡ra mozgatja.
+	 * @param e - Egy Entity vÃ¡ltozÃ³ amit hozzÃ¡adunka Tile-hoz.
+	 * @return - Az elhelyezÃ©s sikeressÃ©ge true, ellenkezÃµleg false.
 	 */
 	public boolean receive(Entity e) {
-		System.out.println("Tile\tboolean receive()\tparam: Entity");
+		System.out.println("Tile\tboolean recieve(Entity)\tparam: " + e);
 		return false;
 	}
 	/**
-	 *  a paraméterben kapott entitást a jégtábláról eltávolítja.
-	 * @param e - Az Entity, amit el szeretnénk távolítani a mezõrõl.
+	 *  a paramÃ©terben kapott entitÃ¡st a jÃ©gtÃ¡blÃ¡rÃ³l eltÃ¡volÃ­tja.
+	 * @param e - Az Entity, amit el szeretnÃ©nk tÃ¡volÃ­tani a mezÃµrÃµl.
 	 */
 	public void remove(Entity e) {
 		System.out.println("Tile\tvoid remove()\tparam: Entity");
 	}
 	/**
-	 * A rakéta összeszerelését végzi el a függvény.
+	 * A rakÃ©ta Ã¶sszeszerelÃ©sÃ©t vÃ©gzi el a fÃ¼ggvÃ©ny.
 	 * 
-	 * @return  true értékkel tér vissza, ha az adott jégtáblán
-		összeszerelhetõ a jelzõrakéta, egyébként false.
+	 * @return  true Ã©rtÃ©kkel tÃ©r vissza, ha az adott jÃ©gtÃ¡blÃ¡n
+		Ã¶sszeszerelhetÃµ a jelzÃµrakÃ©ta, egyÃ©bkÃ©nt false.
 	 */
 	public boolean assembleRocket() {
 		System.out.println("Tile\tbooelan assembleRocket()\tparam: -");
 		return false;
 	}
+	public ArrayList<Tile> getNeighbours(){
+		System.out.println("Tile\tArrayList<Tile> getNeighbours()\tparams: -");
+		return null;
+	}
+	public void alarmTile(Player p) {
+		System.out.println("Tile\t void alarmTile(Player)\tparam: player");
+	}
+	public void remove(Entity e) {
+		System.out.println("Tile\t void remove(Entity)\t param: Entity");
+	}
+	
 }

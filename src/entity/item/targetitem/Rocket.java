@@ -1,5 +1,8 @@
 package entity.item.targetitem;
 
+
+public class Rocket {
+
 public class Rocket implements TargetItem {
 	
 	public Rocket() {
@@ -11,12 +14,13 @@ public class Rocket implements TargetItem {
 		return false;
 	}
 	/**
-	 *  A függvényt meghívva az összerakott TargetItem
-	 *	(Rocket) elsül, ezáltal jelezve a játék végét, hogy nyertek a játékosok. 
+	 *  A fÃ¼ggvÃ©nyt meghÃ­vva az Ã¶sszerakott TargetItem
+	 *	(Rocket) elsÃ¼l, ezÃ¡ltal jelezve a jÃ¡tÃ©k vÃ©gÃ©t, hogy nyertek a jÃ¡tÃ©kosok. 
 	 */
 	@Override
 	public boolean useTargetItem() {
 		System.out.println("Rocket\tboolean useTargetItem()\tparam: -");
 		return false;
 	}
+
 }

@@ -14,7 +14,7 @@ public class Seq02 {
 		System.out.println("Seq: Eskimo builds Igloo on UnstableTile and it doesn't turn over");
 		es.step();
 		es.getEnergy();
-		System.out.println("\t(getEnergy) returned");
+		System.out.println("\tgetEnergy returned");
 		System.out.println("Has enough energy? Enter 0 or 1");
 		Scanner sc = new Scanner(System.in);
 		int in = -1;
@@ -26,7 +26,9 @@ public class Seq02 {
 			ut.receive(i);
 			System.out.println("\t(receive) returned");
 		}
+
 		System.out.println("\t(step) returned");
+
 		sc.close();
 	}
 }

@@ -18,7 +18,7 @@ public abstract class Player extends Entity implements Drawable{
 	protected int energy= 4;
 	protected int bodyTemp= 4;
 	/**
-	 * @return energy - Visszatér a játékos munkakedvével.
+	 * @return energy - VisszatÃ©r a jÃ¡tÃ©kos munkakedvÃ©vel.
 	 */
 	public int getEnergy() {
 		System.out.println("Player\tint getEnergy()\tparam: -");
@@ -29,11 +29,11 @@ public abstract class Player extends Entity implements Drawable{
 		return bodyTemp;
 	}
 	/**
-	 * 	A játékos adott körben történõ cselekvéseit beindító függvény.
-	 *  Visszatérési értéke megadja, hogy mennyi munkakedve van még a
-	 *	játékosnak. Mivel a Player absztrakt osztály, így itt csak deklarálásra kerül, a
-	 *	pontos mûködés a leszármazottakban valósul meg.
-	 *  @return energy - A megmaradt munkakedv értéke
+	 * 	A jÃ¡tÃ©kos adott kÃ¶rben tÃ¶rtÃ©nÅ‘ cselekvÃ©seit beindÃ­tÃ³ fÃ¼ggvÃ©ny.
+	 *  VisszatÃ©rÃ©si Ã©rtÃ©ke megadja, hogy mennyi munkakedve van mÃ©g a
+	 *	jÃ¡tÃ©kosnak. Mivel a Player absztrakt osztÃ¡ly, Ã­gy itt csak deklarÃ¡lÃ¡sra kerÃ¼l, a
+	 *	pontos mÅ±kÃ¶dÃ©s a leszÃ¡rmazottakban valÃ³sul meg.
+	 *  @return energy - A megmaradt munkakedv Ã©rtÃ©ke
 	 * 
 	 */
 	@Override
@@ -47,11 +47,15 @@ public abstract class Player extends Entity implements Drawable{
 		if (bodyTemp == 0) return true;
 		return false;
 	}
+	
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
+
 	/**
-	 *  ezzel a metódussal kerül át a játékos egyik jégtábláról a
-	 *  másikra. Mivel a Player absztrakt osztály, így itt csak deklarálásra kerül, a
-	 *  pontos mûködés a leszármazottakban valósul meg.
-	 * @param t - A Tile amire a játékos mozogni szeretne
+	 *  ezzel a metÃ³dussal kerÃ¼l Ã¡t a jÃ¡tÃ©kos egyik jÃ©gtÃ¡blÃ¡rÃ³l a
+	 *  mÃ¡sikra. Mivel a Player absztrakt osztÃ¡ly, Ã­gy itt csak deklarÃ¡lÃ¡sra kerÃ¼l, a
+	 *  pontos mÅ±kÃ¶dÃ©s a leszÃ¡rmazottakban valÃ³sul meg.
+	 * @param t - A Tile amire a jÃ¡tÃ©kos mozogni szeretne
 	 */
 	public void move(Tile t) {
 		System.out.println("Player\tvoid move()\tparam: Tile");
@@ -66,7 +70,7 @@ public abstract class Player extends Entity implements Drawable{
 	}
 	
 	public void scream() {
-		
+		System.out.println("Player\t void scream()\tparam: -");
 	}
 	
 	public void useItem() {
@@ -87,6 +91,15 @@ public abstract class Player extends Entity implements Drawable{
 	 */
 	public void showActions() {
 		
+	}
+	public void pushToWater() {
+		System.out.println("Player\tvoid pushToWater()\tparam: -");
+	}
+	public void setInWater(boolean inWater) {
+		System.out.println("Player\t void setInWater()\tparam: -");
+	}
+	public void savePlayer(Player p) {
+		System.out.println("Player\t void savePlayer(Player)\t param: Player");
 	}
 	
 }
