@@ -7,99 +7,162 @@ import entity.item.Item;
 import model.Drawable;
 import tiles.Tile;
 
+/**
+ * Absztrakt õsosztálya a játékban szereplõ karaktereknek. Deklarálja az alapvetõ
+ * mûködéshez szükséges attribútumokat és metódusokat, melyek a
+ * leszármazottakban kerülnek kifejtésre
+ */
 public abstract class Player extends Entity implements Drawable{
 	
-	protected Tile curTile;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+	protected int energy = 4;
+	protected int bodyTemperature = 4;
+	protected boolean inWater = false;
 	
-	public ArrayList<Item> items = new ArrayList<Item>();
-
-	protected boolean isActive;
-	
-	protected int energy= 4;
-	protected int bodyTemp= 4;
 	/**
-	 * @return energy - VisszatÃ©r a jÃ¡tÃ©kos munkakedvÃ©vel.
+	 * Ezzel a metódussal kerül át a játékos egyik jégtábláról a másikra.
+	 * @param t az a Tile amelyikre a játékos mozogni kíván
+	 */
+	public void move(Tile t) {
+		System.out.println("Player\tvoid move(Tile)\tparam: " + t);
+	}
+	
+	/**
+	 * Visszatér az adott játékos aktuális munkakedvével.
+	 * @return energy a játékos munkakedve
 	 */
 	public int getEnergy() {
 		System.out.println("Player\tint getEnergy()\tparam: -");
 		return energy;
 	}
-
-	public int getTemp() {
-		return bodyTemp;
-	}
+	
 	/**
-	 * 	A jÃ¡tÃ©kos adott kÃ¶rben tÃ¶rtÃ©nÅ‘ cselekvÃ©seit beindÃ­tÃ³ fÃ¼ggvÃ©ny.
-	 *  VisszatÃ©rÃ©si Ã©rtÃ©ke megadja, hogy mennyi munkakedve van mÃ©g a
-	 *	jÃ¡tÃ©kosnak. Mivel a Player absztrakt osztÃ¡ly, Ã­gy itt csak deklarÃ¡lÃ¡sra kerÃ¼l, a
-	 *	pontos mÅ±kÃ¶dÃ©s a leszÃ¡rmazottakban valÃ³sul meg.
-	 *  @return energy - A megmaradt munkakedv Ã©rtÃ©ke
-	 * 
+	 *  Ha bizonyos szint alá csökken a játékos testhõmérséklete, 
+	 *  akkor fagyhalált hal. 
+	 *  Ez a metódus kezdeményezi ezt a folyamatot.
 	 */
-	@Override
-	public int  step() {
-		System.out.println("Player\tint step()\tparam: -");
-		return energy;
+	public void die() {
+		System.out.println("Player\tvoid die()\tparam: -");
 	}
 	
-	public boolean hit() {
-		bodyTemp --;
-		if (bodyTemp == 0) return true;
+	/**
+	 * Ha egy játékos a vízbe esik, és nincs rajta Wetsuit, 
+	 * akkor sikít, hogy a szomszédos jégtáblán álló társai meghallják
+	 */
+	public int scream() {
+		System.out.println("Player\tint scream()\tparam: -");
+		return 1;
+	}
+	
+	/**
+	 * Ha egy játékos olyan jégtáblán tartózkodik, 
+	 * melyen hallja egy másik játékos sikítását, és van a táskájában (Inventory) 
+	 * egy kötél (Rope), akkor kimenti a játékost.
+	 * 
+	 * @param p a kimentendõ játékos
+	 * @return ki tudja-e menteni a játékos
+	 */
+	public boolean savePlayer(Player p) {
+		System.out.println("Player\tvoid savePlayer(Player)\t param: " + p);
+		return true;
+	}
+
+	/**
+	 * Ha egy játékos lyukba lép, vagy instabil jégtáblára, 
+	 * ami átfordul, akkor ez a függvény jelzi, hogy vízbe került.
+	 * @param inWater beállítja, hogy vízben van-e az adott játékos
+	 */
+	public void setInWater(boolean inWater) {
+		System.out.println("Player\tvoid setInWater()\tparam: " + inWater);
+	}
+	
+	/**
+	 * Ha van a játékos birtokában Wetsuit (a függvény visszatérési értéke true), 
+	 * akkor azt felveszi és ezáltal megmenekül vízbeesés esetén, késõbb kiúszhat.
+	 * @return rendelkezik-e Wetsuittal az adott játékos
+	 */
+	public boolean getWetsuit() {
+		System.out.println("Player\tboolean getWetsuit()\tparam: -");
 		return false;
 	}
 	
-	public void move(Tile t) {
-		System.out.println("Player\tvoid move(Tile)\tparam: Tile");
-
 	/**
-	 *  ezzel a metÃ³dussal kerÃ¼l Ã¡t a jÃ¡tÃ©kos egyik jÃ©gtÃ¡blÃ¡rÃ³l a
-	 *  mÃ¡sikra. Mivel a Player absztrakt osztÃ¡ly, Ã­gy itt csak deklarÃ¡lÃ¡sra kerÃ¼l, a
-	 *  pontos mÅ±kÃ¶dÃ©s a leszÃ¡rmazottakban valÃ³sul meg.
-	 * @param t - A Tile amire a jÃ¡tÃ©kos mozogni szeretne
+	 * Az õsosztályból származó metódus, mely itt az Explorer képességét 
+	 * valósítja meg: a játékos pozíciójától legfeljebb 3 távolságra lévõ 
+	 * jégtáblák közül egyrõl megállapítja a teherbírását.
+	 * @param chosenTile a felfedezendõ jégtábla
+	 * @return a felfedezett jégtáblának a teherbírása
 	 */
-	public void move(Tile t) {
-		System.out.println("Player\tvoid move()\tparam: Tile");
+	public int exploreTile(Tile chosenTile) {
+		return -1;
 	}
 	
-	public void feed(Player p) {
-		p.bodyTemp += 1;
-	}
-	
-	public void fall() {
-		scream();
-	}
-	
-	public void scream() {
-		System.out.println("Player\t void scream()\tparam: -");
-	}
-	
-	public void useItem() {
-		
-	}
-	
-	public void useRocket() {
-		
-	}
-	
-	public void dig() {
-		
-	}
 	/**
-	 * megjelenitjuk a lehetseges cselekveseket,
-	 * ha 0 az ereje ne tudja kivalasztani, ne kivalasztas utan ellenorizze
-	 * minden activity (dig, useItem, stb) hogy tud-e.
+	 * Az õsosztályból származó metódus, mely itt az Eszkimó képességét 
+	 * valósítja meg: épít egy iglut arra a jégtáblára, ahol az Eszkimó áll.
+	 * @param chosenTile az a jégtábla, melyre az Eskimo Igloo-t épít
+	 * @return sikerrel járt-e az építés
 	 */
-	public void showActions() {
-		
+	public boolean buildIgloo(Tile chosenTile) {
+		System.out.println("Player\tboolean buildIgloo(Tile\tparam: " + chosenTile);
+		return false;
 	}
+	
+	/**
+	 * Ha olyan jégtáblára lép a játékos (jelent esetben Eszkimó), 
+	 * mely instabil vagy lyuk van rajta, akkor ez a függvény indítja el az
+	 * ilyenkor lezajló eseményeket.
+	 */
 	public void pushToWater() {
 		System.out.println("Player\tvoid pushToWater()\tparam: -");
 	}
-	public void setInWater(boolean inWater) {
-		System.out.println("Player\t void setInWater()\tparam: -");
-	}
-	public void savePlayer(Player p) {
-		System.out.println("Player\t void savePlayer(Player)\t param: Player");
+	
+	/**
+	 * Visszatér a játékos (ez esetben Eszkimó) aktuális testhõmérsékletével.
+	 * @return
+	 */
+	public int getTemperature() {
+		System.out.println("Player\tvoid getTemperature()\tparam: -");
+		return bodyTemperature;
 	}
 	
+	/**
+	 * A játékos testhõmérsékletét növeli a paraméterben megadott értékkel.
+	 * @param amount az a mennyiség, amivel a játékos élete növelve lesz
+	 */
+	public void heal(int amount) {
+		System.out.println("Player\tvoid heal()\tparam: " + amount);
+		bodyTemperature += amount;
+	}
+	
+	/**
+	 * A játékos testhõmérsékletét csökkenti a paraméterben megadott értékkel.
+	 * @param amount az a mennyiség, amivel a játékos élete csökken
+	 * @return
+	 */
+	public void damage(int amount) {
+		System.out.println("Player\tboolean damage()\tparam: " + amount);
+		bodyTemperature -= amount;
+	}
+	
+	/**
+	 * Játékos munkakedvét (energy) a paraméterben megadott értékre állítja.
+	 * @param amount beállítja a játékos munkakedvét
+	 */
+	public void setEnergy(int amount) {
+		System.out.println("Player\tvoid setEnergy()\tparam: " + amount);
+		energy += amount;
+	}
+	
+	/**
+	 * A játékos adott körben történõ
+	 * cselekvéseit beindító függvény. Visszatérési értéke megadja,
+	 * hogy mennyi munkakedve van még a játékosnak.
+	 * @return a játékos maradék munkakedve
+	 */
+	@Override
+	public int step() {
+		System.out.println("Player\tint step()\tparam: -");
+		return energy;
+	}
 }

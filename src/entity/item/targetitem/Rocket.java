@@ -1,26 +1,36 @@
 package entity.item.targetitem;
 
-
-public class Rocket {
-
-public class Rocket implements TargetItem {
+public class Rocket extends TargetItem {
 	
-	public Rocket() {
-		System.out.println("Rocket has been created");
-	}
-	@Override
-	public boolean use() {
-			System.out.println("Rocket is not yet usable");
-		return false;
-	}
-	/**
-	 *  A függvényt meghívva az összerakott TargetItem
-	 *	(Rocket) elsül, ezáltal jelezve a játék végét, hogy nyertek a játékosok. 
-	 */
+	// static variable single_instance of type Singleton 
+    private static Rocket single_instance = null; 
+  
+    // private constructor restricted to this class itself 
+    private Rocket() { 
+    	System.out.println("Rocket has been created");
+    } 
+  /**
+   *  a Singleton tervezesi mintat kovetve visszater egy
+   *  referenciaval
+   * 
+   * @return single_instance: Rocket tipsu valtozo
+   */
+    public static Rocket getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Rocket(); 
+  
+        return single_instance; 
+    } 
+    /**
+     *  Mivel a Rocket az Entity ososztalybol szarmaztatott
+     *	osztaly, es minden ososztalya absztrakt, igy implementalnia kell ezt a
+	 *	metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 *	technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
 	public boolean useTargetItem() {
 		System.out.println("Rocket\tboolean useTargetItem()\tparam: -");
-		return false;
+		return true;
 	}
-
 }

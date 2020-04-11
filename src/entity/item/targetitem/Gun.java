@@ -1,14 +1,37 @@
 package entity.item.targetitem;
 
-import entity.player.Player;
-
-public class Gun implements TargetItem {
+public class Gun extends TargetItem {
+	
+	// static variable single_instance of type Singleton 
+    private static Gun single_instance = null; 
+  
+    // private constructor restricted to this class itself 
+    private Gun() { 
+    	System.out.println("Gun has been created");
+    } 
+    /**
+     *  a Singleton tervezesi mintat kovetve visszater egy
+	 *	referenciaval
+     * 
+     * @return single_instance: Gun tipusu valtozo
+     */
+    public static Gun getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Gun(); 
+  
+        return single_instance; 
+    } 
+    /**
+     *  Mivel a Gun az Entity ososztalybol szarmaztatott
+     *	osztaly, es minden ososztalya absztrakt, igy implementalnia kell ezt a
+	 *	metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 *	technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
-	public boolean use() {
-			System.out.println("Gun is not yet usable");
-		return false;
+	public boolean useTargetItem() {
+		System.out.println("Gun\tboolean useTargetItem()\tparam: -");
+		return true;
 	}
-	public boolean wear() {return false;}
-	public boolean pull(Player p) {return false;}
 
 }

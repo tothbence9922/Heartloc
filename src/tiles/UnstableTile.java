@@ -1,32 +1,37 @@
 package tiles;
-
-import java.util.ArrayList;
-
-import entity.player.Player;
-
+/**
+ * A játék során ezek a jégtáblák jelentik a legtöbb veszélyt: lyukak is lehetnek rajta, valamint a stabil jégtáblákkal ellentétben, az instabil jégtábláknak van egy maximális teherbírásuk (kapacitás), melyet ha a rajtuk lévõ entitások összsúlya meghalad, akkor átfordulnak, ezáltal minden rajtuk található dolog a vízbe esik.
+ * @author tothbence9922 & komendamate
+ *
+ */
 public class UnstableTile extends Tile {
 
 	private int load;
-		
 	/**
-	 *  A tábla forog ha túlterhelõdik. Hívhatja a rajta álló emberek Fall fgv-ét vagy valami
-	 * @return Ha sikeresen átfordult true érékkel tér vissza, ha nem akkor false-al.
+	 * Az UnstableTile konstruktora. A Paraméterül kapott érték lesz a maximális érték, amit túllépve az UnstableTile átfordul.
+	 * @param l
 	 */
-	public boolean rotate() {
-		return true;
+	public UnstableTile(int l) {
+		load = l;
 	}
 	
-	public UnstableTile(int _load) {
-		load = _load;
-		this.players = new ArrayList<Player>();
-	}
 	/**
-	 * A függvény megadja mennyi a terhelés.
-	 * @return - A terhelés nagyságával tér vissza.
+	 *visszatér az adott instabil jégtábla aktuális terhével.
+	 *@return int
 	 */
 	public int getLoad() {
 		System.out.println("UnstableTile\tint getLoad()\tparam: -");
 		return this.load;
+	}
+	
+	/**
+	 *visszatér az adott instabil jégtábla maximális
+	 *teherbírásával, kapacitásával.
+	 *@return int
+	 */
+	public int getCapacity() {
+		System.out.println("UnstableTile\tint getCapacity()\tparam: -");
+		return this.capacity;
 	}
 
 	@Override

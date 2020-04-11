@@ -1,14 +1,37 @@
 package entity.item.targetitem;
 
-import entity.player.Player;
+public class Beacon extends TargetItem {
 
-public class Beacon implements TargetItem {
+	// static variable single_instance of type Singleton 
+    private static Beacon single_instance = null; 
+  
+    // private constructor restricted to this class itself 
+    private Beacon() { 
+    	System.out.println("Beacon has been created");
+    } 
+    /**
+     *  a Singleton tervezesi mintat kovetve visszater egy
+	 *  referenciaval
+     * 
+     * @return  single_instance: Beacon tipusu valtozo
+     */
+    public static Beacon getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Beacon(); 
+  
+        return single_instance; 
+    } 
+    /**
+     *  Mivel a Beacon az Entity ososztalybol
+     * szarmaztatott osztaly, es minden ososztalya absztrakt, igy implementalnia kell
+	 * ezt a metodust is. A metodus nem modosit semmin, azonban megvalositasa
+	 * technikai okok miatt kotelezo.
+     * 
+     */
 	@Override
-	public boolean use() {
-			System.out.println("Beacon is not yet usable!");
-		return false;
+	public boolean useTargetItem() {
+		System.out.println("Beacon\tboolean useTargetItem()\tparam: -");
+		return true;
 	}
-	public boolean wear() {return false;}
-	public boolean pull(Player p) {return false;}
-
+	
 }

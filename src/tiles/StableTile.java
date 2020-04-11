@@ -1,27 +1,16 @@
 package tiles;
 
 import java.util.ArrayList;
-
 import entity.player.Player;
-
-public class StableTile extends Tile {
-
-	public StableTile() {
-		this.players = new ArrayList<Player>();
-	}
-
+/**
+ * A játék során ezek a jégtáblák jelentik a biztonságot: végtelen teherbírásuk van, így bármennyi ember áll is egyszerre egy adott stabil jégtáblán, az nem fog átfordulni. Lyukak azonban lehetnek rajta!
+ * @author tothbence9922
+ *
+ */
+public class StableTile extends Tile {	
+	
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	public void dig(int i) {
-		System.out.println("StableTile\tvoid dig(int)\tparam: " + i );
-		
-	}
-
-	public void removeSnow(int i) {
-		System.out.println("StableTile\tvoid removeSnow(int)\tparam:" + i);
 	}
 }

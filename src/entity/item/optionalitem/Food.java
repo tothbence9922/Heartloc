@@ -1,25 +1,18 @@
 package entity.item.optionalitem;
-
-import entity.player.Player;
-
-public class Food implements OptionalItem {
+/**
+ * A játékosok számára lehetõséget nyújt testhõmérsékletük növelésére, ha esznek valamit. Ez a valami az étel - Food, melyet ez az osztály reprezentál.
+ * @author tothbence9922
+ *
+ */
+public class Food extends OptionalItem {
+	/**
+	 * A játékos, ha rendelkezik Food -dal, használhatja azt, hogy növelje testhõmérsékletét (bodyTemperature). Az étel  (Food) eltûnik a játékos táskájából használat után.
+	 * @return A visszatérési értéke a logikai igaz (true), ezzel jelzi hogy sikeresen használta a Food Itemet a játékos.
+	 */
 	@Override
-	public boolean use() {
-			System.out.println("Food :3");
-		return false;
+	public boolean eat() {
+		System.out.println("Food\tvoid setIsVisible()\t param: - ");
+		return true;
 	}
-
-	public void pickup() {
-		System.out.println("Food\tvoid pickup()\tparam: -");
-	}
-
-	public boolean wear() {return false;}
-	public boolean pull(Player p) {return false;}
-
-	@Override
-	public boolean useTargetItem() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 }
