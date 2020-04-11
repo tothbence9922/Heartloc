@@ -15,5 +15,11 @@ public class Field implements Drawable {
 	public Field() {
 		tiles = new ArrayList<Tile>();
 	}
-
+	
+	public void addTile(Tile t) {
+		tiles.add(t);
+	}
+	public void setTiles(ArrayList<Tile> arrT) {
+		tiles = arrT;
+	}
 }

@@ -37,9 +37,13 @@ public class MapSaver {
 			int neighCount = r.nextInt(4);
 			if(neighCount >= tiles.size()) neighCount = tiles.size()-1;
 			for(int j = 0; j < neighCount; j++) {
-				
+				int curNeigh = r.nextInt(tileCount);
+				if(curNeigh != j) {
+					tiles.get(i).addNeighbour(tiles.get(curNeigh));
+				}
 			}
 		}
+		field.setTiles(tiles);
 		return field;
 	}
 	

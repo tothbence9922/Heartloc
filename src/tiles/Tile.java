@@ -17,6 +17,7 @@ public abstract class Tile implements Drawable {
 	
 	protected ArrayList<Player> players;
 	protected Item item = null;
+	protected ArrayList<Tile> neighbours;
 	
 	protected boolean hasHole = false;
 	protected boolean hasItem = false;
@@ -42,6 +43,7 @@ public abstract class Tile implements Drawable {
 	 */
 	public Tile() {
 		this.players = new ArrayList<Player>();
+		this.neighbours = new ArrayList<Tile>();
 	}
 	
 	/**
@@ -190,7 +192,9 @@ public abstract class Tile implements Drawable {
 	}
 
 	
-	
+	public void addNeighbour(Tile t) {
+		this.neighbours.add(t);
+	}
 	
 	
 	
