@@ -1,6 +1,7 @@
 package sequences;
 
 import java.util.Scanner;
+
 import entity.player.Explorer;
 import tiles.StableTile;
 

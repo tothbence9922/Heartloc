@@ -1,34 +1,32 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
-
-import entity.item.Item;
-import entity.item.optionalitem.Food;
-import entity.item.optionalitem.Rope;
-import entity.item.optionalitem.Wetsuit;
-import entity.item.targetitem.Beacon;
-import entity.player.Eskimo;
-
+import sequences.Seq01;
 import sequences.Seq02;
+import sequences.Seq03;
 import sequences.Seq04;
-
-
-import sequences.Seq04;
+import sequences.Seq05;
+import sequences.Seq06;
+import sequences.Seq07;
+import sequences.Seq08;
+import sequences.Seq09;
 import sequences.Seq10;
+import sequences.Seq11;
+import sequences.Seq12;
+import sequences.Seq13;
+import sequences.Seq14;
+import sequences.Seq15;
+import sequences.Seq16;
+import sequences.Seq17;
 import sequences.Seq18;
-import sequences.Seq02;
-
-import sequences.*;
 
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {	
-		System.out.println("Choose");
-		
+		System.out.println("Choose a sequence from 1 to 18");
+		System.out.println("Only enter a number");
 		
 		Scanner sc = new Scanner(System.in);   
 		int c = sc.nextInt();
@@ -94,7 +92,7 @@ public class Main {
 				default:
 					break;
 			}	
-			
+			System.out.println("Choose a sequence from 1 to 18");
 			c = sc.nextInt();
 		}
 	
