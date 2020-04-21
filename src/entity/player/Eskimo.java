@@ -1,8 +1,6 @@
 package entity.player;
 import tiles.Tile;
 
-import tiles.Tile;
-
 /**
  * A játékban szereplõ egyik entitás. Kezdésként 5 egységnyi testhõje van, 
  * valamint egy különleges képessége is: tud iglut építeni, amiben megbújva 
