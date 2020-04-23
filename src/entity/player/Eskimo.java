@@ -21,7 +21,8 @@ public class Eskimo extends Player {
 	 * @return - A sikeresen felépített Iglu esetén true, ellenkező esetben false.
 	 */
 	public boolean buildIgloo(Tile chosenTile) {
-		System.out.println("Eskimo\tvoid build()\tparam: " + chosenTile);
+		//System.out.println("Eskimo\tvoid build()\tparam: " + chosenTile);
+		
 		return false;
 	}
  

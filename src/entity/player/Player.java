@@ -42,7 +42,9 @@ public abstract class Player extends Entity implements Drawable{
 	 *  Ez a metódus kezdeményezi ezt a folyamatot.
 	 */
 	public void die() {
-		System.out.println("Player\tvoid die()\tparam: -");
+		//System.out.println("Player\tvoid die()\tparam: -");
+		/*game.Defeat();
+		gamen.EndGame();*/
 	}
 	
 	/**
@@ -50,7 +52,7 @@ public abstract class Player extends Entity implements Drawable{
 	 * akkor sikít, hogy a szomszédos jégtáblán álló társai meghallják
 	 */
 	public int scream() {
-		System.out.println("Player\tint scream()\tparam: -");
+		//System.out.println("Player\tint scream()\tparam: -");
 		return 1;
 	}
 	
@@ -63,7 +65,7 @@ public abstract class Player extends Entity implements Drawable{
 	 * @return ki tudja-e menteni a játékos
 	 */
 	public boolean savePlayer(Player p) {
-		System.out.println("Player\tvoid savePlayer(Player)\t param: " + p);
+		//System.out.println("Player\tvoid savePlayer(Player)\t param: " + p);
 		return true;
 	}
 
@@ -73,7 +75,8 @@ public abstract class Player extends Entity implements Drawable{
 	 * @param inWater beállítja, hogy vízben van-e az adott játékos
 	 */
 	public void setInWater(boolean inWater) {
-		System.out.println("Player\tvoid setInWater()\tparam: " + inWater);
+		//System.out.println("Player\tvoid setInWater()\tparam: " + inWater);
+		inWater=true;
 	}
 	
 	/**
@@ -82,7 +85,12 @@ public abstract class Player extends Entity implements Drawable{
 	 * @return rendelkezik-e Wetsuittal az adott játékos
 	 */
 	public boolean getWetsuit() {
-		System.out.println("Player\tboolean getWetsuit()\tparam: -");
+		//System.out.println("Player\tboolean getWetsuit()\tparam: -");
+		for(int i=0;i<inventory.size();i++) {
+			if(inventory.get(i).wear()==true) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -94,7 +102,7 @@ public abstract class Player extends Entity implements Drawable{
 	 * @return a felfedezett jégtáblának a teherbírása
 	 */
 	public int exploreTile(Tile chosenTile) {
-		return -1;
+		//return chosenTile.getCapacity();
 	}
 	
 	/**
@@ -131,7 +139,7 @@ public abstract class Player extends Entity implements Drawable{
 	 * @param amount az a mennyiség, amivel a játékos élete növelve lesz
 	 */
 	public void heal(int amount) {
-		System.out.println("Player\tvoid heal()\tparam: " + amount);
+		//System.out.println("Player\tvoid heal()\tparam: " + amount);
 		bodyTemperature += amount;
 	}
 	
@@ -150,8 +158,8 @@ public abstract class Player extends Entity implements Drawable{
 	 * @param amount beállítja a játékos munkakedvét
 	 */
 	public void setEnergy(int amount) {
-		System.out.println("Player\tvoid setEnergy()\tparam: " + amount);
-		energy += amount;
+		//System.out.println("Player\tvoid setEnergy()\tparam: " + amount);
+		energy = amount;
 	}
 	
 	/**
@@ -162,7 +170,7 @@ public abstract class Player extends Entity implements Drawable{
 	 */
 	@Override
 	public int step() {
-		System.out.println("Player\tint step()\tparam: -");
+		//System.out.println("Player\tint step()\tparam: -");
 		return energy;
 	}
 }
