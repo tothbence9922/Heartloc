@@ -7,8 +7,13 @@ package tiles;
  */
 public class StableTile extends Tile {	
 	
+	
+	public StableTile() {
+		super();
+	}
 	@Override
 	public void draw() {
-		
+		//draw
 	}
+	
 }
