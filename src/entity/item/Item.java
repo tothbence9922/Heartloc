@@ -1,21 +1,25 @@
 package entity.item;
-
+import entity.Entity;
 import entity.player.Player;
 
-public abstract class Item {
+public abstract class Item extends Entity {
+	public Item(String id) {
+		super(id);
+	}
 	/**
 	 * 
 	 *	Egy targy (Item) lehet lathato es nem lathato. Ha lathato
 	 *	(isVisible == true), akkor kiashato es felveheto, mig ellenkezo esetben nem.
 	 */
 	public boolean isVisible = false;
+	
 	/**
 	 * Lathatova teszi a mezot masok szamara.
 	 * 
 	 * @param b - Ha lathatova akarjuk tenni a mezot masok szamara true parameter, ha nem akkor false.
 	 */
 	public void setIsVisible(boolean b) {
-		
+		this.isVisible = b;
 	}
 	/**
 	 *  A jatekos, ha rendelkezik Item-mel, annak
@@ -91,4 +95,7 @@ public abstract class Item {
 	public boolean useTargetItem() {
 		return false;
 	}
+	public abstract int step();
+	public abstract boolean buildTent();
 }
+

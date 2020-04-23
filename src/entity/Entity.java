@@ -1,14 +1,16 @@
 package entity;
 
-public class Entity {
+public abstract class Entity {
 	private int weight;
+	public String id;
 	
+	public Entity(String id) {
+		this.id = id;
+	}
 	
 	/**
 	 * a jatek soran ez a metodus felel a tevekenysegek megkezdeseert
 	 * @return int
 	 */
-	public int step() {
-		return -1;
-	}
+	public abstract int step();
 }
