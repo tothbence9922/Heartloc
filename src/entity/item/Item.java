@@ -5,6 +5,7 @@ import entity.player.Player;
 public abstract class Item extends Entity {
 	public Item(String id) {
 		super(id);
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * 
@@ -37,7 +38,6 @@ public abstract class Item extends Entity {
 	 * 
 	 */
 	public void drop() {
-		
 	}
 	/**
 	 *  A targyak a jaték kezdeten a jegtablakba vannak fagyva.
@@ -45,7 +45,6 @@ public abstract class Item extends Entity {
 	 * 
 	 */
 	public void pickup() {
-		
 	}
 	/**
 	 * A jelzoraketa (Rocket) tobb alkatreszbol
@@ -95,7 +94,11 @@ public abstract class Item extends Entity {
 	public boolean useTargetItem() {
 		return false;
 	}
-	public abstract int step();
-	public abstract boolean buildTent();
+	public int step() {
+		return 0;
+	}
+	public boolean buildTent() {
+		return false;
+	}
 }
 

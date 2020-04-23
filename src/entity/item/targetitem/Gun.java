@@ -6,7 +6,8 @@ public class Gun extends TargetItem {
     private static Gun single_instance = null; 
   
     // private constructor restricted to this class itself 
-    private Gun() { 
+    private Gun(String id) { 
+    	super(id);
     	System.out.println("Gun has been created");
     } 
     /**
@@ -15,9 +16,9 @@ public class Gun extends TargetItem {
      * 
      * @return single_instance: Gun tipusu valtozo
      */
-    public static Gun getInstance() { 
+    public static Gun getInstance(String id) { 
         if (single_instance == null) 
-            single_instance = new Gun(); 
+            single_instance = new Gun(id); 
   
         return single_instance; 
     } 
