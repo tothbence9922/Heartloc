@@ -6,7 +6,8 @@ public class Cartridge extends TargetItem {
     private static Cartridge single_instance = null; 
   
     // private constructor restricted to this class itself 
-    private Cartridge() { 
+    private Cartridge(String id) {
+    	super(id);
     	System.out.println("Cartridge has been created");
     } 
     /**
@@ -14,9 +15,9 @@ public class Cartridge extends TargetItem {
 	 * referenciaval
      * @return single_instance: Cartridge tipusu valtozo
      */
-    public static Cartridge getInstance() { 
+    public static Cartridge getInstance(String id) { 
         if (single_instance == null) 
-            single_instance = new Cartridge(); 
+            single_instance = new Cartridge(id); 
   
         return single_instance; 
     } 
@@ -29,8 +30,7 @@ public class Cartridge extends TargetItem {
      */
 	@Override
 	public boolean useTargetItem() {
-		System.out.println("Cartridge\tboolean useTargetItem()\tparam: -");
+		System.out.println("Beacon\tboolean useTargetItem()\tparam: -");
 		return true;
 	}
-	
 }

@@ -6,7 +6,8 @@ public class Beacon extends TargetItem {
     private static Beacon single_instance = null; 
   
     // private constructor restricted to this class itself 
-    private Beacon() { 
+    private Beacon(String id) { 
+    	super(id);
     	System.out.println("Beacon has been created");
     } 
     /**
@@ -15,10 +16,9 @@ public class Beacon extends TargetItem {
      * 
      * @return  single_instance: Beacon tipusu valtozo
      */
-    public static Beacon getInstance() { 
+    public static Beacon getInstance(String id) { 
         if (single_instance == null) 
-            single_instance = new Beacon(); 
-  
+            single_instance = new Beacon(id); 
         return single_instance; 
     } 
     /**
@@ -33,5 +33,4 @@ public class Beacon extends TargetItem {
 		System.out.println("Beacon\tboolean useTargetItem()\tparam: -");
 		return true;
 	}
-	
 }

@@ -20,46 +20,4 @@ public class Food extends OptionalItem {
 		System.out.println("Food\tvoid setIsVisible()\t param: - ");
 		return true;
 	}
-	/**
-	 * Mivel a Food az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása
-	 * technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean wear() {
-		System.out.println("Wear");
-		return false;
-	}
-	/**
-	 * Mivel a Food az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt,
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean dig() {
-		System.out.println("Dig");
-		return false;
-	}
-	/**
-	 * Mivel a Food az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása technikai okok miatt kötelezõ.
-	 * @param Player
-	 * @return boolean
-	 */
-	@Override
-	public boolean pull(Player p) {
-		System.out.println("Pull");
-		return false;
-	}
-	/**
-	 * Mivel a Food az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean buildTent() {
-		System.out.println("BuildTent");
-		return false;
-	}
 }

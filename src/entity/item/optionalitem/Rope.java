@@ -21,49 +21,4 @@ public class Rope extends OptionalItem{
 		System.out.println("Pull");
 		return true;
 	}
-	
-	/**
-	 * Mivel a Rope az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása
-	 * technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean eat() {
-		System.out.println("Food\tvoid setIsVisible()\t param: - ");
-		return false;
-	}
-	/**
-	 * Mivel a Rope az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása
-	 * technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean wear() {
-		System.out.println("Wear");
-		return false;
-	}
-	/**
-	 * Mivel a Rope az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása
-	 * technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean dig() {
-		System.out.println("Dig");
-		return false;
-	}
-	/**
-	 * Mivel a Rope az Entity õsosztályból származtatott osztály, és minden õsosztálya absztrakt
-	 * így implementálnia kell ezt a metódust is. A metódus nem módosít semmin, azonban megvalósítása
-	 * technikai okok miatt kötelezõ.
-	 * @return boolean
-	 */
-	@Override
-	public boolean buildTent() {
-		System.out.println("BuildTent");
-		return false;
-	}
 }
