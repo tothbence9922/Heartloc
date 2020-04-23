@@ -1,0 +1,209 @@
+{
+	"tiles": [
+		{
+			"id": "t1",
+			"type": "0",
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t4",
+				"t8"
+			],
+			"entities": [
+			],
+			"items": [
+				"r3"
+			]
+		},
+		{
+			"id": "t2",
+			"type": "1",
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t3",
+				"t4",
+				"t5"
+			],
+			"entities": [
+				"M"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t3",
+			"type": "1",
+			"hole": 1,
+			"neighbours": [
+				"t2",
+				"t5",
+				"t6"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t4",
+			"type": "1",
+			"hole": 1,
+			"neighbours": [
+				"t1",
+				"t2",
+				"t5",
+				"t8",
+				"t9"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t5",
+			"type": "1",
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t3",
+				"t4",
+				"t6",
+				"t9",
+				"t10"
+			],
+			"entities": [
+			],
+			"items": [
+				"r2"
+			]
+		},
+		{
+			"id": "t6",
+			"type": "0",
+			"hole": 0,
+			"neighbours": [
+				"t3",
+				"t5",
+				"t7",
+				"t10",
+				"t13"
+			],
+			"entities": [
+				"E"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t7",
+			"type": "1",
+			"hole": 1,
+			"neighbours": [
+				"t6",
+				"t13"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t8",
+			"type": "1",
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t4",
+				"t9",
+				"t11"
+			],
+			"entities": [
+			],
+			"items": [
+				"r1"
+			]
+		},
+		{
+			"id": "t9",
+			"type": "1",
+			"hole": 0,
+			"neighbours": [
+				"t4",
+				"t5",
+				"t8",
+				"t10",
+				"t11",
+				"t12"
+			],
+			"entities": [
+			],
+			"items": [
+				"a"
+			]
+		},
+		{
+			"id": "t10",
+			"type": "1",
+			"hole": 1,
+			"neighbours": [
+				"t5",
+				"t6",
+				"t9",
+				"t12",
+				"t13"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t11",
+			"type": "1",
+			"hole": 1,
+			"neighbours": [
+				"t8",
+				"t9",
+				"t12"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t12",
+			"type": "0",
+			"hole": 0,
+			"neighbours": [
+				"t9",
+				"t10",
+				"t11",
+				"t13"
+			],
+			"entities": [
+				"K1"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t13",
+			"type": "1",
+			"hole": 0,
+			"neighbours": [
+				"t6",
+				"t7",
+				"t10",
+				"t12"
+			],
+			"entities": [
+				"K2"
+			],
+			"items": [
+			]
+		}
+	]
+}
