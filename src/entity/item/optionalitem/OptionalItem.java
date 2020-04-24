@@ -7,5 +7,8 @@ import entity.item.Item;
  *
  */
 public abstract class OptionalItem extends Item {
-
+	
+	public OptionalItem(String id) {
+		super(id);
+	}
 }

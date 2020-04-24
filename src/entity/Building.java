@@ -1,11 +1,7 @@
 package entity;
+public class Building {
 
-public class Igloo extends Building {
-	
-
-	public Igloo(String id) {
-		super(id);
-	}
+public class Building extends Entity {
 
 	@Override
 	public int step() {
@@ -13,4 +9,5 @@ public class Igloo extends Building {
 		return 0;
 	}
 	
+	public Building(String id) {super(id);}
 }

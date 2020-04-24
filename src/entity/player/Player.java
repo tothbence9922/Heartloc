@@ -8,9 +8,9 @@ import model.Drawable;
 import tiles.Tile;
 
 /**
- * Absztrakt õsosztálya a játékban szereplõ karaktereknek. Deklarálja az
- * alapvetõ mûködéshez szükséges attribútumokat és metódusokat, melyek a
- * leszármazottakban kerülnek kifejtésre
+ * Absztrakt Å‘sosztÃ¡lya a jÃ¡tÃ©kban szereplÅ‘ karaktereknek. DeklarÃ¡lja az
+ * alapvetÅ‘ mÅ±kÃ¶dÃ©shez szÃ¼ksÃ©ges attribÃºtumokat Ã©s metÃ³dusokat, melyek a
+ * leszÃ¡rmazottakban kerÃ¼lnek kifejtÃ©sre
  */
 public abstract class Player extends Entity implements Drawable {
 
@@ -20,9 +20,9 @@ public abstract class Player extends Entity implements Drawable {
 	protected boolean inWater = false;
 
 	/**
-	 * Ezzel a metódussal kerül át a játékos egyik jégtábláról a másikra.
+	 * Ezzel a metÃ³dussal kerÃ¼l Ã¡t a jÃ¡tÃ©kos egyik jÃ©gtÃ¡blÃ¡rÃ³l a mÃ¡sikra.
 	 * 
-	 * @param t az a Tile amelyikre a játékos mozogni kíván
+	 * @param t az a Tile amelyikre a jÃ¡tÃ©kos mozogni kÃ­vÃ¡n
 	 */
 	public void move(Tile t) {
 		t.receive(this);
@@ -31,17 +31,17 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Visszatér az adott játékos aktuális munkakedvével.
+	 * VisszatÃ©r az adott jÃ¡tÃ©kos aktuÃ¡lis munkakedvÃ©vel.
 	 * 
-	 * @return energy a játékos munkakedve
+	 * @return energy a jÃ¡tÃ©kos munkakedve
 	 */
 	public int getEnergy() {
 		return energy;
 	}
 
 	/**
-	 * Ha bizonyos szint alá csökken a játékos testhõmérséklete, akkor fagyhalált
-	 * hal. Ez a metódus kezdeményezi ezt a folyamatot.
+	 * Ha bizonyos szint alÃ¡ csÃ¶kken a jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©klete, akkor fagyhalÃ¡lt
+	 * hal. Ez a metÃ³dus kezdemÃ©nyezi ezt a folyamatot.
 	 */
 	public void die() {
 		game.getInstance();
@@ -50,20 +50,20 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Ha egy játékos a vízbe esik, és nincs rajta Wetsuit, akkor sikít, hogy a
-	 * szomszédos jégtáblán álló társai meghallják
+	 * Ha egy jÃ¡tÃ©kos a vÃ­zbe esik, Ã©s nincs rajta Wetsuit, akkor sikÃ­t, hogy a
+	 * szomszÃ©dos jÃ©gtÃ¡blÃ¡n Ã¡llÃ³ tÃ¡rsai meghalljÃ¡k
 	 */
 	public int scream() {
 		return 1;
 	}
 
 	/**
-	 * Ha egy játékos olyan jégtáblán tartózkodik, melyen hallja egy másik játékos
-	 * sikítását, és van a táskájában (Inventory) egy kötél (Rope), akkor kimenti a
-	 * játékost.
+	 * Ha egy jÃ¡tÃ©kos olyan jÃ©gtÃ¡blÃ¡n tartÃ³zkodik, melyen hallja egy mÃ¡sik jÃ¡tÃ©kos
+	 * sikÃ­tÃ¡sÃ¡t, Ã©s van a tÃ¡skÃ¡jÃ¡ban (Inventory) egy kÃ¶tÃ©l (Rope), akkor kimenti a
+	 * jÃ¡tÃ©kost.
 	 * 
-	 * @param p a kimentendõ játékos
-	 * @return ki tudja-e menteni a játékos
+	 * @param p a kimentendÅ‘ jÃ¡tÃ©kos
+	 * @return ki tudja-e menteni a jÃ¡tÃ©kos
 	 */
 	public boolean savePlayer(Player p) {
 		for (int i = 0; i < inventory.size(); i++) {
@@ -75,10 +75,10 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Ha egy játékos lyukba lép, vagy instabil jégtáblára, ami átfordul, akkor ez a
-	 * függvény jelzi, hogy vízbe került.
+	 * Ha egy jÃ¡tÃ©kos lyukba lÃ©p, vagy instabil jÃ©gtÃ¡blÃ¡ra, ami Ã¡tfordul, akkor ez a
+	 * fÃ¼ggvÃ©ny jelzi, hogy vÃ­zbe kerÃ¼lt.
 	 * 
-	 * @param inWater beállítja, hogy vízben van-e az adott játékos
+	 * @param inWater beÃ¡llÃ­tja, hogy vÃ­zben van-e az adott jÃ¡tÃ©kos
 	 */
 	public void setInWater(boolean value) {
 		inWater = value;
@@ -93,10 +93,10 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Ha van a játékos birtokában Wetsuit (a függvény visszatérési értéke true),
-	 * akkor azt felveszi és ezáltal megmenekül vízbeesés esetén, késõbb kiúszhat.
+	 * Ha van a jÃ¡tÃ©kos birtokÃ¡ban Wetsuit (a fÃ¼ggvÃ©ny visszatÃ©rÃ©si Ã©rtÃ©ke true),
+	 * akkor azt felveszi Ã©s ezÃ¡ltal megmenekÃ¼l vÃ­zbeesÃ©s esetÃ©n, kÃ©sÅ‘bb kiÃºszhat.
 	 * 
-	 * @return rendelkezik-e Wetsuittal az adott játékos
+	 * @return rendelkezik-e Wetsuittal az adott jÃ¡tÃ©kos
 	 */
 	public boolean getWetsuit() {
 		for (int i = 0; i < inventory.size(); i++) {
@@ -108,27 +108,27 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Az õsosztályból származó metódus, mely itt az Explorer képességét valósítja
-	 * meg: a játékos pozíciójától legfeljebb 3 távolságra lévõ jégtáblák közül
-	 * egyrõl megállapítja a teherbírását.
+	 * Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus, mely itt az Explorer kÃ©pessÃ©gÃ©t valÃ³sÃ­tja
+	 * meg: a jÃ¡tÃ©kos pozÃ­ciÃ³jÃ¡tÃ³l legfeljebb 3 tÃ¡volsÃ¡gra lÃ©vÅ‘ jÃ©gtÃ¡blÃ¡k kÃ¶zÃ¼l
+	 * egyrÅ‘l megÃ¡llapÃ­tja a teherbÃ­rÃ¡sÃ¡t.
 	 * 
-	 * @param chosenTile a felfedezendõ jégtábla
-	 * @return a felfedezett jégtáblának a teherbírása
+	 * @param chosenTile a felfedezendÅ‘ jÃ©gtÃ¡bla
+	 * @return a felfedezett jÃ©gtÃ¡blÃ¡nak a teherbÃ­rÃ¡sa
 	 */
 	abstract public int exploreTile(Tile chosenTile);
 
 	/**
-	 * Az õsosztályból származó metódus, mely itt az Eszkimó képességét valósítja
-	 * meg: épít egy iglut arra a jégtáblára, ahol az Eszkimó áll.
+	 * Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus, mely itt az EszkimÃ³ kÃ©pessÃ©gÃ©t valÃ³sÃ­tja
+	 * meg: Ã©pÃ­t egy iglut arra a jÃ©gtÃ¡blÃ¡ra, ahol az EszkimÃ³ Ã¡ll.
 	 * 
-	 * @param chosenTile az a jégtábla, melyre az Eskimo Igloo-t épít
-	 * @return sikerrel járt-e az építés
+	 * @param chosenTile az a jÃ©gtÃ¡bla, melyre az Eskimo Igloo-t Ã©pÃ­t
+	 * @return sikerrel jÃ¡rt-e az Ã©pÃ­tÃ©s
 	 */
 	abstract public boolean buildIgloo(Tile chosenTile);
 
 	/**
-	 * Ha olyan jégtáblára lép a játékos , mely instabil vagy lyuk van rajta, akkor
-	 * ez a függvény indítja el az ilyenkor lezajló eseményeket.
+	 * Ha olyan jÃ©gtÃ¡blÃ¡ra lÃ©p a jÃ¡tÃ©kos , mely instabil vagy lyuk van rajta, akkor
+	 * ez a fÃ¼ggvÃ©ny indÃ­tja el az ilyenkor lezajlÃ³ esemÃ©nyeket.
 	 */
 	public void pushToWater() {
 		for (int i = 0; i < inventory.size(); i++) {
@@ -138,7 +138,7 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Visszatér a játékos aktuális testhõmérsékletével.
+	 * VisszatÃ©r a jÃ¡tÃ©kos aktuÃ¡lis testhÅ‘mÃ©rsÃ©kletÃ©vel.
 	 * 
 	 * @return
 	 */
@@ -147,18 +147,18 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * A játékos testhõmérsékletét növeli a paraméterben megadott értékkel.
+	 * A jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©kletÃ©t nÃ¶veli a paramÃ©terben megadott Ã©rtÃ©kkel.
 	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete növelve lesz
+	 * @param amount az a mennyisÃ©g, amivel a jÃ¡tÃ©kos Ã©lete nÃ¶velve lesz
 	 */
 	public void heal(int amount) {
 		bodyTemperature += amount;
 	}
 
 	/**
-	 * A játékos testhõmérsékletét csökkenti a paraméterben megadott értékkel.
+	 * A jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©kletÃ©t csÃ¶kkenti a paramÃ©terben megadott Ã©rtÃ©kkel.
 	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete csökken
+	 * @param amount az a mennyisÃ©g, amivel a jÃ¡tÃ©kos Ã©lete csÃ¶kken
 	 * @return
 	 */
 	public void damage(int amount) {
@@ -166,22 +166,23 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Játékos munkakedvét (energy) a paraméterben megadott értékre állítja.
+	 * JÃ¡tÃ©kos munkakedvÃ©t (energy) a paramÃ©terben megadott Ã©rtÃ©kre Ã¡llÃ­tja.
 	 * 
-	 * @param amount beállítja a játékos munkakedvét
+	 * @param amount beÃ¡llÃ­tja a jÃ¡tÃ©kos munkakedvÃ©t
 	 */
 	public void setEnergy(int amount) {
 		energy = amount;
 	}
 
 	/**
-	 * A játékos adott körben történõ cselekvéseit beindító függvény. Visszatérési
-	 * értéke megadja, hogy mennyi munkakedve van még a játékosnak.
+	 * A jÃ¡tÃ©kos adott kÃ¶rben tÃ¶rtÃ©nÅ‘ cselekvÃ©seit beindÃ­tÃ³ fÃ¼ggvÃ©ny. VisszatÃ©rÃ©si
+	 * Ã©rtÃ©ke megadja, hogy mennyi munkakedve van mÃ©g a jÃ¡tÃ©kosnak.
 	 * 
-	 * @return a játékos maradék munkakedve
+	 * @return a jÃ¡tÃ©kos maradÃ©k munkakedve
 	 */
 	@Override
 	public int step() {
 		return energy;
 	}
+
 }

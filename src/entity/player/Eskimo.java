@@ -9,7 +9,8 @@ import tiles.Tile;
  */
 public class Eskimo extends Player {
 
-	public Eskimo() {
+	public Eskimo(String id) {
+		super(id);
 		this.bodyTemperature = 5;
 		this.energy = 4;
 	}

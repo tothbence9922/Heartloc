@@ -6,7 +6,8 @@ public class Rocket extends TargetItem {
     private static Rocket single_instance = null; 
   
     // private constructor restricted to this class itself 
-    private Rocket() { 
+    private Rocket(String id) { 
+    	super(id);
     	System.out.println("Rocket has been created");
     } 
   /**
@@ -15,9 +16,9 @@ public class Rocket extends TargetItem {
    * 
    * @return single_instance: Rocket tipsu valtozo
    */
-    public static Rocket getInstance() { 
+    public static Rocket getInstance(String id) { 
         if (single_instance == null) 
-            single_instance = new Rocket(); 
+            single_instance = new Rocket(id); 
   
         return single_instance; 
     } 

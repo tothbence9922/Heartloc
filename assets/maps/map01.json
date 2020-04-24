@@ -2,7 +2,8 @@
 	"tiles": [
 		{
 			"id": "t1",
-			"type": "0",
+			"snow": 0,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t2",
@@ -17,7 +18,8 @@
 		},
 		{
 			"id": "t2",
-			"type": "1",
+			"snow": 2,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t1",
@@ -33,7 +35,8 @@
 		},
 		{
 			"id": "t3",
-			"type": "1",
+			"snow": 0,
+			"capacity": 5,
 			"hole": 1,
 			"neighbours": [
 				"t2",
@@ -47,7 +50,8 @@
 		},
 		{
 			"id": "t4",
-			"type": "1",
+			"snow": 2,
+			"capacity": 3,
 			"hole": 1,
 			"neighbours": [
 				"t1",
@@ -63,7 +67,8 @@
 		},
 		{
 			"id": "t5",
-			"type": "1",
+			"snow": 0,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t2",
@@ -81,7 +86,8 @@
 		},
 		{
 			"id": "t6",
-			"type": "0",
+			"snow": 1,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t3",
@@ -98,7 +104,8 @@
 		},
 		{
 			"id": "t7",
-			"type": "1",
+			"snow": 1,
+			"capacity": 5,
 			"hole": 1,
 			"neighbours": [
 				"t6",
@@ -111,7 +118,8 @@
 		},
 		{
 			"id": "t8",
-			"type": "1",
+			"snow": 1,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t1",
@@ -127,7 +135,8 @@
 		},
 		{
 			"id": "t9",
-			"type": "1",
+			"snow": 0,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t4",
@@ -145,7 +154,8 @@
 		},
 		{
 			"id": "t10",
-			"type": "1",
+			"snow": 0,
+			"capacity": 3,
 			"hole": 1,
 			"neighbours": [
 				"t5",
@@ -161,7 +171,8 @@
 		},
 		{
 			"id": "t11",
-			"type": "1",
+			"snow": 0,
+			"capacity": 2,
 			"hole": 1,
 			"neighbours": [
 				"t8",
@@ -175,7 +186,8 @@
 		},
 		{
 			"id": "t12",
-			"type": "0",
+			"snow": 3,
+			"capacity": 5,
 			"hole": 0,
 			"neighbours": [
 				"t9",
@@ -191,7 +203,8 @@
 		},
 		{
 			"id": "t13",
-			"type": "1",
+			"snow": 2,
+			"capacity": 5,
 			"hole": 0,
 			"neighbours": [
 				"t6",
