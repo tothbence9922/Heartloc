@@ -1,6 +1,15 @@
 package model;
 
 public class Game {
+	
+	private Game() {
+		
+	}
+	
+	public Game getInstance() {
+		return null;
+	}
+	
 	/**
 	 *  A játék megnyerésekor meghívódó metódus, magával vonzza
 	 *	az EndGame() metódus meghívását, ekkor a játékos gyõzelmét könyvelhetjük

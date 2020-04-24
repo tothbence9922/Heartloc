@@ -2,8 +2,14 @@ package entity;
 
 public class Hole extends Entity {
 	
-	public Hole() {
-		System.out.println("Hole has been created");
+	public Hole(String id) {
+		super(id);
+	}
+
+	@Override
+	public int step() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

@@ -1,9 +1,16 @@
 package entity;
 
-public class Igloo extends Entity {
+public class Igloo extends Building {
 	
-	public Igloo() {
-		System.out.println("Igloo has been created");
+
+	public Igloo(String id) {
+		super(id);
+	}
+
+	@Override
+	public int step() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
