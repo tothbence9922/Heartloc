@@ -24,8 +24,17 @@ public class Eskimo extends Player {
 	 * @return - A sikeresen felépített Iglu esetén true, ellenkező esetben
 	 *         false.
 	 */
+	@Override
 	public boolean buildIgloo(Tile chosenTile) {
-		System.out.println("Eskimo\tvoid build()\tparam: " + chosenTile);
+		if (energy > 0) {
+			Igloo igloo = new Igloo(chosenTile);
+			if (chosenTile.getCapacity() < chosenTile.load()) {
+				for (int i = 0; i < chosenTile.getPlayers().length; i++) {
+					chosenTile.getPlayers().at(i).pushToWater();
+				}
+			}
+			return true;
+		}
 		return false;
 	}
 
