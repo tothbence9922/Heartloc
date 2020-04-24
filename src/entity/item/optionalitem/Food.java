@@ -12,7 +12,8 @@ public class Food extends OptionalItem {
 		super(id);
 	}
 	/**
-	 * A játékos, ha rendelkezik Food -dal, használhatja azt, hogy növelje testhõmérsékletét (bodyTemperature). Az étel  (Food) eltûnik a játékos táskájából használat után.
+	 * A játékos, ha rendelkezik Food-al, használhatja azt, hogy növelje testhõmérsékletét (bodyTemperature). Az étel  (Food) eltûnik a
+	 * játékos táskájából használat után.
 	 * @return A visszatérési értéke a logikai igaz (true), ezzel jelzi hogy sikeresen használta a Food Itemet a játékos.
 	 */
 	@Override

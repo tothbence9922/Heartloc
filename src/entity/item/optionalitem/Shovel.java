@@ -13,7 +13,8 @@ public class Shovel extends OptionalItem{
 		super(id);
 	}
 	/**
-	 * A játékos, ha rendelkezik Shovel-lel, használhatja azt, hogy ásson vele. Ezzel két egységnyi havat takaríthat el, azonban Itemet nem vehet fel Shovel használatával.
+	 * A játékos, ha rendelkezik Shovel-lel, használhatja azt, hogy ásson vele. Ezzel két egységnyi havat takaríthat el,
+	 * azonban Itemet nem vehet fel Shovel használatával.
 	 * @return Visszatérési értéke a logikai Igaz (true), ezzel jelezve hogy a játékos sikeresen használta  az Ásó (Shovel) Itemet.
 	 */
 	@Override
