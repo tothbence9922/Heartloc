@@ -1,4 +1,5 @@
 package entity;
+public class Building {
 
 public class Building extends Entity {
 
@@ -9,5 +10,4 @@ public class Building extends Entity {
 	}
 	
 	public Building(String id) {super(id);}
-
 }
