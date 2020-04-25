@@ -44,6 +44,7 @@ public class CommandsErik {
 		// writeMap(w);
 	}
 
+	//itt egy komment
 	public static void move(String[] cmd, String cm) {
 		String[] t = { "loadMap" };
 		loadMap(t);
