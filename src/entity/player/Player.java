@@ -8,14 +8,181 @@ import model.Drawable;
 import tiles.Tile;
 
 /**
- * Absztrakt õsosztálya a játékban szereplõ karaktereknek. Deklarálja az
- * alapvetõ mûködéshez szükséges attribútumokat és metódusokat, melyek a
- * leszármazottakban kerülnek kifejtésre
+ * Absztrakt Å‘sosztÃ¡lya a jÃ¡tÃ©kban szereplÅ‘ karaktereknek. DeklarÃ¡lja az
+ * alapvetÅ‘ mÅ±kÃ¶dÃ©shez szÃ¼ksÃ©ges attribÃºtumokat Ã©s metÃ³dusokat, melyek a
+ * leszÃ¡rmazottakban kerÃ¼lnek kifejtÃ©sre
  */
 public abstract class Player extends Entity implements Drawable {
 
 	private ArrayList<Item> inventory = new ArrayList<Item>();
-	public ArrayList<Item> getInventory() {
+	protected int energy = 4;
+	protected int bodyTemperature = 4;
+	protected boolean inWater = false;
+
+	/**
+	 * Ezzel a metÃ³dussal kerÃ¼l Ã¡t a jÃ¡tÃ©kos egyik jÃ©gtÃ¡blÃ¡rÃ³l a mÃ¡sikra.
+	 * 
+	 * @param t az a Tile amelyikre a jÃ¡tÃ©kos mozogni kÃ­vÃ¡n
+	 */
+	public void move(Tile t) {
+		t.receive(this);
+		ot.remove(this);
+
+	}
+
+	/**
+	 * VisszatÃ©r az adott jÃ¡tÃ©kos aktuÃ¡lis munkakedvÃ©vel.
+	 * 
+	 * @return energy a jÃ¡tÃ©kos munkakedve
+	 */
+	public int getEnergy() {
+		return energy;
+	}
+
+	/**
+	 * Ha bizonyos szint alÃ¡ csÃ¶kken a jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©klete, akkor fagyhalÃ¡lt
+	 * hal. Ez a metÃ³dus kezdemÃ©nyezi ezt a folyamatot.
+	 */
+	public void die() {
+		game.getInstance();
+		game.Defeat();
+		game.EndGame();
+	}
+
+	/**
+	 * Ha egy jÃ¡tÃ©kos a vÃ­zbe esik, Ã©s nincs rajta Wetsuit, akkor sikÃ­t, hogy a
+	 * szomszÃ©dos jÃ©gtÃ¡blÃ¡n Ã¡llÃ³ tÃ¡rsai meghalljÃ¡k
+	 */
+	public int scream() {
+		return 1;
+	}
+
+	/**
+	 * Ha egy jÃ¡tÃ©kos olyan jÃ©gtÃ¡blÃ¡n tartÃ³zkodik, melyen hallja egy mÃ¡sik jÃ¡tÃ©kos
+	 * sikÃ­tÃ¡sÃ¡t, Ã©s van a tÃ¡skÃ¡jÃ¡ban (Inventory) egy kÃ¶tÃ©l (Rope), akkor kimenti a
+	 * jÃ¡tÃ©kost.
+	 * 
+	 * @param p a kimentendÅ‘ jÃ¡tÃ©kos
+	 * @return ki tudja-e menteni a jÃ¡tÃ©kos
+	 */
+	public boolean savePlayer(Player p) {
+		for (int i = 0; i < inventory.size(); i++) {
+			if (inventory.get(i).pull(p)) {
+				p.move(t);
+			}
+		}
+
+	}
+
+	/**
+	 * Ha egy jÃ¡tÃ©kos lyukba lÃ©p, vagy instabil jÃ©gtÃ¡blÃ¡ra, ami Ã¡tfordul, akkor ez a
+	 * fÃ¼ggvÃ©ny jelzi, hogy vÃ­zbe kerÃ¼lt.
+	 * 
+	 * @param inWater beÃ¡llÃ­tja, hogy vÃ­zben van-e az adott jÃ¡tÃ©kos
+	 */
+	public void setInWater(boolean value) {
+		inWater = value;
+		if (!getWetsuit()) {
+			scream();
+			Tile[] t = tile.getNeighbours();
+			for (int i = 0; i < t.length(); i++) {
+				t[i].alarmTile(this);
+			}
+
+		}
+	}
+
+	/**
+	 * Ha van a jÃ¡tÃ©kos birtokÃ¡ban Wetsuit (a fÃ¼ggvÃ©ny visszatÃ©rÃ©si Ã©rtÃ©ke true),
+	 * akkor azt felveszi Ã©s ezÃ¡ltal megmenekÃ¼l vÃ­zbeesÃ©s esetÃ©n, kÃ©sÅ‘bb kiÃºszhat.
+	 * 
+	 * @return rendelkezik-e Wetsuittal az adott jÃ¡tÃ©kos
+	 */
+	public boolean getWetsuit() {
+		for (int i = 0; i < inventory.size(); i++) {
+			if (inventory.get(i).wear()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus, mely itt az Explorer kÃ©pessÃ©gÃ©t valÃ³sÃ­tja
+	 * meg: a jÃ¡tÃ©kos pozÃ­ciÃ³jÃ¡tÃ³l legfeljebb 3 tÃ¡volsÃ¡gra lÃ©vÅ‘ jÃ©gtÃ¡blÃ¡k kÃ¶zÃ¼l
+	 * egyrÅ‘l megÃ¡llapÃ­tja a teherbÃ­rÃ¡sÃ¡t.
+	 * 
+	 * @param chosenTile a felfedezendÅ‘ jÃ©gtÃ¡bla
+	 * @return a felfedezett jÃ©gtÃ¡blÃ¡nak a teherbÃ­rÃ¡sa
+	 */
+	abstract public int exploreTile(Tile chosenTile);
+
+	/**
+	 * Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus, mely itt az EszkimÃ³ kÃ©pessÃ©gÃ©t valÃ³sÃ­tja
+	 * meg: Ã©pÃ­t egy iglut arra a jÃ©gtÃ¡blÃ¡ra, ahol az EszkimÃ³ Ã¡ll.
+	 * 
+	 * @param chosenTile az a jÃ©gtÃ¡bla, melyre az Eskimo Igloo-t Ã©pÃ­t
+	 * @return sikerrel jÃ¡rt-e az Ã©pÃ­tÃ©s
+	 */
+	abstract public boolean buildIgloo(Tile chosenTile);
+
+	/**
+	 * Ha olyan jÃ©gtÃ¡blÃ¡ra lÃ©p a jÃ¡tÃ©kos , mely instabil vagy lyuk van rajta, akkor
+	 * ez a fÃ¼ggvÃ©ny indÃ­tja el az ilyenkor lezajlÃ³ esemÃ©nyeket.
+	 */
+	public void pushToWater() {
+		for (int i = 0; i < inventory.size(); i++) {
+			inventory.get(i).wear();
+		}
+		setInWater(true);
+	}
+
+	/**
+	 * VisszatÃ©r a jÃ¡tÃ©kos aktuÃ¡lis testhÅ‘mÃ©rsÃ©kletÃ©vel.
+	 * 
+	 * @return
+	 */
+	public int getTemperature() {
+		return bodyTemperature;
+	}
+
+	/**
+	 * A jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©kletÃ©t nÃ¶veli a paramÃ©terben megadott Ã©rtÃ©kkel.
+	 * 
+	 * @param amount az a mennyisÃ©g, amivel a jÃ¡tÃ©kos Ã©lete nÃ¶velve lesz
+	 */
+	public void heal(int amount) {
+		bodyTemperature += amount;
+	}
+
+	/**
+	 * A jÃ¡tÃ©kos testhÅ‘mÃ©rsÃ©kletÃ©t csÃ¶kkenti a paramÃ©terben megadott Ã©rtÃ©kkel.
+	 * 
+	 * @param amount az a mennyisÃ©g, amivel a jÃ¡tÃ©kos Ã©lete csÃ¶kken
+	 * @return
+	 */
+	public void damage(int amount) {
+		bodyTemperature -= amount;
+	}
+
+	/**
+	 * JÃ¡tÃ©kos munkakedvÃ©t (energy) a paramÃ©terben megadott Ã©rtÃ©kre Ã¡llÃ­tja.
+	 * 
+	 * @param amount beÃ¡llÃ­tja a jÃ¡tÃ©kos munkakedvÃ©t
+	 */
+	public void setEnergy(int amount) {
+		energy = amount;
+	}
+  
+  /**
+	 * Beletesz egy item-et az inventory-ba
+	 * @param i: Item
+	 */
+	public void addToInventory(Item i) {
+		this.inventory.add(i);
+	}
+  
+  public ArrayList<Item> getInventory() {
 		return inventory;
 	}
 
@@ -42,175 +209,15 @@ public abstract class Player extends Entity implements Drawable {
 	public boolean isInWater() {
 		return inWater;
 	}
-	private int weight = 1;
-	protected int energy = 4;
-	protected int bodyTemperature = 4;
-	protected boolean inWater = false;
-
-	public Player(String id) {
-		super(id);
-	}
 
 	/**
-	 * Ezzel a metódussal kerül át a játékos egyik jégtábláról a másikra.
+	 * A jÃ¡tÃ©kos adott kÃ¶rben tÃ¶rtÃ©nÅ‘ cselekvÃ©seit beindÃ­tÃ³ fÃ¼ggvÃ©ny. VisszatÃ©rÃ©si
+	 * Ã©rtÃ©ke megadja, hogy mennyi munkakedve van mÃ©g a jÃ¡tÃ©kosnak.
 	 * 
-	 * @param t az a Tile amelyikre a játékos mozogni kíván
-	 */
-	public void move(Tile t) {
-		System.out.println("Player\tvoid move(Tile)\tparam: " + t);
-	}
-
-	/**
-	 * Visszatér az adott játékos aktuális munkakedvével.
-	 * 
-	 * @return energy a játékos munkakedve
-	 */
-	public int getEnergy() {
-		System.out.println("Player\tint getEnergy()\tparam: -");
-		return energy;
-	}
-
-	/**
-	 * Ha bizonyos szint alá csökken a játékos testhõmérséklete, akkor fagyhalált
-	 * hal. Ez a metódus kezdeményezi ezt a folyamatot.
-	 */
-	public void die() {
-		System.out.println("Player\tvoid die()\tparam: -");
-	}
-
-	/**
-	 * Ha egy játékos a vízbe esik, és nincs rajta Wetsuit, akkor sikít, hogy a
-	 * szomszédos jégtáblán álló társai meghallják
-	 */
-	public int scream() {
-		System.out.println("Player\tint scream()\tparam: -");
-		return 1;
-	}
-
-	/**
-	 * Ha egy játékos olyan jégtáblán tartózkodik, melyen hallja egy másik játékos
-	 * sikítását, és van a táskájában (Inventory) egy kötél (Rope), akkor kimenti a
-	 * játékost.
-	 * 
-	 * @param p a kimentendõ játékos
-	 * @return ki tudja-e menteni a játékos
-	 */
-	public boolean savePlayer(Player p) {
-		System.out.println("Player\tvoid savePlayer(Player)\t param: " + p);
-		return true;
-	}
-
-	/**
-	 * Ha egy játékos lyukba lép, vagy instabil jégtáblára, ami átfordul, akkor ez a
-	 * függvény jelzi, hogy vízbe került.
-	 * 
-	 * @param inWater beállítja, hogy vízben van-e az adott játékos
-	 */
-	public void setInWater(boolean inWater) {
-		System.out.println("Player\tvoid setInWater()\tparam: " + inWater);
-	}
-
-	/**
-	 * Ha van a játékos birtokában Wetsuit (a függvény visszatérési értéke true),
-	 * akkor azt felveszi és ezáltal megmenekül vízbeesés esetén, késõbb kiúszhat.
-	 * 
-	 * @return rendelkezik-e Wetsuittal az adott játékos
-	 */
-	public boolean getWetsuit() {
-		System.out.println("Player\tboolean getWetsuit()\tparam: -");
-		return false;
-	}
-
-	/**
-	 * Az õsosztályból származó metódus, mely itt az Explorer képességét valósítja
-	 * meg: a játékos pozíciójától legfeljebb 3 távolságra lévõ jégtáblák közül
-	 * egyrõl megállapítja a teherbírását.
-	 * 
-	 * @param chosenTile a felfedezendõ jégtábla
-	 * @return a felfedezett jégtáblának a teherbírása
-	 */
-	public int exploreTile(Tile chosenTile) {
-		return -1;
-	}
-
-	/**
-	 * Az õsosztályból származó metódus, mely itt az Eszkimó képességét valósítja
-	 * meg: épít egy iglut arra a jégtáblára, ahol az Eszkimó áll.
-	 * 
-	 * @param chosenTile az a jégtábla, melyre az Eskimo Igloo-t épít
-	 * @return sikerrel járt-e az építés
-	 */
-	public boolean buildIgloo(Tile chosenTile) {
-		System.out.println("Player\tboolean buildIgloo(Tile\tparam: " + chosenTile);
-		return false;
-	}
-
-	/**
-	 * Ha olyan jégtáblára lép a játékos (jelent esetben Eszkimó), mely instabil
-	 * vagy lyuk van rajta, akkor ez a függvény indítja el az ilyenkor lezajló
-	 * eseményeket.
-	 */
-	public void pushToWater() {
-		System.out.println("Player\tvoid pushToWater()\tparam: -");
-	}
-
-	/**
-	 * Visszatér a játékos (ez esetben Eszkimó) aktuális testhõmérsékletével.
-	 * 
-	 * @return
-	 */
-	public int getTemperature() {
-		System.out.println("Player\tvoid getTemperature()\tparam: -");
-		return bodyTemperature;
-	}
-
-	/**
-	 * A játékos testhõmérsékletét növeli a paraméterben megadott értékkel.
-	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete növelve lesz
-	 */
-	public void heal(int amount) {
-		System.out.println("Player\tvoid heal()\tparam: " + amount);
-		bodyTemperature += amount;
-	}
-
-	/**
-	 * A játékos testhõmérsékletét csökkenti a paraméterben megadott értékkel.
-	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete csökken
-	 * @return
-	 */
-	public void damage(int amount) {
-		System.out.println("Player\tboolean damage()\tparam: " + amount);
-		bodyTemperature -= amount;
-	}
-
-	/**
-	 * Játékos munkakedvét (energy) a paraméterben megadott értékre állítja.
-	 * 
-	 * @param amount beállítja a játékos munkakedvét
-	 */
-	public void setEnergy(int amount) {
-		System.out.println("Player\tvoid setEnergy()\tparam: " + amount);
-		energy += amount;
-	}
-
-	/**
-	 * A játékos adott körben történõ cselekvéseit beindító függvény. Visszatérési
-	 * értéke megadja, hogy mennyi munkakedve van még a játékosnak.
-	 * 
-	 * @return a játékos maradék munkakedve
+	 * @return a jÃ¡tÃ©kos maradÃ©k munkakedve
 	 */
 	@Override
 	public int step() {
-		System.out.println("Player\tint step()\tparam: -");
 		return energy;
-	}
-	/**
-	 * Beletesz egy item-et az inventory-ba
-	 * @param i: Item
-	 */
-	public void AddtoInventory(Item i) {
-		this.inventory.add(i);
 	}
 }

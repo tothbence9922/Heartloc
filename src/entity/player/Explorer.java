@@ -3,31 +3,32 @@ package entity.player;
 import tiles.Tile;
 
 /**
- * A játékban szereplõ egyik entitás. Kezdésként 4 egységnyi testhõje van,
- * valamint egy különleges képessége is: meg tudja nézni a legfeljebb 3
- * távolságra lévõ jégtábláról, hogy mekkora a teherbírása. Ez fontos és hasznos
- * képesség, ugyanis az instabil jégtáblák nagy veszélyt jelentenek.
+ * A jÃ¡tÃ©kban szereplÅ‘ egyik entitÃ¡s. KezdÃ©skÃ©nt 4 egysÃ©gnyi testhÅ‘je van,
+ * valamint egy kÃ¼lÃ¶nleges kÃ©pessÃ©ge is: meg tudja nÃ©zni a legfeljebb 3
+ * tÃ¡volsÃ¡gra lÃ©vÅ‘ jÃ©gtÃ¡blÃ¡rÃ³l, hogy mekkora a teherbÃ­rÃ¡sa. Ez fontos Ã©s hasznos
+ * kÃ©pessÃ©g, ugyanis az instabil jÃ©gtÃ¡blÃ¡k nagy veszÃ©lyt jelentenek.
  */
 public class Explorer extends Player {
 
-	public Explorer(String id) {
-		super(id);
+	public Explorer() {
 		this.bodyTemperature = 4;
 		this.energy = 4;
 	}
 
 	/**
-	 * Az õsosztályból származó metódus, mely itt az Explorer képességét valósítja
-	 * meg: a játékos pozíciójától legfeljebb 3 távolságra lévõ jégtáblák közül
-	 * egyrõl megállapítja a teherbírását
+	 * Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus, mely itt az Explorer kÃ©pessÃ©gÃ©t valÃ³sÃ­tja
+	 * meg: a jÃ¡tÃ©kos pozÃ­ciÃ³jÃ¡tÃ³l legfeljebb 3 tÃ¡volsÃ¡gra lÃ©vÅ‘ jÃ©gtÃ¡blÃ¡k kÃ¶zÃ¼l
+	 * egyrÅ‘l megÃ¡llapÃ­tja a teherbÃ­rÃ¡sÃ¡t
 	 * 
-	 * @param chosenTile a kiválasztott Tile
-	 * @return a Tile teherbírása
+	 * @param chosenTile a kivÃ¡lasztott Tile
+	 * @return a Tile teherbÃ­rÃ¡sa
 	 */
 	@Override
 	public int exploreTile(Tile chosenTile) {
-		System.out.println("Explorer\tint ExploreTile()\tparam: " + chosenTile);
-		return 5;
+		if (chosenTile.getDistance() <= 3) {
+			return chosenTile.getCapacity();
+		}
+		return 0;
 	}
 
 	@Override
@@ -36,3 +37,4 @@ public class Explorer extends Player {
 
 	}
 }
+
