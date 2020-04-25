@@ -1,24 +1,27 @@
 package entity.item.optionalitem;
 
-import entity.player.Player;
+public class FragileShovel extends OptionalItem {
 
-public class FragileShovel extends OptionalItem{
-		private int numofUses;
-		public FragileShovel(String id) {
+	private int numofUses;
+
+	public FragileShovel(String id) {
 		super(id);
 		numofUses = 3;
 	}
-	
+
 	/**
-	 * Felulirja az õsosztálybeli digWithFragileShovel() függvényt. Amennyiben numOfUses változó értéke 0-ra csökken, akkor az ásó megsemmisül
+	 * Felulirja az ososztalybeli digWithFragileShovel() fuggvenyt. Amennyiben
+	 * numOfUses valtozo erteke 0-ra csokken, akkor az aso megsemmisul
+	 * 
 	 * @return boolean
 	 */
 	public boolean digWithFragileShovel() {
 		System.out.println("Dig");
-		if(numofUses > 0) {
+		if (numofUses > 0) {
 			numofUses--;
 			return true;
 		}
 		return true;
 	}
+
 }

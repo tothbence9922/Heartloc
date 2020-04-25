@@ -3,10 +3,10 @@ package entity.player;
 import tiles.Tile;
 
 /**
- * A játékban szereplő egyik entitás. Kezdésként 4 egységnyi testhője van,
- * valamint egy különleges képessége is: meg tudja nézni a legfeljebb 3
- * távolságra lévő jégtábláról, hogy mekkora a teherbírása. Ez fontos és hasznos
- * képesség, ugyanis az instabil jégtáblák nagy veszélyt jelentenek.
+ * A jatekban szereplo egyik entitas. Kezdeskent 4 egysegnyi testhoje van,
+ * valamint egy kulonleges kepessege is: meg tudja nezni a legfeljebb 3
+ * tavolsagra levo jegtablarol, hogy mekkora a teherbirasa. Ez fontos es hasznos
+ * kepesseg, ugyanis az instabil jegtablak nagy veszelyt jelentenek.
  */
 public class Explorer extends Player {
 
@@ -17,12 +17,12 @@ public class Explorer extends Player {
 	}
 
 	/**
-	 * Az ősosztályból származó metódus, mely itt az Explorer képességét valósítja
-	 * meg: a játékos pozíciójától legfeljebb 3 távolságra lévő jégtáblák közül
-	 * egyről megállapítja a teherbírását
+	 * Az ososztalybol szarmazo metodus, mely itt az Explorer kepesseget valositja
+	 * meg: a jatekos poziciojatol legfeljebb 3 tavolsagra levo jegtablak kozul
+	 * egyrol megallapitja a teherbirasat
 	 * 
-	 * @param chosenTile a kiválasztott Tile
-	 * @return a Tile teherbírása
+	 * @param chosenTile a kivalasztott Tile
+	 * @return a Tile teherbirasa
 	 */
 	@Override
 	public int exploreTile(Tile chosenTile) {
@@ -35,12 +35,13 @@ public class Explorer extends Player {
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * @return false - Explorer cannot build Igloo
+	 */
 	@Override
 	public boolean buildIgloo(Tile chosenTile) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

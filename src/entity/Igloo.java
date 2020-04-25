@@ -1,7 +1,6 @@
 package entity;
 
 public class Igloo extends Building {
-	
 
 	public Igloo(String id) {
 		super(id);
@@ -9,8 +8,8 @@ public class Igloo extends Building {
 
 	@Override
 	public int step() {
-		// TODO Auto-generated method stub
+		// TODO
 		return 0;
 	}
-	
+
 }

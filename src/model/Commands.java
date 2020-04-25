@@ -15,8 +15,6 @@ import org.json.simple.parser.ParseException;
 
 import entity.Hole;
 import entity.Igloo;
-import entity.Snow;
-import entity.Tent;
 import entity.item.Item;
 import entity.item.optionalitem.Food;
 import entity.item.optionalitem.FragileShovel;
@@ -94,10 +92,12 @@ public class Commands {
 		return false;
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static <T, S> int finder(T[] a, S target) {
 		return Arrays.asList(a).indexOf(target);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static <T, S> int find(T a, S target) {
 		return ((IntStream) a).filter(i -> target == ((Tile) ((HashMap) a).get(i)).getId()).findFirst().orElse(-1);
 	}
@@ -232,7 +232,7 @@ public class Commands {
 
 		if (cmd.length > 2)
 			if (Game.getTiles().get(find(Game.getTiles(), cmd[1])).getAmountOfSnow() < 6)
-				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addSnow(new Snow("Snow01"));
+				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addSnow(Integer.parseInt(cmd[2]));
 
 		String[] w = { "save" };
 		writeMap(w);
@@ -565,18 +565,17 @@ public class Commands {
 		// TODO
 		// player.tile = "t2"
 		// returns the current tile's id on which a players stands
-
-		String currentTile = Game.getPlayers().get(find(Game.getPlayers(), cmd[1])).getCurrentTile();
 		int tempIdx = find(Game.getPlayers(), cmd[1]);
-		String tempString = Game.getPlayers().get(tempIdx).getCurrentTile();
+		String tempString = Game.getPlayers().get(tempIdx).getCurrentTile().getId();
+		@SuppressWarnings("unused") // TODO
 		ArrayList<Tile> tiles = Game.getTiles().get(find(Game.getTiles(), tempString)).getNeighbours();
 
-		if (Arrays.asList(tiles).contains(cmd[2])) {
-			ArrayList<Player> players = Game.getPlayers();
+		//if (Arrays.asList(tiles).contains(cmd[2])) {
+			//ArrayList<Player> players = Game.getPlayers();
 			// Game.getTile(cmd[2]).receive((Player) players.get(0));
 			// Game.getTile(currentTile).remove(Game.getPlayers().get(find(Game.getPlayers(),
 			// cmd[1])));
-		}
+		//}
 
 		String[] w = { "save" };
 		writeMap(w);
@@ -615,7 +614,7 @@ public class Commands {
 
 			if (!couldDig) {
 				int tempIdx = find(Game.getPlayers(), cmd[1]);
-				String tempString = Game.getPlayers().get(tempIdx).getCurrentTile();
+				String tempString = Game.getPlayers().get(tempIdx).getCurrentTile().getId();
 				Game.getTiles().get(find(Game.getTiles(), tempString)).dig(1);
 			}
 		}

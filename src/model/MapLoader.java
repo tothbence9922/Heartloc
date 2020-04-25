@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,14 +24,6 @@ import tiles.StableTile;
 import tiles.Tile;
 import tiles.UnstableTile;
 
-/**
- * @author Felhasználó
- *
- */
-/**
- * @author Felhasználó
- *
- */
 public class MapLoader {
 
 	public static Game readMapFromJSON(String path) throws FileNotFoundException, IOException {
@@ -96,6 +87,7 @@ public class MapLoader {
 				}
 			}
 
+			// TODO
 			// for (tile : tiles) {for (tile : tiles){hozzáadjuk id szerint a hashmapbe}...}
 			
 			Game.setTiles(tiles);
@@ -149,9 +141,9 @@ public class MapLoader {
 		int hole = Integer.parseInt(tileObject.get("hole").toString());
 
 		if (capacity < 0) {
-			tile = new StableTile("stableTile");
+			tile = new StableTile(id);
 		} else {
-			tile = new UnstableTile("unstableTile", capacity);
+			tile = new UnstableTile(id, capacity);
 		}
 		tile.addSnow(snow);
 

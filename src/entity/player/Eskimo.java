@@ -1,12 +1,11 @@
 package entity.player;
 
-import entity.Igloo;
 import tiles.Tile;
 
 /**
- * A játékban szereplõ egyik entitás. Kezdésként 5 egységnyi testhõje van,
- * valamint egy különleges képessége is: tud iglut építeni, amiben megbújva a
- * hóvihar nem tesz kárt bennük.
+ * A jatekban szereplo egyik entitas. Kezdeskent 5 egysegnyi testhoje van,
+ * valamint egy kulonleges kepessege is: tud iglut epíteni, amiben megbujva a
+ * hovihar nem tesz kart bennuk.
  */
 public class Eskimo extends Player {
 
@@ -17,13 +16,12 @@ public class Eskimo extends Player {
 	}
 
 	/**
-	 * bool buildIgloo(Tile chosenTile): Az Å‘sosztÃ¡lybÃ³l szÃ¡rmazÃ³ metÃ³dus,
-	 * mely itt az EszkimÃ³ kÃ©pessÃ©gÃ©t valÃ³sÃ­tja meg: Ã©pÃ­t egy iglut arra a
-	 * jÃ©gtÃ¡blÃ¡ra, ahol az EszkimÃ³ Ã¡ll.
+	 * bool buildIgloo(Tile chosenTile): Az ososztalybol szarmazo metodus,
+	 * mely itt az Eszkimo kepesseget valosetja meg: epet egy iglut arra a
+	 * jegtablara, ahol az Eszkimo all.
 	 * 
-	 * @param t - Az a Tile ami Ã¡ll az EszkimÃ³
-	 * @return - A sikeresen felÃ©pÃ­tett Iglu esetÃ©n true, ellenkezÅ‘ esetben
-	 *         false.
+	 * @param t - az a Tile ami all az Eszkimo
+	 * @return sikeresen felepetett Iglu eseten true, ellenkezo esetben false.
 	 */
 	@Override
 	public boolean buildIgloo(Tile chosenTile) {
@@ -44,9 +42,11 @@ public class Eskimo extends Player {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * @return false - Eskimo cannot explore Tile
+	 */
 	@Override
 	public int exploreTile(Tile chosenTile) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

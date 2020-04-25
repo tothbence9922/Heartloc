@@ -4,14 +4,13 @@ public class Snow extends Entity {
 
 	public Snow(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
+		// TODO
 	}
 
 	@Override
 	public int step() {
-		// TODO Auto-generated method stub
+		// TODO
 		return 0;
 	}
-	
-	
+
 }

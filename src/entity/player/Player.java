@@ -9,44 +9,38 @@ import model.Game;
 import tiles.Tile;
 
 /**
- * Absztrakt ősosztálya a játékban szereplő karaktereknek. Deklarálja az
- * alapvető működéshez szükséges attribútumokat és metódusokat, melyek a
- * leszármazottakban kerülnek kifejtésre
+ * Absztrakt ososztaly a jatekban szereplo karaktereknek. Deklaralja az alapveto
+ * mukodeshez szukseges attributumokat es metodusokat, melyek a
+ * leszarmazottakban kerulnek kifejtesre
  */
 public abstract class Player extends Entity implements Drawable {
+
+	protected int energy = 4;
+	protected int bodyTemperature = 4;
+
+	protected boolean inWater = false;
+
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+
+	protected Tile currentTile;
 
 	public Player(String id) {
 		super(id);
 	}
 
-	private ArrayList<Item> inventory = new ArrayList<Item>();
-	protected int energy = 4;
-	protected int bodyTemperature = 4;
-	protected boolean inWater = false;
-
 	/**
-	 * Ezzel a metódussal kerül át a játékos egyik jégtábláról a másikra.
+	 * Ezzel a metodussal kerul at a jatekos egyik jegtablarol a masikra.
 	 * 
-	 * @param t az a Tile amelyikre a játékos mozogni kíván
+	 * @param t az a Tile amelyikre a jatekos mozogni kivan
 	 */
 	public void move(Tile t) {
 		t.receive(this);
-		//ot.remove(this);
-
+		// ot.remove(this);
 	}
 
 	/**
-	 * Visszatér az adott játékos aktuális munkakedvével.
-	 * 
-	 * @return energy a játékos munkakedve
-	 */
-	public int getEnergy() {
-		return energy;
-	}
-
-	/**
-	 * Ha bizonyos szint alá csökken a játékos testhőmérséklete, akkor fagyhalált
-	 * hal. Ez a metódus kezdeményezi ezt a folyamatot.
+	 * Ha bizonyos szint ala csokken a jatekos testhomerseklete, akkor fagyhalalt
+	 * hal. Ez a metodus kezdemenyezi ezt a folyamatot.
 	 */
 	public void die() {
 		Game.getInstance();
@@ -55,53 +49,119 @@ public abstract class Player extends Entity implements Drawable {
 	}
 
 	/**
-	 * Ha egy játékos a vízbe esik, és nincs rajta Wetsuit, akkor sikít, hogy a
-	 * szomszédos jégtáblán álló társai meghallják
+	 * Ha egy jatekos a vizbe esik, es nincs rajta Wetsuit, akkor sikit, hogy a
+	 * szomszedos jegtablan allo tarsai meghalljak
 	 */
 	public int scream() {
 		return 1;
 	}
 
+	public boolean isInWater() {
+		return inWater;
+	}
+
 	/**
-	 * Ha egy játékos olyan jégtáblán tartózkodik, melyen hallja egy másik játékos
-	 * sikítását, és van a táskájában (Inventory) egy kötél (Rope), akkor kimenti a
-	 * játékost.
+	 * Ha egy jatekos olyan jegtablan tartozkodik, melyen hallja egy masik jatekos
+	 * sikitasat, es van a taskajaban (Inventory) egy kötel (Rope), akkor kimenti a
+	 * jatekost.
 	 * 
-	 * @param p a kimentendő játékos
-	 * @return ki tudja-e menteni a játékos
+	 * @param p a kimentendo jatekos
+	 * @return ki tudja-e menteni a jatekos
 	 */
 	public boolean savePlayer(Player p) {
 		for (int i = 0; i < inventory.size(); i++) {
 			if (inventory.get(i).pull(p)) {
-				//p.move(currentTile);
+				// p.move(currentTile);
 			}
 		}
 		return true;
 	}
 
 	/**
-	 * Ha egy játékos lyukba lép, vagy instabil jégtáblára, ami átfordul, akkor ez a
-	 * függvény jelzi, hogy vízbe került.
+	 * Ha egy jatekos lyukba lep, vagy instabil jegtablara, ami atfordul, akkor ez a
+	 * fuggveny jelzi, hogy vizbe kerult.
 	 * 
-	 * @param inWater beállítja, hogy vízben van-e az adott játékos
+	 * @param inWater beallitja, hogy vizben van-e az adott jatekos
 	 */
 	public void setInWater(boolean value) {
 		inWater = value;
 		if (!getWetsuit()) {
 			scream();
-			//Tile[] t = currentTile.getNeighbours();
-			//for (int i = 0; i < t.length(); i++) {
-				//t[i].alarmTile(this);
-			//}
-
+			// Tile[] t = currentTile.getNeighbours();
+			// for (int i = 0; i < t.length(); i++) {
+			// t[i].alarmTile(this);
+			// }
 		}
 	}
 
 	/**
-	 * Ha van a játékos birtokában Wetsuit (a függvény visszatérési értéke true),
-	 * akkor azt felveszi és ezáltal megmenekül vízbeesés esetén, később kiúszhat.
+	 * Visszater a parameterben atadott Tile teherbirasaval
 	 * 
-	 * @return rendelkezik-e Wetsuittal az adott játékos
+	 * @param chosenTile - a megfigyelni kivant Tile
+	 * @return capacity - a Tile teherbirasa, -1 eseten stabil
+	 */
+	abstract public int exploreTile(Tile chosenTile);
+
+	/**
+	 * Igloo-t epit a parameterben megadott Tile-ra
+	 * 
+	 * @param chosenTile
+	 * @return
+	 */
+	abstract public boolean buildIgloo(Tile chosenTile);
+
+	/**
+	 * Jatekost a vizbe loki, beallija a setInWater erteket igazra
+	 */
+	public void pushToWater() {
+		for (int i = 0; i < inventory.size(); i++) {
+			inventory.get(i).wear();
+		}
+		setInWater(true);
+	}
+
+	/**
+	 * A jatekos testhomersekletet noveli a parameterben megadott ertekkel.
+	 * 
+	 * @param amount
+	 */
+	public void heal(int amount) {
+		bodyTemperature += amount;
+	}
+
+	/**
+	 * A jatekos testhomersekletet csokkeni a parameterben megadott ertekkel
+	 * 
+	 * @param amount
+	 */
+	public void damage(int amount) {
+		bodyTemperature -= amount;
+	}
+
+	/**
+	 * A parameterkent kapott Itemet az Inventory-ba teszi
+	 * 
+	 * @param i: Item
+	 */
+	public void addToInventory(Item i) {
+		this.inventory.add(i);
+	}
+
+	/*******************************
+	 *
+	 * 
+	 * 
+	 * Getters and setters
+	 * 
+	 * 
+	 * 
+	 *******************************/
+
+	/**
+	 * Ha van a jatekos birtokaban Wetsuit (a fuggveny visszateresi erteke true),
+	 * akkor azt felveszi es ezaltal megmenekul vizbeeses eseten, kesobb kiuszhat.
+	 * 
+	 * @return rendelkezik-e Wetsuittal az adott jatekos
 	 */
 	public boolean getWetsuit() {
 		for (int i = 0; i < inventory.size(); i++) {
@@ -112,87 +172,24 @@ public abstract class Player extends Entity implements Drawable {
 		return false;
 	}
 
-	/**
-	 * Az ősosztályból származó metódus, mely itt az Explorer képességét valósítja
-	 * meg: a játékos pozíciójától legfeljebb 3 távolságra lévő jégtáblák közül
-	 * egyről megállapítja a teherbírását.
-	 * 
-	 * @param chosenTile a felfedezendő jégtábla
-	 * @return a felfedezett jégtáblának a teherbírása
-	 */
-	abstract public int exploreTile(Tile chosenTile);
-
-	/**
-	 * Az ősosztályból származó metódus, mely itt az Eszkimó képességét valósítja
-	 * meg: épít egy iglut arra a jégtáblára, ahol az Eszkimó áll.
-	 * 
-	 * @param chosenTile az a jégtábla, melyre az Eskimo Igloo-t épít
-	 * @return sikerrel járt-e az építés
-	 */
-	abstract public boolean buildIgloo(Tile chosenTile);
-
-	/**
-	 * Ha olyan jégtáblára lép a játékos , mely instabil vagy lyuk van rajta, akkor
-	 * ez a függvény indítja el az ilyenkor lezajló eseményeket.
-	 */
-	public void pushToWater() {
-		for (int i = 0; i < inventory.size(); i++) {
-			inventory.get(i).wear();
-		}
-		setInWater(true);
+	public int getEnergy() {
+		return energy;
 	}
 
-	/**
-	 * Visszatér a játékos aktuális testhőmérsékletével.
-	 * 
-	 * @return
-	 */
-	public int getTemperature() {
-		return bodyTemperature;
-	}
-
-	/**
-	 * A játékos testhőmérsékletét növeli a paraméterben megadott értékkel.
-	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete növelve lesz
-	 */
-	public void heal(int amount) {
-		bodyTemperature += amount;
-	}
-
-	/**
-	 * A játékos testhőmérsékletét csökkenti a paraméterben megadott értékkel.
-	 * 
-	 * @param amount az a mennyiség, amivel a játékos élete csökken
-	 * @return
-	 */
-	public void damage(int amount) {
-		bodyTemperature -= amount;
-	}
-
-	/**
-	 * Játékos munkakedvét (energy) a paraméterben megadott értékre állítja.
-	 * 
-	 * @param amount beállítja a játékos munkakedvét
-	 */
 	public void setEnergy(int amount) {
 		energy = amount;
 	}
-  
-  /**
-	 * Beletesz egy item-et az inventory-ba
-	 * @param i: Item
-	 */
-	public void addToInventory(Item i) {
-		this.inventory.add(i);
-	}
-  
-  public ArrayList<Item> getInventory() {
+
+	public ArrayList<Item> getInventory() {
 		return inventory;
 	}
 
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
+	}
+
+	public int getTemperature() {
+		return bodyTemperature;
 	}
 
 	public int getWeight() {
@@ -211,23 +208,13 @@ public abstract class Player extends Entity implements Drawable {
 		this.bodyTemperature = bodyTemperature;
 	}
 
-	public boolean isInWater() {
-		return inWater;
+	public Tile getCurrentTile() {
+		return currentTile;
 	}
 
-	/**
-	 * A játékos adott körben történő cselekvéseit beindító függvény. Visszatérési
-	 * értéke megadja, hogy mennyi munkakedve van még a játékosnak.
-	 * 
-	 * @return a játékos maradék munkakedve
-	 */
 	@Override
 	public int step() {
 		return energy;
 	}
-
-	public String getCurrentTile() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
