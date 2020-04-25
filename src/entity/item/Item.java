@@ -85,6 +85,16 @@ public abstract class Item extends Entity {
 	public boolean dig() {
 		return false;
 	}
+	
+	/**
+	 *  A jatekos, ha rendelkezik Item-mel, annak hasznalataval
+	 *  kulonbozo modokon juthat elonyhoz - vagy nyerheti meg a jatekot.
+	 * 
+	 * @return Ha az asas sikeres akkor true, elenezoleg false.
+	 */
+	public boolean digWithFragileShovel() {
+		return false;
+	}
 	/**
 	 * A jatekos, ha rendelkezik Item-mel, annak
 	 *	hasznalataval kulonbozo modokon juthat elonyhoz - vagy nyerheti meg a
@@ -101,5 +111,6 @@ public abstract class Item extends Entity {
 	public boolean buildTent() {
 		return false;
 	}
+
 }
 

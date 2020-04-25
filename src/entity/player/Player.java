@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import entity.Entity;
 import entity.item.Item;
 import model.Drawable;
+import model.Game;
 import tiles.Tile;
 
 /**
@@ -13,6 +14,10 @@ import tiles.Tile;
  * leszármazottakban kerülnek kifejtésre
  */
 public abstract class Player extends Entity implements Drawable {
+
+	public Player(String id) {
+		super(id);
+	}
 
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 	protected int energy = 4;
@@ -26,7 +31,7 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public void move(Tile t) {
 		t.receive(this);
-		ot.remove(this);
+		//ot.remove(this);
 
 	}
 
@@ -44,9 +49,9 @@ public abstract class Player extends Entity implements Drawable {
 	 * hal. Ez a metódus kezdeményezi ezt a folyamatot.
 	 */
 	public void die() {
-		game.getInstance();
-		game.Defeat();
-		game.EndGame();
+		Game.getInstance();
+		Game.Defeat();
+		Game.EndGame();
 	}
 
 	/**
@@ -68,10 +73,10 @@ public abstract class Player extends Entity implements Drawable {
 	public boolean savePlayer(Player p) {
 		for (int i = 0; i < inventory.size(); i++) {
 			if (inventory.get(i).pull(p)) {
-				p.move(t);
+				//p.move(currentTile);
 			}
 		}
-
+		return true;
 	}
 
 	/**
@@ -84,10 +89,10 @@ public abstract class Player extends Entity implements Drawable {
 		inWater = value;
 		if (!getWetsuit()) {
 			scream();
-			Tile[] t = tile.getNeighbours();
-			for (int i = 0; i < t.length(); i++) {
-				t[i].alarmTile(this);
-			}
+			//Tile[] t = currentTile.getNeighbours();
+			//for (int i = 0; i < t.length(); i++) {
+				//t[i].alarmTile(this);
+			//}
 
 		}
 	}
@@ -219,5 +224,10 @@ public abstract class Player extends Entity implements Drawable {
 	@Override
 	public int step() {
 		return energy;
+	}
+
+	public String getCurrentTile() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -8,8 +8,8 @@ package tiles;
 public class StableTile extends Tile {	
 	
 	
-	public StableTile() {
-		super();
+	public StableTile(String id) {
+		super(id);
 	}
 	@Override
 	public void draw() {

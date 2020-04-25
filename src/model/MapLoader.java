@@ -21,7 +21,9 @@ import entity.item.targetitem.Cartridge;
 import entity.item.targetitem.Gun;
 import entity.player.Eskimo;
 import entity.player.Explorer;
+import tiles.StableTile;
 import tiles.Tile;
+import tiles.UnstableTile;
 
 /**
  * @author Felhasználó
@@ -33,7 +35,8 @@ import tiles.Tile;
  */
 public class MapLoader {
 
-	public static boolean readMapFromJSON(String path) throws FileNotFoundException, IOException {
+	public static Game readMapFromJSON(String path) throws FileNotFoundException, IOException {
+		Game game = Game.getInstance();
 		try {
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
@@ -56,7 +59,7 @@ public class MapLoader {
 
 				for (int neighIter = 0; neighIter < neighArray.size(); neighIter++) { // 0. -> szomszedok
 					for (int otherTileIter = 1; otherTileIter < tiles.size(); otherTileIter++) {
-						if (neighArray.get(neighIter) == tiles.get(otherTileIter).getID()) {
+						if (neighArray.get(neighIter) == tiles.get(otherTileIter).getId()) {
 							tiles.get(tileIter).addNeighbour(tiles.get(otherTileIter));
 						}
 					}
@@ -72,34 +75,36 @@ public class MapLoader {
 				}
 				for (int itemIter = 0; itemIter < itemArray.size(); itemIter++) {// 2. -> itemek
 					if (entityArray.get(itemIter).contains("Sho")) {
-						tiles.get(tileIter).getItems.add(new Shovel(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new Shovel(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("Foo")) {
-						tiles.get(tileIter).getItems.add(new Food(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new Food(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("Wet")) {
-						tiles.get(tileIter).getItems.add(new Wetsuit(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new Wetsuit(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("Rop")) {
-						tiles.get(tileIter).getItems.add(new Rope(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new Rope(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("iTen")) {
-						tiles.get(tileIter).getItems.add(new TentItem(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new TentItem(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("Fra")) {
-						tiles.get(tileIter).getItems.add(new FragileShovel(entityArray.get(itemIter)));
+						tiles.get(tileIter).getItems().add(new FragileShovel(entityArray.get(itemIter)));
 					} else if (entityArray.get(itemIter).contains("Car")) {
-						tiles.get(tileIter).getItems.add(Cartridge.getInstance());
+						tiles.get(tileIter).getItems().add(Cartridge.getInstance("Car"));
 					} else if (entityArray.get(itemIter).contains("Gun")) {
-						tiles.get(tileIter).getItems.add(Gun.getInstance());
+						tiles.get(tileIter).getItems().add(Gun.getInstance("Gun"));
 					} else if (entityArray.get(itemIter).contains("Bea")) {
-						tiles.get(tileIter).getItems.add(Beacon.getInstance());
+						tiles.get(tileIter).getItems().add(Beacon.getInstance("Bea"));
 					}
 				}
 			}
 
 			// for (tile : tiles) {for (tile : tiles){hozzáadjuk id szerint a hashmapbe}...}
+			
+			Game.setTiles(tiles);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+		return game;
 	}
 
 	public ArrayList<String> readEntities(JSONArray array) {
@@ -139,14 +144,14 @@ public class MapLoader {
 	public static ArrayList<ArrayList<String>> readTile(Tile tile, JSONObject tileObject) {
 
 		String id = (String) tileObject.get("id");
-		int snow = Integer.parseInt((String) tileObject.get("snow"));
-		int capacity = Integer.parseInt((String) tileObject.get("capacity"));
-		int hole = Integer.parseInt((String) tileObject.get("hole"));
+		int snow = Integer.parseInt(tileObject.get("snow").toString());
+		int capacity = Integer.parseInt(tileObject.get("capacity").toString());
+		int hole = Integer.parseInt(tileObject.get("hole").toString());
 
 		if (capacity < 0) {
-			tile = new StableTile();
+			tile = new StableTile("stableTile");
 		} else {
-			tile = new UnstableTile(capacity);
+			tile = new UnstableTile("unstableTile", capacity);
 		}
 		tile.addSnow(snow);
 

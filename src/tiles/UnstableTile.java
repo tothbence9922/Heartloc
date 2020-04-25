@@ -11,7 +11,8 @@ public class UnstableTile extends Tile {
 	 * Az UnstableTile konstruktora. A Paraméterül kapott érték lesz a maximális érték, amit túllépve az UnstableTile átfordul.
 	 * @param l
 	 */
-	public UnstableTile(int l) {
+	public UnstableTile(String id, int l) {
+		super(id);
 		load = l;
 	}
 	

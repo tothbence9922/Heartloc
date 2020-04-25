@@ -10,7 +10,8 @@ import tiles.Tile;
  */
 public class Explorer extends Player {
 
-	public Explorer() {
+	public Explorer(String id) {
+		super(id);
 		this.bodyTemperature = 4;
 		this.energy = 4;
 	}
@@ -35,6 +36,12 @@ public class Explorer extends Player {
 	public void draw() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean buildIgloo(Tile chosenTile) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

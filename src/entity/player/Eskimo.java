@@ -1,5 +1,6 @@
 package entity.player;
 
+import entity.Igloo;
 import tiles.Tile;
 
 /**
@@ -26,7 +27,7 @@ public class Eskimo extends Player {
 	 */
 	@Override
 	public boolean buildIgloo(Tile chosenTile) {
-		if (energy > 0) {
+		/*if (energy > 0) {
 			Igloo igloo = new Igloo(chosenTile);
 			if (chosenTile.getCapacity() < chosenTile.load()) {
 				for (int i = 0; i < chosenTile.getPlayers().length; i++) {
@@ -34,12 +35,18 @@ public class Eskimo extends Player {
 				}
 			}
 			return true;
-		}
+		}*/
 		return false;
 	}
 
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public int exploreTile(Tile chosenTile) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -10,16 +10,15 @@ public class FragileShovel extends OptionalItem{
 	}
 	
 	/**
-	 * Felulirja az õsosztálybeli dig() függvényt. Amennyiben numOfUses változó értéke 0-ra csökken, akkor az ásó megsemmisül
+	 * Felulirja az õsosztálybeli digWithFragileShovel() függvényt. Amennyiben numOfUses változó értéke 0-ra csökken, akkor az ásó megsemmisül
 	 * @return boolean
 	 */
-	@Override
-	public boolean dig() {
+	public boolean digWithFragileShovel() {
 		System.out.println("Dig");
 		if(numofUses > 0) {
 			numofUses--;
 			return true;
 		}
-		return false;
+		return true;
 	}
 }

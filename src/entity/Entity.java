@@ -1,11 +1,15 @@
 package entity;
 
 public abstract class Entity {
-	private int weight;
-	public String id;
+	protected static int weight;
+	protected static String id;
 	
 	public Entity(String id) {
 		this.id = id;
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	/**

@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import entity.Entity;
+import entity.Hole;
 import entity.Igloo;
+import entity.Snow;
 import entity.item.Item;
+import entity.item.optionalitem.Food;
+import entity.item.optionalitem.FragileShovel;
+import entity.item.optionalitem.Shovel;
 import entity.player.Player;
 import model.Drawable;
+import model.PolarBear;
 
 /**
  * A játék egyik alapegységét képezõ objektum, ezeken helyezkednek el a
@@ -17,9 +23,33 @@ import model.Drawable;
  *
  */
 public abstract class Tile implements Drawable {
+	
+	protected boolean hasHole = false;
+	protected boolean hasItem = false;
+	protected boolean hasIgloo = false;
+	protected boolean hasTent = false;
+	protected boolean hasPolarBear = false;
+	protected int amountOfSnow;
+	protected int numOfTargetItems;
+	protected int capacity;
+	protected Igloo igloo;
+	protected ArrayList<Tile> neighbours;
+	protected String id;
 
-	// beirni a holland dokumentumba
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	// TODO beirni a holland dokumentumba
+	protected boolean showCapacity;
+
+	// TODO beirni a holland dokumentumba
 	protected ArrayList<Player> players;
+	protected ArrayList<PolarBear> bears;
 	//protected Item item = null; nem kell ?
 	protected ArrayList<Item> items;
 
@@ -27,8 +57,8 @@ public abstract class Tile implements Drawable {
 		return items;
 	}
 
-	public void addItems(Item items) {
-		this.items.add(items);
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 
 	public boolean isHasItem() {
@@ -79,12 +109,12 @@ public abstract class Tile implements Drawable {
 		this.capacity = capacity;
 	}
 
-	public ArrayList<Tile> getTiles() {
-		return tiles;
+	public ArrayList<Tile> getNeighbours() {
+		return neighbours;
 	}
 
-	public void setTiles(ArrayList<Tile> tiles) {
-		this.tiles = tiles;
+	public void setNeighbours(ArrayList<Tile> neighbours) {
+		this.neighbours = neighbours;
 	}
 
 	public boolean isShowCapacity() {
@@ -107,23 +137,12 @@ public abstract class Tile implements Drawable {
 		this.numOfTargetItems = numOfTargetItems;
 	}
 
-	protected boolean hasHole = false;
-	protected boolean hasItem = false;
-	protected boolean hasIgloo = false;
-	protected boolean hasTent = false;
-	protected boolean hasPolarBear = false;
-	protected int amountOfSnow;
-	protected int numOfTargetItems;
-	protected int capacity;
-	protected ArrayList<Tile> tiles;
-	// beirni a holland dokumentumba
-	protected boolean showCapacity;
-
 	/**
 	 * A Tile osztály alapértelmezett konstruktora, mely egy üres ArrayList<Player>
 	 * -rel inicializálja a players attribútumot.
 	 */
-	public Tile() {
+	public Tile(String id) {
+		this.id = id;
 		this.players = new ArrayList<Player>();
 	}
 
@@ -233,14 +252,6 @@ public abstract class Tile implements Drawable {
 	 * 
 	 * @return boolean
 	 */
-	public ArrayList<Tile> getNeighbours() {
-		System.out.println("Tile\tTile[] getNeighbours()\tparam: -");
-
-		Tile t1 = new StableTile();
-		Tile t2 = new StableTile();
-		Tile[] tiles = { t1, t2 };
-		return null;
-	}
 
 	/**
 	 * Játékos sikítása esetén hívódik meg, paraméterként a vízbe esett játékossal,
@@ -253,7 +264,7 @@ public abstract class Tile implements Drawable {
 	public boolean alarmTile(Player p) {
 		System.out.println("Tile\tboolean alarmTile(Entity)\tparam: " + p);
 		ArrayList<Tile> neighbours = getNeighbours();
-		for(int i = 0; i < neighbours.size(); i++) {
+		/*for(int i = 0; i < neighbours.size(); i++) {
 			for(int j = 0; j < neighbours.get(i).players.size(); j++) {
 				for(int k = 0; k < neighbours.get(i).players.get(j).inventory.size(); k++) {
 					if(neighbours.get(i).players.get(j).inventory.get(k) == ) {
@@ -263,7 +274,8 @@ public abstract class Tile implements Drawable {
 				
 			}
 			
-		}
+		}*/
+		return false;
 	}
 
 	/**
@@ -338,6 +350,46 @@ public abstract class Tile implements Drawable {
 		} else {
 			return false;
 		}
+	}
+
+	public void addPolarBear(PolarBear polarBear) {
+			bears.add(polarBear);
+			setHasPolarBear(true);
+	}
+
+	public void addIgloo(Igloo igloo) {
+		this.igloo = new Igloo(igloo.getId());		
+		setHasIgloo(true);
+	}
+
+	public void addHole(Hole hole) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addSnow(Snow snow) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addFood(Food food) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addShovel(Shovel shovel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addFragileShovel(FragileShovel fragileShovel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addNeighbour(Tile tile) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
