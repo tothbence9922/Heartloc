@@ -3,7 +3,7 @@ package entity.item.optionalitem;
 import entity.player.Player;
 
 public class FragileShovel extends OptionalItem{
-		int numofUses;
+		private int numofUses;
 		public FragileShovel(String id) {
 		super(id);
 		numofUses = 3;

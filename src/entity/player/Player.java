@@ -173,6 +173,42 @@ public abstract class Player extends Entity implements Drawable {
 	public void setEnergy(int amount) {
 		energy = amount;
 	}
+  
+  /**
+	 * Beletesz egy item-et az inventory-ba
+	 * @param i: Item
+	 */
+	public void addToInventory(Item i) {
+		this.inventory.add(i);
+	}
+  
+  public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public int getBodyTemperature() {
+		return bodyTemperature;
+	}
+
+	public void setBodyTemperature(int bodyTemperature) {
+		this.bodyTemperature = bodyTemperature;
+	}
+
+	public boolean isInWater() {
+		return inWater;
+	}
 
 	/**
 	 * A játékos adott körben történő cselekvéseit beindító függvény. Visszatérési
@@ -184,5 +220,4 @@ public abstract class Player extends Entity implements Drawable {
 	public int step() {
 		return energy;
 	}
-
 }

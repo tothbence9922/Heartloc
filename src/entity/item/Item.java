@@ -13,7 +13,7 @@ public abstract class Item extends Entity {
 	 *	(isVisible == true), akkor kiashato es felveheto, mig ellenkezo esetben nem.
 	 */
 	public boolean isVisible = false;
-	public int weight = 0;
+	private int weight = 0;
 	
 	/**
 	 * Lathatova teszi a mezot masok szamara.
