@@ -1,8 +1,7 @@
 package entity;
-public class Building {
 
 public class Building extends Entity {
-
+	private int weight = 1;
 	@Override
 	public int step() {
 		// TODO Auto-generated method stub

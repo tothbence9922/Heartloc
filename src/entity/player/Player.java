@@ -15,6 +15,34 @@ import tiles.Tile;
 public abstract class Player extends Entity implements Drawable {
 
 	private ArrayList<Item> inventory = new ArrayList<Item>();
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public int getBodyTemperature() {
+		return bodyTemperature;
+	}
+
+	public void setBodyTemperature(int bodyTemperature) {
+		this.bodyTemperature = bodyTemperature;
+	}
+
+	public boolean isInWater() {
+		return inWater;
+	}
+	private int weight = 1;
 	protected int energy = 4;
 	protected int bodyTemperature = 4;
 	protected boolean inWater = false;
@@ -177,5 +205,12 @@ public abstract class Player extends Entity implements Drawable {
 	public int step() {
 		System.out.println("Player\tint step()\tparam: -");
 		return energy;
+	}
+	/**
+	 * Beletesz egy item-et az inventory-ba
+	 * @param i: Item
+	 */
+	public void AddtoInventory(Item i) {
+		this.inventory.add(i);
 	}
 }
