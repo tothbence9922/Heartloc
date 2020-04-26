@@ -1,5 +1,6 @@
 package entity.player;
 
+import model.Game;
 import tiles.Tile;
 
 /**
@@ -27,7 +28,10 @@ public class Explorer extends Player {
 	@Override
 	public int exploreTile(Tile chosenTile) {
 		if (chosenTile.getDistance() <= 3) {
-			return chosenTile.getCapacity();
+			for(Tile t : Game.getTiles()) {
+				if (t.getId().equals(chosenTile.getId()))
+					return t.getCapacity();
+			}
 		}
 		return 0;
 	}

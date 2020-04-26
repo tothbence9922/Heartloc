@@ -47,6 +47,6 @@ public class Eskimo extends Player {
 	 */
 	@Override
 	public int exploreTile(Tile chosenTile) {
-		return 0;
+		return -2;
 	}
 }

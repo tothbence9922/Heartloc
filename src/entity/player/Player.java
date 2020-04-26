@@ -27,22 +27,25 @@ public abstract class Player extends Entity implements Drawable {
 	public Player(String id) {
 		super(id);
 	}
-	
+
 	@Override
-    public String toString() {
+	public String toString() {
 		String itemString = "";
-		if (inventory.isEmpty()) itemString = "empty" ;
+		if (inventory.isEmpty())
+			itemString = "empty";
 		else {
 			itemString = "[";
 			int i;
-			for (i = 0; i < inventory.size()-1; i++)itemString = itemString + (inventory.get(i).getId()) + ", ";
+			for (i = 0; i < inventory.size() - 1; i++)
+				itemString = itemString + (inventory.get(i).getId()) + ", ";
 			itemString = itemString + (inventory.get(i).getId());
-			
+
 			itemString = itemString + "]";
 		}
-		String playerString = id + "(" + String.valueOf(bodyTemperature)+", " + String.valueOf(energy)+ ", " + itemString+ ")" + "\n";
+		String playerString = id + "(" + String.valueOf(bodyTemperature) + ", " + String.valueOf(energy) + ", "
+				+ itemString + ")" + "\n";
 		return playerString;
-		
+
 	}
 
 	/**
@@ -115,7 +118,8 @@ public abstract class Player extends Entity implements Drawable {
 	 * Visszater a parameterben atadott Tile teherbirasaval
 	 * 
 	 * @param chosenTile - a megfigyelni kivant Tile
-	 * @return capacity - a Tile teherbirasa, -1 eseten stabil
+	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten Eskimo
+	 *         hivta
 	 */
 	abstract public int exploreTile(Tile chosenTile);
 
@@ -233,5 +237,5 @@ public abstract class Player extends Entity implements Drawable {
 	public int step() {
 		return energy;
 	}
-	
+
 }

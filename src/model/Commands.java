@@ -61,6 +61,7 @@ public class Commands {
 
 					// relative to root: ./folderName
 					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json");
+					System.out.println((Game.getInstance()).toString());
 				} else {
 					System.out.println("That map does not exist - try another one!");
 				}
@@ -147,8 +148,7 @@ public class Commands {
 	}
 
 	public static void addFood(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		System.out.println((Game.getInstance()).toString());
 
 		if (cmd.length > 2)
 			Game.getTiles().get(find(Game.getTiles(), cmd[1])).addItem(new Food("food012"));
@@ -227,15 +227,12 @@ public class Commands {
 	}
 
 	public static void addSnow(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
-
+		
 		if (cmd.length > 2)
 			if (Game.getTiles().get(find(Game.getTiles(), cmd[1])).getAmountOfSnow() < 6)
 				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addSnow(Integer.parseInt(cmd[2]));
 
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addTent(String[] cmd) throws ParseException {
@@ -412,24 +409,23 @@ public class Commands {
 	}
 
 	public static void giveShovel(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
 
 		if (cmd.length != 2)
 			System.out.println("Valami nincs rendben! A parancs formaja: \"giveShovel jatekosnev\"");
 
+		System.out.println(cmd[1]);
+		
 		String id = cmd[1];
+		System.out.println(id);
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId() == id)
-					p.addToInventory(new Shovel(Integer.toString(p.getInventory().size())));
-				else
-					System.out.println("Nem letezik ilyen jatekos");
+				if (p.getId().equals(id))
+					p.addToInventory(new Shovel("Sho" + Integer.toString(p.getInventory().size())));
 			}
 		}
 
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
+		
 	}
 
 	public static void giveRope(String[] cmd) throws ParseException {

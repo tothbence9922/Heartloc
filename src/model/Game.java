@@ -59,6 +59,11 @@ public class Game {
 			single_instance = new Game();
 		return single_instance;
 	}
+	
+	public void ClearMap() {
+		tiles = new ArrayList<Tile>();
+		players = new ArrayList<Player>();
+	}
 
 	/**
 	 * A játék megnyerésekor meghívódó metódus, magával vonzza az EndGame() metódus
