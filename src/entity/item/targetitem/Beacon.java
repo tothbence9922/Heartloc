@@ -8,7 +8,6 @@ public class Beacon extends TargetItem {
     // private constructor restricted to this class itself 
     private Beacon(String id) { 
     	super(id);
-    	System.out.println("Beacon has been created");
     } 
     /**
      *  a Singleton tervezesi mintat kovetve visszater egy

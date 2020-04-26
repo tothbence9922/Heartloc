@@ -27,6 +27,23 @@ public abstract class Player extends Entity implements Drawable {
 	public Player(String id) {
 		super(id);
 	}
+	
+	@Override
+    public String toString() {
+		String itemString = "";
+		if (inventory.isEmpty()) itemString = "empty" ;
+		else {
+			itemString = "[";
+			int i;
+			for (i = 0; i < inventory.size()-1; i++)itemString = itemString + (inventory.get(i).getId()) + ", ";
+			itemString = itemString + (inventory.get(i).getId());
+			
+			itemString = itemString + "]";
+		}
+		String playerString = id + "(" + String.valueOf(bodyTemperature)+", " + String.valueOf(energy)+ ", " + itemString+ ")" + "\n";
+		return playerString;
+		
+	}
 
 	/**
 	 * Ezzel a metodussal kerul at a jatekos egyik jegtablarol a masikra.

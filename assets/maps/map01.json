@@ -13,7 +13,7 @@
 			"entities": [
 			],
 			"items": [
-				"r3"
+				"Bea"
 			]
 		},
 		{
@@ -28,7 +28,7 @@
 				"t5"
 			],
 			"entities": [
-				"M"
+				"Pol1"
 			],
 			"items": [
 			]
@@ -81,7 +81,7 @@
 			"entities": [
 			],
 			"items": [
-				"r2"
+				"Car"
 			]
 		},
 		{
@@ -97,7 +97,7 @@
 				"t13"
 			],
 			"entities": [
-				"E"
+				"Esk1"
 			],
 			"items": [
 			]
@@ -130,7 +130,7 @@
 			"entities": [
 			],
 			"items": [
-				"r1"
+				"Gun"
 			]
 		},
 		{
@@ -149,7 +149,7 @@
 			"entities": [
 			],
 			"items": [
-				"a"
+				"Sho1"
 			]
 		},
 		{
@@ -196,7 +196,7 @@
 				"t13"
 			],
 			"entities": [
-				"K1"
+				"Exp1"
 			],
 			"items": [
 			]
@@ -213,9 +213,12 @@
 				"t12"
 			],
 			"entities": [
-				"K2"
+				"Exp2"
 			],
 			"items": [
+				"Sho2",
+				"Sho3",
+				"Fra1"
 			]
 		}
 	]

@@ -8,7 +8,6 @@ public class Rocket extends TargetItem {
     // private constructor restricted to this class itself 
     private Rocket(String id) { 
     	super(id);
-    	System.out.println("Rocket has been created");
     } 
   /**
    *  a Singleton tervezesi mintat kovetve visszater egy

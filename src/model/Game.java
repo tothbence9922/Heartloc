@@ -7,12 +7,47 @@ import tiles.Tile;
 public class Game {
 	private static Game single_instance = null;
 
-	private static ArrayList<Tile> tiles;
-	private static ArrayList<Player> players;
+	private static ArrayList<Tile> tiles = new ArrayList<Tile>();
+	private static ArrayList<Player> players = new ArrayList<Player>();
 
 	private Game() {
-
 	}
+	
+	public String toJSON() {
+		String jsonString = "";
+		int i;
+		for(i = 0; i < tiles.size()-1; i++) {
+			jsonString = jsonString +"\t\t{\n" + tiles.get(i).toJSON() + "\n\t\t},\n";			
+		}
+		jsonString = jsonString +"\t\t{\n" + tiles.get(i).toJSON() + "\n\t\t}";			
+
+		return "{\n\t\"tiles\": [\n\t" + jsonString + "\n\t]\n}";
+	}
+	
+	@Override
+    public String toString() {
+		String mapString = "";
+		String tileStrings = "";
+		String playerStrings = "";
+		if(tiles.size() == 0) return "MAP IS EMPTY";
+		else {
+			tileStrings = "TILE | CAPACITY | SNOW | HAS HOLE | PLAYER(S) | BUILDING | ITEMS\n";
+			for (int i = 0; i < tiles.size(); i++) {
+				tileStrings = tileStrings + (tiles.get(i).toString());
+			}
+		}
+		if (players.size() == 0) tileStrings = tileStrings + "\n THERE ARE NO PLAYERS ON THE MAP";
+		else {
+			playerStrings ="PLAYER | WORK CAPABILITY | BODY TEMPERATURE | ITEMS\n";
+
+			for(int i = 0; i < players.size(); i++) {
+				playerStrings = playerStrings + (players.get(i).toString());;
+			}
+		}
+		mapString = tileStrings + playerStrings;
+		return mapString;
+    } 
+	
 
 	/**
 	 * a Singleton tervezesi mintat kovetve visszater egy referenciaval
@@ -53,8 +88,9 @@ public class Game {
 		return tiles;
 	}
 
-	public static void setTiles(ArrayList<Tile> tiles) {
-		Game.tiles = tiles;
+	public static void setTiles(ArrayList<Tile> tilesArr) {
+		for(int i = 0; i < tilesArr.size(); i++)
+			Game.tiles.add(tilesArr.get(i));
 	}
 
 	public static String getTile(String id) {

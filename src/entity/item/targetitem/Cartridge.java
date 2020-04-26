@@ -8,7 +8,6 @@ public class Cartridge extends TargetItem {
     // private constructor restricted to this class itself 
     private Cartridge(String id) {
     	super(id);
-    	System.out.println("Cartridge has been created");
     } 
     /**
      * a Singleton tervezesi mintat kovetve visszater egy

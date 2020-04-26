@@ -8,7 +8,6 @@ public class Gun extends TargetItem {
     // private constructor restricted to this class itself 
     private Gun(String id) { 
     	super(id);
-    	System.out.println("Gun has been created");
     } 
     /**
      *  a Singleton tervezesi mintat kovetve visszater egy
