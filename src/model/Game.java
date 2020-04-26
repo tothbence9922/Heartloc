@@ -24,6 +24,11 @@ public class Game {
 		return "{\n\t\"tiles\": [\n\t" + jsonString + "\n\t]\n}";
 	}
 	
+	public void ClearMap() {
+		tiles = new ArrayList<Tile>();
+		players = new ArrayList<Player>();
+	}
+	
 	@Override
     public String toString() {
 		String mapString = "";
