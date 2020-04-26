@@ -8,6 +8,7 @@ import entity.Igloo;
 import entity.item.Item;
 import entity.player.Player;
 import model.Drawable;
+import model.Game;
 import model.PolarBear;
 
 /**
@@ -275,6 +276,13 @@ public abstract class Tile implements Drawable {
 
 	public void addPolarBear(PolarBear polarBear) {
 		bears.add(polarBear);
+		entities.add(polarBear);
+		Game.addPolarBear(polarBear);
+	}
+	
+	public void addPlayer(Player p) {
+		entities.add(p);
+		Game.addPlayer(p);
 	}
 
 	public void addIgloo(Igloo igloo2) {
@@ -333,6 +341,7 @@ public abstract class Tile implements Drawable {
 
 	public void addItem(Item item) {
 		this.items.add(item);
+		Game.addItem(item);
 	}
 
 	public boolean isHasItem() {

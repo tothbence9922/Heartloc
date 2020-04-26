@@ -120,134 +120,105 @@ public class Commands {
 	 */
 
 	public static void addEskimo(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addPlayer(new Explorer("Esk" + (Game.getPlayers().size()+1)));
 
-		// Eskimo nevét mégse lehessen megadni, autoincrement miatt
-		// > tolja be a kövi helyre
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1]))
-					.receive(new Eskimo(Integer.toString(Game.getPlayers().size())));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addExplorer(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addPlayer(new Explorer("Exp" + (Game.getPlayers().size()+1)));
 
-		// Explorer nevét mégse lehessen megadni, autoincrement miatt
-		// > tolja be a kövi helyre
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1]))
-					.receive(new Explorer(Integer.toString(Game.getPlayers().size())));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addFood(String[] cmd) throws ParseException {
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(new Food("Foo" + (Game.getItems().size() + 1)));
+
 		System.out.println((Game.getInstance()).toString());
-
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1])).addItem(new Food("food012"));
-
-		String[] w = { "save" };
-		writeMap(w);
 	}
 
 	public static void addFragileShovel(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(new FragileShovel("Fra" + (Game.getItems().size() + 1)));
 
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1])).addItem(new FragileShovel("fragileshovel123"));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addHole(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.setHasHole(true);
 
-		if (cmd.length > 2)
-			if (!Game.getTiles().get(find(Game.getTiles(), cmd[1])).getHasHole())
-				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addHole(new Hole("Hole01"));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());	
 	}
 
 	public static void addIgloo(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.setHasIgloo(true);
 
-		if (cmd.length > 2)
-			if (!Game.getTiles().get(find(Game.getTiles(), cmd[1])).isHasIgloo())
-				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addIgloo(new Igloo("Igloo01"));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());		
+		
 	}
 
 	public static void addPolarBear(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addPolarBear(new PolarBear("Pol" + (Game.getPolarBears().size()+1)));
 
-		if (cmd.length > 2)
-			if (!Game.getTiles().get(find(Game.getTiles(), cmd[1])).isHasPolarBear())
-				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addPolarBear(new PolarBear("PolBear01"));
+		System.out.println((Game.getInstance()).toString());
 
-		String[] w = { "save" };
-		writeMap(w);
 	}
 
 	public static void addRope(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(new Rope("Rop" + (Game.getItems().size() + 1)));
 
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1])).addItem(new Rope("rope023"));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addShovel(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(new Shovel("Sho" + (Game.getItems().size() + 1)));
 
-		if (cmd.length > 2)
-			Game.getTiles().get(find(Game.getTiles(), cmd[1])).addItem(new Shovel("shovel012"));
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addSnow(String[] cmd) throws ParseException {
-		
-		if (cmd.length > 2)
-			if (Game.getTiles().get(find(Game.getTiles(), cmd[1])).getAmountOfSnow() < 6)
-				Game.getTiles().get(find(Game.getTiles(), cmd[1])).addSnow(Integer.parseInt(cmd[2]));
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					if (tile.getAmountOfSnow() < 5)
+						tile.addSnow(1);
 
 		System.out.println((Game.getInstance()).toString());
 	}
 
 	public static void addTent(String[] cmd) throws ParseException {
-		String[] t = { "loadMap" };
-		loadMap(t);
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(new TentItem("iTen" + (Game.getItems().size() + 1)));
 
-		if (cmd.length > 2) {
-			// TODO
-			// if (!Game.getTiles().get(find(Game.getTiles(), cmd[1])).getTent())
-			// Game.getTiles().get(find(Game.getTiles(), cmd[1])).addTent(new
-			// Tent("Tent01"));
-		}
-
-		String[] w = { "save" };
-		writeMap(w);
+		System.out.println((Game.getInstance()).toString());
 	}
 
 	/**
@@ -349,7 +320,7 @@ public class Commands {
 		String[] w = { "save" };
 		writeMap(w);
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -414,7 +385,7 @@ public class Commands {
 			System.out.println("Valami nincs rendben! A parancs formaja: \"giveShovel jatekosnev\"");
 
 		System.out.println(cmd[1]);
-		
+
 		String id = cmd[1];
 		System.out.println(id);
 		for (Tile tile : Game.getTiles()) {
@@ -425,7 +396,7 @@ public class Commands {
 		}
 
 		System.out.println((Game.getInstance()).toString());
-		
+
 	}
 
 	public static void giveRope(String[] cmd) throws ParseException {
@@ -566,12 +537,12 @@ public class Commands {
 		@SuppressWarnings("unused") // TODO
 		ArrayList<Tile> tiles = Game.getTiles().get(find(Game.getTiles(), tempString)).getNeighbours();
 
-		//if (Arrays.asList(tiles).contains(cmd[2])) {
-			//ArrayList<Player> players = Game.getPlayers();
-			// Game.getTile(cmd[2]).receive((Player) players.get(0));
-			// Game.getTile(currentTile).remove(Game.getPlayers().get(find(Game.getPlayers(),
-			// cmd[1])));
-		//}
+		// if (Arrays.asList(tiles).contains(cmd[2])) {
+		// ArrayList<Player> players = Game.getPlayers();
+		// Game.getTile(cmd[2]).receive((Player) players.get(0));
+		// Game.getTile(currentTile).remove(Game.getPlayers().get(find(Game.getPlayers(),
+		// cmd[1])));
+		// }
 
 		String[] w = { "save" };
 		writeMap(w);

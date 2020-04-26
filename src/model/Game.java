@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+
+import entity.item.Item;
 import entity.player.Player;
 import tiles.Tile;
 
@@ -9,6 +11,8 @@ public class Game {
 
 	private static ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private static ArrayList<Player> players = new ArrayList<Player>();
+	private static ArrayList<Item> items = new ArrayList<Item>();
+	private static ArrayList<PolarBear> bears=new ArrayList<PolarBear>();
 
 	private Game() {
 	}
@@ -41,7 +45,7 @@ public class Game {
 			playerStrings ="PLAYER | WORK CAPABILITY | BODY TEMPERATURE | ITEMS\n";
 
 			for(int i = 0; i < players.size(); i++) {
-				playerStrings = playerStrings + (players.get(i).toString());;
+				playerStrings = playerStrings + (players.get(i).toString());
 			}
 		}
 		mapString = tileStrings + playerStrings;
@@ -119,11 +123,36 @@ public class Game {
 	public static ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
+	
+	public static ArrayList<PolarBear> getPolarBears(){
+		return bears;
+	}
+	
+	public static void addPolarBear(PolarBear pb) {
+		Game.bears.add(pb);
+	}
+	
+	public static void addPlayer(Player p) {
+		Game.players.add(p);
+	}
 
 	public static void setPlayers(ArrayList<Player> players) {
 		Game.players = players;
 	}
 
+	public static void addItem(Item i) {
+		Game.items.add(i);
+	}
+
+	public static void setItems(ArrayList<Item> items) {
+		Game.items = items;
+	}
+	
+	public static ArrayList<Item> getItems( ) {
+		return items;
+	}
+	
 	public static void Defeat() {
 		// TODO
 	}

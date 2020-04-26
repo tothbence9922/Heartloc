@@ -20,6 +20,39 @@ public class Main extends Commands {
 			} else if (tokens[0].equals("giveShovel")) {
 				giveShovel(tokens);
 			}
+			else if (tokens[0].equals("addSnow")) {
+				addSnow(tokens);
+			}
+			else if (tokens[0].equals("addShovel")) {
+				addShovel(tokens);
+			}
+			else if (tokens[0].equals("addRope")) {
+				addRope(tokens);
+			}
+			else if (tokens[0].equals("addPolarBear")) {
+				addPolarBear(tokens);
+			}
+			else if (tokens[0].equals("addIgloo")) {
+				addIgloo(tokens);
+			}
+			else if (tokens[0].equals("addHole")) {
+				addHole(tokens);
+			}
+			else if (tokens[0].equals("addTent")) {
+				addTent(tokens);
+			}
+			else if (tokens[0].equals("addFragileShovel")) {
+				addFragileShovel(tokens);
+			}
+			else if (tokens[0].equals("addFood")) {
+				addFood(tokens);
+			}
+			else if (tokens[0].equals("addExplorer")) {
+				addExplorer(tokens);
+			}
+			else if (tokens[0].equals("addEskimo")) {
+				addEskimo(tokens);
+			}
 		}
 
 		/*try {
