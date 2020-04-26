@@ -41,7 +41,7 @@ public class Main extends Commands {
 				s.close();
 				break;
 			}
-			System.out.println(currentMap);
+			System.out.println(Game.getInstance().toString());
 		}
 
 	}
