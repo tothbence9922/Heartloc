@@ -29,10 +29,11 @@ public abstract class Tile implements Drawable {
 	protected boolean hasPolarBear = false;
 	protected boolean showCapacity = false; // TODO beirni a holland dokumentumba
 
-	protected ArrayList<Player> players; // TODO beirni a holland dokumentumba
-	protected ArrayList<PolarBear> bears; // TODO beirni a holland dokumentumba
-	protected ArrayList<Tile> neighbours; // TODO beirni a holland dokumentumba
-	protected ArrayList<Item> items; // TODO beirni a holland dokumentumba
+	protected ArrayList<Entity> entities = new ArrayList<Entity>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<Player> players = new ArrayList<Player>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<PolarBear> bears = new ArrayList<PolarBear>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<Tile> neighbours = new ArrayList<Tile>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<Item> items = new ArrayList<Item>(); // TODO beirni a holland dokumentumba
 
 	protected Igloo igloo;
 
@@ -42,7 +43,78 @@ public abstract class Tile implements Drawable {
 	 */
 	public Tile(String id) {
 		this.id = id;
-		this.players = new ArrayList<Player>();
+	}
+
+	private String getEntitesString() {
+		String playerIds = "[";
+		if (entities.isEmpty())
+			return "empty";
+		else {
+			int i;
+			for (i = 0; i < entities.size() - 1; i++)
+				playerIds.concat(entities.get(i).getId() + ", ");
+			playerIds = playerIds + (entities.get(i).getId());
+		}
+		return playerIds + "]";
+	}
+
+	private String getItemsString() {
+		String itemIds = "[";
+		if (items.isEmpty())
+			return "empty";
+		else {
+			int i;
+			for (i = 0; i < items.size() - 1; i++)
+				itemIds = itemIds + (items.get(i).getId()) + ", ";
+			itemIds = itemIds + (items.get(i).getId());
+		}
+		return itemIds + "]";
+	}
+
+	public String toJSON() {
+		String idJSON = "\"" + id + "\"";
+		String snowJSON = String.valueOf(amountOfSnow);
+		String capacityJSON = String.valueOf(capacity);
+		String holeJSON = (hasHole) ? "1" : "0";
+		String neighboursJSON = "";
+		int i;
+		if (neighbours.size() > 0) {
+			for (i = 0; i < neighbours.size() - 1; i++) {
+				neighboursJSON = neighboursJSON + "\t\t\t\t\"" + neighbours.get(i).id + "\"" + ",\n";
+			}
+			neighboursJSON = neighboursJSON + "\t\t\t\t\"" + neighbours.get(i).id + "\"";
+		}
+
+		String entityJSON = "";
+		if (entities.size() > 0) {
+			for (i = 0; i < entities.size() - 1; i++) {
+				entityJSON = entityJSON + "\t\t\t\t\"" + entities.get(i).getId() + "\"" + ",\n";
+			}
+			entityJSON = entityJSON + "\t\t\t\t\"" + entities.get(i).getId() + "\"";
+		}
+		String itemJSON = "";
+
+		if (items.size() > 0) {
+			for (i = 0; i < items.size() - 1; i++) {
+				itemJSON = itemJSON + "\t\t\t\t\"" + items.get(i).getId() + "\"" + ",\n";
+			}
+			itemJSON = itemJSON + "\t\t\t\t\"" + items.get(i).getId() + "\"";
+		}
+		return "\t\t\t\"id\":" + idJSON + ",\n\t\t\t\"snow\":" + snowJSON + ",\n\t\t\t\"capacity\":" + capacityJSON + ",\n\t\t\t\"hole\":"
+				+ holeJSON + ",\n\t\t\t\"neighbours\": [\n" + neighboursJSON + "\n\t\t\t],\n\t\t\t\"entities\": [\n" + entityJSON
+				+ "\n\t\t\t],\n\t\t\t\"items\": [\n" + itemJSON + "\n\t\t\t]";
+	}
+
+	@Override
+	public String toString() {
+		String building = "empty";
+		if (hasIgloo)
+			building = "Igloo";
+		else if (hasTent)
+			building = "Tent";
+		return (id + " - " + ((capacity > 0) ? String.valueOf(capacity) : "(" + String.valueOf(capacity) + ")") + " - "
+				+ String.valueOf(amountOfSnow) + " - " + String.valueOf(hasHole) + " - " + getEntitesString() + " - "
+				+ building + " - " + getItemsString() + "\n");
 	}
 
 	/**
@@ -96,12 +168,8 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean receive(Entity e) {
-		players.add((Player) e);
-		if (players.get(players.size() - 1) == (Player) e) {
-			return true;
-		} else {
-			return false;
-		}
+		entities.add(e);
+		return true;
 	}
 
 	/**
@@ -110,7 +178,7 @@ public abstract class Tile implements Drawable {
 	 * @param e - Az Entity, amit el szeretnenk eltavolitani a mezorol.
 	 */
 	public void remove(Entity e) {
-		players.remove((Player) e);
+		entities.remove(e);
 	}
 
 	/**
@@ -178,7 +246,6 @@ public abstract class Tile implements Drawable {
 	 */
 	public void addSnow(int amount) {
 		amountOfSnow += amount;
-		System.out.println("Tile\tvoid addSnow(int)\tparam: " + amount);
 	}
 
 	/**
@@ -205,9 +272,9 @@ public abstract class Tile implements Drawable {
 			}
 		}
 	}
-	
+
 	public void addPolarBear(PolarBear polarBear) {
-		// TODO
+		bears.add(polarBear);
 	}
 
 	public void addIgloo(Igloo igloo2) {
@@ -241,7 +308,7 @@ public abstract class Tile implements Drawable {
 	}
 
 	public void addNeighbour(Tile tile) {
-		// TODO Auto-generated method stub
+		neighbours.add(tile);
 	}
 
 	public String getId() {
@@ -343,5 +410,5 @@ public abstract class Tile implements Drawable {
 	public void setNumOfTargetItems(int numOfTargetItems) {
 		this.numOfTargetItems = numOfTargetItems;
 	}
-	
+
 }
