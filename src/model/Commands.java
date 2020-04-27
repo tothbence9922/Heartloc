@@ -724,6 +724,82 @@ public class Commands {
 		System.out.println((Game.getInstance()).toString());
 	}
 	
+	public static boolean useBeacon(String[] cmd) {
+		if (cmd.length != 2) {
+			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
+			return false;
+		}
+		
+		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
+			if (it.useTargetItem()) {
+				Game.getPlayer(cmd[1]).heal(1);
+				System.out.println("Beacon succesfully used!");
+				return true;
+			}
+		}
+		
+		System.out.println((Game.getInstance()).toString());
+		return false;
+	}
+	
+	public static boolean useGun(String[] cmd) {
+		if (cmd.length != 2) {
+			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
+			return false;
+		}
+		
+		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
+			if (it.useTargetItem()) {
+				Game.getPlayer(cmd[1]).heal(1);
+				System.out.println("Gun succesfully used!");
+				return true;
+			}
+		}
+		
+		System.out.println((Game.getInstance()).toString());
+		return false;
+	}
+	
+	public static boolean useCartridge(String[] cmd) {
+		if (cmd.length != 2) {
+			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
+			return false;
+		}
+		
+		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
+			if (it.useTargetItem()) {
+				Game.getPlayer(cmd[1]).heal(1);
+				System.out.println("Cartridge succesfully used!");
+				return true;
+			}
+		}
+		
+		System.out.println((Game.getInstance()).toString());
+		return false;
+
+	}
+	
+	public static boolean useRocket(String[] cmd) {
+		if (cmd.length != 2) {
+			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
+			return false;
+		}
+		int cnt = 0;
+		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
+			if (it.useTargetItem()) {
+				cnt ++;
+			}
+		}
+		if (cnt > 2) {
+			System.out.println("Rocket succesfully used!");
+			return true;
+		}
+		
+		System.out.println((Game.getInstance()).toString());
+		return false;
+
+	}
+	
 	public static void buildTent(String[] cmd) {
 		boolean couldBuild = false;
 		for (Tile t : Game.getTiles()) {
