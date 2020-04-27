@@ -73,8 +73,12 @@ public class Main extends Commands {
 				useFood(tokens);
 			} else if(tokens[0].equals("buildTent")) {
 				buildTent(tokens);
+			} else if(tokens[0].contentEquals("exit")) {
+				break;
 			}
+
 		}
+		s.close();
 
 		/*
 		 * try { MapLoader.readMapFromJSON("./assets/maps/temp.json");
