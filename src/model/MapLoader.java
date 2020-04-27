@@ -10,6 +10,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import entity.Entity;
+import entity.Igloo;
+import entity.Tent;
 import entity.item.optionalitem.Food;
 import entity.item.optionalitem.FragileShovel;
 import entity.item.optionalitem.Rope;
@@ -74,6 +77,15 @@ public class MapLoader {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
 						tiles.get(tileIter).addPolarBear(pb);
 						tiles.get(tileIter).receive(pb);
+					} else if (entityArray.get(entityIter).contains("Ten")) {
+						Tent t = new Tent(entityArray.get(entityIter));
+						tiles.get(tileIter).setHasTent(true);
+						//tiles.get(tileIter).receive(t);
+					} else if (entityArray.get(entityIter).contains("Igl")) {
+						Igloo i = new Igloo(entityArray.get(entityIter));
+						//tiles.get(tileIter).addBuilding(i);
+						tiles.get(tileIter).setHasTent(true);
+						//tiles.get(tileIter).receive(i);
 					}
 				}
 				for (int itemIter = 0; itemIter < itemArray.size(); itemIter++) {// 2. -> itemek

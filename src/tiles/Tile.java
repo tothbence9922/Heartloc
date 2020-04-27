@@ -2,12 +2,15 @@ package tiles;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import entity.Building;
 import entity.Entity;
 import entity.Hole;
 import entity.Igloo;
 import entity.item.Item;
 import entity.player.Player;
 import model.Drawable;
+import model.Game;
 import model.PolarBear;
 
 /**
@@ -52,7 +55,7 @@ public abstract class Tile implements Drawable {
 		else {
 			int i;
 			for (i = 0; i < entities.size() - 1; i++)
-				playerIds.concat(entities.get(i).getId() + ", ");
+				playerIds = playerIds + (entities.get(i).getId()) + ", ";
 			playerIds = playerIds + (entities.get(i).getId());
 		}
 		return playerIds + "]";
@@ -129,12 +132,15 @@ public abstract class Tile implements Drawable {
 	 */
 	public ArrayList<Item> dig(int amount) {
 		this.removeSnow(amount);
+		
 		if (this.amountOfSnow <= 0) {
 			for (int i = 0; i < items.size(); i++) {
 				items.get(i).setIsVisible(true);
 			}
+			this.amountOfSnow = 0;
 			return this.items;
 		}
+		
 		return null;
 	}
 
@@ -171,6 +177,12 @@ public abstract class Tile implements Drawable {
 		entities.add(e);
 		return true;
 	}
+	
+	public boolean receive(Player p) {
+		entities.add(p);
+		Game.addPlayer(p);
+		return true;
+	}
 
 	/**
 	 * A parameterben kapott entitast a jegtablarol eltavolitja.
@@ -179,6 +191,7 @@ public abstract class Tile implements Drawable {
 	 */
 	public void remove(Entity e) {
 		entities.remove(e);
+		Game.getPlayers().remove(e);
 	}
 
 	/**
@@ -255,14 +268,12 @@ public abstract class Tile implements Drawable {
 	 */
 	public void removeSnow(int amount) {
 		amountOfSnow -= amount;
-		System.out.println("Tile\tvoid removeSnow(int)\tparam: " + amount);
 	}
 
 	/**
 	 * Hovihar kezdetet jelenti
 	 */
 	public void storm(Random r) {
-		System.out.println("Tile\tvoid storm(Random)\tparam: " + r);
 		amountOfSnow += r.nextInt(3);
 		if (amountOfSnow > 5)
 			amountOfSnow = 5;
@@ -275,10 +286,12 @@ public abstract class Tile implements Drawable {
 
 	public void addPolarBear(PolarBear polarBear) {
 		bears.add(polarBear);
+		//entities.add(polarBear);
+		Game.addPolarBear(polarBear);
 	}
 
-	public void addIgloo(Igloo igloo2) {
-		// TODO
+	public void addIgloo(Igloo igloo) {
+		hasIgloo = true;
 	}
 
 	public void addHole(Hole hole) {
@@ -333,6 +346,7 @@ public abstract class Tile implements Drawable {
 
 	public void addItem(Item item) {
 		this.items.add(item);
+		Game.addItem(item);
 	}
 
 	public boolean isHasItem() {
@@ -402,6 +416,11 @@ public abstract class Tile implements Drawable {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
+	
+	public void addPlayer(Player p) {
+		entities.add(p);
+		Game.addPlayer(p);
+	}
 
 	public void setHasHole(boolean hasHole) {
 		this.hasHole = hasHole;
@@ -409,6 +428,11 @@ public abstract class Tile implements Drawable {
 
 	public void setNumOfTargetItems(int numOfTargetItems) {
 		this.numOfTargetItems = numOfTargetItems;
+	}
+
+	public void addBuilding(Building b) {
+		this.entities.add(b);
+		//Game.addBuilding(b);
 	}
 
 }

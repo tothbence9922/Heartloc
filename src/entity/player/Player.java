@@ -20,7 +20,7 @@ public abstract class Player extends Entity implements Drawable {
 
 	protected boolean inWater = false;
 
-	private ArrayList<Item> inventory = new ArrayList<Item>();
+	protected ArrayList<Item> inventory = new ArrayList<Item>();
 
 	protected Tile currentTile;
 
@@ -55,6 +55,7 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public void move(Tile t) {
 		t.receive(this);
+		this.energy--;
 		// ot.remove(this);
 	}
 
@@ -117,11 +118,11 @@ public abstract class Player extends Entity implements Drawable {
 	/**
 	 * Visszater a parameterben atadott Tile teherbirasaval
 	 * 
-	 * @param chosenTile - a megfigyelni kivant Tile
+	 * @param chosenTile - a megfigyelni kivant Tile ID-je
 	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten Eskimo
 	 *         hivta
 	 */
-	abstract public int exploreTile(Tile chosenTile);
+	abstract public int exploreTile(String chosenTile);
 
 	/**
 	 * Igloo-t epit a parameterben megadott Tile-ra

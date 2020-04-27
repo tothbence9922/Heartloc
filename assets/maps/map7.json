@@ -1,0 +1,52 @@
+{
+	"tiles": [
+		{
+			"id": "t1",
+			"snow": 0,
+			"capacity": 0,
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t3"
+			],
+			"entities": [
+				"Exp1"
+			],
+			"items": [
+				
+			]
+		},
+		{
+			"id": "t2",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t3"
+			],
+			"entities": [
+				
+			],
+			"items": [
+
+			]
+		}, 
+		{
+			"id": "t2",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t2"
+			],
+			"entities": [
+				"Exp2"
+			],
+			"items": [
+
+			]
+		}
+	]
+}

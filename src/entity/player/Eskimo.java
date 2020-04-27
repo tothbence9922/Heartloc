@@ -1,5 +1,6 @@
 package entity.player;
 
+import entity.Igloo;
 import tiles.Tile;
 
 /**
@@ -25,15 +26,18 @@ public class Eskimo extends Player {
 	 */
 	@Override
 	public boolean buildIgloo(Tile chosenTile) {
-		/*if (energy > 0) {
-			Igloo igloo = new Igloo(chosenTile);
-			if (chosenTile.getCapacity() < chosenTile.load()) {
-				for (int i = 0; i < chosenTile.getPlayers().length; i++) {
-					chosenTile.getPlayers().at(i).pushToWater();
+		if (energy > 0) {
+			chosenTile.addIgloo(new Igloo("Igl1"));
+			
+			if (chosenTile.getCapacity() < chosenTile.getPlayers().size() + 1) {
+				for (int i = 0; i < chosenTile.getPlayers().size(); i++) {
+					chosenTile.getPlayers().get(i).pushToWater();
 				}
 			}
+			
+			this.energy--;
 			return true;
-		}*/
+		}
 		return false;
 	}
 
@@ -46,7 +50,7 @@ public class Eskimo extends Player {
 	 * @return false - Eskimo cannot explore Tile
 	 */
 	@Override
-	public int exploreTile(Tile chosenTile) {
+	public int exploreTile(String chosenTile) {
 		return -2;
 	}
 }

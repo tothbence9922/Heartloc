@@ -2,11 +2,11 @@ package entity.item.optionalitem;
 
 public class FragileShovel extends OptionalItem {
 
-	private int numofUses;
+	private int numOfUses;
 
 	public FragileShovel(String id) {
 		super(id);
-		numofUses = 3;
+		numOfUses = 3;
 	}
 
 	/**
@@ -15,13 +15,20 @@ public class FragileShovel extends OptionalItem {
 	 * 
 	 * @return boolean
 	 */
+	@Override
 	public boolean digWithFragileShovel() {
 		System.out.println("Dig");
-		if (numofUses > 0) {
-			numofUses--;
-			return true;
+		if (numOfUses > 0) {
+			numOfUses--;
+		} else {
+			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public int getNumOfUses() {
+		return numOfUses;
 	}
 
 }

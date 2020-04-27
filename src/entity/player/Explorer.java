@@ -26,14 +26,19 @@ public class Explorer extends Player {
 	 * @return a Tile teherbirasa
 	 */
 	@Override
-	public int exploreTile(Tile chosenTile) {
-		if (chosenTile.getDistance() <= 3) {
-			for(Tile t : Game.getTiles()) {
-				if (t.getId().equals(chosenTile.getId()))
+	public int exploreTile(String chosenTile) {
+		
+		if (energy > 0) {
+			for (Tile t : Game.getTiles()) {
+				if (t.getId().equals(chosenTile)) {
+					
+					energy--;					
 					return t.getCapacity();
+				}
 			}
 		}
-		return 0;
+		return -3;
+		
 	}
 
 	@Override

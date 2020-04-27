@@ -1,0 +1,34 @@
+{
+	"tiles": [
+		{
+			"id": "t1",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t2"
+			],
+			"entities": [
+				"Exp1"
+			],
+			"items": [
+				
+			]
+		},
+		{
+			"id": "t2",
+			"snow": 0,
+			"capacity": 0,
+			"hole": 0,
+			"neighbours": [
+				"t1"
+			],
+			"entities": [
+				
+			],
+			"items": [
+
+			]
+		}
+	]
+}

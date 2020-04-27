@@ -115,5 +115,9 @@ public abstract class Item extends Entity {
 	public int step() {
 		return 0;
 	}
+
+	public int getNumOfUses() {
+		return -1;
+	}
 	
 }
