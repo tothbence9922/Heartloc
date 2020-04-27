@@ -153,7 +153,7 @@ public class Commands {
 
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void addCartridge(String[] cmd) throws ParseException {
 		if (cmd.length > 1)
 			for (Tile tile : Game.getTiles())
@@ -162,7 +162,7 @@ public class Commands {
 
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void addBeacon(String[] cmd) throws ParseException {
 		if (cmd.length > 1)
 			for (Tile tile : Game.getTiles())
@@ -171,7 +171,7 @@ public class Commands {
 
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void addGun(String[] cmd) throws ParseException {
 		if (cmd.length > 1)
 			for (Tile tile : Game.getTiles())
@@ -289,8 +289,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(Cartridge.getInstance("Car" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -315,8 +317,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(Gun.getInstance("Gun" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -341,8 +345,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(Beacon.getInstance("Bea" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -367,8 +373,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(Rocket.getInstance("Roc" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -409,8 +417,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new Food("Foo" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -435,8 +445,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new FragileShovel("Fra" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -461,8 +473,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new Shovel("Sho" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -487,8 +501,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new Rope("Rop" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -513,8 +529,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new TentItem("Ten" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -539,8 +557,10 @@ public class Commands {
 
 		for (Tile tile : Game.getTiles()) {
 			for (Player p : tile.getPlayers()) {
-				if (p.getId().equals(cmd[1]))
+				if (p.getId().equals(cmd[1])) {
 					p.addToInventory(new Wetsuit("Wet" + Integer.toString(Game.getItems().size() + 1)));
+					break;
+				}
 			}
 		}
 
@@ -591,8 +611,8 @@ public class Commands {
 			System.out.println("Valami nem jó! A parancs kinézete: move játékosnév mezõnév ");
 			return;
 		}
-		
-		if(cmd[1].equals("PolarBear")) {
+
+		if (cmd[1].equals("PolarBear")) {
 			Tile temp = new StableTile("");
 			Tile newt = new StableTile("");
 			Entity tempPol = new PolarBear("Pol1");
@@ -620,8 +640,8 @@ public class Commands {
 
 				}
 			}
-			
-			for(Player p : newt.getPlayers()) {
+
+			for (Player p : newt.getPlayers()) {
 				newt.remove(p);
 				p.die();
 			}
@@ -643,9 +663,10 @@ public class Commands {
 					break;
 				}
 			}
-			
+
 			for (Tile newTile : Game.getTiles()) {
 				if (newTile.getId().equals(cmd[2])) {
+					tempPlayer.setCurrentTile(tempTile);
 					tempPlayer.move(newTile);
 					break;
 
@@ -669,12 +690,12 @@ public class Commands {
 
 		if (cmd.length > 2) {
 			/**
-			 * Runs through the inventory of the the player
-			 * if "couldDig" (so shovel or fragileShovel exists)
+			 * Runs through the inventory of the the player if "couldDig" (so shovel or
+			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
 				for (int i = 0; i < Game.getPlayer(cmd[1]).getInventory().size(); i++) {
-					if (Game.getPlayer(cmd[1]).getInventory().get(i).digWithFragileShovel()){
+					if (Game.getPlayer(cmd[1]).getInventory().get(i).digWithFragileShovel()) {
 						for (Tile t : Game.getTiles()) {
 							for (Player p : t.getPlayers()) {
 								if (p.getId().equals(cmd[1])) {
@@ -682,7 +703,7 @@ public class Commands {
 									if (p.getInventory().get(i).getNumOfUses() == 0) {
 										p.getInventory().remove(p.getInventory().get(i));
 									}
-									p.setEnergy(p.getEnergy()-1);
+									p.setEnergy(p.getEnergy() - 1);
 									couldDig = true;
 								}
 							}
@@ -698,7 +719,7 @@ public class Commands {
 							for (Player p : t.getPlayers()) {
 								if (p.getId().equals(cmd[1])) {
 									t.dig(2);
-									p.setEnergy(p.getEnergy()-1);
+									p.setEnergy(p.getEnergy() - 1);
 									couldDig = true;
 								}
 							}
@@ -709,23 +730,22 @@ public class Commands {
 
 			}
 		}
-		
+
 		/**
-		 * Finds the player's tile and then digs with hand
-		 * moves the items from the tile to the player's
-		 * inventory
+		 * Finds the player's tile and then digs with hand moves the items from the tile
+		 * to the player's inventory
 		 */
 		if (!couldDig) {
 			for (Tile t : Game.getTiles()) {
 				for (Player p : t.getPlayers()) {
 					if (p.getId().equals(cmd[1])) {
 						t.dig(1);
-						for (Item i : t.getItems()) {								
+						for (Item i : t.getItems()) {
 							p.addToInventory(i);
 
 						}
 						t.setItems(new ArrayList<Item>());
-						p.setEnergy(p.getEnergy()-1);
+						p.setEnergy(p.getEnergy() - 1);
 						break;
 					}
 				}
@@ -734,7 +754,7 @@ public class Commands {
 
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void buildIgloo(String[] cmd) {
 		boolean couldBuild = false;
 		for (Tile t : Game.getTiles()) {
@@ -746,17 +766,18 @@ public class Commands {
 					break;
 				}
 			}
-			if (couldBuild) break;
+			if (couldBuild)
+				break;
 		}
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static boolean useBeacon(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return false;
 		}
-		
+
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.useTargetItem()) {
 				Game.getPlayer(cmd[1]).heal(1);
@@ -764,17 +785,17 @@ public class Commands {
 				return true;
 			}
 		}
-		
+
 		System.out.println((Game.getInstance()).toString());
 		return false;
 	}
-	
+
 	public static boolean useGun(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return false;
 		}
-		
+
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.useTargetItem()) {
 				Game.getPlayer(cmd[1]).heal(1);
@@ -782,17 +803,17 @@ public class Commands {
 				return true;
 			}
 		}
-		
+
 		System.out.println((Game.getInstance()).toString());
 		return false;
 	}
-	
+
 	public static boolean useCartridge(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return false;
 		}
-		
+
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.useTargetItem()) {
 				Game.getPlayer(cmd[1]).heal(1);
@@ -800,12 +821,12 @@ public class Commands {
 				return true;
 			}
 		}
-		
+
 		System.out.println((Game.getInstance()).toString());
 		return false;
 
 	}
-	
+
 	public static boolean useRocket(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
@@ -814,19 +835,19 @@ public class Commands {
 		int cnt = 0;
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.useTargetItem()) {
-				cnt ++;
+				cnt++;
 			}
 		}
 		if (cnt > 2) {
 			System.out.println("Rocket succesfully used!");
 			return true;
 		}
-		
+
 		System.out.println((Game.getInstance()).toString());
 		return false;
 
 	}
-	
+
 	public static void buildTent(String[] cmd) {
 		boolean couldBuild = false;
 		for (Tile t : Game.getTiles()) {
@@ -838,17 +859,18 @@ public class Commands {
 					break;
 				}
 			}
-			if (couldBuild) break;
+			if (couldBuild)
+				break;
 		}
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void useFood(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return;
 		}
-		
+
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.eat()) {
 				Game.getPlayer(cmd[1]).heal(1);
@@ -856,16 +878,16 @@ public class Commands {
 				break;
 			}
 		}
-		
+
 		System.out.println((Game.getInstance()).toString());
 	}
-	
+
 	public static void damage(String[] cmd) {
 		if (cmd.length != 2) {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return;
 		}
-		
+
 		Game.getPlayer(cmd[1]).damage(1);
 		System.out.println((Game.getInstance()).toString());
 	}

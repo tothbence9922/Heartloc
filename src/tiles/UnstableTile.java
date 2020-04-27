@@ -12,7 +12,6 @@ package tiles;
  */
 public class UnstableTile extends Tile {
 
-	private int load;
 
 	/**
 	 * Az UnstableTile konstruktora. A Paraméterül kapott érték lesz a maximális
@@ -21,18 +20,7 @@ public class UnstableTile extends Tile {
 	 * @param l
 	 */
 	public UnstableTile(String id, int l) {
-		super(id);
-		load = l;
-	}
-
-	/**
-	 * Visszatér az adott instabil jégtábla aktuális terhével.
-	 * 
-	 * @return int
-	 */
-	public int getLoad() {
-		System.out.println("UnstableTile\tint getLoad()\tparam: -");
-		return this.load;
+		super(id, l);
 	}
 
 	/**

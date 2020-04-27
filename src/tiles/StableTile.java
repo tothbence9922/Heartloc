@@ -9,7 +9,7 @@ public class StableTile extends Tile {
 	
 	
 	public StableTile(String id) {
-		super(id);
+		super(id, -1);
 	}
 	@Override
 	public void draw() {

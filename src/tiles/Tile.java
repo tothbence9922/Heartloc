@@ -21,7 +21,7 @@ import model.PolarBear;
 public abstract class Tile implements Drawable {
 
 	protected String id;
-
+	protected int load = 0;
 	protected int amountOfSnow;
 	protected int numOfTargetItems;
 	protected int capacity;
@@ -45,8 +45,9 @@ public abstract class Tile implements Drawable {
 	 * A Tile osztaly alapertelmezett konstruktora, mely egy ures ArrayList-tel
 	 * inicializalja a players attributumot.
 	 */
-	public Tile(String id) {
+	public Tile(String id, int load) {
 		this.id = id;
+		this.load = load;
 	}
 
 	private String getEntitesString() {
@@ -144,6 +145,15 @@ public abstract class Tile implements Drawable {
 		
 		return null;
 	}
+	
+	/**
+	 * Visszatér az adott instabil jégtábla aktuális terhével.
+	 * 
+	 * @return int
+	 */
+	public int getLoad() {
+		return this.load;
+	}
 
 	/**
 	 * Az adott jegtablan elerheto TargetItemek szamaval ter vissza. Ennek a
@@ -175,13 +185,16 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean receive(Entity e) {
+		this.load++;
 		entities.add(e);
 		return true;
 	}
 	
 	public boolean receive(Player p) {
+		this.load ++;
 		entities.add(p);
-		Game.addPlayer(p);
+
+		players.add(p);
 		return true;
 	}
 
@@ -192,7 +205,11 @@ public abstract class Tile implements Drawable {
 	 */
 	public void remove(Entity e) {
 		entities.remove(e);
-		Game.getPlayers().remove(e);
+	}
+	
+	public void remove(Player p) {
+		players.remove(p);
+		entities.remove(p);
 	}
 
 	/**
@@ -238,11 +255,12 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean alarmTile(Player p) {
-		boolean success = false;
 		for(Player player : players) {
-			if(player.savePlayer(p)) success = true;
+			if(!(p.equals(player)) && player.savePlayer(p)) {
+				p.move(player.getCurrentTile());
+				return true;
+			}
 		}
-		if(success) return true;
 		return false;
 	}
 

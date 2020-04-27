@@ -57,36 +57,26 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public void move(Tile t) {
 		currentTile.remove(this);
+		System.out.println("1");
 		t.receive(this);
 		setCurrentTile(t);
 		this.energy--;
-		if (t.getHasHole()) {
+
+		if (currentTile.getCapacity()!= (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
+			for (Player p : currentTile.getPlayers()) {
+				if(!p.equals(this)) p.pushToWater();
+			}
 			this.pushToWater();
-			boolean success = false;
-			for (Item i : inventory) {
-				if (i.wear())
-					success = true;
-				System.out.println("asd");
+			System.out.println("2");
+		}
 
-			}
-			if (success) return;
-			else {
-				this.setInWater(true);
-				this.scream();
-				success = false;
-				for (Tile nt : t.getNeighbours()) {
-					if (nt.alarmTile(this))
-						success = true;
-				}
-				if (success)
-					return;
-				else {
-					this.die();
-				}
+		else if (t.getHasHole()) {
+			this.pushToWater();
+			System.out.println("3");
 
-			}
 		}
 	}
+
 
 	/**
 	 * Ha bizonyos szint ala csokken a jatekos testhomerseklete, akkor fagyhalalt
@@ -104,7 +94,20 @@ public abstract class Player extends Entity implements Drawable {
 	 * szomszedos jegtablan allo tarsai meghalljak
 	 */
 	public int scream() {
-		return 1;
+		boolean success = false;
+		System.out.println("SUCK ME");
+		ArrayList<Tile> neighs = currentTile.getNeighbours();
+		System.out.println("NEIGHBOURS:\n"+neighs.toString());
+		for (Tile nt : neighs) {
+			System.out.println("SUCK ME TWICE");
+
+			if (nt.alarmTile(this)) {
+				success = true;
+				break;
+			}
+		}
+		if (success) return 1;
+		return -1;	
 	}
 
 	public boolean isInWater() {
@@ -120,17 +123,11 @@ public abstract class Player extends Entity implements Drawable {
 	 * @return ki tudja-e menteni a jatekos
 	 */
 	public boolean savePlayer(Player p) {
-		boolean success = false;
 		for (int i = 0; i < inventory.size(); i++) {
 			if (inventory.get(i).pull(p))
-				success = true;
+				return true;
 		}
-		if (!success)
-			return false;
-		else {
-			p.move(this.currentTile);
-			return true;
-		}
+		return false;
 	}
 
 	/**
@@ -140,14 +137,7 @@ public abstract class Player extends Entity implements Drawable {
 	 * @param inWater beallitja, hogy vizben van-e az adott jatekos
 	 */
 	public void setInWater(boolean value) {
-		inWater = value;
-		if (!getWetsuit()) {
-			scream();
-			// Tile[] t = currentTile.getNeighbours();
-			// for (int i = 0; i < t.length(); i++) {
-			// t[i].alarmTile(this);
-			// }
-		}
+		inWater = value;		
 	}
 
 	/**
@@ -171,27 +161,40 @@ public abstract class Player extends Entity implements Drawable {
 	 * Jatekost a vizbe loki, beallija a setInWater erteket igazra
 	 */
 	public void pushToWater() {
-		for (int i = 0; i < inventory.size(); i++) {
-			inventory.get(i).wear();
-		}
-		setInWater(true);
+			setInWater(true);
+			
+			boolean success = false;
+			for (Item i : inventory) {
+				if (i.wear())
+				success = true;
+				System.out.println("4");
+			}
+			if (success) return;
+			
+			System.out.println("5");
+
+			if (scream() > 0) return;
+			System.out.println("6");
+
+			die();
 	}
-	
+
 	/**
 	 * Tentet epit a parameterben megadott Tile-ra
+	 * 
 	 * @param chosenTile
 	 * @return
 	 */
 	public boolean buildTent(Tile chosenTile) {
 		if (energy > 0) {
 			chosenTile.addTent(new Tent("Tent1"));
-			
+
 			if (chosenTile.getCapacity() < chosenTile.getPlayers().size() + 1) {
 				for (int i = 0; i < chosenTile.getPlayers().size(); i++) {
 					chosenTile.getPlayers().get(i).pushToWater();
 				}
 			}
-			
+
 			this.energy--;
 			return true;
 		}
@@ -249,7 +252,7 @@ public abstract class Player extends Entity implements Drawable {
 		}
 		return false;
 	}
-	
+
 	public void setCurrentTile(Tile t) {
 		currentTile = t;
 	}

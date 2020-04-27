@@ -62,7 +62,7 @@ public class MapLoader {
 			
 				for (int neighIter = 0; neighIter < neighArray.size(); neighIter++) { // 0. -> szomszedok
 					for (int otherTileIter = 0; otherTileIter < tiles.size(); otherTileIter++) {
-						if (neighIter != otherTileIter && neighArray.get(neighIter) == tiles.get(otherTileIter).getId()) {
+						if (neighArray.get(neighIter).contentEquals(tiles.get(otherTileIter).getId())) {
 							tiles.get(tileIter).addNeighbour(tiles.get(otherTileIter));
 						}
 					}

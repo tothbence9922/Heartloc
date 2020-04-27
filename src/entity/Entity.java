@@ -18,6 +18,6 @@ public abstract class Entity {
 	 * 
 	 * @return int
 	 */
-	public abstract int step();
+	public int step() { return -1;}
 
 }
