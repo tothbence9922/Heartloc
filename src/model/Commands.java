@@ -575,30 +575,27 @@ public class Commands {
 		}
 
 		// esk2 t1
-		Tile temp = new StableTile("");
-		Player tempEx = new Explorer("");
+		Tile tempTile = new StableTile("");
+		Player tempPlayer = new Explorer("");
 
 		for (Tile oldtile : Game.getTiles()) {
 			for (Player p : oldtile.getPlayers()) {
 				if (p.getId().equals(cmd[1])) {
 
-					tempEx = p;
-					temp = oldtile;
+					tempPlayer = p;
+					tempTile = oldtile;
 					break;
 
 				}
 			}
-			if (!temp.getId().equals("")) {
+			if (!tempPlayer.getId().equals("")) {
 				break;
 			}
 		}
-
-		for (Tile newtile : Game.getTiles()) {
-			if (newtile.getId().equals(cmd[2])) {
-
-				newtile.receive(tempEx);
-				temp.remove(tempEx);
-				tempEx.setEnergy(tempEx.getEnergy()-1);
+		
+		for (Tile newTile : Game.getTiles()) {
+			if (newTile.getId().equals(cmd[2])) {
+				tempPlayer.move(newTile);
 				break;
 
 			}

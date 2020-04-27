@@ -237,18 +237,11 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean alarmTile(Player p) {
-		/*
-		 * TODO for(int i = 0; i < neighbours.size(); i++) { for(int j = 0; j <
-		 * neighbours.get(i).players.size(); j++) { for(int k = 0; k <
-		 * neighbours.get(i).players.get(j).inventory.size(); k++) {
-		 * if(neighbours.get(i).players.get(j).inventory.get(k) == ) {
-		 * 
-		 * } }
-		 * 
-		 * }
-		 * 
-		 * }
-		 */
+		boolean success = false;
+		for(Player player : players) {
+			if(player.savePlayer(p)) success = true;
+		}
+		if(success) return true;
 		return false;
 	}
 
