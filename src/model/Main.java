@@ -71,10 +71,13 @@ public class Main extends Commands {
 				damage(tokens);
 			} else if (tokens[0].equals("useFood")) {
 				useFood(tokens);
+			} else if(tokens[0].contentEquals("exit")) {
+				break;
 			}
-			s.close();
 
 		}
+		s.close();
+
 		/*
 		 * try { MapLoader.readMapFromJSON("./assets/maps/temp.json");
 		 * 
