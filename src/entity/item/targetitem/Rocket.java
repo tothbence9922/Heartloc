@@ -30,7 +30,6 @@ public class Rocket extends TargetItem {
      */
 	@Override
 	public boolean useTargetItem() {
-		System.out.println("Rocket\tboolean useTargetItem()\tparam: -");
 		return true;
 	}
 }

@@ -7,5 +7,4 @@ public abstract class TargetItem extends Item {
 	public TargetItem(String id) {
 		super(id);
 	}
-	
 }
