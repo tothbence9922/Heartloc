@@ -153,6 +153,33 @@ public class Commands {
 
 		System.out.println((Game.getInstance()).toString());
 	}
+	
+	public static void addCartridge(String[] cmd) throws ParseException {
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(Cartridge.getInstance("Car"));
+
+		System.out.println((Game.getInstance()).toString());
+	}
+	
+	public static void addBeacon(String[] cmd) throws ParseException {
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(Beacon.getInstance("Bea"));
+
+		System.out.println((Game.getInstance()).toString());
+	}
+	
+	public static void addGun(String[] cmd) throws ParseException {
+		if (cmd.length > 1)
+			for (Tile tile : Game.getTiles())
+				if (tile.getId().equals(cmd[1]))
+					tile.addItem(Gun.getInstance("Gun"));
+
+		System.out.println((Game.getInstance()).toString());
+	}
 
 	public static void addFragileShovel(String[] cmd) throws ParseException {
 		if (cmd.length > 1)

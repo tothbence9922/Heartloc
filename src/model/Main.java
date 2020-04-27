@@ -37,7 +37,13 @@ public class Main extends Commands {
 				addExplorer(tokens);
 			} else if (tokens[0].equals("addEskimo")) {
 				addEskimo(tokens);
-			} else if (tokens[0].equals("giveCartridge")) {
+			} else if (tokens[0].equals("addCartridge")) {
+				addCartridge(tokens);
+			} else if (tokens[0].equals("addGun")) {
+				addGun(tokens);
+			} else if (tokens[0].equals("addBeacon")) {
+				addBeacon(tokens);
+			}else if (tokens[0].equals("giveCartridge")) {
 				giveCartridge(tokens);
 			} else if (tokens[0].equals("giveGun")) {
 				giveGun(tokens);
