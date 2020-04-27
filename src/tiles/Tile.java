@@ -7,6 +7,7 @@ import entity.Building;
 import entity.Entity;
 import entity.Hole;
 import entity.Igloo;
+import entity.Tent;
 import entity.item.Item;
 import entity.player.Player;
 import model.Drawable;
@@ -237,18 +238,11 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean alarmTile(Player p) {
-		/*
-		 * TODO for(int i = 0; i < neighbours.size(); i++) { for(int j = 0; j <
-		 * neighbours.get(i).players.size(); j++) { for(int k = 0; k <
-		 * neighbours.get(i).players.get(j).inventory.size(); k++) {
-		 * if(neighbours.get(i).players.get(j).inventory.get(k) == ) {
-		 * 
-		 * } }
-		 * 
-		 * }
-		 * 
-		 * }
-		 */
+		boolean success = false;
+		for(Player player : players) {
+			if(player.savePlayer(p)) success = true;
+		}
+		if(success) return true;
 		return false;
 	}
 
@@ -349,6 +343,11 @@ public abstract class Tile implements Drawable {
 		Game.addItem(item);
 	}
 
+	public void setItems(ArrayList<Item> i) {
+		this.items.clear();
+		this.items.addAll(i);
+	}
+	
 	public boolean isHasItem() {
 		return hasItem;
 	}
@@ -434,5 +433,18 @@ public abstract class Tile implements Drawable {
 		this.entities.add(b);
 		//Game.addBuilding(b);
 	}
+	
+	public void addTent(Tent tent) {
+		this.hasTent = true;
+	}
+	
+	public ArrayList<PolarBear> getBears() {
+		return bears;
+	}
+
+	public void setBears(ArrayList<PolarBear> bears) {
+		this.bears = bears;
+	}
+
 
 }

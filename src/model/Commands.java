@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import entity.Entity;
 import entity.Hole;
 import entity.Igloo;
 import entity.item.Item;
@@ -55,7 +56,6 @@ public class Commands {
 	 * 
 	 * 
 	 */
-
 	public static void loadMap(String[] cmd) throws ParseException {
 		String[] maps = { "map1", "map2", "map3", "map4", "map5", "map6", "map7", "map8", "map9", "map10", "map11",
 				"map12" };
@@ -531,15 +531,6 @@ public class Commands {
 		System.out.println((Game.getInstance()).toString());
 	}
 
-	public static void buildTent(String[] cmd) throws ParseException {
-
-		// if (cmd.length > 2)
-		// Game.getTiles().get(find(Game.getTiles(), cmd[1])).buildTent(new
-		// Tent("Tent023"));
-
-		System.out.println((Game.getInstance()).toString());
-	}
-
 	public static void check(String[] cmd) throws ParseException {
 
 		// TODO
@@ -573,34 +564,65 @@ public class Commands {
 			System.out.println("Valami nem jó! A parancs kinézete: move játékosnév mezõnév ");
 			return;
 		}
+		
+		if(cmd[1].equals("PolarBear")) {
+			Tile temp = new StableTile("");
+			Tile newt = new StableTile("");
+			Entity tempPol = new PolarBear("Pol1");
 
-		// esk2 t1
-		Tile temp = new StableTile("");
-		Player tempEx = new Explorer("");
+			for (Tile oldtile : Game.getTiles()) {
+				for (Entity e : oldtile.getBears()) {
+					if (e.getId().equals("Pol1")) {
+						tempPol = e;
+						temp = oldtile;
+						break;
 
-		for (Tile oldtile : Game.getTiles()) {
-			for (Player p : oldtile.getPlayers()) {
-				if (p.getId().equals(cmd[1])) {
+					}
+				}
+				if (!(temp.getId().equals(""))) {
+					break;
+				}
+			}
 
-					tempEx = p;
-					temp = oldtile;
+			for (Tile newtile : Game.getTiles()) {
+				if (newtile.getId().equals(cmd[2])) {
+					newt = newtile;
+					newtile.receive(tempPol);
+					temp.remove(tempPol);
 					break;
 
 				}
 			}
-			if (!temp.getId().equals("")) {
-				break;
+			
+			for(Player p : newt.getPlayers()) {
+				newt.remove(p);
+				p.die();
 			}
-		}
+		} else {
+			Tile tempTile = new StableTile("");
+			Player tempPlayer = new Explorer("");
 
-		for (Tile newtile : Game.getTiles()) {
-			if (newtile.getId().equals(cmd[2])) {
+			for (Tile oldtile : Game.getTiles()) {
+				for (Player p : oldtile.getPlayers()) {
+					if (p.getId().equals(cmd[1])) {
 
-				newtile.receive(tempEx);
-				temp.remove(tempEx);
-				tempEx.setEnergy(tempEx.getEnergy()-1);
-				break;
+						tempPlayer = p;
+						tempTile = oldtile;
+						break;
 
+					}
+				}
+				if (!tempPlayer.getId().equals("")) {
+					break;
+				}
+			}
+			
+			for (Tile newTile : Game.getTiles()) {
+				if (newTile.getId().equals(cmd[2])) {
+					tempPlayer.move(newTile);
+					break;
+
+				}
 			}
 		}
 
@@ -673,7 +695,9 @@ public class Commands {
 						t.dig(1);
 						for (Item i : t.getItems()) {								
 							p.addToInventory(i);
+
 						}
+						t.setItems(new ArrayList<Item>());
 						p.setEnergy(p.getEnergy()-1);
 						break;
 					}
@@ -691,6 +715,22 @@ public class Commands {
 				if (p.getId().equals(cmd[1])) {
 					p.buildIgloo(t);
 					t.setHasIgloo(true);
+					couldBuild = true;
+					break;
+				}
+			}
+			if (couldBuild) break;
+		}
+		System.out.println((Game.getInstance()).toString());
+	}
+	
+	public static void buildTent(String[] cmd) {
+		boolean couldBuild = false;
+		for (Tile t : Game.getTiles()) {
+			for (Player p : Game.getPlayers()) {
+				if (p.getId().equals(cmd[1])) {
+					p.buildTent(t);
+					t.setHasTent(true);
 					couldBuild = true;
 					break;
 				}

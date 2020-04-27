@@ -3,9 +3,11 @@ package entity.player;
 import java.util.ArrayList;
 
 import entity.Entity;
+import entity.Tent;
 import entity.item.Item;
 import model.Drawable;
 import model.Game;
+import tiles.StableTile;
 import tiles.Tile;
 
 /**
@@ -22,7 +24,7 @@ public abstract class Player extends Entity implements Drawable {
 
 	protected ArrayList<Item> inventory = new ArrayList<Item>();
 
-	protected Tile currentTile;
+	protected Tile currentTile = new StableTile("");
 
 	public Player(String id) {
 		super(id);
@@ -54,9 +56,36 @@ public abstract class Player extends Entity implements Drawable {
 	 * @param t az a Tile amelyikre a jatekos mozogni kivan
 	 */
 	public void move(Tile t) {
+		currentTile.remove(this);
 		t.receive(this);
+		setCurrentTile(t);
 		this.energy--;
-		// ot.remove(this);
+		if (t.getHasHole()) {
+			this.pushToWater();
+			boolean success = false;
+			for (Item i : inventory) {
+				if (i.wear())
+					success = true;
+				System.out.println("asd");
+
+			}
+			if (success) return;
+			else {
+				this.setInWater(true);
+				this.scream();
+				success = false;
+				for (Tile nt : t.getNeighbours()) {
+					if (nt.alarmTile(this))
+						success = true;
+				}
+				if (success)
+					return;
+				else {
+					this.die();
+				}
+
+			}
+		}
 	}
 
 	/**
@@ -64,6 +93,7 @@ public abstract class Player extends Entity implements Drawable {
 	 * hal. Ez a metodus kezdemenyezi ezt a folyamatot.
 	 */
 	public void die() {
+		this.bodyTemperature = 0;
 		Game.getInstance();
 		Game.Defeat();
 		Game.EndGame();
@@ -90,12 +120,17 @@ public abstract class Player extends Entity implements Drawable {
 	 * @return ki tudja-e menteni a jatekos
 	 */
 	public boolean savePlayer(Player p) {
+		boolean success = false;
 		for (int i = 0; i < inventory.size(); i++) {
-			if (inventory.get(i).pull(p)) {
-				// p.move(currentTile);
-			}
+			if (inventory.get(i).pull(p))
+				success = true;
 		}
-		return true;
+		if (!success)
+			return false;
+		else {
+			p.move(this.currentTile);
+			return true;
+		}
 	}
 
 	/**
@@ -140,6 +175,27 @@ public abstract class Player extends Entity implements Drawable {
 			inventory.get(i).wear();
 		}
 		setInWater(true);
+	}
+	
+	/**
+	 * Tentet epit a parameterben megadott Tile-ra
+	 * @param chosenTile
+	 * @return
+	 */
+	public boolean buildTent(Tile chosenTile) {
+		if (energy > 0) {
+			chosenTile.addTent(new Tent("Tent1"));
+			
+			if (chosenTile.getCapacity() < chosenTile.getPlayers().size() + 1) {
+				for (int i = 0; i < chosenTile.getPlayers().size(); i++) {
+					chosenTile.getPlayers().get(i).pushToWater();
+				}
+			}
+			
+			this.energy--;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -192,6 +248,10 @@ public abstract class Player extends Entity implements Drawable {
 			}
 		}
 		return false;
+	}
+	
+	public void setCurrentTile(Tile t) {
+		currentTile = t;
 	}
 
 	public int getEnergy() {

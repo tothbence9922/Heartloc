@@ -146,13 +146,13 @@ public class Game {
 			Game.tiles.add(tilesArr.get(i));
 	}
 
-	public static String getTile(String id) {
+	public static Tile getTile(String id) {
 		for (Tile t : tiles) {
 			if (t.getId().equals(id))
-				return t.getId();
+				return t;
 		}
 
-		return "";
+		return null;
 	}
 
 	public static Player getPlayer(String id) {

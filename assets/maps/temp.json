@@ -1,1 +1,1 @@
-{"tiles":[{"hole":0,"entities":["Esk1","Esk2"],"snow":0,"neighbours":["t2","t4","t8"],"id":"t1","items":[],"capacity":-1},{"hole":1,"entities":[],"snow":3,"neighbours":["t1","t3","t4","t5"],"id":"t2","items":["Foo1","iTen1"],"capacity":-1}]}
+{"tiles":[{"hole":0,"entities":["Exp1"],"snow":0,"neighbours":["t2"],"id":"t1","items":[],"capacity":-1},{"hole":0,"entities":["Pol1"],"snow":0,"neighbours":["t1"],"id":"t2","items":[],"capacity":-1}]}

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +31,9 @@ import tiles.UnstableTile;
 
 public class MapLoader {
 
+	public static HashMap<String, String> startTileMap = new HashMap<String, String>();
+
+	
 	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
 		try {
 			Game.getInstance().ClearMap();
@@ -37,6 +41,7 @@ public class MapLoader {
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
 
+			
 			ArrayList<Tile> tiles = new ArrayList<Tile>();
 			ArrayList<Tile> tilesRead = new ArrayList<Tile>();
 			ArrayList<ArrayList<ArrayList<String>>> tileInfos = new ArrayList<ArrayList<ArrayList<String>>>();
@@ -65,16 +70,29 @@ public class MapLoader {
 				for (int entityIter = 0; entityIter < entityArray.size(); entityIter++) {// 1. -> entity-k
 					if (entityArray.get(entityIter).contains("Esk")) {
 						Eskimo e = new Eskimo(entityArray.get(entityIter));
+						for(Tile t : tiles) {
+							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
+						}						
 						tiles.get(tileIter).receive(e);
 						tiles.get(tileIter).getPlayers().add(e);
 						players.add(e);
 					} else if (entityArray.get(entityIter).contains("Exp")) {
 						Explorer e = new Explorer(entityArray.get(entityIter));
+						
+						for(Tile t : tiles) {
+							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
+						}	
+						
 						tiles.get(tileIter).receive(e);
 						tiles.get(tileIter).getPlayers().add(e);
 						players.add(e);
 					} else if (entityArray.get(entityIter).contains("Pol")) {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
+						
+						for(Tile t : tiles) {
+							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) pb.setCurrentTile(t);
+						}	
+						
 						tiles.get(tileIter).addPolarBear(pb);
 						tiles.get(tileIter).receive(pb);
 					} else if (entityArray.get(entityIter).contains("Ten")) {
@@ -182,6 +200,10 @@ public class MapLoader {
 		ArrayList<String> neighbourNames = readNeighbours(neighbourArray);
 		ArrayList<String> entityNames = readNeighbours(entityArray);
 		ArrayList<String> itemNames = readItems(itemArray);
+		
+		for(String name : entityNames) {
+			startTileMap.put(name, id);
+		}
 
 		ArrayList<ArrayList<String>> tileInfo = new ArrayList<ArrayList<String>>();
 		tileInfo.add(neighbourNames);
