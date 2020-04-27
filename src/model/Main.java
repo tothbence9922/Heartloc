@@ -71,6 +71,14 @@ public class Main extends Commands {
 				damage(tokens);
 			} else if (tokens[0].equals("useFood")) {
 				useFood(tokens);
+			} else if (tokens[0].equals("useBeacon")) {
+				useBeacon(tokens);
+			} else if (tokens[0].equals("useCartridge")) {
+				useCartridge(tokens);
+			} else if (tokens[0].equals("useGun")) {
+				useGun(tokens);
+			} else if (tokens[0].equals("useRocket")) {
+				useRocket(tokens);
 			} else if(tokens[0].contentEquals("exit")) {
 				break;
 			}

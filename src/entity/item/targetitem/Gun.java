@@ -30,7 +30,6 @@ public class Gun extends TargetItem {
      */
 	@Override
 	public boolean useTargetItem() {
-		System.out.println("Gun\tboolean useTargetItem()\tparam: -");
 		return true;
 	}
 

@@ -29,7 +29,6 @@ public class Cartridge extends TargetItem {
      */
 	@Override
 	public boolean useTargetItem() {
-		System.out.println("Beacon\tboolean useTargetItem()\tparam: -");
 		return true;
 	}
 }
