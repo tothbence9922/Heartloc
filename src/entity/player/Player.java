@@ -28,6 +28,10 @@ public abstract class Player extends Entity implements Drawable {
 	public Player(String id) {
 		super(id);
 	}
+	
+	public void setCurrentTile(Tile t) {
+		currentTile = t;
+	}
 
 	@Override
 	public String toString() {
@@ -57,6 +61,7 @@ public abstract class Player extends Entity implements Drawable {
 	public void move(Tile t) {
 		currentTile.remove(this);
 		t.receive(this);
+		setCurrentTile(t);
 		this.energy--;
 		if (t.getHasHole()) {
 			this.pushToWater();
