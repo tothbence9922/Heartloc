@@ -578,25 +578,6 @@ public class Commands {
 		System.out.println((Game.getInstance()).toString());
 	}
 
-	public static void check(String[] cmd) throws ParseException {
-
-		// TODO
-		if (cmd.length > 2) {
-			// System.out.println(cmd[1] + ": " + tiles.get(cmd[1]).getCapacity());
-			/*
-			 * READ FROM JSON if (cmd[1].toLowerCase() == "field") { ArrayList<Tile> tiles =
-			 * game.getTiles(); for (int i = 0; i < tiles.size(); i++) {
-			 * System.out.println(tiles.get(i)); } } else if (cmd[1].toLowerCase() ==
-			 * "player") { ArrayList<Player> players = game.getPlayers(); for (int i = 0; i
-			 * < players.size(); i++) { System.out.println(players.get(i)); }
-			 * 
-			 * } else if (cmd[1].toLowerCase() == "polarbear") { ArrayList<PolarBear> bears
-			 * = game.getPolarBears(); for (int i = 0; i < bears.size(); i++) {
-			 * System.out.println(bears.get(i)); } }
-			 */
-		}
-	}
-
 	public static void exploreTile(String[] cmd) {
 
 		System.out.println("Capacity: " + Game.getPlayer(cmd[1]).exploreTile(cmd[2]));

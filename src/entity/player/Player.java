@@ -57,7 +57,6 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public void move(Tile t) {
 		currentTile.remove(this);
-		System.out.println("1");
 		t.receive(this);
 		setCurrentTile(t);
 		this.energy--;
@@ -67,12 +66,10 @@ public abstract class Player extends Entity implements Drawable {
 				if(!p.equals(this)) p.pushToWater();
 			}
 			this.pushToWater();
-			System.out.println("2");
 		}
 
 		else if (t.getHasHole()) {
 			this.pushToWater();
-			System.out.println("3");
 
 		}
 	}
@@ -95,11 +92,8 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public int scream() {
 		boolean success = false;
-		System.out.println("SUCK ME");
 		ArrayList<Tile> neighs = currentTile.getNeighbours();
-		System.out.println("NEIGHBOURS:\n"+neighs.toString());
 		for (Tile nt : neighs) {
-			System.out.println("SUCK ME TWICE");
 
 			if (nt.alarmTile(this)) {
 				success = true;
@@ -167,14 +161,11 @@ public abstract class Player extends Entity implements Drawable {
 			for (Item i : inventory) {
 				if (i.wear())
 				success = true;
-				System.out.println("4");
 			}
 			if (success) return;
 			
-			System.out.println("5");
 
 			if (scream() > 0) return;
-			System.out.println("6");
 
 			die();
 	}

@@ -164,7 +164,6 @@ public abstract class Tile implements Drawable {
 	 * @return int
 	 */
 	public int getNumOfTargetItems() {
-		System.out.println("Tile\tint getNumOfTargetItems()\tparam: -");
 		return this.numOfTargetItems;
 	}
 
