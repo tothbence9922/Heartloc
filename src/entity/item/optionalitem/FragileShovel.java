@@ -2,18 +2,18 @@ package entity.item.optionalitem;
 
 public class FragileShovel extends OptionalItem {
 
-	private int numOfUses;
+	private int numOfUses = 3;
 
 	public FragileShovel(String id) {
 		super(id);
-		numOfUses = 3;
 	}
 
 	/**
-	 * Felulirja az ososztalybeli digWithFragileShovel() fuggvenyt. Amennyiben
-	 * numOfUses valtozo erteke 0-ra csokken, akkor az aso megsemmisul
-	 * 
-	 * @return boolean
+	 * A játékos, ha rendelkezik FragileShovel-lel, használhatja azt, hogy egy ásással két egységnyi havat
+	 * tüntethessen el.
+	 * Mivel alapból numOfUses = 3, így három használat után "eltörik" az ásó.
+	 * @return A visszatérési értéke a logikai igaz (true), amennyiben numOfUses > 0, ezzel jelzi hogy
+	 *         sikeresen használta a FragileShovel Itemet a játékos. Ha már eltörött az ásó, visszatérése logikai hamis (false) lesz.
 	 */
 	@Override
 	public boolean digWithFragileShovel() {

@@ -45,13 +45,5 @@ public class Explorer extends Player {
 	public void draw() {
 		// TODO Auto-generated method stub
 	}
-
-	/**
-	 * @return false - Explorer cannot build Igloo
-	 */
-	@Override
-	public boolean buildIgloo(Tile chosenTile) {
-		return false;
-	}
 }
 

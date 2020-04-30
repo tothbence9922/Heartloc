@@ -1,4 +1,4 @@
-package entity.item.optionalitem;
+	package entity.item.optionalitem;
 
 /**
  * A Wetsuit osztály reprezentálja a játékos egy lehetséges tárgyát, mellyel

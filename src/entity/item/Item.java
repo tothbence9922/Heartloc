@@ -5,56 +5,23 @@ import entity.player.Player;
 
 public abstract class Item extends Entity {
 
-	public boolean isVisible = false;
+	protected boolean visible = false;
 
 	public Item(String id) {
 		super(id);
 	}
 
-	public void setIsVisible(boolean b) {
-		this.isVisible = b;
+	public void setVisible(boolean b) {
+		this.visible = b;
 	}
 
 	/**
-	 * A jatekos, ha rendelkezik Item-mel, annak hasznalataval kulonbozo modokon
-	 * juthat elonyoz - vagy nyerheti meg a jatekot.
-	 * 
+	 * A kotel targy hasznalatat vegzo metodus. 
 	 * @param p - Melyik jatekost akarjuk kihuzni.
-	 * @return - Ha sikeres true, ha nem false.
+	 * @return - Ha az Item (-bol szarmazo objektum) kotel, akkor visszateresi erteke True/Igaz,
+	 * ellenkezo esetben False/Hamis, mivel huzni csak a kotel targgyal tudunk a programban.
 	 */
 	public boolean pull(Player p) {
-		return false;
-	}
-
-	/**
-	 * A targyak (Item-ek) eldobhatok, ekkor arra a Tile-re kerulnek amin az a
-	 * Player all aki eldobta.
-	 * 
-	 */
-	public void drop() {
-
-	}
-
-	/**
-	 * A targyak a jaték kezdeten a jegtablakba vannak fagyva. Miutan kiastak oket
-	 * es lathatoak, fel lehet venni a targyakat.
-	 * 
-	 */
-	public void pickup() {
-
-	}
-
-	/**
-	 * A jelzoraketa (Rocket) tobb alkatreszbol (TargetItem-bol) all ossze. Ketfele
-	 * Item letezik: TargetItem es OptionalItem. A TargetItem-ek erdemlegesen
-	 * megvalositjak ezt a metodust, mig az OptionalItem-ek csak technikai okok
-	 * miatt (mivel oroklik es nem absztrakt osztalyok) valositjak meg ezt a
-	 * metodust.
-	 * 
-	 * @return Az osszeszereles sikeresseget true visszateres jelzi, ellenkezoleg
-	 *         false.
-	 */
-	public boolean assembleRocket() {
 		return false;
 	}
 
@@ -112,8 +79,12 @@ public abstract class Item extends Entity {
 		return false;
 	}
 	
+	/**
+	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem jatekost reprezental.
+	 */
+	@Override
 	public int step() {
-		return 0;
+		return -1;
 	}
 
 	public int getNumOfUses() {

@@ -49,6 +49,28 @@ public abstract class Player extends Entity implements Drawable {
 		return playerString;
 
 	}
+	
+	/**
+	 * A targyak (Item-ek) eldobhatok, ekkor arra a Tile-re kerulnek amin az a
+	 * Player all aki eldobta.
+	 * 
+	 */
+	public void drop(Item i) {
+		currentTile.getItems().add(i);
+		inventory.remove(i);
+	}
+
+	/**
+	 * A targyak a jaték kezdeten a jegtablakba vannak fagyva. Miutan kiastak oket
+	 * es lathatoak, fel lehet venni a targyakat.
+	 * 
+	 */
+	public void pickup() {
+		for(Item i : currentTile.getItems()) {
+			inventory.add(i);
+		}
+		currentTile.getItems().clear();
+	}
 
 	/**
 	 * Ezzel a metodussal kerul at a jatekos egyik jegtablarol a masikra.
@@ -81,9 +103,9 @@ public abstract class Player extends Entity implements Drawable {
 	 */
 	public void die() {
 		this.bodyTemperature = 0;
-		Game.getInstance();
-		Game.Defeat();
-		Game.EndGame();
+		//Game.getInstance();
+		//Game.Defeat();
+		//Game.EndGame();
 	}
 
 	/**
@@ -91,16 +113,9 @@ public abstract class Player extends Entity implements Drawable {
 	 * szomszedos jegtablan allo tarsai meghalljak
 	 */
 	public int scream() {
-		boolean success = false;
-		ArrayList<Tile> neighs = currentTile.getNeighbours();
-		for (Tile nt : neighs) {
-
-			if (nt.alarmTile(this)) {
-				success = true;
-				break;
-			}
-		}
-		if (success) return 1;
+		for (Tile nt : currentTile.getNeighbours())
+			if (nt.alarmTile(this)) return 1;
+		
 		return -1;	
 	}
 
@@ -123,6 +138,25 @@ public abstract class Player extends Entity implements Drawable {
 		}
 		return false;
 	}
+	
+	/**
+	 * A jelzoraketa (Rocket) tobb alkatreszbol (TargetItem-bol) all ossze. Ketfele
+	 * Item letezik: TargetItem es OptionalItem. A TargetItem-ek erdemlegesen
+	 * megvalositjak ezt a metodust, mig az OptionalItem-ek csak technikai okok
+	 * miatt (mivel oroklik es nem absztrakt osztalyok) valositjak meg ezt a
+	 * metodust.
+	 * 
+	 * @return Az osszeszereles sikeresseget true visszateres jelzi, ellenkezoleg
+	 *         false.
+	 */
+	public boolean assembleRocket() {
+		int cnt = 0;
+		for(Item i : inventory) {
+			if (i.useTargetItem()) cnt++;
+		}
+		if (cnt >= 3) return true;
+		return false;
+	}
 
 	/**
 	 * Ha egy jatekos lyukba lep, vagy instabil jegtablara, ami atfordul, akkor ez a
@@ -138,18 +172,21 @@ public abstract class Player extends Entity implements Drawable {
 	 * Visszater a parameterben atadott Tile teherbirasaval
 	 * 
 	 * @param chosenTile - a megfigyelni kivant Tile ID-je
-	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten Eskimo
+	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten nem Explorer
 	 *         hivta
 	 */
-	abstract public int exploreTile(String chosenTile);
+	public int exploreTile(String chosenTile) {
+		return -2;
+	}
 
 	/**
-	 * Igloo-t epit a parameterben megadott Tile-ra
+	 * Igloo-t epit a parameterben megadott Tile-ra. Mivel ez eszkimo kepesseg, alapvetoen false-t ad vissza,
+	 *  Eskimo eseten true-t.
 	 * 
 	 * @param chosenTile
 	 * @return
 	 */
-	abstract public boolean buildIgloo(Tile chosenTile);
+	public boolean buildIgloo(Tile chosenTile) { return false;}
 
 	/**
 	 * Jatekost a vizbe loki, beallija a setInWater erteket igazra

@@ -43,17 +43,7 @@ public class Commands {
 
 	/**
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * HANDLERS
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * 
 	 */
 	public static void loadMap(String[] cmd) throws ParseException {
@@ -113,17 +103,7 @@ public class Commands {
 
 	/**
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * COMMANDS - ADD
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * 
 	 */
 
@@ -258,17 +238,7 @@ public class Commands {
 
 	/**
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * COMMANDS - GIVE (TARGET)
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * 
 	 */
 
@@ -386,17 +356,7 @@ public class Commands {
 
 	/**
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * COMMANDS - GIVE (OPT)
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * 
 	 */
 

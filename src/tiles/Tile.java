@@ -27,7 +27,6 @@ public abstract class Tile implements Drawable {
 	protected int capacity;
 
 	protected boolean hasHole = false;
-	protected boolean hasItem = false;
 	protected boolean hasIgloo = false;
 	protected boolean hasTent = false;
 	protected boolean hasPolarBear = false;
@@ -137,7 +136,7 @@ public abstract class Tile implements Drawable {
 		
 		if (this.amountOfSnow <= 0) {
 			for (int i = 0; i < items.size(); i++) {
-				items.get(i).setIsVisible(true);
+				items.get(i).setVisible(true);
 			}
 			this.amountOfSnow = 0;
 			return this.items;
@@ -153,18 +152,6 @@ public abstract class Tile implements Drawable {
 	 */
 	public int getLoad() {
 		return this.load;
-	}
-
-	/**
-	 * Az adott jegtablan elerheto TargetItemek szamaval ter vissza. Ennek a
-	 * metodusnak a felhasznalasaval deritheto ki, hogy a jatek veget jelento
-	 * jelzoraketa osszeszerelese es elsutese megkezdheto-e, azaz egy jegtablan
-	 * van-e mind a harom.
-	 * 
-	 * @return int
-	 */
-	public int getNumOfTargetItems() {
-		return this.numOfTargetItems;
 	}
 
 	/**
@@ -205,16 +192,20 @@ public abstract class Tile implements Drawable {
 	public void remove(Entity e) {
 		entities.remove(e);
 	}
-	
+
+	/**
+	 * A parameterben kapott jatekost a jegtablarol eltavolitja.
+	 * 
+	 * @param p
+	 */
 	public void remove(Player p) {
 		players.remove(p);
 		entities.remove(p);
 	}
 
 	/**
-	 * A parameterben kapott entitast a jegtablarol eltavolitja.
+	 * Visszater azzal, hogy az adott jegtablan van-e lyuk.
 	 * 
-	 * @param e
 	 * @return boolean
 	 */
 	public boolean getHasHole() {
@@ -225,26 +216,8 @@ public abstract class Tile implements Drawable {
 		}
 	}
 
-	/**
-	 * Visszater azzal, hogy az adott jegtablan van-e lyuk.
-	 * 
-	 * @return boolean
-	 */
-	public boolean assembleRocket() {
-		if (getNumOfTargetItems() == 3) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
-	/**
-	 * True ertekkel ter vissza, ha az adott jegtablan osszeszerelheto a
-	 * jelzoraketa, egyebkent false.
-	 * 
-	 * @return boolean
-	 */
-
+	
 	/**
 	 * Jatekos sikitasa eseten hivodik meg, parameterkent a vizbe esett jatekossal,
 	 * akit igy egy megfelelo tavolsagra levo, masik jegtablan tartozkodo jatek – ha
@@ -288,7 +261,7 @@ public abstract class Tile implements Drawable {
 		amountOfSnow += r.nextInt(3);
 		if (amountOfSnow > 5)
 			amountOfSnow = 5;
-		if (this.hasIgloo == false || this.hasTent == false) {
+		if (this.hasIgloo == false || this.hasTent == false) { // TODO minek a get/set ezekhez ha itt csak így?
 			for (Player p : players) {
 				p.damage(1);
 			}
@@ -305,8 +278,8 @@ public abstract class Tile implements Drawable {
 		hasIgloo = true;
 	}
 
-	public void addHole(Hole hole) {
-		// TODO
+	public void addHole() {
+		this.hasHole = true;
 	}
 
 	/*******************************
@@ -347,8 +320,9 @@ public abstract class Tile implements Drawable {
 		this.showCapacity = b;
 	}
 
-	public int getDistance() {
-		return 0;
+	public int getDistance(Tile t) {
+		// TODO adtam hozza parameter tile-t , igy elv mar szamolhato..
+		return -123124;
 	}
 
 	public ArrayList<Item> getItems() {
@@ -364,16 +338,8 @@ public abstract class Tile implements Drawable {
 		this.items.clear();
 		this.items.addAll(i);
 	}
-	
-	public boolean isHasItem() {
-		return hasItem;
-	}
 
-	public void setHasItem(boolean hasItem) {
-		this.hasItem = hasItem;
-	}
-
-	public boolean isHasIgloo() {
+	public boolean hasIgloo() {
 		return hasIgloo;
 	}
 
@@ -381,7 +347,7 @@ public abstract class Tile implements Drawable {
 		this.hasIgloo = hasIgloo;
 	}
 
-	public boolean isHasTent() {
+	public boolean hasTent() {
 		return hasTent;
 	}
 
@@ -389,7 +355,7 @@ public abstract class Tile implements Drawable {
 		this.hasTent = hasTent;
 	}
 
-	public boolean isHasPolarBear() {
+	public boolean hasPolarBear() {
 		return hasPolarBear;
 	}
 
@@ -421,7 +387,7 @@ public abstract class Tile implements Drawable {
 		this.neighbours = neighbours;
 	}
 
-	public boolean isShowCapacity() {
+	public boolean getShowCapacity() {
 		return showCapacity;
 	}
 
@@ -440,10 +406,6 @@ public abstract class Tile implements Drawable {
 
 	public void setHasHole(boolean hasHole) {
 		this.hasHole = hasHole;
-	}
-
-	public void setNumOfTargetItems(int numOfTargetItems) {
-		this.numOfTargetItems = numOfTargetItems;
 	}
 
 	public void addBuilding(Building b) {

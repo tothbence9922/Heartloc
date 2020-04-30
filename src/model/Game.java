@@ -73,6 +73,8 @@ public class Game {
 		tiles = new ArrayList<Tile>();
 		players = new ArrayList<Player>();
 		items = new ArrayList<Item>();
+		bears = new ArrayList<PolarBear>();
+		buildings = new ArrayList<Building>();
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class Game {
 	 * meghívását, ekkor a játékos gyõzelmét könyvelhetjük el.
 	 */
 	public void victory() {
-
+		// TODO : WINSCREEN
+		EndGame();
 	}
 
 	/**
@@ -88,15 +91,15 @@ public class Game {
 	 * és lezárhatjuk a játékot.
 	 */
 	public static void EndGame() {
-
+		// TODO : ENDING THE GAME? 
 	}
 
 	public static void generateStorm(String string) {
 		if (string.equals("deterministic")) {
 			for (Tile t : tiles) {
 				if (t.getPlayers().size() != 0) {
-					if (!t.isHasIgloo()) {
-						if (t.isHasTent()) {
+					if (!t.hasIgloo()) {
+						if (t.hasTent()) {
 							//t.setHasTent(false);
 							break;
 						}
@@ -113,8 +116,8 @@ public class Game {
 	public static void generateStorm() {
 		for (Tile t : tiles) {
 			if (t.getPlayers().size() != 0) {
-				if (!t.isHasIgloo()) {
-					if (t.isHasTent()) {
+				if (!t.hasIgloo()) {
+					if (t.hasTent()) {
 						//t.setHasTent(false);
 						break;
 					}

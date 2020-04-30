@@ -7,6 +7,7 @@ import entity.player.Player;
  * osztály. Segítségével a játékosok megmenthetik bajbajuttott társaikat.
  */
 public class Rope extends OptionalItem {
+	
 	public Rope(String id) {
 		super(id);
 	}

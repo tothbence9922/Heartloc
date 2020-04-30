@@ -4,7 +4,6 @@ public class TentItem extends OptionalItem {
 
 	public TentItem(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
