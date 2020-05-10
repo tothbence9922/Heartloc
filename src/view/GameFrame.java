@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,7 +17,7 @@ public class GameFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private GamePanel baseGamePanel;
+	private JPanel baseGamePanel;
 	
 	public GameFrame(GameController baseGameController) {
 		baseGamePanel = new GamePanel(baseGameController);
@@ -29,8 +32,13 @@ public class GameFrame extends JFrame {
 	}
 	
 	public void changePanel(JPanel newGamePanel) {
-		remove(baseGamePanel);
-		add(newGamePanel);
-		validate();
+		Container parent = baseGamePanel.getParent();
+		
+		this.getContentPane().remove(baseGamePanel);
+		this.getContentPane().validate();
+		this.getContentPane().repaint();
+		
+		this.baseGamePanel = newGamePanel;
+		buildFrame();
 	}
 }

@@ -52,16 +52,6 @@ public class GamePanel extends JPanel {
 		btnStartGame.setContentAreaFilled(false);
 		btnStartGame.setBorderPainted(false);
 		btnStartGame.setFocusPainted(false);
-		/* add hover effect */
-		btnStartGame.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	btnStartGame.setForeground(Color.WHITE);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	btnStartGame.setForeground(Color.DARK_GRAY);
-		    }
-		});
 		
 		btnExit = new JButton("Exit");
 		btnExit.setForeground(Color.DARK_GRAY);
@@ -70,15 +60,7 @@ public class GamePanel extends JPanel {
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setFocusPainted(false);
-		btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	btnExit.setForeground(Color.WHITE);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	btnExit.setForeground(Color.DARK_GRAY);
-		    }
-		});
+	
 		
 		buildPanel();
 		buildLayout();
@@ -124,19 +106,42 @@ public class GamePanel extends JPanel {
 				String[] tokens = {"loadMap", "map1"};
 				baseGameController.setGameFactory(tokens);
 				
-				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
-								
-				ImageIcon icon = new ImageIcon("./images/background-menu.jpg");
-			    Image image = icon.getImage();
+				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
 				
-				baseGameController.getGameFrame().changePanel(new MainMenuPanel(image));
+				try {
+					baseGameController.getGameFrame().changePanel(new MainMenuPanel(baseGameController));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		});
+		
+		/* add hover effect */
+		btnStartGame.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	btnStartGame.setForeground(Color.WHITE);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	btnStartGame.setForeground(Color.DARK_GRAY);
+		    }
 		});
 		
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				System.exit(1);
 			}
+		});
+		
+		btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	btnExit.setForeground(Color.WHITE);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	btnExit.setForeground(Color.DARK_GRAY);
+		    }
 		});
 	}
 	
@@ -148,10 +153,5 @@ public class GamePanel extends JPanel {
 	    	ImageIcon icon = new ImageIcon(imageURL);
 	        g.drawImage(icon.getImage(), 0, -20, null);
 	    }
-	    
-        
-        
-        //super.paintComponent(g);
-        //setBackground(Color.BLUE);
 	}
 }
