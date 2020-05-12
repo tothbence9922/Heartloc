@@ -122,6 +122,12 @@ public class MainMenuPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weighty = 1;
         
+        // Add different constraints for Tiles
+        JPanel tiles = new JPanel(new GridBagLayout());
+        tiles.add(new TileView(baseGameController), gbc);
+        tiles.add(new TileView(baseGameController), gbc);
+        tiles.setOpaque(false);
+        
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.add(btnRope);
         buttons.add(btnShovel);
@@ -133,9 +139,9 @@ public class MainMenuPanel extends JPanel {
         
         //buttons.setOpaque(false);
         
-        //buttons.add(new TileView(baseGameController), gbc);
        
 		this.setLayout(baseLayout);
+		this.add(tiles, gbc);
 		this.add(buttons, gbc);	
 	}
 	

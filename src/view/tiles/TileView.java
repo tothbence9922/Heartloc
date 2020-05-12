@@ -12,11 +12,13 @@ public class TileView extends JLabel {
 	private GameController baseGameController;
 	
 	public TileView(GameController baseGameController) throws IOException {
+		this.baseGameController = baseGameController;
+		
 		URL entityImage = TileView.class.getResource("../images/tile.png");
 		//BufferedImage myPicture = ImageIO.read(new File(entityImage.toString()));
 		//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-
-		JLabel imgLabel = new JLabel(new ImageIcon(entityImage));
-		this.add(imgLabel);
+		
+		setIcon(new ImageIcon(entityImage));
+		
 	}
 }

@@ -36,6 +36,4 @@ public class GameController {
 	public void start() {
 		gameFrame = new GameFrame(this);
 	}
-	
-	
 }
