@@ -1,10 +1,12 @@
 package controller;
 
 public class GameRunner {
-
+	
+	public static GameController baseGameController;
+	
 	public static void main(String[] args) {
-		GameController baseGameController = new GameController();
+		
+		baseGameController = new GameController();
 		baseGameController.start();
 	}
-
 }

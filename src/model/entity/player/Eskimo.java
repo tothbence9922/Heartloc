@@ -2,6 +2,7 @@ package model.entity.player;
 
 import model.entity.Igloo;
 import model.tiles.Tile;
+import view.entity.EskimoView;
 
 /**
  * A jatekban szereplo egyik entitas. Kezdeskent 5 egysegnyi testhoje van,
@@ -10,6 +11,8 @@ import model.tiles.Tile;
  */
 public class Eskimo extends Player {
 
+	public EskimoView view;
+	
 	public Eskimo(String id) {
 		super(id);
 		this.bodyTemperature = 5;

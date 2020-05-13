@@ -13,6 +13,7 @@ import model.entity.player.Player;
 import model.temp.Drawable;
 import model.temp.Game;
 import model.temp.PolarBear;
+import view.tiles.TileView;
 
 /**
  * A jatek egyik alapegyseget kepezo objektum, ezeken helyezkednek el a
@@ -20,6 +21,8 @@ import model.temp.PolarBear;
  */
 public abstract class Tile implements Drawable {
 
+	public TileView view;
+	
 	protected String id;
 	protected int load = 0;
 	protected int amountOfSnow;

@@ -2,6 +2,7 @@ package model.temp;
 
 import java.util.Scanner;
 
+import model.Commands;
 import model.org.json.simple.parser.ParseException;
 
 public class Main extends Commands {

@@ -1,6 +1,10 @@
 package model.entity.item.targetitem;
 
+import view.entity.RocketView;
+
 public class Rocket extends TargetItem {
+	
+	public RocketView view;
 	
 	// static variable single_instance of type Singleton 
     private static Rocket single_instance = null; 

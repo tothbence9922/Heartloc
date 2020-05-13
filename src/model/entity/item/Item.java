@@ -2,11 +2,14 @@ package model.entity.item;
 
 import model.entity.Entity;
 import model.entity.player.Player;
+import view.entity.ItemView;
 
 public abstract class Item extends Entity {
 
 	protected boolean visible = false;
 
+	public ItemView view;
+	
 	public Item(String id) {
 		super(id);
 	}

@@ -1,9 +1,15 @@
 package model.entity;
 
+import view.entity.EntityView;
+
 public abstract class Entity {
 
 	protected int weight;
 	protected String id;
+	public EntityView view;
+	
+	public void Update() { view.Draw();}
+	
 	/**
 	 * Az Entity absztrakt ososztaly konstruktora. A parameterben kapott string lesz az entitas azonositoja.
 	 * @param id Az entitas ezt a stringet kapja azonositokent.

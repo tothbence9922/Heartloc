@@ -1,11 +1,15 @@
 package model.entity.item.optionalitem;
 
+import view.entity.ShovelView;
+
 /**
  * Az egyik opcionális tárgyat, az ásót (Shovel) megvalósító és reprezentáló
  * osztály.
  */
 public class Shovel extends OptionalItem {
 
+	public ShovelView view;
+	
 	public Shovel(String id) {
 		super(id);
 	}

@@ -7,8 +7,12 @@ import model.entity.Entity;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
+import view.GameView;
 
 public class Game {
+	
+	public static GameView view;
+	
 	private static Game single_instance = null;
 
 	private static ArrayList<Tile> tiles = new ArrayList<Tile>();

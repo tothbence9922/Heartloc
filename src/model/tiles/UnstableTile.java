@@ -1,5 +1,7 @@
 package model.tiles;
 
+import view.tiles.UnstableTileView;
+
 /**
  * A játék során ezek a jégtáblák jelentik a legtöbb veszélyt: lyukak is
  * lehetnek rajta, valamint a stabil jégtáblákkal ellentétben, az instabil
@@ -12,7 +14,7 @@ package model.tiles;
  */
 public class UnstableTile extends Tile {
 
-
+	public UnstableTileView view;
 	/**
 	 * Az UnstableTile konstruktora. A Paraméterül kapott érték lesz a maximális
 	 * érték, amit túllépve az UnstableTile átfordul.

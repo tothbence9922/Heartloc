@@ -1,4 +1,4 @@
-package model.temp;
+package model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import controller.GameRunner;
 import model.org.json.simple.JSONArray;
 import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
 import model.org.json.simple.parser.ParseException;
-
+import model.temp.Game;
+import model.temp.PolarBear;
+import model.temp.TentItem;
 import model.entity.Entity;
 import model.entity.Igloo;
 import model.entity.Tent;
@@ -28,12 +31,17 @@ import model.entity.player.Player;
 import model.tiles.StableTile;
 import model.tiles.Tile;
 import model.tiles.UnstableTile;
+import view.GameView;
+import view.tiles.StableTileView;
+import view.tiles.TileView;
 
 public class MapLoader {
 
+	private static int HEIGHT = 768;
+	private static int WIDTH = 1366;
+
 	public static HashMap<String, String> startTileMap = new HashMap<String, String>();
 
-	
 	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
 		try {
 			Game.getInstance().ClearMap();
@@ -51,6 +59,32 @@ public class MapLoader {
 				tiles.add(tilesRead.get(i));
 				tileInfos.add(tileInfo);
 			}
+			for(int i  = 0; i < tiles.size(); i++) {
+				tiles.get(i).view = new StableTileView(GameRunner.baseGameController);
+				GameView.getInstance(GameRunner.baseGameController).setLayout(null);;
+				GameView.getInstance(GameRunner.baseGameController).add(tiles.get(i).view);
+			}
+			
+			int n = 1;
+			while(n*n < tiles.size()) n++;
+			
+			int curTile= 0;
+			
+			int stepX = Math.round(WIDTH/n);
+			int stepY = Math.round(HEIGHT/n);
+			System.out.println(n);
+			int i = 0;
+			int j = 0;
+			
+			while (curTile < tiles.size()) {
+				tiles.get(curTile++).view.setPos(125 + stepX * j++, stepY * i);
+				if (j % n == 0) {
+					j = 0;
+					i++;
+				}
+				if (i % n == 0) i = 0;
+			}
+			
 			
 			ArrayList<Player> players = new ArrayList<Player>();
 
@@ -91,7 +125,7 @@ public class MapLoader {
 						
 						for(Tile t : tiles) {
 							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) pb.setCurrentTile(t);
-						}	
+						}
 						
 						tiles.get(tileIter).addPolarBear(pb);
 						tiles.get(tileIter).receive(pb);
@@ -100,10 +134,10 @@ public class MapLoader {
 						tiles.get(tileIter).setHasTent(true);
 						//tiles.get(tileIter).receive(t);
 					} else if (entityArray.get(entityIter).contains("Igl")) {
-						Igloo i = new Igloo(entityArray.get(entityIter));
-						//tiles.get(tileIter).addBuilding(i);
+						Igloo ig = new Igloo(entityArray.get(entityIter));
+						//tiles.get(tileIter).addBuilding(ig);
 						tiles.get(tileIter).setHasTent(true);
-						//tiles.get(tileIter).receive(i);
+						//tiles.get(tileIter).receive(ig);
 					}
 				}
 				for (int itemIter = 0; itemIter < itemArray.size(); itemIter++) {// 2. -> itemek
@@ -136,9 +170,12 @@ public class MapLoader {
 			Game.setTiles(tiles);
 			Game.setPlayers(players);
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		}catch(
+
+	ParseException e)
+	{
+		e.printStackTrace();
+	}
 	}
 
 	public ArrayList<String> readEntities(JSONArray array) {
@@ -200,8 +237,8 @@ public class MapLoader {
 		ArrayList<String> neighbourNames = readNeighbours(neighbourArray);
 		ArrayList<String> entityNames = readNeighbours(entityArray);
 		ArrayList<String> itemNames = readItems(itemArray);
-		
-		for(String name : entityNames) {
+
+		for (String name : entityNames) {
 			startTileMap.put(name, id);
 		}
 
@@ -209,9 +246,9 @@ public class MapLoader {
 		tileInfo.add(neighbourNames);
 		tileInfo.add(entityNames);
 		tileInfo.add(itemNames);
-		
+
 		tileArr.add(tile);
-		
+
 		return tileInfo;
 	}
 

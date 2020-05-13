@@ -2,6 +2,7 @@ package model.entity.player;
 
 import model.temp.Game;
 import model.tiles.Tile;
+import view.entity.ExplorerView;
 
 /**
  * A jatekban szereplo egyik entitas. Kezdeskent 4 egysegnyi testhoje van,
@@ -11,6 +12,8 @@ import model.tiles.Tile;
  */
 public class Explorer extends Player {
 
+	public ExplorerView view;
+	
 	public Explorer(String id) {
 		super(id);
 		this.bodyTemperature = 4;

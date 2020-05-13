@@ -1,23 +1,23 @@
 package controller;
 
-import model.GameFactory;
+import model.Commands;
+import model.Game;
 import model.org.json.simple.parser.ParseException;
-import model.temp.Commands;
-import view.GameFrame;
+import view.ApplicationFrame;
 
 /**
  * Handle communication between model and view
  *
  */
 public class GameController {
-	private GameFrame gameFrame;
-	private GameFactory gameFactory;
+	private ApplicationFrame applicationFrame;
+	private Game game;
 	
-	public GameFactory getGameFactory() {
-		return gameFactory;
+	public Game getGame() {
+		return game;
 	}
 	
-	public void setGameFactory(String[] tokens) {
+	public void setGame(String[] tokens) {
 		try {
 			Commands.loadMap(tokens);
 		} catch (ParseException e) {
@@ -25,15 +25,15 @@ public class GameController {
 		}
 	}
 	
-	public GameFrame getGameFrame() {
-		return gameFrame;
+	public ApplicationFrame getGameFrame() {
+		return applicationFrame;
 	}
 	
 	public GameController() {
-		gameFactory = new GameFactory();
+		game = Game.getInstance(this);
 	}
 	
 	public void start() {
-		gameFrame = new GameFrame(this);
+		applicationFrame = new ApplicationFrame(this);
 	}
 }

@@ -1,7 +1,11 @@
 package model.entity;
 
+import view.entity.HoleView;
+
 public class Hole extends Entity {
 
+	private HoleView view;
+	
 	public Hole(String id) {
 		super(id);
 	}
@@ -13,5 +17,4 @@ public class Hole extends Entity {
 	public int step() {
 		return -1;
 	}
-
 }

@@ -10,16 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import controller.GameController;
-import view.GamePanel;
+import view.MenuView;
+import view.View;
+import view.tiles.TileView;
 
-public class EntityView extends JLabel {
-	private static final long serialVersionUID = -5093410645830931185L;
-	private GameController baseGameController;
+public class EntityView extends View {
+
+	private static final long serialVersionUID = -1649204326123260256L;
 	
-	EntityView(GameController baseGameController) throws IOException {
-		URL entityImage = EntityView.class.getResource("images/iceWaterDeep.png");
-		BufferedImage myPicture = ImageIO.read(new File(entityImage.toString()));
-		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		add(picLabel);
+	public EntityView(GameController baseGameController) throws IOException {
+		super(baseGameController);
 	}
+	
 }

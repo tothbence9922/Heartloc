@@ -1,6 +1,10 @@
 package model.entity.item.targetitem;
 
+import view.entity.GunView;
+
 public class Gun extends TargetItem {
+	
+	public GunView view;
 	
 	// static variable single_instance of type Singleton 
     private static Gun single_instance = null; 

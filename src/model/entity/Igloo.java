@@ -1,9 +1,12 @@
 package model.entity;
 
+import view.entity.IglooView;
+
 public class Igloo extends Building {
 	
 	public static int numOfIgloos = 0;
-
+	public IglooView view;
+	
 	public Igloo(String id) {
 		super(id);
 	}

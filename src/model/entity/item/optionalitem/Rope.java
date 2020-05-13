@@ -1,12 +1,15 @@
 package model.entity.item.optionalitem;
 
 import model.entity.player.Player;
+import view.entity.RopeView;
 
 /**
  * Az egyik opcionális tárgyat, a kötelet (Rope) megvalósító és reprezentáló
  * osztály. Segítségével a játékosok megmenthetik bajbajuttott társaikat.
  */
 public class Rope extends OptionalItem {
+	
+	public RopeView view;
 	
 	public Rope(String id) {
 		super(id);

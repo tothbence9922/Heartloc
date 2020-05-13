@@ -1,7 +1,11 @@
 package model.entity.item.optionalitem;
 
+import view.entity.FragileShovelView;
+
 public class FragileShovel extends OptionalItem {
 
+	public FragileShovelView view;
+	
 	private int numOfUses = 3;
 
 	public FragileShovel(String id) {

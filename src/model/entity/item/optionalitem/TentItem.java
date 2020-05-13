@@ -1,7 +1,11 @@
 package model.entity.item.optionalitem;
 
+import view.entity.TentView;
+
 public class TentItem extends OptionalItem {
 
+	public TentView view;
+	
 	public TentItem(String id) {
 		super(id);
 	}
