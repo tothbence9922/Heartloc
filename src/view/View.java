@@ -17,7 +17,7 @@ public class View extends JButton{
 	protected int x, y, w, h;
 	
 	public void setPos(int x,int y) {
-		super.setBounds(x, y, w, h);
+		super.setBounds(x, y,w, h);
 	}
 	
 	public View(GameController baseGameController) throws IOException {

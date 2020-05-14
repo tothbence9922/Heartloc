@@ -17,6 +17,7 @@ import model.temp.TentItem;
 import model.entity.Entity;
 import model.entity.Igloo;
 import model.entity.Tent;
+import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
 import model.entity.item.optionalitem.Rope;
@@ -32,6 +33,9 @@ import model.tiles.StableTile;
 import model.tiles.Tile;
 import model.tiles.UnstableTile;
 import view.GameView;
+import view.entity.EskimoView;
+import view.entity.ExplorerView;
+import view.entity.PolarBearView;
 import view.tiles.StableTileView;
 import view.tiles.TileView;
 
@@ -45,6 +49,7 @@ public class MapLoader {
 	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
 		try {
 			Game.getInstance().ClearMap();
+
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
@@ -53,7 +58,7 @@ public class MapLoader {
 			ArrayList<Tile> tiles = new ArrayList<Tile>();
 			ArrayList<Tile> tilesRead = new ArrayList<Tile>();
 			ArrayList<ArrayList<ArrayList<String>>> tileInfos = new ArrayList<ArrayList<ArrayList<String>>>();
-			
+						
 			for (int i = 0; i < arrays.size(); i++) {				
 				ArrayList<ArrayList<String>> tileInfo = readTile(tilesRead, (JSONObject) arrays.get(i));
 				tiles.add(tilesRead.get(i));
@@ -62,12 +67,11 @@ public class MapLoader {
 			for(int i  = 0; i < tiles.size(); i++) {
 				tiles.get(i).view = new StableTileView(GameRunner.baseGameController);
 				GameView.getInstance(GameRunner.baseGameController).setLayout(null);;
-				GameView.getInstance(GameRunner.baseGameController).add(tiles.get(i).view);
 			}
 			
 			int n = 1;
 			while(n*n < tiles.size()) n++;
-			
+						
 			int curTile= 0;
 			
 			int stepX = Math.round(WIDTH/n);
@@ -77,14 +81,13 @@ public class MapLoader {
 			int j = 0;
 			
 			while (curTile < tiles.size()) {
-				tiles.get(curTile++).view.setPos(125 + stepX * j++, stepY * i);
+				tiles.get(curTile++).view.setPos(125 + stepX * j++, stepY * i);// TODO szepiteni a tileok elhelyezkedeset
 				if (j % n == 0) {
 					j = 0;
 					i++;
 				}
 				if (i % n == 0) i = 0;
 			}
-			
 			
 			ArrayList<Player> players = new ArrayList<Player>();
 
@@ -164,7 +167,24 @@ public class MapLoader {
 			}
 
 			// TODO
-			// for (tile : tiles) {for (tile : tiles){hozzáadjuk id szerint a hashmapbe}...}
+			// Player(esk, exp), PB, Itemek, minden view-jat letrehozni tileokra illeszkedve
+			for(Tile t : tiles){
+				for(Player p : t.getPlayers()) {
+					p.view = new EskimoView(GameRunner.baseGameController);
+					p.view.setLayout(null);
+					p.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
+					GameView.getInstance(GameRunner.baseGameController).add(p.view);
+					}
+				for(PolarBear pb : t.getBears()) {
+					pb.view = new PolarBearView(GameRunner.baseGameController);
+					pb.view.setLayout(null);
+					pb.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
+					GameView.getInstance(GameRunner.baseGameController).add(pb.view);
+					}
+				// TODO hogolyok hozzadasa ertektol fuggoen
+				GameView.getInstance(GameRunner.baseGameController).add(t.view);
+
+			}
 			
 			Game.getInstance();
 			Game.setTiles(tiles);

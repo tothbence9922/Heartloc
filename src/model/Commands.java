@@ -60,7 +60,7 @@ public class Commands {
 
 					// relative to root: ./folderName
 					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json");
-
+										
 					System.out.println((Game.getInstance()).toString());
 				} else {
 					System.out.println("That map does not exist - try another one!");

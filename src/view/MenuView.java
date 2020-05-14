@@ -97,18 +97,7 @@ public class MenuView extends JPanel {
 	private void buildListeners() {
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				/*
-				 * Create game here
-				 * sample code: 
-				 * 
-				 * Widget temp = new Widget();
-				 * baseGameController.getGameFactory.getWidgetList().add(temp);
-				 */
-				String[] tokens = {"loadMap", "map1"};
-				baseGameController.setGame(tokens);
-				
-				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
-				
+								
 				baseGameController.getGameFrame().changePanel(new MapSelectionView(baseGameController));
 			}
 		});
