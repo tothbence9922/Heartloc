@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
@@ -12,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,6 +39,10 @@ public class GameView extends JPanel {
 	
 	private static final long serialVersionUID = -3883592817908195829L;
 	private GameController baseGameController;
+	
+	private JPanel gamePanel;
+	private JPanel buttonsPanel;
+	
 	private JLabel labelGame;
 	
 	private JButton btnRope;
@@ -62,9 +69,19 @@ public class GameView extends JPanel {
 	}
 	
 	private GameView(GameController baseGameController) throws IOException {
-		this.baseGameController = baseGameController;
+		this.baseGameController = baseGameController;		
+
+		setLayout(new BorderLayout());
+		
+		gamePanel = new JPanel(new GridBagLayout());
+		buttonsPanel = new JPanel(new GridBagLayout());
+		
+		add(gamePanel, BorderLayout.CENTER);
+		add(buttonsPanel, BorderLayout.SOUTH);
 		
 		baseLayout = new GridBagLayout();
+		gamePanel.setOpaque(false);
+		
 		/*
 		btnRope = new JButton("R");
 		btnShovel  = new JButton("S");
@@ -132,8 +149,6 @@ public class GameView extends JPanel {
 		btnSpecial.setBackground(btnBackgroundColour);
 		btnSpecial.setFocusPainted(false);
 		
-
-		
 		buildPanel();
 		buildListeners();
 	}
@@ -152,34 +167,32 @@ public class GameView extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weighty = 1;
         
-        JPanel buttons = new JPanel(new GridBagLayout());
-        
-        buttons.setOpaque(false);
+        buttonsPanel.setOpaque(false);
 		
         
-        buttons.add(btnRope);
-        buttons.add(btnShovel);
-        buttons.add(btnFood);
-        buttons.add(btnCartridge);
+        buttonsPanel.add(btnRope);
+        buttonsPanel.add(btnShovel);
+        buttonsPanel.add(btnFood);
+        buttonsPanel.add(btnCartridge);
         
-        buttons.add(btnGun);
+        buttonsPanel.add(btnGun);
         //buttons.add(btnBeacon);
         
-        buttons.add(btnSpecial);
-        
-        buttons.add(new EskimoView(baseGameController));
-        buttons.add(new ExplorerView(baseGameController));
-        buttons.add(new PolarBearView(baseGameController));
-        buttons.add(new BeaconView(baseGameController));
-        buttons.add(new GunView(baseGameController));
-        buttons.add(new RocketView(baseGameController));
-        buttons.add(new TentView(baseGameController));
-        buttons.add(new ShovelView(baseGameController));
-        buttons.add(new RopeView(baseGameController));        
-             
+        buttonsPanel.add(btnSpecial);
+        /*
+        buttonsPanel.add(new EskimoView(baseGameController));
+        buttonsPanel.add(new ExplorerView(baseGameController));
+        buttonsPanel.add(new PolarBearView(baseGameController));
+        buttonsPanel.add(new BeaconView(baseGameController));
+        buttonsPanel.add(new GunView(baseGameController));
+        buttonsPanel.add(new RocketView(baseGameController));
+        buttonsPanel.add(new TentView(baseGameController));
+        buttonsPanel.add(new ShovelView(baseGameController));
+        buttonsPanel.add(new RopeView(baseGameController));        
+          */   
        
-		this.setLayout(baseLayout);
-		this.add(buttons, gbc);
+		//this.setLayout(baseLayout);
+		//this.add(buttonsPanel, gbc);
 	}
 	
 	private void buildGame() throws IOException {
@@ -190,9 +203,45 @@ public class GameView extends JPanel {
 	 * Add listener to the button, notifies controller
 	 */
 	private void buildListeners() {
-
+		btnRope.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
+		btnShovel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
+		btnFood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
+		btnCartridge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
+		btnGun.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
+		btnSpecial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+			}
+		});
 	} 
 	
+	public JPanel getGamePanel() {
+		return gamePanel;
+	}
+
+	public void setGamePanel(JPanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}	
 	
 	@Override
 	  protected void paintComponent(Graphics g) {  

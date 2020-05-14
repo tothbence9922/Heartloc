@@ -14,10 +14,8 @@ import model.org.json.simple.parser.ParseException;
 import model.temp.Game;
 import model.temp.PolarBear;
 import model.temp.TentItem;
-import model.entity.Entity;
 import model.entity.Igloo;
 import model.entity.Tent;
-import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
 import model.entity.item.optionalitem.Rope;
@@ -34,10 +32,8 @@ import model.tiles.Tile;
 import model.tiles.UnstableTile;
 import view.GameView;
 import view.entity.EskimoView;
-import view.entity.ExplorerView;
 import view.entity.PolarBearView;
 import view.tiles.StableTileView;
-import view.tiles.TileView;
 
 public class MapLoader {
 
@@ -64,9 +60,11 @@ public class MapLoader {
 				tiles.add(tilesRead.get(i));
 				tileInfos.add(tileInfo);
 			}
+			
+			GameView.getInstance(GameRunner.baseGameController).getGamePanel().setLayout(null);;
+			
 			for(int i  = 0; i < tiles.size(); i++) {
 				tiles.get(i).view = new StableTileView(GameRunner.baseGameController);
-				GameView.getInstance(GameRunner.baseGameController).setLayout(null);;
 			}
 			
 			int n = 1;
@@ -74,14 +72,14 @@ public class MapLoader {
 						
 			int curTile= 0;
 			
-			int stepX = Math.round(WIDTH/n);
-			int stepY = Math.round(HEIGHT/n);
+			int stepX = Math.round(WIDTH / n);
+			int stepY = Math.round((HEIGHT*4) / (n*5));
 			System.out.println(n);
 			int i = 0;
 			int j = 0;
 			
 			while (curTile < tiles.size()) {
-				tiles.get(curTile++).view.setPos(125 + stepX * j++, stepY * i);// TODO szepiteni a tileok elhelyezkedeset
+				tiles.get(curTile++).view.setPos(125 + stepX * j++, 20 + stepY * i);// TODO szepiteni a tileok elhelyezkedeset
 				if (j % n == 0) {
 					j = 0;
 					i++;
@@ -168,34 +166,33 @@ public class MapLoader {
 
 			// TODO
 			// Player(esk, exp), PB, Itemek, minden view-jat letrehozni tileokra illeszkedve
-			for(Tile t : tiles){
+			for(Tile t : tiles) {
 				for(Player p : t.getPlayers()) {
 					p.view = new EskimoView(GameRunner.baseGameController);
 					p.view.setLayout(null);
 					p.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
-					GameView.getInstance(GameRunner.baseGameController).add(p.view);
-					}
+					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(p.view);
+				}
 				for(PolarBear pb : t.getBears()) {
 					pb.view = new PolarBearView(GameRunner.baseGameController);
 					pb.view.setLayout(null);
 					pb.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
-					GameView.getInstance(GameRunner.baseGameController).add(pb.view);
-					}
+					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(pb.view);
+				}
 				// TODO hogolyok hozzadasa ertektol fuggoen
-				GameView.getInstance(GameRunner.baseGameController).add(t.view);
-
+				GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.view);
 			}
 			
+			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
+
 			Game.getInstance();
 			Game.setTiles(tiles);
 			Game.setPlayers(players);
 
-		}catch(
-
-	ParseException e)
-	{
-		e.printStackTrace();
-	}
+		}catch(ParseException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<String> readEntities(JSONArray array) {
