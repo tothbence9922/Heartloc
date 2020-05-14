@@ -1,5 +1,8 @@
 package model.entity.player;
 
+import java.io.IOException;
+
+import controller.GameRunner;
 import model.temp.Game;
 import model.tiles.Tile;
 import view.entity.ExplorerView;
@@ -11,13 +14,17 @@ import view.entity.ExplorerView;
  * kepesseg, ugyanis az instabil jegtablak nagy veszelyt jelentenek.
  */
 public class Explorer extends Player {
-
-	public ExplorerView view;
 	
 	public Explorer(String id) {
 		super(id);
 		this.bodyTemperature = 4;
 		this.energy = 4;
+		try {
+			view = new ExplorerView(GameRunner.baseGameController);
+			view.setLayout(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -1,10 +1,8 @@
 package model.entity;
 
-import view.entity.SnowView;
 
 public class Snow extends Entity {
 
-	public SnowView view;
 	
 	public Snow(String id) {
 		super(id);

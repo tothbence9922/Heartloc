@@ -1,7 +1,6 @@
 package model.entity.item.optionalitem;
 
 import model.entity.player.Player;
-import view.entity.RopeView;
 
 /**
  * Az egyik opcionális tárgyat, a kötelet (Rope) megvalósító és reprezentáló
@@ -9,7 +8,6 @@ import view.entity.RopeView;
  */
 public class Rope extends OptionalItem {
 	
-	public RopeView view;
 	
 	public Rope(String id) {
 		super(id);

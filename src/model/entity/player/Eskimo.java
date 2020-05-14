@@ -1,5 +1,8 @@
 package model.entity.player;
 
+import java.io.IOException;
+
+import controller.GameRunner;
 import model.entity.Igloo;
 import model.tiles.Tile;
 import view.entity.EskimoView;
@@ -10,13 +13,14 @@ import view.entity.EskimoView;
  * hovihar nem tesz kart bennuk.
  */
 public class Eskimo extends Player {
-
-	public EskimoView view;
 	
 	public Eskimo(String id) {
 		super(id);
 		this.bodyTemperature = 5;
 		this.energy = 4;
+		view = new EskimoView(GameRunner.baseGameController);
+		view.setLayout(null);
+
 	}
 
 	/**

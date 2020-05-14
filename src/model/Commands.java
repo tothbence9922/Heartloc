@@ -48,7 +48,7 @@ public class Commands {
 	 * HANDLERS
 	 * 
 	 */
-	public static void loadMap(String[] cmd) throws ParseException {
+	public static void loadMap(String[] cmd, int eskNum, int expNum) throws ParseException {
 		String[] maps = { "map1", "map2", "map3", "map4", "map5", "map6", "map7", "map8", "map9", "map10", "map11",
 				"map12" };
 
@@ -59,7 +59,7 @@ public class Commands {
 					currentMap = cmd[1];
 
 					// relative to root: ./folderName
-					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json");
+					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json", eskNum, expNum);
 										
 					System.out.println((Game.getInstance()).toString());
 				} else {
@@ -70,7 +70,7 @@ public class Commands {
 			}
 		} else {
 			try {
-				MapLoader.readMapFromJSON("./assets/maps/temp.json");
+				MapLoader.readMapFromJSON("./assets/maps/temp.json", eskNum, expNum);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

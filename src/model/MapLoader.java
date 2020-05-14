@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import controller.GameRunner;
 import model.org.json.simple.JSONArray;
@@ -31,7 +32,9 @@ import model.tiles.StableTile;
 import model.tiles.Tile;
 import model.tiles.UnstableTile;
 import view.GameView;
+import view.entity.EntityView;
 import view.entity.EskimoView;
+import view.entity.ExplorerView;
 import view.entity.PolarBearView;
 import view.tiles.StableTileView;
 
@@ -42,10 +45,11 @@ public class MapLoader {
 
 	public static HashMap<String, String> startTileMap = new HashMap<String, String>();
 
-	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
+	public static void readMapFromJSON(String path, int eskNum, int expNum) throws FileNotFoundException, IOException {
 		try {
+			//TODO Itt fogok valtoztatni
 			Game.getInstance().ClearMap();
-
+				
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
@@ -74,7 +78,6 @@ public class MapLoader {
 			
 			int stepX = Math.round(WIDTH / n);
 			int stepY = Math.round((HEIGHT*4) / (n*5));
-			System.out.println(n);
 			int i = 0;
 			int j = 0;
 			
@@ -87,7 +90,6 @@ public class MapLoader {
 				if (i % n == 0) i = 0;
 			}
 			
-			ArrayList<Player> players = new ArrayList<Player>();
 
 			for (int tileIter = 0; tileIter < tiles.size(); tileIter++) {
 				ArrayList<String> neighArray = tileInfos.get(tileIter).get(0);
@@ -108,9 +110,9 @@ public class MapLoader {
 						for(Tile t : tiles) {
 							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
 						}						
-						tiles.get(tileIter).receive(e);
-						tiles.get(tileIter).getPlayers().add(e);
-						players.add(e);
+						//tiles.get(tileIter).receive(e);
+						//tiles.get(tileIter).getPlayers().add(e);
+						//players.add(e);
 					} else if (entityArray.get(entityIter).contains("Exp")) {
 						Explorer e = new Explorer(entityArray.get(entityIter));
 						
@@ -118,9 +120,9 @@ public class MapLoader {
 							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
 						}	
 						
-						tiles.get(tileIter).receive(e);
-						tiles.get(tileIter).getPlayers().add(e);
-						players.add(e);
+						//tiles.get(tileIter).receive(e);
+						//tiles.get(tileIter).getPlayers().add(e);
+						//players.add(e);
 					} else if (entityArray.get(entityIter).contains("Pol")) {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
 						
@@ -163,15 +165,40 @@ public class MapLoader {
 					}
 				}
 			}
+			ArrayList<Player> players = new ArrayList<Player>();
+
+			//Creation of players
+			for (int esk = 0; esk < eskNum; esk++) {
+				String id = "Esk" + String.valueOf(esk+1);
+				System.out.println(id);
+				Eskimo newEs = new Eskimo(id);
+				players.add(newEs);
+			}
+			for (int exp = 0; exp < expNum; exp++) {
+				String id = "Exp" + String.valueOf(exp+1);
+				System.out.println(id);
+
+				Explorer newEx = new Explorer(id);
+				players.add(newEx);
+			}
+			
 
 			// TODO
 			// Player(esk, exp), PB, Itemek, minden view-jat letrehozni tileokra illeszkedve
+			Random r = new Random();
+			int curPlayer = 0;
 			for(Tile t : tiles) {
-				for(Player p : t.getPlayers()) {
-					p.view = new EskimoView(GameRunner.baseGameController);
-					p.view.setLayout(null);
-					p.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
-					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(p.view);
+				
+				if ( curPlayer < players.size()) {
+					t.addPlayer(players.get(curPlayer));
+					t.receive(players.get(curPlayer));
+					curPlayer++;
+					}
+				
+				for(int p = 0; p < t.getPlayers().size(); p++) {
+					//t.getPlayers().get(p).view = new EskimoView(GameRunner.baseGameController);
+					t.getPlayers().get(p).view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
+					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.getPlayers().get(p).view);
 				}
 				for(PolarBear pb : t.getBears()) {
 					pb.view = new PolarBearView(GameRunner.baseGameController);
@@ -184,10 +211,10 @@ public class MapLoader {
 			}
 			
 			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
-
 			Game.getInstance();
 			Game.setTiles(tiles);
 			Game.setPlayers(players);
+			System.out.println((Game.getInstance()).toString());
 
 		}catch(ParseException e)
 		{

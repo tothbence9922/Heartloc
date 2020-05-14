@@ -1,9 +1,9 @@
 package model.entity;
 
-import view.entity.BuildingView;
+import view.entity.EntityView;
 
 public class Building extends Entity {
-	public BuildingView view;
+	public EntityView view;
 	/**
 	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem jatekost reprezental.
 	 */

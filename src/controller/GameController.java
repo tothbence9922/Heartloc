@@ -17,9 +17,9 @@ public class GameController {
 		return game;
 	}
 	
-	public void setGame(String[] tokens) {
+	public void setGame(String[] tokens, int eskNum, int expNum) {
 		try {
-			Commands.loadMap(tokens);
+			Commands.loadMap(tokens, eskNum, expNum);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

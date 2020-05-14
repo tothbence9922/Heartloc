@@ -6,10 +6,8 @@ import model.entity.Entity;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.temp.Drawable;
-import model.temp.Game;
 import model.tiles.StableTile;
 import model.tiles.Tile;
-import view.entity.PlayerView;
 
 /**
  * Absztrakt ososztaly a jatekban szereplo karaktereknek. Deklaralja az alapveto
@@ -17,9 +15,7 @@ import view.entity.PlayerView;
  * leszarmazottakban kerulnek kifejtesre
  */
 public abstract class Player extends Entity implements Drawable {
-	
-	public PlayerView view;
-	
+		
 	protected int energy = 4;
 	protected int bodyTemperature = 4;
 
