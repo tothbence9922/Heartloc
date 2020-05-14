@@ -27,6 +27,7 @@ public class ApplicationFrame extends JFrame {
 	private void buildFrame() {
 		this.setContentPane(baseGamePanel);
 		this.setSize(1366, 768);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

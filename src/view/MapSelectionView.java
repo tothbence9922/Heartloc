@@ -117,10 +117,21 @@ public class MapSelectionView extends JPanel {
 				baseGameController.setGame(tokens);
 				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
 				
-				baseGameController.getGameFrame().changePanel( GameView.getInstance(baseGameController));
+				baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
 			}
 		});
 		
+		mapTextField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selectedMap = mapTextField.getText();
+				String[] tokens = {"loadMap", selectedMap};
+				baseGameController.setGame(tokens);
+				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+				
+				baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
+		    }
+		});
+
 		/* add hover effect */
 		btnStartGame.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
