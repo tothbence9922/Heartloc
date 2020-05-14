@@ -1,0 +1,185 @@
+{
+	"tiles": [
+		{
+			"id": "t1",
+			"snow": 5,
+			"capacity": 2,
+			"hole": 0,
+			"neighbours": [
+				"t6",
+				"t5"
+			],
+			"entities": [
+			],
+			"items": [
+				"iTen2",
+				"Foo1"
+			]
+		},
+		
+		{
+			"id": "t2",
+			"snow": 2,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t6",
+				"t3"
+			],
+			"entities": [
+			],
+			"items": [
+				"Wet2",
+				"Car1"
+			]
+		},
+		
+		{
+			"id": "t3",
+			"snow": 0,
+			"capacity": 1,
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t4",
+				"t6",
+				"t8"
+			],
+			"entities": [
+				"Esk2"
+			],
+			"items": [
+				"Foo3"
+			]
+		},
+		
+		{
+			"id": "t4",
+			"snow": 2,
+			"capacity": 2,
+			"hole": 0,
+			"neighbours": [
+				"t3",
+				"t8"
+			],
+			"entities": [
+			],
+			"items": [
+				"Foo4",
+				"Gun1"
+			]
+		},
+		
+		{
+			"id": "t5",
+			"snow": 1,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t6",
+				"t9"
+			],
+			"entities": [
+				"Esk1"
+			],
+			"items": [
+				"Rop2",
+				"Sho1"
+			]
+		},
+		
+		{
+			"id": "t6",
+			"snow": 3,
+			"capacity": 2,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t2",
+				"t3",
+				"t5",
+				"t7"
+			],
+			"entities": [
+			],
+			"items": [
+				"Fra1",
+				"Foo2"
+			]
+		},
+		
+		{
+			"id": "t7",
+			"snow": 4,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t6",
+				"t8",
+				"t9",
+				"t10"
+			],
+			"entities": [
+			],
+			"items": [
+				"Fra2",
+				"Rop1"
+			]
+		},
+		
+		{
+			"id": "t8",
+			"snow": 5,
+			"capacity": -1,
+			"hole": 1,
+			"neighbours": [
+				"t3",
+				"t4",
+				"t7",
+				"t10"
+			],
+			"entities": [
+				"Pol1"
+			],
+			"items": [
+			]
+		},
+		
+		{
+			"id": "t9",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t5",
+				"t7",
+				"t10"
+			],
+			"entities": [
+			],
+			"items": [
+				"Bea1",
+				"iTen1"
+			]
+		},
+		
+		{
+			"id": "t10",
+			"snow": 0,
+			"capacity": 2,
+			"hole": 0,
+			"neighbours": [
+				"t9",
+				"t7",
+				"t8"
+			],
+			"entities": [
+				"Exp1"
+			],
+			"items": [
+				"Wet1"
+			]
+		}
+	]
+}

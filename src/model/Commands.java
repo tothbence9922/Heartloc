@@ -50,7 +50,7 @@ public class Commands {
 	 */
 	public static void loadMap(String[] cmd, int eskNum, int expNum) throws ParseException {
 		String[] maps = { "map1", "map2", "map3", "map4", "map5", "map6", "map7", "map8", "map9", "map10", "map11",
-				"map12" };
+				"map12", "map13", "map14", "map15", "map16", "map17" };
 
 		if (cmd.length > 1) {
 			try {
