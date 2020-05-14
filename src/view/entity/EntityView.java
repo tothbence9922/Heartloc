@@ -20,6 +20,8 @@ public class EntityView extends View {
 	
 	public EntityView(GameController baseGameController) throws IOException {
 		super(baseGameController);
+		this.w = 64;
+		this.h = 64;
 	}
 	
 }

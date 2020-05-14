@@ -152,12 +152,6 @@ public class GameView extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weighty = 1;
         
-        // Add different constraints for Tiles
-        JPanel tiles = new JPanel(new GridBagLayout());
-        tiles.add(new TileView(baseGameController), gbc);
-        tiles.add(new TileView(baseGameController), gbc);
-        tiles.setOpaque(false);
-        
         JPanel buttons = new JPanel(new GridBagLayout());
         
         buttons.setOpaque(false);
@@ -185,7 +179,6 @@ public class GameView extends JPanel {
              
        
 		this.setLayout(baseLayout);
-		this.add(tiles, gbc);
 		this.add(buttons, gbc);
 	}
 	
