@@ -8,7 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -110,9 +112,9 @@ public class MapSelectionView extends JPanel {
 				 * Widget temp = new Widget();
 				 * baseGameController.getGameFactory.getWidgetList().add(temp);
 				 */
-				String[] tokens = {"loadMap", "map1"};
+				String selectedMap = mapTextField.getText();
+				String[] tokens = {"loadMap", selectedMap};
 				baseGameController.setGame(tokens);
-				
 				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
 				
 				baseGameController.getGameFrame().changePanel( GameView.getInstance(baseGameController));
