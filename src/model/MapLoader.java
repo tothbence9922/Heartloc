@@ -45,6 +45,7 @@ public class MapLoader {
 	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
 		try {
 			Game.getInstance().ClearMap();
+
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
@@ -67,7 +68,7 @@ public class MapLoader {
 			
 			int n = 1;
 			while(n*n < tiles.size()) n++;
-			
+						
 			int curTile= 0;
 			
 			int stepX = Math.round(WIDTH/n);
