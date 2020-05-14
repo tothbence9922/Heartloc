@@ -1,5 +1,6 @@
 package model.entity.item;
 
+import controller.GameRunner;
 import model.entity.Entity;
 import model.entity.player.Player;
 import view.entity.ItemView;
@@ -10,6 +11,7 @@ public abstract class Item extends Entity {
 	
 	public Item(String id) {
 		super(id);
+		view = new ItemView(GameRunner.baseGameController);
 	}
 
 	public void setVisible(boolean b) {

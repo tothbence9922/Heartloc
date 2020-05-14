@@ -1,5 +1,7 @@
 package model.entity;
 
+import controller.GameRunner;
+import view.entity.IglooView;
 
 public class Igloo extends Building {
 	
@@ -7,6 +9,8 @@ public class Igloo extends Building {
 	
 	public Igloo(String id) {
 		super(id);
+		view = new IglooView(GameRunner.baseGameController);
+
 	}
 	
 	/**

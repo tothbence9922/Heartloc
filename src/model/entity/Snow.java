@@ -1,11 +1,14 @@
 package model.entity;
 
+import controller.GameRunner;
+import view.entity.SnowView;
 
 public class Snow extends Entity {
 
 	
 	public Snow(String id) {
 		super(id);
+		view = new SnowView(GameRunner.baseGameController);
 	}
 
 	/**

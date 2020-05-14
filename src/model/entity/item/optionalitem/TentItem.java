@@ -1,10 +1,14 @@
 package model.entity.item.optionalitem;
 
+import controller.GameRunner;
+import view.entity.TentView;
 
 public class TentItem extends OptionalItem {
 	
 	public TentItem(String id) {
 		super(id);
+		view = new TentView(GameRunner.baseGameController);
+		view.getBounds().width = view.getBounds().height = 32;
 	}
 	
 	/**

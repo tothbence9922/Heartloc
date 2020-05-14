@@ -1,7 +1,5 @@
 package model.entity.player;
 
-import java.io.IOException;
-
 import controller.GameRunner;
 import model.entity.Igloo;
 import model.tiles.Tile;

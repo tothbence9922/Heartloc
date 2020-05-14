@@ -47,56 +47,57 @@ public class MapLoader {
 
 	public static void readMapFromJSON(String path, int eskNum, int expNum) throws FileNotFoundException, IOException {
 		try {
-			//TODO Itt fogok valtoztatni
+			// TODO Itt fogok valtoztatni
 			Game.getInstance().ClearMap();
-				
+
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
 
-			
 			ArrayList<Tile> tiles = new ArrayList<Tile>();
 			ArrayList<Tile> tilesRead = new ArrayList<Tile>();
 			ArrayList<ArrayList<ArrayList<String>>> tileInfos = new ArrayList<ArrayList<ArrayList<String>>>();
-						
-			for (int i = 0; i < arrays.size(); i++) {				
+
+			for (int i = 0; i < arrays.size(); i++) {
 				ArrayList<ArrayList<String>> tileInfo = readTile(tilesRead, (JSONObject) arrays.get(i));
 				tiles.add(tilesRead.get(i));
 				tileInfos.add(tileInfo);
 			}
-			
-			GameView.getInstance(GameRunner.baseGameController).getGamePanel().setLayout(null);;
-			
-			for(int i  = 0; i < tiles.size(); i++) {
+
+			GameView.getInstance(GameRunner.baseGameController).getGamePanel().setLayout(null);
+			;
+
+			for (int i = 0; i < tiles.size(); i++) {
 				tiles.get(i).view = new StableTileView(GameRunner.baseGameController);
 			}
-			
+
 			int n = 1;
-			while(n*n < tiles.size()) n++;
-						
-			int curTile= 0;
-			
+			while (n * n < tiles.size())
+				n++;
+
+			int curTile = 0;
+
 			int stepX = Math.round(WIDTH / n);
-			int stepY = Math.round((HEIGHT*4) / (n*5));
+			int stepY = Math.round((HEIGHT * 4) / (n * 5));
 			int i = 0;
 			int j = 0;
-			
+
 			while (curTile < tiles.size()) {
-				tiles.get(curTile++).view.setPos(125 + stepX * j++, 20 + stepY * i);// TODO szepiteni a tileok elhelyezkedeset
+				tiles.get(curTile++).view.setPos(125 + stepX * j++, 20 + stepY * i);// TODO szepiteni a tileok
+																					// elhelyezkedeset
 				if (j % n == 0) {
 					j = 0;
 					i++;
 				}
-				if (i % n == 0) i = 0;
+				if (i % n == 0)
+					i = 0;
 			}
-			
 
 			for (int tileIter = 0; tileIter < tiles.size(); tileIter++) {
 				ArrayList<String> neighArray = tileInfos.get(tileIter).get(0);
 				ArrayList<String> entityArray = tileInfos.get(tileIter).get(1);
 				ArrayList<String> itemArray = tileInfos.get(tileIter).get(2);
 
-			
 				for (int neighIter = 0; neighIter < neighArray.size(); neighIter++) { // 0. -> szomszedok
 					for (int otherTileIter = 0; otherTileIter < tiles.size(); otherTileIter++) {
 						if (neighArray.get(neighIter).contentEquals(tiles.get(otherTileIter).getId())) {
@@ -107,40 +108,43 @@ public class MapLoader {
 				for (int entityIter = 0; entityIter < entityArray.size(); entityIter++) {// 1. -> entity-k
 					if (entityArray.get(entityIter).contains("Esk")) {
 						Eskimo e = new Eskimo(entityArray.get(entityIter));
-						for(Tile t : tiles) {
-							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
-						}						
-						//tiles.get(tileIter).receive(e);
-						//tiles.get(tileIter).getPlayers().add(e);
-						//players.add(e);
+						for (Tile t : tiles) {
+							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
+								e.setCurrentTile(t);
+						}
+						// tiles.get(tileIter).receive(e);
+						// tiles.get(tileIter).getPlayers().add(e);
+						// players.add(e);
 					} else if (entityArray.get(entityIter).contains("Exp")) {
 						Explorer e = new Explorer(entityArray.get(entityIter));
-						
-						for(Tile t : tiles) {
-							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) e.setCurrentTile(t);
-						}	
-						
-						//tiles.get(tileIter).receive(e);
-						//tiles.get(tileIter).getPlayers().add(e);
-						//players.add(e);
+
+						for (Tile t : tiles) {
+							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
+								e.setCurrentTile(t);
+						}
+
+						// tiles.get(tileIter).receive(e);
+						// tiles.get(tileIter).getPlayers().add(e);
+						// players.add(e);
 					} else if (entityArray.get(entityIter).contains("Pol")) {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
-						
-						for(Tile t : tiles) {
-							if(startTileMap.get(entityArray.get(entityIter)) == t.getId()) pb.setCurrentTile(t);
+
+						for (Tile t : tiles) {
+							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
+								pb.setCurrentTile(t);
 						}
-						
+
 						tiles.get(tileIter).addPolarBear(pb);
 						tiles.get(tileIter).receive(pb);
 					} else if (entityArray.get(entityIter).contains("Ten")) {
 						Tent t = new Tent(entityArray.get(entityIter));
 						tiles.get(tileIter).setHasTent(true);
-						//tiles.get(tileIter).receive(t);
+						// tiles.get(tileIter).receive(t);
 					} else if (entityArray.get(entityIter).contains("Igl")) {
 						Igloo ig = new Igloo(entityArray.get(entityIter));
-						//tiles.get(tileIter).addBuilding(ig);
+						// tiles.get(tileIter).addBuilding(ig);
 						tiles.get(tileIter).setHasTent(true);
-						//tiles.get(tileIter).receive(ig);
+						// tiles.get(tileIter).receive(ig);
 					}
 				}
 				for (int itemIter = 0; itemIter < itemArray.size(); itemIter++) {// 2. -> itemek
@@ -167,57 +171,58 @@ public class MapLoader {
 			}
 			ArrayList<Player> players = new ArrayList<Player>();
 
-			//Creation of players
+			// Creation of players
 			for (int esk = 0; esk < eskNum; esk++) {
-				String id = "Esk" + String.valueOf(esk+1);
+				String id = "Esk" + String.valueOf(esk + 1);
 				System.out.println(id);
 				Eskimo newEs = new Eskimo(id);
 				players.add(newEs);
 			}
 			for (int exp = 0; exp < expNum; exp++) {
-				String id = "Exp" + String.valueOf(exp+1);
+				String id = "Exp" + String.valueOf(exp + 1);
 				System.out.println(id);
 
 				Explorer newEx = new Explorer(id);
 				players.add(newEx);
 			}
-			
 
 			// TODO
 			// Player(esk, exp), PB, Itemek, minden view-jat letrehozni tileokra illeszkedve
 			Random r = new Random();
 			int curPlayer = 0;
-			for(Tile t : tiles) {
-				
-				if ( curPlayer < players.size()) {
-					t.addPlayer(players.get(curPlayer));
-					t.receive(players.get(curPlayer));
-					curPlayer++;
+			while (curPlayer < players.size()) {
+				for (Tile t : tiles) {
+
+					if (curPlayer < players.size() && r.nextInt(100)>15) {
+						t.addPlayer(players.get(curPlayer));
+						t.receive(players.get(curPlayer));
+						curPlayer++;
 					}
-				
-				for(int p = 0; p < t.getPlayers().size(); p++) {
-					//t.getPlayers().get(p).view = new EskimoView(GameRunner.baseGameController);
-					t.getPlayers().get(p).view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
-					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.getPlayers().get(p).view);
+
+					for (int p = 0; p < t.getPlayers().size(); p++) {
+						// t.getPlayers().get(p).view = new EskimoView(GameRunner.baseGameController);
+						t.getPlayers().get(p).view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
+						GameView.getInstance(GameRunner.baseGameController).getGamePanel()
+								.add(t.getPlayers().get(p).view);
+					}
+					for (PolarBear pb : t.getBears()) {
+						pb.view = new PolarBearView(GameRunner.baseGameController);
+						pb.view.setLayout(null);
+						pb.view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
+						GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(pb.view);
+					}
+					// TODO hogolyok hozzadasa ertektol fuggoen
+					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.view);
 				}
-				for(PolarBear pb : t.getBears()) {
-					pb.view = new PolarBearView(GameRunner.baseGameController);
-					pb.view.setLayout(null);
-					pb.view.setPos(t.view.getBounds().x+32, t.view.getBounds().y);
-					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(pb.view);
-				}
-				// TODO hogolyok hozzadasa ertektol fuggoen
-				GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.view);
 			}
-			
+
 			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
 			Game.getInstance();
 			Game.setTiles(tiles);
 			Game.setPlayers(players);
 			System.out.println((Game.getInstance()).toString());
 
-		}catch(ParseException e)
-		{
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}

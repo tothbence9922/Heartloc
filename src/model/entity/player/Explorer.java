@@ -19,12 +19,8 @@ public class Explorer extends Player {
 		super(id);
 		this.bodyTemperature = 4;
 		this.energy = 4;
-		try {
-			view = new ExplorerView(GameRunner.baseGameController);
-			view.setLayout(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		view = new ExplorerView(GameRunner.baseGameController);
+		view.setLayout(null);
 	}
 
 	/**

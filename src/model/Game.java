@@ -1,11 +1,9 @@
 package model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.GameController;
 import model.entity.Building;
-import model.entity.Entity;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.temp.PolarBear;
@@ -20,10 +18,9 @@ public class Game {
 	private static ArrayList<Item> items = new ArrayList<Item>();
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
-	
-	// TODO The background(sea) should be painted on the GameView
+
 	private GameView view;
-	
+
 	private Game(GameController baseGameController) {
 		view = GameView.getInstance(baseGameController);
 	}
@@ -99,7 +96,7 @@ public class Game {
 	 * és lezárhatjuk a játékot.
 	 */
 	public static void EndGame() {
-		// TODO : ENDING THE GAME? 
+		// TODO : ENDING THE GAME?
 	}
 
 	public static void generateStorm(String string) {
@@ -108,7 +105,7 @@ public class Game {
 				if (t.getPlayers().size() != 0) {
 					if (!t.hasIgloo()) {
 						if (t.hasTent()) {
-							//t.setHasTent(false);
+							// t.setHasTent(false);
 							break;
 						}
 						for (Player p : t.getPlayers()) {
@@ -126,7 +123,7 @@ public class Game {
 			if (t.getPlayers().size() != 0) {
 				if (!t.hasIgloo()) {
 					if (t.hasTent()) {
-						//t.setHasTent(false);
+						// t.setHasTent(false);
 						break;
 					}
 					for (Player p : t.getPlayers()) {
@@ -134,13 +131,13 @@ public class Game {
 					}
 				}
 			}
-			if (Math.random() % 2 == 0) {				
+			if (Math.random() % 2 == 0) {
 				t.addSnow(1);
 			}
 		}
 	}
-	
-	public static ArrayList<PolarBear> getPolarBears(){
+
+	public static ArrayList<PolarBear> getPolarBears() {
 		return bears;
 	}
 
@@ -182,7 +179,7 @@ public class Game {
 	public static void setPlayers(ArrayList<Player> players) {
 		Game.players = players;
 	}
-	
+
 	public static void addPlayer(Player e) {
 		Game.players.add(e);
 	}

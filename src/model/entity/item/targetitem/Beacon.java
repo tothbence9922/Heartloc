@@ -1,5 +1,7 @@
 package model.entity.item.targetitem;
 
+import controller.GameRunner;
+import view.entity.BeaconView;
 
 public class Beacon extends TargetItem {
 
@@ -10,6 +12,7 @@ public class Beacon extends TargetItem {
     // private constructor restricted to this class itself 
     private Beacon(String id) { 
     	super(id);
+    	view = new BeaconView(GameRunner.baseGameController);
     } 
     /**
      *  a Singleton tervezesi mintat kovetve visszater egy

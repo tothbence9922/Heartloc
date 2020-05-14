@@ -2,12 +2,14 @@ package model.entity.player;
 
 import java.util.ArrayList;
 
+import controller.GameRunner;
 import model.entity.Entity;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.temp.Drawable;
 import model.tiles.StableTile;
 import model.tiles.Tile;
+import view.entity.ExplorerView;
 
 /**
  * Absztrakt ososztaly a jatekban szereplo karaktereknek. Deklaralja az alapveto
@@ -27,6 +29,7 @@ public abstract class Player extends Entity implements Drawable {
 
 	public Player(String id) {
 		super(id);
+		view = new ExplorerView(GameRunner.baseGameController);
 	}
 
 	@Override

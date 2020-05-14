@@ -1,5 +1,7 @@
 package model.entity.item.optionalitem;
 
+import controller.GameRunner;
+import view.entity.FragileShovelView;
 
 public class FragileShovel extends OptionalItem {
 
@@ -8,6 +10,7 @@ public class FragileShovel extends OptionalItem {
 
 	public FragileShovel(String id) {
 		super(id);
+		view = new FragileShovelView(GameRunner.baseGameController);
 	}
 
 	/**

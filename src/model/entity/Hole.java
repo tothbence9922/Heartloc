@@ -1,11 +1,14 @@
 package model.entity;
 
+import controller.GameRunner;
+import view.entity.HoleView;
 
 public class Hole extends Entity {
 
 	
 	public Hole(String id) {
 		super(id);
+		view = new HoleView(GameRunner.baseGameController);
 	}
 
 	/**

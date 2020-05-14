@@ -1,5 +1,7 @@
 package model.entity.item.targetitem;
 
+import controller.GameRunner;
+import view.entity.CartridgeView;
 
 public class Cartridge extends TargetItem {
 	
@@ -10,6 +12,8 @@ public class Cartridge extends TargetItem {
     // private constructor restricted to this class itself 
     private Cartridge(String id) {
     	super(id);
+    	view = new CartridgeView(GameRunner.baseGameController);
+
     } 
     /**
      * a Singleton tervezesi mintat kovetve visszater egy

@@ -1,6 +1,6 @@
 package view.entity;
 
-import java.io.IOException;
+import javax.swing.ImageIcon;
 
 import controller.GameController;
 
@@ -8,9 +8,9 @@ public class HoleView extends EntityView {
 
 	private static final long serialVersionUID = -3299152365267062000L;
 
-	public HoleView(GameController baseGameController) throws IOException {
+	public HoleView(GameController baseGameController){
 		super(baseGameController);
-		// TODO Auto-generated constructor stub
+		icon = new ImageIcon(GunView.class.getResource("../images/gun.png")); // TODO MAKE IT A HOLE!!
 	}
 
 }

@@ -14,7 +14,7 @@ public abstract class Entity {
 	 * Az Entity absztrakt ososztaly konstruktora. A parameterben kapott string lesz az entitas azonositoja.
 	 * @param id Az entitas ezt a stringet kapja azonositokent.
 	 */
-	public Entity(String id) {
+	public Entity(String id){
 		this.id = id;
 	}
 
