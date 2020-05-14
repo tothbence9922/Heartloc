@@ -44,8 +44,9 @@ public class MapLoader {
 
 	public static void readMapFromJSON(String path) throws FileNotFoundException, IOException {
 		try {
+			//TODO Itt fogok valtoztatni
 			Game.getInstance().ClearMap();
-
+				
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
 			JSONArray arrays = (JSONArray) obj.get("tiles");
