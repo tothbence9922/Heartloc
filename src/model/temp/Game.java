@@ -1,18 +1,18 @@
-package model;
+package model.temp;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import controller.GameController;
 import model.entity.Building;
 import model.entity.Entity;
 import model.entity.item.Item;
 import model.entity.player.Player;
-import model.temp.PolarBear;
 import model.tiles.Tile;
 import view.GameView;
 
 public class Game {
+	
+	public static GameView view;
+	
 	private static Game single_instance = null;
 
 	private static ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -20,12 +20,8 @@ public class Game {
 	private static ArrayList<Item> items = new ArrayList<Item>();
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
-	
-	// TODO The background(sea) should be painted on the GameView
-	private GameView view;
-	
-	private Game(GameController baseGameController) {
-		view = GameView.getInstance(baseGameController);
+
+	private Game() {
 	}
 
 	public String toJSON() {
@@ -71,9 +67,9 @@ public class Game {
 	 * 
 	 * @return single_instance: Game tipusu valtozo
 	 */
-	public static Game getInstance(GameController baseGameController) {
+	public static Game getInstance() {
 		if (single_instance == null)
-			single_instance = new Game(baseGameController);
+			single_instance = new Game();
 		return single_instance;
 	}
 

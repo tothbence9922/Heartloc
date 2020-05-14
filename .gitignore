@@ -1,9 +1,8 @@
 # Java related
 target/**
-*.jar
+#*.jar
 *.war
 *.ear
-*.class
 
 # eclipse specific
 *.pydevproject
@@ -24,5 +23,8 @@ local.properties
 # External tool builders
 .externalToolBuilders/
 
-# Locally stored "Eclipse launch configurations"
+# Locally stored "Eclipse launch configurations" 
 *.launch
+/bin/
+*.launch
+*.jar

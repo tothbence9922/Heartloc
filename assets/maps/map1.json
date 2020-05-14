@@ -1,0 +1,225 @@
+{
+	"tiles": [
+		{
+			"id": "t1",
+			"snow": 0,
+			"capacity": 3,
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t4",
+				"t8"
+			],
+			"entities": [
+			],
+			"items": [
+				"Bea"
+			]
+		},
+		{
+			"id": "t2",
+			"snow": 2,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t3",
+				"t4",
+				"t5"
+			],
+			"entities": [
+				"Pol1"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t3",
+			"snow": 0,
+			"capacity": 5,
+			"hole": 1,
+			"neighbours": [
+				"t2",
+				"t5",
+				"t6"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t4",
+			"snow": 2,
+			"capacity": 3,
+			"hole": 1,
+			"neighbours": [
+				"t1",
+				"t2",
+				"t5",
+				"t8",
+				"t9"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t5",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t2",
+				"t3",
+				"t4",
+				"t6",
+				"t9",
+				"t10"
+			],
+			"entities": [
+			],
+			"items": [
+				"Car"
+			]
+		},
+		{
+			"id": "t6",
+			"snow": 1,
+			"capacity": 3,
+			"hole": 0,
+			"neighbours": [
+				"t3",
+				"t5",
+				"t7",
+				"t10",
+				"t13"
+			],
+			"entities": [
+				"Esk1"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t7",
+			"snow": 1,
+			"capacity": 5,
+			"hole": 1,
+			"neighbours": [
+				"t6",
+				"t13"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t8",
+			"snow": 1,
+			"capacity": 3,
+			"hole": 0,
+			"neighbours": [
+				"t1",
+				"t4",
+				"t9",
+				"t11"
+			],
+			"entities": [
+			],
+			"items": [
+				"Gun"
+			]
+		},
+		{
+			"id": "t9",
+			"snow": 0,
+			"capacity": -1,
+			"hole": 0,
+			"neighbours": [
+				"t4",
+				"t5",
+				"t8",
+				"t10",
+				"t11",
+				"t12"
+			],
+			"entities": [
+			],
+			"items": [
+				"Sho1"
+			]
+		},
+		{
+			"id": "t10",
+			"snow": 0,
+			"capacity": 3,
+			"hole": 1,
+			"neighbours": [
+				"t5",
+				"t6",
+				"t9",
+				"t12",
+				"t13"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t11",
+			"snow": 0,
+			"capacity": 2,
+			"hole": 1,
+			"neighbours": [
+				"t8",
+				"t9",
+				"t12"
+			],
+			"entities": [
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t12",
+			"snow": 3,
+			"capacity": 5,
+			"hole": 0,
+			"neighbours": [
+				"t9",
+				"t10",
+				"t11",
+				"t13"
+			],
+			"entities": [
+				"Exp1"
+			],
+			"items": [
+			]
+		},
+		{
+			"id": "t13",
+			"snow": 2,
+			"capacity": 5,
+			"hole": 0,
+			"neighbours": [
+				"t6",
+				"t7",
+				"t10",
+				"t12"
+			],
+			"entities": [
+				"Exp2"
+			],
+			"items": [
+				"Sho2",
+				"Sho3",
+				"Fra1"
+			]
+		}
+	]
+}
