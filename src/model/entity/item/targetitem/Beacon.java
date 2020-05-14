@@ -1,10 +1,8 @@
 package model.entity.item.targetitem;
 
-import view.entity.BeaconView;
 
 public class Beacon extends TargetItem {
 
-	public BeaconView view;
 	
 	// static variable single_instance of type Singleton 
     private static Beacon single_instance = null; 

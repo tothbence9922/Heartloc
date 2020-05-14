@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ import javax.swing.JTextField;
 import controller.GameController;
 
 public class MapSelectionView extends JPanel {
+	
+	int numOfEsk = 2;
+	int numOfExp = 1;
 
 	private static final long serialVersionUID = -7780612029288723490L;
 	private GameController baseGameController;
@@ -29,6 +34,8 @@ public class MapSelectionView extends JPanel {
 	private JButton btnBack;
 	private GridBagLayout baseLayout;
 	private JTextField mapTextField;
+	private JTextField eskTextField;
+	private JTextField expTextField;
 	
 	public MapSelectionView(GameController baseGameController) {
 		this.baseGameController = baseGameController;
@@ -51,6 +58,13 @@ public class MapSelectionView extends JPanel {
 		mapTextField = new JTextField();
 		mapTextField.setFont(font.deriveFont(Font.PLAIN, 60f));
 		
+		eskTextField = new JTextField();
+		eskTextField.setFont(font.deriveFont(Font.PLAIN, 60f));
+		eskTextField.setText("Enter the number of eskimos! Default: 2");
+
+		expTextField = new JTextField();
+		expTextField.setText("Enter the number of explorers! Default: 1");
+		expTextField.setFont(font.deriveFont(Font.PLAIN, 60f));
 		
 		btnStartGame = new JButton("Start");
 		btnStartGame.setForeground(Color.DARK_GRAY);
@@ -96,6 +110,8 @@ public class MapSelectionView extends JPanel {
 		this.setLayout(baseLayout);
 		this.add(labelSelect, gbc);
 		this.add(mapTextField, gbc);
+		this.add(expTextField, gbc);		
+		this.add(eskTextField, gbc);
 		this.add(buttons, gbc);	
 	}
 	
@@ -113,25 +129,77 @@ public class MapSelectionView extends JPanel {
 				 * baseGameController.getGameFactory.getWidgetList().add(temp);
 				 */
 				String selectedMap = mapTextField.getText();
+				try {
+				numOfEsk = Integer.parseInt(eskTextField.getText());
+				} catch(NumberFormatException e) {
+					numOfEsk = 2;
+				}
+				try {
+					numOfExp= Integer.parseInt(expTextField.getText());
+					} catch(NumberFormatException e) {
+						numOfExp= 1;
+					}
 				String[] tokens = {"loadMap", selectedMap};
-				baseGameController.setGame(tokens);
+				
+				//System.out.println("NUMOFEXP: " + String.valueOf(numOfExp) + " NUMOFESK " + String.valueOf(numOfEsk));
+				baseGameController.setGame(tokens, numOfEsk, numOfExp);
 				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
 				
 				baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
 			}
-		});
+		});		
 		
-		mapTextField.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		eskTextField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				eskTextField.setText(""); 
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {}
+		});  
+		eskTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				/*
+				 * Create game here
+				 * sample code: 
+				 * 
+				 * Widget temp = new Widget();
+				 * baseGameController.getGameFactory.getWidgetList().add(temp);
+				 */
 				String selectedMap = mapTextField.getText();
+				try {
+				numOfEsk = Integer.parseInt(eskTextField.getText());
+				} catch(NumberFormatException e) {
+					numOfEsk = 2;
+				}
+				try {
+					numOfExp= Integer.parseInt(expTextField.getText());
+					} catch(NumberFormatException e) {
+						numOfExp= 1;
+					}
 				String[] tokens = {"loadMap", selectedMap};
-				baseGameController.setGame(tokens);
+				
+				//System.out.println("NUMOFEXP: " + String.valueOf(numOfExp) + " NUMOFESK " + String.valueOf(numOfEsk));
+				baseGameController.setGame(tokens, numOfEsk, numOfExp);
 				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
 				
 				baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
-		    }
+			
+			}
 		});
+	
+		
+		expTextField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				expTextField.setText(""); 
+			}
 
+			@Override
+			public void focusLost(FocusEvent arg0) {}
+		});     
+		
 		/* add hover effect */
 		btnStartGame.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {

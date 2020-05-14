@@ -1,10 +1,8 @@
 package model.entity.item.targetitem;
 
-import view.entity.CartridgeView;
 
 public class Cartridge extends TargetItem {
 	
-	public CartridgeView view;
 	
 	// static variable single_instance of type Singleton 
     private static Cartridge single_instance = null; 

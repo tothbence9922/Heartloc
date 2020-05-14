@@ -1,10 +1,8 @@
 package model.entity;
 
-import view.entity.TentView;
 
 public class Tent extends Building  {
 
-	public TentView view;
 	
 	public Tent(String id) {
 		super(id);

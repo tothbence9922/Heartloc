@@ -1,6 +1,5 @@
 package view;
 
-import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -20,7 +19,7 @@ public class View extends JButton{
 		super.setBounds(x, y,w, h);
 	}
 	
-	public View(GameController baseGameController) throws IOException {
+	public View(GameController baseGameController){
 		w = 128;
 		h = 128;
 		this.baseGameController = baseGameController;
