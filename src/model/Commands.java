@@ -45,6 +45,41 @@ public class Commands {
 	 * HANDLERS
 	 * 
 	 */
+
+	public static void choseCommand(String msg) {
+		try {
+			String[] tokens = msg.split(" ");
+			if (tokens[0].equals("exploreTile")) {
+				exploreTile(tokens);
+			} else if (tokens[0].equals("move")) {
+				move(tokens);
+			} else if (tokens[0].equals("createStorm")) {
+				createStorm(tokens);
+			} else if (tokens[0].equals("dig")) {
+				dig(tokens);
+			} else if (tokens[0].equals("buildIgloo")) {
+				buildIgloo(tokens);
+			} else if (tokens[0].equals("damage")) {
+				damage(tokens);
+			} else if (tokens[0].equals("useFood")) {
+				useFood(tokens);
+			} else if (tokens[0].equals("useBeacon")) {
+				useBeacon(tokens);
+			} else if (tokens[0].equals("useCartridge")) {
+				useCartridge(tokens);
+			} else if (tokens[0].equals("useGun")) {
+				useGun(tokens);
+			} else if (tokens[0].equals("useRocket")) {
+				useRocket(tokens);
+			} else if (tokens[0].equals("buildTent")) {
+				buildTent(tokens);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public static void loadMap(String[] cmd, int eskNum, int expNum) throws ParseException {
 		String[] maps = { "map1", "map2", "map3", "map4", "map5", "map6", "map7", "map8", "map9", "map10", "map11",
 				"map12", "map13", "map14", "map15", "map16", "map17" };
@@ -57,7 +92,7 @@ public class Commands {
 
 					// relative to root: ./folderName
 					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json", eskNum, expNum);
-										
+
 					System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 				} else {
 					System.out.println("That map does not exist - try another one!");

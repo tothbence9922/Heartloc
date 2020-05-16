@@ -86,7 +86,7 @@ public abstract class Item extends Entity {
 	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem jatekost reprezental.
 	 */
 	@Override
-	public int step() {
+	public int step(String msg) {
 		return -1;
 	}
 

@@ -105,27 +105,8 @@ public class MapLoader {
 					}
 				}
 				for (int entityIter = 0; entityIter < entityArray.size(); entityIter++) {// 1. -> entity-k
-					if (entityArray.get(entityIter).contains("Esk")) {
-						Eskimo e = new Eskimo(entityArray.get(entityIter));
-						for (Tile t : tiles) {
-							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
-								e.setCurrentTile(t);
-						}
-						// tiles.get(tileIter).receive(e);
-						// tiles.get(tileIter).getPlayers().add(e);
-						// players.add(e);
-					} else if (entityArray.get(entityIter).contains("Exp")) {
-						Explorer e = new Explorer(entityArray.get(entityIter));
-
-						for (Tile t : tiles) {
-							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
-								e.setCurrentTile(t);
-						}
-
-						// tiles.get(tileIter).receive(e);
-						// tiles.get(tileIter).getPlayers().add(e);
-						// players.add(e);
-					} else if (entityArray.get(entityIter).contains("Pol")) {
+					
+					 if (entityArray.get(entityIter).contains("Pol")) {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
 
 						for (Tile t : tiles) {
@@ -192,7 +173,7 @@ public class MapLoader {
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
 
-					if (curPlayer < players.size() && r.nextInt(100)>15) {
+					if (curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
 						curPlayer++;
@@ -201,27 +182,31 @@ public class MapLoader {
 					for (int p = 0; p < t.getPlayers().size(); p++) {
 						// t.getPlayers().get(p).view = new EskimoView(GameRunner.baseGameController);
 						t.getPlayers().get(p).view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
-						GameView.getInstance(GameRunner.baseGameController).getGamePanel()
-								.add(t.getPlayers().get(p).view);
+						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
+						
 					}
 					for (PolarBear pb : t.getBears()) {
 						pb.view = new PolarBearView(GameRunner.baseGameController);
 						pb.view.setLayout(null);
 						pb.view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
-						GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(pb.view);
+						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
 					// TODO hogolyok hozzadasa ertektol fuggoen
 					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.view);
+
 				}
 			}
 
 			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
 			Game.getInstance(GameRunner.baseGameController);
 			Game.setTiles(tiles);
-						
-			Game.setPlayers(players);
-			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
+			Game.setPlayers(players);
+			Game.setPlayerID(players.get(0).getId());
+			Game.setFirstPlayerID(players.get(0).getId());
+			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+			
+			GameView.getInstance(GameRunner.baseGameController).updatePanel();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

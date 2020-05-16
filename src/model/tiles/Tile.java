@@ -22,7 +22,7 @@ import view.tiles.TileView;
 public abstract class Tile implements Drawable {
 
 	public TileView view;
-	
+
 	protected String id;
 	protected int load = 0;
 	protected int amountOfSnow;
@@ -58,8 +58,9 @@ public abstract class Tile implements Drawable {
 			return "empty";
 		else {
 			int i;
-			for (i = 0; i < entities.size() - 1; i++)
+			for (i = 0; i < entities.size() - 1; i++) {
 				playerIds = playerIds + (entities.get(i).getId()) + ", ";
+			}
 			playerIds = playerIds + (entities.get(i).getId());
 		}
 		return playerIds + "]";
@@ -107,9 +108,10 @@ public abstract class Tile implements Drawable {
 			}
 			itemJSON = itemJSON + "\t\t\t\t\"" + items.get(i).getId() + "\"";
 		}
-		return "\t\t\t\"id\":" + idJSON + ",\n\t\t\t\"snow\":" + snowJSON + ",\n\t\t\t\"capacity\":" + capacityJSON + ",\n\t\t\t\"hole\":"
-				+ holeJSON + ",\n\t\t\t\"neighbours\": [\n" + neighboursJSON + "\n\t\t\t],\n\t\t\t\"entities\": [\n" + entityJSON
-				+ "\n\t\t\t],\n\t\t\t\"items\": [\n" + itemJSON + "\n\t\t\t]";
+		return "\t\t\t\"id\":" + idJSON + ",\n\t\t\t\"snow\":" + snowJSON + ",\n\t\t\t\"capacity\":" + capacityJSON
+				+ ",\n\t\t\t\"hole\":" + holeJSON + ",\n\t\t\t\"neighbours\": [\n" + neighboursJSON
+				+ "\n\t\t\t],\n\t\t\t\"entities\": [\n" + entityJSON + "\n\t\t\t],\n\t\t\t\"items\": [\n" + itemJSON
+				+ "\n\t\t\t]";
 	}
 
 	@Override
@@ -136,7 +138,7 @@ public abstract class Tile implements Drawable {
 	 */
 	public ArrayList<Item> dig(int amount) {
 		this.removeSnow(amount);
-		
+
 		if (this.amountOfSnow <= 0) {
 			for (int i = 0; i < items.size(); i++) {
 				items.get(i).setVisible(true);
@@ -144,10 +146,10 @@ public abstract class Tile implements Drawable {
 			this.amountOfSnow = 0;
 			return this.items;
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Visszatér az adott instabil jégtábla aktuális terhével.
 	 * 
@@ -178,10 +180,10 @@ public abstract class Tile implements Drawable {
 		entities.add(e);
 		return true;
 	}
-	
+
 	public boolean receive(Player p) {
-		this.load ++;
-		entities.add(p);
+		this.load++;
+		//entities.add(p);
 
 		players.add(p);
 		return true;
@@ -219,8 +221,6 @@ public abstract class Tile implements Drawable {
 		}
 	}
 
-
-	
 	/**
 	 * Jatekos sikitasa eseten hivodik meg, parameterkent a vizbe esett jatekossal,
 	 * akit igy egy megfelelo tavolsagra levo, masik jegtablan tartozkodo jatek – ha
@@ -230,8 +230,8 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean alarmTile(Player p) {
-		for(Player player : players) {
-			if(!(p.equals(player)) && player.savePlayer(p)) {
+		for (Player player : players) {
+			if (!(p.equals(player)) && player.savePlayer(p)) {
 				p.move(player.getCurrentTile());
 				return true;
 			}
@@ -273,7 +273,7 @@ public abstract class Tile implements Drawable {
 
 	public void addPolarBear(PolarBear polarBear) {
 		bears.add(polarBear);
-		//entities.add(polarBear);
+		// entities.add(polarBear);
 		Game.addPolarBear(polarBear);
 	}
 
@@ -401,7 +401,7 @@ public abstract class Tile implements Drawable {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-	
+
 	public void addPlayer(Player p) {
 		entities.add(p);
 		Game.addPlayer(p);
@@ -413,13 +413,13 @@ public abstract class Tile implements Drawable {
 
 	public void addBuilding(Building b) {
 		this.entities.add(b);
-		//Game.addBuilding(b);
+		// Game.addBuilding(b);
 	}
-	
+
 	public void addTent(Tent tent) {
 		this.hasTent = true;
 	}
-	
+
 	public ArrayList<PolarBear> getBears() {
 		return bears;
 	}
@@ -427,6 +427,5 @@ public abstract class Tile implements Drawable {
 	public void setBears(ArrayList<PolarBear> bears) {
 		this.bears = bears;
 	}
-
 
 }

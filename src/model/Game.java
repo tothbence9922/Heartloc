@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.swing.text.html.parser.Entity;
+
 import controller.GameController;
 import model.entity.Building;
 import model.entity.PolarBear;
@@ -11,6 +13,18 @@ import model.tiles.Tile;
 import view.GameView;
 
 public class Game {
+	
+	public static String playerID ="LudMan";
+	public static String firstPlayerID ="LudMan";
+
+	public static String getFirstPlayerID() {
+		return firstPlayerID;
+	}
+
+	public static void setFirstPlayerID(String firstPlayerID) {
+		Game.firstPlayerID = firstPlayerID;
+	}
+
 	private static Game single_instance = null;
 
 	private static ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -19,7 +33,7 @@ public class Game {
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
 
-	private GameView view;
+	public GameView view;
 
 	private Game(GameController baseGameController) {
 		view = GameView.getInstance(baseGameController);
@@ -49,13 +63,13 @@ public class Game {
 				tileStrings = tileStrings + (tiles.get(i).toString());
 			}
 		}
-		if (players.size() == 0)
+		if (Game.players.size() == 0)
 			tileStrings = tileStrings + "\n THERE ARE NO PLAYERS ON THE MAP";
 		else {
 			playerStrings = "PLAYER | BODY TEMPERATURE | WORK CAPABILITY | ITEMS\n";
 
-			for (int i = 0; i < players.size(); i++) {
-				playerStrings = playerStrings + (players.get(i).toString());
+			for (int i = 0; i < Game.players.size(); i++) {
+				playerStrings = playerStrings + (Game.players.get(i).toString());
 				;
 			}
 		}
@@ -123,7 +137,7 @@ public class Game {
 			if (t.getPlayers().size() != 0) {
 				if (!t.hasIgloo()) {
 					if (t.hasTent()) {
-						// t.setHasTent(false);
+						t.setHasTent(false);
 						break;
 					}
 					for (Player p : t.getPlayers()) {
@@ -204,6 +218,19 @@ public class Game {
 
 	public static void addItem(Item item) {
 		Game.items.add(item);
+	}
+	
+	public static String getPlayerID() {
+		return playerID;
+	}
+
+	public static void setPlayerID(String playerID) {
+		Game.playerID = playerID;
+	}
+	
+	public static void nextRound() {
+		for(PolarBear pb : bears) pb.step("MOVE");
+		generateStorm();
 	}
 
 	public static void Defeat() {

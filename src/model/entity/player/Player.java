@@ -1,13 +1,18 @@
 package model.entity.player;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import controller.GameRunner;
+import model.Commands;
+import model.Game;
 import model.entity.Entity;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.tiles.StableTile;
 import model.tiles.Tile;
+import view.GameView;
 import view.entity.ExplorerView;
 
 /**
@@ -16,7 +21,7 @@ import view.entity.ExplorerView;
  * leszarmazottakban kerulnek kifejtesre
  */
 public abstract class Player extends Entity {
-		
+
 	protected int energy = 4;
 	protected int bodyTemperature = 4;
 
@@ -50,7 +55,7 @@ public abstract class Player extends Entity {
 		return playerString;
 
 	}
-	
+
 	/**
 	 * A targyak (Item-ek) eldobhatok, ekkor arra a Tile-re kerulnek amin az a
 	 * Player all aki eldobta.
@@ -67,7 +72,7 @@ public abstract class Player extends Entity {
 	 * 
 	 */
 	public void pickup() {
-		for(Item i : currentTile.getItems()) {
+		for (Item i : currentTile.getItems()) {
 			inventory.add(i);
 		}
 		currentTile.getItems().clear();
@@ -84,9 +89,10 @@ public abstract class Player extends Entity {
 		setCurrentTile(t);
 		this.energy--;
 
-		if (currentTile.getCapacity()!= (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
+		if (currentTile.getCapacity() != (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
 			for (Player p : currentTile.getPlayers()) {
-				if(!p.equals(this)) p.pushToWater();
+				if (!p.equals(this))
+					p.pushToWater();
 			}
 			this.pushToWater();
 		}
@@ -97,16 +103,15 @@ public abstract class Player extends Entity {
 		}
 	}
 
-
 	/**
 	 * Ha bizonyos szint ala csokken a jatekos testhomerseklete, akkor fagyhalalt
 	 * hal. Ez a metodus kezdemenyezi ezt a folyamatot.
 	 */
 	public void die() {
 		this.bodyTemperature = 0;
-		//Game.getInstance();
-		//Game.Defeat();
-		//Game.EndGame();
+		// Game.getInstance();
+		// Game.Defeat();
+		// Game.EndGame();
 	}
 
 	/**
@@ -115,9 +120,10 @@ public abstract class Player extends Entity {
 	 */
 	public int scream() {
 		for (Tile nt : currentTile.getNeighbours())
-			if (nt.alarmTile(this)) return 1;
-		
-		return -1;	
+			if (nt.alarmTile(this))
+				return 1;
+
+		return -1;
 	}
 
 	public boolean isInWater() {
@@ -139,7 +145,7 @@ public abstract class Player extends Entity {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * A jelzoraketa (Rocket) tobb alkatreszbol (TargetItem-bol) all ossze. Ketfele
 	 * Item letezik: TargetItem es OptionalItem. A TargetItem-ek erdemlegesen
@@ -152,10 +158,12 @@ public abstract class Player extends Entity {
 	 */
 	public boolean assembleRocket() {
 		int cnt = 0;
-		for(Item i : inventory) {
-			if (i.useTargetItem()) cnt++;
+		for (Item i : inventory) {
+			if (i.useTargetItem())
+				cnt++;
 		}
-		if (cnt >= 3) return true;
+		if (cnt >= 3)
+			return true;
 		return false;
 	}
 
@@ -166,46 +174,49 @@ public abstract class Player extends Entity {
 	 * @param inWater beallitja, hogy vizben van-e az adott jatekos
 	 */
 	public void setInWater(boolean value) {
-		inWater = value;		
+		inWater = value;
 	}
 
 	/**
 	 * Visszater a parameterben atadott Tile teherbirasaval
 	 * 
 	 * @param chosenTile - a megfigyelni kivant Tile ID-je
-	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten nem Explorer
-	 *         hivta
+	 * @return capacity - a Tile teherbirasa, -1 eseten stabil, -2 eseten nem
+	 *         Explorer hivta
 	 */
 	public int exploreTile(String chosenTile) {
 		return -2;
 	}
 
 	/**
-	 * Igloo-t epit a parameterben megadott Tile-ra. Mivel ez eszkimo kepesseg, alapvetoen false-t ad vissza,
-	 *  Eskimo eseten true-t.
+	 * Igloo-t epit a parameterben megadott Tile-ra. Mivel ez eszkimo kepesseg,
+	 * alapvetoen false-t ad vissza, Eskimo eseten true-t.
 	 * 
 	 * @param chosenTile
 	 * @return
 	 */
-	public boolean buildIgloo(Tile chosenTile) { return false;}
+	public boolean buildIgloo(Tile chosenTile) {
+		return false;
+	}
 
 	/**
 	 * Jatekost a vizbe loki, beallija a setInWater erteket igazra
 	 */
 	public void pushToWater() {
-			setInWater(true);
-			
-			boolean success = false;
-			for (Item i : inventory) {
-				if (i.wear())
+		setInWater(true);
+
+		boolean success = false;
+		for (Item i : inventory) {
+			if (i.wear())
 				success = true;
-			}
-			if (success) return;
-			
+		}
+		if (success)
+			return;
 
-			if (scream() > 0) return;
+		if (scream() > 0)
+			return;
 
-			die();
+		die();
 	}
 
 	/**
@@ -327,7 +338,24 @@ public abstract class Player extends Entity {
 	}
 
 	@Override
-	public int step() {
+	public int step(String msg) {
+		// TODO
+
+		if (energy == 0) {
+			Collections.rotate(Game.getPlayers(), -1);
+			Game.setPlayerID(Game.getPlayers().get(0).getId());
+			System.out.println("CURRENT PLAYER ID: " + Game.getPlayerID());
+			if (Game.getPlayers().get(0).getId() == Game.getFirstPlayerID()) {
+				Game.nextRound();
+			}
+		}
+		if (energy > 0) {
+			Commands.choseCommand(msg);
+
+			energy--;
+		} else {
+			energy = 5;
+		}
 		return energy;
 	}
 

@@ -2,16 +2,16 @@ package model.entity;
 
 import java.util.Random;
 
+import controller.GameRunner;
 import model.entity.player.Player;
 import model.tiles.StableTile;
 import model.tiles.Tile;
+import view.GameView;
 
 public class PolarBear extends Entity {
 	
 	private Tile currentTile = new StableTile("");
 	
-	private boolean inWater = false;
-
 	public PolarBear(String id) {
 		super(id);
 	}
@@ -23,25 +23,17 @@ public class PolarBear extends Entity {
 		
 		setCurrentTile(t);
 		
-		if(currentTile.getCapacity() != -1 && currentTile.getCapacity() < currentTile.getLoad()) {
-			for(Player p : currentTile.getPlayers()) {
-				p.pushToWater();
-			}
-			inWater = true;
-		}
-		else{
-			if(currentTile.getHasHole()) inWater = true;
-			else inWater = false;
-		}
 	}
 
 	@Override
-	public int step() {
+	public int step(String msg) {
 		Random r = new Random();
 		for(Tile t : currentTile.getNeighbours()) {
 			int go = r.nextInt()%2;
 			if(go == 0) {
 				move(t);
+				this.view.setBounds(t.view.getBounds());
+				GameView.getInstance(GameRunner.baseGameController).updatePanel();
 				return 0;
 			}
 		}

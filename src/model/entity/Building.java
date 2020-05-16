@@ -12,7 +12,7 @@ public class Building extends Entity {
 	 * jatekost reprezental.
 	 */
 	@Override
-	public int step() {
+	public int step(String msg) {
 		return -1;
 	}
 
