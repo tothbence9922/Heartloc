@@ -1,8 +1,7 @@
-package model.temp;
+package model.entity;
 
 import java.util.Random;
 
-import model.entity.Entity;
 import model.entity.player.Player;
 import model.tiles.StableTile;
 import model.tiles.Tile;

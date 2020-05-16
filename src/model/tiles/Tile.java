@@ -10,9 +10,9 @@ import model.entity.Igloo;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.entity.player.Player;
-import model.temp.Drawable;
-import model.temp.Game;
-import model.temp.PolarBear;
+import model.Drawable;
+import model.Game;
+import model.entity.PolarBear;
 import view.tiles.TileView;
 
 /**

@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -265,13 +266,14 @@ public class GameView extends JPanel {
 	    	for (int i = 0; i < 20; i++) {
 	    		for (int j = 0; j < 11; j++) {
 	    			if (i % 2 != 0) {
-	    				//g.drawImage(waterDeep.getImage(), i*70, j*70, null);
+	    				g.drawImage(waterDeep.getImage(), i*70, j*70, null);
 	    			} else {
-	    				//g.drawImage(waterDeepAlt.getImage(), i*70, j*70, null);
+	    				g.drawImage(waterDeepAlt.getImage(), i*70, j*70, null);
 	    			} 
 	    		}
 	    	}
 	    }
+	    Random r = new Random();
 		for (Tile t : Game.getTiles()) {
 			for(Tile neigh: t.getNeighbours()) {
 				int x1, y1, x2, y2;
@@ -279,8 +281,7 @@ public class GameView extends JPanel {
 				y1=t.view.getY()+t.view.getHeight()/2;
 				x2=neigh.view.getX()+neigh.view.getWidth()/2;
 				y2=neigh.view.getY()+neigh.view.getHeight()/2;
-				System.out.println(x1+y1+x2+y2);
-				Color myWhite = new Color(255, 255, 255);
+				Color myWhite = new Color(100, 105, 255);
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setStroke(new BasicStroke(10));
 				g2.setColor(myWhite);

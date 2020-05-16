@@ -3,7 +3,7 @@ package model.entity.player;
 import java.io.IOException;
 
 import controller.GameRunner;
-import model.temp.Game;
+import model.Game;
 import model.tiles.Tile;
 import view.entity.ExplorerView;
 
@@ -45,11 +45,6 @@ public class Explorer extends Player {
 		}
 		return -3;
 		
-	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
 	}
 }
 

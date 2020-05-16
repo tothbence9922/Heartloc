@@ -1,6 +1,7 @@
 package model.entity.player;
 
 import controller.GameRunner;
+import model.Drawable;
 import model.entity.Igloo;
 import model.tiles.Tile;
 import view.entity.EskimoView;
@@ -10,7 +11,7 @@ import view.entity.EskimoView;
  * valamint egy kulonleges kepessege is: tud iglut epíteni, amiben megbujva a
  * hovihar nem tesz kart bennuk.
  */
-public class Eskimo extends Player {
+public class Eskimo extends Player implements Drawable {
 	
 	public Eskimo(String id) {
 		super(id);

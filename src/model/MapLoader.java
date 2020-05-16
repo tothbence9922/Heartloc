@@ -12,15 +12,15 @@ import model.org.json.simple.JSONArray;
 import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
 import model.org.json.simple.parser.ParseException;
-import model.temp.Game;
-import model.temp.PolarBear;
-import model.temp.TentItem;
+import model.Game;
 import model.entity.Igloo;
+import model.entity.PolarBear;
 import model.entity.Tent;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
 import model.entity.item.optionalitem.Rope;
 import model.entity.item.optionalitem.Shovel;
+import model.entity.item.optionalitem.TentItem;
 import model.entity.item.optionalitem.Wetsuit;
 import model.entity.item.targetitem.Beacon;
 import model.entity.item.targetitem.Cartridge;
@@ -48,7 +48,7 @@ public class MapLoader {
 	public static void readMapFromJSON(String path, int eskNum, int expNum) throws FileNotFoundException, IOException {
 		try {
 			// TODO Itt fogok valtoztatni
-			Game.getInstance().ClearMap();
+			Game.getInstance(GameRunner.baseGameController).ClearMap();
 
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
@@ -65,7 +65,6 @@ public class MapLoader {
 			}
 
 			GameView.getInstance(GameRunner.baseGameController).getGamePanel().setLayout(null);
-			;
 
 			for (int i = 0; i < tiles.size(); i++) {
 				tiles.get(i).view = new StableTileView(GameRunner.baseGameController);
@@ -217,10 +216,11 @@ public class MapLoader {
 			}
 
 			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
-			Game.getInstance();
+			Game.getInstance(GameRunner.baseGameController);
 			Game.setTiles(tiles);
+						
 			Game.setPlayers(players);
-			System.out.println((Game.getInstance()).toString());
+			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 		} catch (ParseException e) {
 			e.printStackTrace();

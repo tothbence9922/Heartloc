@@ -6,7 +6,6 @@ import controller.GameRunner;
 import model.entity.Entity;
 import model.entity.Tent;
 import model.entity.item.Item;
-import model.temp.Drawable;
 import model.tiles.StableTile;
 import model.tiles.Tile;
 import view.entity.ExplorerView;
@@ -16,7 +15,7 @@ import view.entity.ExplorerView;
  * mukodeshez szukseges attributumokat es metodusokat, melyek a
  * leszarmazottakban kerulnek kifejtesre
  */
-public abstract class Player extends Entity implements Drawable {
+public abstract class Player extends Entity {
 		
 	protected int energy = 4;
 	protected int bodyTemperature = 4;

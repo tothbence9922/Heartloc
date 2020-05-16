@@ -9,18 +9,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.IntStream;
 
+import controller.GameRunner;
 import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
 import model.org.json.simple.parser.ParseException;
-import model.temp.Game;
-import model.temp.PolarBear;
-import model.temp.TentItem;
+import model.Game;
 import model.entity.Entity;
+import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
 import model.entity.item.optionalitem.Rope;
 import model.entity.item.optionalitem.Shovel;
+import model.entity.item.optionalitem.TentItem;
 import model.entity.item.optionalitem.Wetsuit;
 import model.entity.item.targetitem.Beacon;
 import model.entity.item.targetitem.Cartridge;
@@ -57,7 +58,7 @@ public class Commands {
 					// relative to root: ./folderName
 					MapLoader.readMapFromJSON("./assets/maps/" + cmd[1] + ".json", eskNum, expNum);
 										
-					System.out.println((Game.getInstance()).toString());
+					System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 				} else {
 					System.out.println("That map does not exist - try another one!");
 				}
@@ -111,7 +112,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addPlayer(new Explorer("Esk" + (Game.getPlayers().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addExplorer(String[] cmd) throws ParseException {
@@ -120,7 +121,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addPlayer(new Explorer("Exp" + (Game.getPlayers().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addFood(String[] cmd) throws ParseException {
@@ -129,7 +130,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(new Food("Foo" + (Game.getItems().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addCartridge(String[] cmd) throws ParseException {
@@ -138,7 +139,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(Cartridge.getInstance("Car"));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addBeacon(String[] cmd) throws ParseException {
@@ -147,7 +148,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(Beacon.getInstance("Bea"));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addGun(String[] cmd) throws ParseException {
@@ -156,7 +157,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(Gun.getInstance("Gun"));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addFragileShovel(String[] cmd) throws ParseException {
@@ -165,7 +166,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(new FragileShovel("Fra" + (Game.getItems().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addHole(String[] cmd) throws ParseException {
@@ -174,7 +175,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.setHasHole(true);
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addIgloo(String[] cmd) throws ParseException {
@@ -183,7 +184,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.setHasIgloo(true);
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -193,7 +194,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addPolarBear(new PolarBear("Pol" + (Game.getPolarBears().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -203,7 +204,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(new Rope("Rop" + (Game.getItems().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addShovel(String[] cmd) throws ParseException {
@@ -212,7 +213,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(new Shovel("Sho" + (Game.getItems().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addSnow(String[] cmd) throws ParseException {
@@ -222,7 +223,7 @@ public class Commands {
 					if (tile.getAmountOfSnow() < 5)
 						tile.addSnow(1);
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void addTent(String[] cmd) throws ParseException {
@@ -231,7 +232,7 @@ public class Commands {
 				if (tile.getId().equals(cmd[1]))
 					tile.addItem(new TentItem("iTen" + (Game.getItems().size() + 1)));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	/**
@@ -264,7 +265,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -292,7 +293,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -320,7 +321,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -348,7 +349,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -382,7 +383,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -410,7 +411,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -438,7 +439,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -466,7 +467,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -494,7 +495,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -522,7 +523,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 	}
 
@@ -533,14 +534,14 @@ public class Commands {
 			Game.generateStorm();
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void exploreTile(String[] cmd) {
 
 		System.out.println("Capacity: " + Game.getPlayer(cmd[1]).exploreTile(cmd[2]));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void move(String[] cmd) throws ParseException {
@@ -613,7 +614,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	/**
@@ -691,7 +692,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void buildIgloo(String[] cmd) {
@@ -708,7 +709,7 @@ public class Commands {
 			if (couldBuild)
 				break;
 		}
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static boolean useBeacon(String[] cmd) {
@@ -725,7 +726,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 		return false;
 	}
 
@@ -743,7 +744,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 		return false;
 	}
 
@@ -761,7 +762,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 		return false;
 
 	}
@@ -782,7 +783,7 @@ public class Commands {
 			return true;
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 		return false;
 
 	}
@@ -801,7 +802,7 @@ public class Commands {
 			if (couldBuild)
 				break;
 		}
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void useFood(String[] cmd) {
@@ -818,7 +819,7 @@ public class Commands {
 			}
 		}
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void damage(String[] cmd) {
@@ -828,7 +829,7 @@ public class Commands {
 		}
 
 		Game.getPlayer(cmd[1]).damage(1);
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void setCapacity(String[] cmd) {
@@ -836,6 +837,6 @@ public class Commands {
 		if (cmd.length > 2)
 			Game.getTiles().get(find(Game.getTiles(), cmd[1])).setCapacity(Integer.parseInt(cmd[2]));
 
-		System.out.println((Game.getInstance()).toString());
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 }

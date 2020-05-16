@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import controller.GameController;
 import model.entity.Building;
+import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.player.Player;
-import model.temp.PolarBear;
 import model.tiles.Tile;
 import view.GameView;
 
@@ -146,7 +146,7 @@ public class Game {
 	}
 
 	public static ArrayList<Tile> getTiles() {
-		return tiles;
+		return Game.tiles;
 	}
 
 	public static void setTiles(ArrayList<Tile> tilesArr) {
