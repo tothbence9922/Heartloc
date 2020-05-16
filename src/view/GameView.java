@@ -1,11 +1,13 @@
 package view;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -24,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import controller.GameController;
+import model.Game;
+import model.tiles.Tile;
 import view.entity.BeaconView;
 import view.entity.EskimoView;
 import view.entity.ExplorerView;
@@ -261,12 +265,27 @@ public class GameView extends JPanel {
 	    	for (int i = 0; i < 20; i++) {
 	    		for (int j = 0; j < 11; j++) {
 	    			if (i % 2 != 0) {
-	    				g.drawImage(waterDeep.getImage(), i*70, j*70, null);
+	    				//g.drawImage(waterDeep.getImage(), i*70, j*70, null);
 	    			} else {
-	    				g.drawImage(waterDeepAlt.getImage(), i*70, j*70, null);
+	    				//g.drawImage(waterDeepAlt.getImage(), i*70, j*70, null);
 	    			} 
 	    		}
 	    	}
 	    }
+		for (Tile t : Game.getTiles()) {
+			for(Tile neigh: t.getNeighbours()) {
+				int x1, y1, x2, y2;
+				x1=t.view.getX()+t.view.getWidth()/2;
+				y1=t.view.getY()+t.view.getHeight()/2;
+				x2=neigh.view.getX()+neigh.view.getWidth()/2;
+				y2=neigh.view.getY()+neigh.view.getHeight()/2;
+				System.out.println(x1+y1+x2+y2);
+				Color myWhite = new Color(255, 255, 255);
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setStroke(new BasicStroke(10));
+				g2.setColor(myWhite);
+				g.drawLine(x1, y1, x2, y2);
+			}
+		}
 	}
 }
