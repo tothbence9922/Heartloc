@@ -8,6 +8,7 @@ import controller.GameRunner;
 import model.Commands;
 import model.Game;
 import model.entity.Entity;
+import model.entity.PolarBear;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.tiles.StableTile;
@@ -87,6 +88,9 @@ public abstract class Player extends Entity {
 		currentTile.remove(this);
 		t.receive(this);
 		setCurrentTile(t);
+		if(t.getBears().size() != 0) {
+			this.getEaten("I ate you Bro ;) Yummy!");
+		}
 		this.energy--;
 
 		if (currentTile.getCapacity() != (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
@@ -356,6 +360,10 @@ public abstract class Player extends Entity {
 			energy--;
 		}
 		return energy;
+	}
+	
+	public void getEaten(String msg) {
+		die(msg);
 	}
 
 }

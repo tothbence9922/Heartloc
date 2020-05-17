@@ -3,7 +3,7 @@
 		{
 			"id": "t1",
 			"snow": 1,
-			"capacity": 1,
+			"capacity": 2,
 			"hole": 0,
 			"neighbours": [
 				"t5",
@@ -20,7 +20,7 @@
 		{
 			"id": "t2",
 			"snow": 0,
-			"capacity": 1,
+			"capacity": 2,
 			"hole": 0,
 			"neighbours": [
 				"t3",
@@ -88,7 +88,7 @@
 		{
 			"id": "t6",
 			"snow": 3,
-			"capacity": 2,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t1",
@@ -127,12 +127,12 @@
 		{
 			"id": "t8",
 			"snow": 4,
-			"capacity": 1,
+			"capacity": 2,
 			"hole": 0,
 			"neighbours": [
-				"t7",
 				"t3",
 				"t4",
+				"t7",
 				"t9"
 			],
 			"entities": [
@@ -145,7 +145,7 @@
 		{
 			"id": "t9",
 			"snow": 3,
-			"capacity": 2,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t6",
