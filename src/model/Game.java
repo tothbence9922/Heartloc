@@ -98,7 +98,7 @@ public class Game {
 	 * A játék megnyerésekor meghívódó metódus, magával vonzza az EndGame() metódus
 	 * meghívását, ekkor a játékos gyõzelmét könyvelhetjük el.
 	 */
-	public void victory() {
+	public static void victory() {
 		boolean losestate = false;
 		EndGame(losestate, "Congratulations!");
 	}
