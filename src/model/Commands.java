@@ -626,7 +626,11 @@ public class Commands {
 			for (Tile t : Game.getTiles()) {
 				for (Player p : t.getPlayers()) {
 					if (p.getId().equals(cmd[1])) {
-						p.addToInventory(t.dig(1));
+						ArrayList<Item> items = t.dig(1);
+						p.addToInventory(items);
+						if (items != null)
+							for (Item i : items)
+								Game.view.removeItemView(i.view);
 						t.setItems(new ArrayList<Item>());
 						break;
 					}
@@ -641,8 +645,11 @@ public class Commands {
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
-							p.addToInventory(t.dig(2));
-
+							ArrayList<Item> items = t.dig(2);
+							p.addToInventory(items);
+							if (items != null)
+								for (Item i : items)
+									Game.view.removeItemView(i.view);
 							t.setItems(new ArrayList<Item>());
 							Game.view.updatePanel();
 
@@ -654,8 +661,11 @@ public class Commands {
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
-							p.addToInventory(t.dig(2));
-
+							ArrayList<Item> items = t.dig(2);
+							p.addToInventory(items);
+							if (items != null)
+								for (Item i : items)
+									Game.view.removeItemView(i.view);
 							t.setItems(new ArrayList<Item>());
 							Game.view.updatePanel();
 
@@ -762,6 +772,7 @@ public class Commands {
 		}
 		if (cnt > 2) {
 			System.out.println("Rocket succesfully used!");
+			Game.getInstance(GameRunner.baseGameController).victory();
 			return true;
 		}
 

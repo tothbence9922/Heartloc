@@ -170,7 +170,6 @@ public class MapLoader {
 			int curPlayer = 0;
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
-					// TODO MEGOLDANI H LYUKASRA NE RAKJA
 					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
@@ -185,8 +184,8 @@ public class MapLoader {
 					
 					for (Item it : t.getItems()) {
 						it.view.setLayout(null);
-						it.view.setPos(t.view.getX(), t.view.getY() + 45);
-						GameView.getInstance(GameRunner.baseGameController).addView(it.view);
+						//it.view.setPos(t.view.getX(), t.view.getY() + 45);
+						//GameView.getInstance(GameRunner.baseGameController).addView(it.view);
 					}
 
 					for (Building b : t.getBuildings()) {
