@@ -33,6 +33,7 @@ import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
 import view.entity.EntityView;
+import view.entity.IglooView;
 import view.entity.ItemView;
 import view.tiles.TileView;
 
@@ -295,7 +296,20 @@ public class GameView extends JPanel {
 		 */
 		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("buildIgloo" + Game.playerID);
+				boolean canbuild;
+				int energybefore = Game.getPlayer(Game.playerID).getEnergy();
+				int energyafter = Game.getPlayer(Game.playerID).step("buildIgloo " + Game.playerID);
+				if(energybefore == energyafter)
+					canbuild = false;
+				else {
+					canbuild = true;
+					//Game.getTile(Game.playerID).view.add(new IglooView(baseGameController));
+					Game.getPlayer(Game.playerID).getCurrentTile().view.add(new IglooView(baseGameController));
+					Game.view.updatePanel();
+				}
+				if(!canbuild)
+				JOptionPane.showMessageDialog(baseGameController.getGameFrame(),
+						"You can't build an Igloo, sorry.", "Igloo build error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 
@@ -304,7 +318,7 @@ public class GameView extends JPanel {
 		 */
 		btnTent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useTent" + Game.playerID);
+				Game.getPlayer(Game.playerID).step("useTent " + Game.playerID);
 			}
 		});
 

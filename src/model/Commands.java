@@ -684,12 +684,14 @@ public class Commands {
 	public static void buildIgloo(String[] cmd) {
 		boolean couldBuild = false;
 		for (Tile t : Game.getTiles()) {
-			for (Player p : Game.getPlayers()) {
+			for (Player p : t.getPlayers()) {
 				if (p.getId().equals(cmd[1])) {
-					p.buildIgloo(t);
-					t.setHasIgloo(true);
-					couldBuild = true;
-					break;
+					boolean succes = p.buildIgloo(t);
+					if(succes) {
+						t.setHasIgloo(true);
+						couldBuild = true;
+						break;
+					}
 				}
 			}
 			if (couldBuild)

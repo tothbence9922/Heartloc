@@ -193,6 +193,7 @@ public abstract class Player extends Entity {
 	 * @return
 	 */
 	public boolean buildIgloo(Tile chosenTile) {
+		this.energy++;
 		return false;
 	}
 
