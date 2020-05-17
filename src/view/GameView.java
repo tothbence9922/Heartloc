@@ -308,16 +308,6 @@ public class GameView extends JPanel {
 			}
 		});
 
-		btnTentItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useTentitem" + Game.playerID);
-			}
-		});
-		btnWetsuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useWetsuit" + Game.playerID);
-			}
-		});
 		btnDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("drop " + Game.playerID);
@@ -393,7 +383,7 @@ public class GameView extends JPanel {
 					statsPanel.add(title, gbc);
 					for (Player p : Game.getPlayers()) {
 						JLabel tempLabel = new JLabel(
-								p.getId() + "  " + p.getBodyTemperature() + "  " + p.getEnergy());
+								p.getId() + " - " + p.getBodyTemperature() + " - " + p.getEnergy());
 						tempLabel.setFont(font.deriveFont(Font.PLAIN, 48f));
 						statsPanel.add(tempLabel, gbc);
 					}
