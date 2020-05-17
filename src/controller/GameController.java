@@ -6,7 +6,6 @@ import model.Commands;
 import model.Game;
 import model.org.json.simple.parser.ParseException;
 import view.ApplicationFrame;
-import view.EndView;
 
 /**
  * Handle communication between model and view

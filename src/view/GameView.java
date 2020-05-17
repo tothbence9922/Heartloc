@@ -3,10 +3,6 @@ package view;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -20,34 +16,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-
 import controller.GameController;
 import model.Game;
 import model.entity.player.Player;
 import model.tiles.Tile;
-import view.entity.BeaconView;
 import view.entity.EntityView;
-import view.entity.EskimoView;
-import view.entity.ExplorerView;
-import view.entity.GunView;
 import view.entity.ItemView;
-import view.entity.PlayerView;
-import view.entity.PolarBearView;
-import view.entity.RocketView;
-import view.entity.RopeView;
-import view.entity.ShovelView;
-import view.entity.TentView;
 import view.tiles.TileView;
 
 public class GameView extends JPanel {
@@ -77,7 +55,6 @@ public class GameView extends JPanel {
 	private JButton btnTentItem;
 	private JButton btnWetsuit;
 	private JButton btnBuild;
-
 
 	public static boolean syncObject = false;
 
@@ -121,7 +98,7 @@ public class GameView extends JPanel {
 		for (Player p : Game.getPlayers()) {
 			if (p.getId() == Game.getPlayerID()) {
 				curPlayerIndicator = new JButton("");
-				curPlayerIndicator.setIcon(new ImageIcon(MenuView.class.getResource("images/gun.png")));
+				curPlayerIndicator.setIcon(new ImageIcon(MenuView.class.getResource("images/arrow-slim.png")));
 				curPlayerIndicator.setLayout(null);
 				curPlayerIndicator.setOpaque(false);
 				curPlayerIndicator.setContentAreaFilled(false);
@@ -143,6 +120,7 @@ public class GameView extends JPanel {
 			add(iv);
 		for (TileView tv : tileViews)
 			add(tv);
+		
 
 	}
 
@@ -398,10 +376,10 @@ public class GameView extends JPanel {
 			}
 		});
 		/*
-			 * btnRocket.addActionListener(new ActionListener() { public void
-			 * actionPerformed(ActionEvent click) {
-			 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
-			 */
+		 * btnRocket.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent click) {
+		 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
+		 */
 
 		this.addMouseListener(new MouseListener() {
 

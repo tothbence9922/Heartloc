@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +15,6 @@ import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
 import model.org.json.simple.parser.ParseException;
 import model.Game;
-import model.entity.Entity;
 import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
@@ -598,18 +595,21 @@ public class Commands {
 			if (newTile.getId().equals(cmd[2])) {
 				boolean isNeighbour = false;
 				for (Tile t : newTile.getNeighbours()) {
-					if(t.getId() == tempTile.getId()) isNeighbour = true;
+					if (t.getId() == tempTile.getId())
+						isNeighbour = true;
 				}
-				if(isNeighbour) {
-				Random r = new Random();
-				tempPlayer.setCurrentTile(tempTile);
-				tempPlayer.move(newTile);
-				int x = newTile.view.getX();
-				int y = newTile.view.getY();
-				tempPlayer.view.setBounds(x + r.nextInt(32) , y, 64, 85);
-				
-				Game.view.updatePanel();
-				}else {tempPlayer.setEnergy(tempPlayer.getEnergy()+1);}
+				if (isNeighbour) {
+					Random r = new Random();
+					tempPlayer.setCurrentTile(tempTile);
+					tempPlayer.move(newTile);
+					int x = newTile.view.getX();
+					int y = newTile.view.getY();
+					tempPlayer.view.setBounds(x + r.nextInt(32), y, 64, 85);
+
+					Game.view.updatePanel();
+				} else {
+					tempPlayer.setEnergy(tempPlayer.getEnergy() + 1);
+				}
 				break;
 
 			}

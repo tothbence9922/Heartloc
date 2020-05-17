@@ -172,7 +172,7 @@ public class MapLoader {
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
 
-					if (curPlayer < players.size() && r.nextInt(100) > 35) {
+					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
 						curPlayer++;

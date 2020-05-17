@@ -11,7 +11,7 @@ import controller.GameController;
 import view.tiles.TileView;
 
 public class View extends JButton {
-	
+
 	protected ImageIcon icon;
 
 	private static final long serialVersionUID = 4819391159119195619L;

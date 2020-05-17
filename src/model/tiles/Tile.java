@@ -183,7 +183,7 @@ public abstract class Tile implements Drawable {
 
 	public boolean receive(Player p) {
 		this.load++;
-		//entities.add(p);
+		// entities.add(p);
 
 		players.add(p);
 		return true;

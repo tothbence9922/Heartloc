@@ -2,15 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.swing.text.html.parser.Entity;
-
 import controller.GameController;
 import model.entity.Building;
 import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
-import view.EndView;
 import view.GameView;
 
 public class Game {
