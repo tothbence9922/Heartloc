@@ -621,7 +621,7 @@ public class Commands {
 			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
-				couldDig=true;
+				couldDig = true;
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
@@ -637,7 +637,7 @@ public class Commands {
 				}
 
 			} else if (cmd[2].equals("shovel")) {
-				couldDig=true;
+				couldDig = true;
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
@@ -653,29 +653,29 @@ public class Commands {
 				}
 
 			}
-			
-			/**
-			 * Finds the player's tile and then digs with hand moves the items from the tile
-			 * to the player's inventory
-			 */
-			if (!couldDig) {
-				for (Tile t : Game.getTiles()) {
-					for (Player p : t.getPlayers()) {
-						if (p.getId().equals(cmd[1])) {
-							t.dig(1);
-							for (Item i : t.getItems()) {
-								p.addToInventory(i);
+		}
 
-							}
-							t.setItems(new ArrayList<Item>());
-							break;
+		/**
+		 * Finds the player's tile and then digs with hand moves the items from the tile
+		 * to the player's inventory
+		 */
+		if (!couldDig) {
+			for (Tile t : Game.getTiles()) {
+				for (Player p : t.getPlayers()) {
+					if (p.getId().equals(cmd[1])) {
+						t.dig(1);
+						for (Item i : t.getItems()) {
+							p.addToInventory(i);
+
 						}
+						t.setItems(new ArrayList<Item>());
+						break;
 					}
 				}
 			}
-
-			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 		}
+
+		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void buildIgloo(String[] cmd) {

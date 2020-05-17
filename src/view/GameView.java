@@ -3,18 +3,18 @@ package view;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 import controller.GameController;
 import model.Game;
@@ -48,27 +48,16 @@ public class GameView extends JPanel {
 	private JPanel gamePanel;
 	private JPanel buttonsPanel;
 
-	private JLabel labelGame;
-
 	private JButton btnShovel;
 	private JButton btnFood;
-	private JButton btnCartridge;
-	private JButton btnGun;
-	// private JButton btnBeacon;
-	private JButton btnSpecial;
-
-	private JButton curPlayerIndicator;
+	private JButton btnExplore;
 	private JButton btnIgloo;
 	private JButton btnTent;
-	private JButton btnTentItem;
-	private JButton btnWetsuit;
-	private JButton btnBuild;
+
+	private JButton curPlayerIndicator;
 
 	public static boolean syncObject = false;
-
 	private static GameView singleInstance = null;
-
-	private GridBagLayout baseLayout;
 
 	public static GameView getInstance(GameController baseGameController) {
 		try {
@@ -152,38 +141,19 @@ public class GameView extends JPanel {
 		gamePanel = new JPanel(new GridBagLayout());
 		buttonsPanel = new JPanel(new GridBagLayout());
 
-		baseLayout = new GridBagLayout();
 		gamePanel.setOpaque(false);
 
-		/*
-		 * btnRope = new JButton("R"); btnShovel = new JButton("S"); btnFood = new
-		 * JButton("F"); btnCartridge = new JButton("C"); btnGun = new JButton("G");
-		 * btnFlare = new JButton("F"); btnSpecial = new JButton("*");
-		 */
 		java.net.URL urlShovel = MenuView.class.getResource("images/shovel.png");
 		java.net.URL urlFood = MenuView.class.getResource("images/food.png");
-		java.net.URL urlCartridge = MenuView.class.getResource("images/cartridge.png");
-		java.net.URL urlGun = MenuView.class.getResource("images/gun.png");
-		java.net.URL urlBeacon = MenuView.class.getResource("images/beacon.png");
 		java.net.URL urlSpecial = MenuView.class.getResource("images/explore.png");
 		java.net.URL urlIgloo = MenuView.class.getResource("images/igloo.png");
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
-		java.net.URL urlTentItem = MenuView.class.getResource("images/tentitem.png");
-		java.net.URL urlWetsuit = MenuView.class.getResource("images/wetsuit.png");
-		java.net.URL urlBuild = MenuView.class.getResource("images/build.png");
-		java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
+
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
-		ImageIcon iconCartridge = new ImageIcon(urlCartridge);
-		ImageIcon iconGun = new ImageIcon(urlGun);
-		ImageIcon iconBeacon = new ImageIcon(urlBeacon);
 		ImageIcon iconSpecial = new ImageIcon(urlSpecial);
 		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 		ImageIcon iconTent = new ImageIcon(urlTent);
-		ImageIcon iconTentItem = new ImageIcon(urlTentItem);
-		ImageIcon iconWetsuit = new ImageIcon(urlWetsuit);
-		ImageIcon iconBuild = new ImageIcon(urlBuild);
-		ImageIcon iconRocket = new ImageIcon(urlRocket);
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
@@ -199,31 +169,11 @@ public class GameView extends JPanel {
 		btnFood.setBackground(btnBackgroundColour);
 		btnFood.setFocusPainted(false);
 
-		btnCartridge = new JButton("");
-		temp = iconCartridge.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnCartridge.setIcon(new ImageIcon(temp));
-		btnCartridge.setBackground(btnBackgroundColour);
-		btnCartridge.setFocusPainted(false);
-
-		btnGun = new JButton("");
-		temp = iconGun.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnGun.setIcon(new ImageIcon(temp));
-		btnGun.setBackground(btnBackgroundColour);
-		btnGun.setFocusPainted(false);
-
-		/*
-		 * btnBeacon = new JButton(""); temp =
-		 * iconBeacon.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		 * btnBeacon.setIcon(new ImageIcon(temp));
-		 * btnBeacon.setBackground(btnBackgroundColour);
-		 * btnBeacon.setFocusPainted(false);
-		 */
-
-		btnSpecial = new JButton("");
+		btnExplore = new JButton("");
 		temp = iconSpecial.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnSpecial.setIcon(new ImageIcon(temp));
-		btnSpecial.setBackground(btnBackgroundColour);
-		btnSpecial.setFocusPainted(false);
+		btnExplore.setIcon(new ImageIcon(temp));
+		btnExplore.setBackground(btnBackgroundColour);
+		btnExplore.setFocusPainted(false);
 
 		btnIgloo = new JButton("");
 		temp = iconIgloo.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
@@ -237,39 +187,12 @@ public class GameView extends JPanel {
 		btnTent.setBackground(btnBackgroundColour);
 		btnTent.setFocusPainted(false);
 
-		btnTentItem = new JButton("");
-		temp = iconTentItem.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnTentItem.setIcon(new ImageIcon(temp));
-		btnTentItem.setBackground(btnBackgroundColour);
-		btnTentItem.setFocusPainted(false);
-
-		btnWetsuit = new JButton("");
-		temp = iconWetsuit.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnWetsuit.setIcon(new ImageIcon(temp));
-		btnWetsuit.setBackground(btnBackgroundColour);
-		btnWetsuit.setFocusPainted(false);
-
-		btnBuild = new JButton("");
-		temp = iconBuild.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnBuild.setIcon(new ImageIcon(temp));
-		btnBuild.setBackground(btnBackgroundColour);
-		btnBuild.setFocusPainted(false);
-
-		/*
-		 * btnRocket = new JButton(""); temp =
-		 * iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		 * btnRocket.setIcon(new ImageIcon(temp));
-		 * btnRocket.setBackground(btnBackgroundColour);
-		 * btnRocket.setFocusPainted(false);
-		 */
-
 		buildPanel();
 		buildListeners();
 	}
 
 	private void buildPanel() throws IOException {
 		buildHUD();
-		buildGame();
 	}
 
 	private void buildHUD() throws IOException {
@@ -288,135 +211,93 @@ public class GameView extends JPanel {
 
 		buttonsPanel.add(btnShovel);
 		buttonsPanel.add(btnFood);
-		buttonsPanel.add(btnCartridge);
-
-		buttonsPanel.add(btnGun);
-		// buttonsPanel.add(btnBeacon);
-
-		buttonsPanel.add(btnSpecial);
+		buttonsPanel.add(btnExplore);
 		buttonsPanel.add(btnIgloo);
 		buttonsPanel.add(btnTent);
-		buttonsPanel.add(btnTentItem);
-		buttonsPanel.add(btnWetsuit);
-		buttonsPanel.add(btnBuild);
-		// buttonsPanel.add(btnRocket);
-
-		/*
-		 * buttonsPanel.add(new EskimoView(baseGameController)); buttonsPanel.add(new
-		 * ExplorerView(baseGameController)); buttonsPanel.add(new
-		 * PolarBearView(baseGameController)); buttonsPanel.add(new
-		 * BeaconView(baseGameController)); buttonsPanel.add(new
-		 * GunView(baseGameController)); buttonsPanel.add(new
-		 * RocketView(baseGameController)); buttonsPanel.add(new
-		 * TentView(baseGameController)); buttonsPanel.add(new
-		 * ShovelView(baseGameController)); buttonsPanel.add(new
-		 * RopeView(baseGameController));
-		 */
-
-		// this.setLayout(baseLayout);
-		// this.add(buttonsPanel, gbc);
-	}
-
-	private void buildGame() throws IOException {
-		// TODO : Based on game information, build the game
 	}
 
 	/**
-	 * Add listener to the button, notifies controller
+	 * Add listeners to buttons on the screen
+	 * notifies controller
 	 */
 	private void buildListeners() {
+		/**
+		 * Listener for dig method
+		 * variations include: shovel, fragile shovel, 'hand'
+		 */
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+
 				boolean couldDig = false;
-			
+
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-						couldDig=true;
+						couldDig = true;
 						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
-	
+
 						break;
 					}
 				}
-				if(!couldDig) {
+				if (!couldDig) {
 					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-							couldDig=true;
+							couldDig = true;
 							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
-		
+
 							break;
 						}
 					}
 				}
-				if(!couldDig) {
+				if (!couldDig) {
 					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
 				}
 			}
 		});
+
+		/**
+		 * Listener for eat method so that players could heal
+		 */
 		btnFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useFood " + Game.playerID);
 			}
 		});
-		btnCartridge.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useCartridge " + Game.playerID);
-			}
-		});
-		btnGun.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useGun " + Game.playerID);
-			}
-		});
-		/*
-		 * btnBeacon.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent click) {
-		 * Game.getPlayer(Game.playerID).step("useBeacon" + Game.playerID); } });
+
+		/**
+		 * Listener for Explorer's ability 
+		 * checks capacity of nearby Tiles
 		 */
-		// TODO BEACON, STB ITEMEK
-		btnSpecial.addActionListener(new ActionListener() {
+		btnExplore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useSpecial " + Game.playerID);
 			}
 		});
 
+		/**
+		 * Listener for Eskimo's ability
+		 * builds an Igloo on the current Tile
+		 */
 		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("buildIgloo" + Game.playerID);
 			}
 		});
+
+		/**
+		 * Listener for building a tent
+		 * builds a tent on the current Tile
+		 */
 		btnTent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useTent" + Game.playerID);
 			}
 		});
-		btnTentItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useTentitem" + Game.playerID);
-			}
-		});
-		btnWetsuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useWetsuit" + Game.playerID);
-			}
-		});
-		btnBuild.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useBuild" + Game.playerID);
-			}
-		});
-		/*
-		 * btnRocket.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent click) {
-		 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
-		 */
 
 		this.addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				Point p = arg0.getPoint();
+			public void mouseClicked(MouseEvent e) {
+				Point p = e.getPoint();
 				Rectangle rect = new Rectangle(p);
 				rect.width = rect.height = 1;
 
@@ -429,66 +310,84 @@ public class GameView extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
+				// implement methods for mouse event
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
+				// implement methods for mouse event
 			}
 
+			/**
+			 * Az eger jobb gombbal torteno kattintasara megjelenit egy osszegzo
+			 * panelt, amin bal oldalt a jatekban reszt vevok ID-ja, elete es munkakedve 
+			 * jelenik meg, jobb oldalt pedig az aktualis jatekos neve es 
+			 * az inventoryjaban levo Itemek nevei
+			 */
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				if (arg0.getButton() == MouseEvent.BUTTON3) {
+			public void mousePressed(MouseEvent e) {
+				if (e.getButton() == MouseEvent.BUTTON3) {
 					JPanel panel = new JPanel(new BorderLayout());
-					
-					JPanel stats = new JPanel(new GridBagLayout());
-					JPanel currentPlayer = new JPanel(new GridBagLayout());
 
-					panel.add(stats, BorderLayout.WEST);
-					panel.add(currentPlayer, BorderLayout.EAST);
+					JPanel statsPanel = new JPanel(new GridBagLayout());
+					JPanel currentPlayerPanel = new JPanel(new GridBagLayout());
 
-					
-					
-					
-					
-					String currentPlayerInventory = "";
-					
-					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
-						currentPlayerInventory += i.getId();
-						currentPlayerInventory += ", ";
+					statsPanel.setOpaque(false);
+					currentPlayerPanel.setOpaque(false);
+					panel.setOpaque(false);
+
+					panel.add(statsPanel, BorderLayout.WEST);
+					panel.add(currentPlayerPanel, BorderLayout.EAST);
+
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.gridwidth = GridBagConstraints.REMAINDER;
+					gbc.anchor = GridBagConstraints.NORTH;
+					gbc.fill = GridBagConstraints.HORIZONTAL;
+					gbc.weighty = 0;
+
+					Font font = null;
+					try {
+						font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
+					} catch (FontFormatException | IOException ex) {
+						ex.printStackTrace();
 					}
 
-					currentPlayer.add(new JLabel("Name: " + Game.playerID + " | Temperature: "
-							+ Game.getPlayer(Game.playerID).getBodyTemperature() + " | Work capability: "
-							+ Game.getPlayer(Game.playerID).getEnergy() + " | Items: " + currentPlayerInventory));
+					JLabel title = new JLabel("Player name \t | Temp \t | Capability");
+					title.setFont(font.deriveFont(Font.PLAIN, 24f));
+					statsPanel.add(title, gbc);
+					for (Player p : Game.getPlayers()) {
+						JLabel tempLabel = new JLabel(
+								p.getId() + " – " + p.getBodyTemperature() + " – " + p.getEnergy());
+						tempLabel.setFont(font.deriveFont(Font.PLAIN, 48f));
+						statsPanel.add(tempLabel, gbc);
+					}
 
-//					JTextField firstName = new JTextField(10);
-//					panel.add(firstName);
-//
-//					panel.add(new JLabel("Last Name"));
-//					JTextField lastName = new JTextField(10);
-//					panel.add(lastName);
-					
-					JOptionPane.showConfirmDialog(baseGameController.getGameFrame(), panel, "Inventory", 1);
+					JLabel titleCurrentPlayerPanel = new JLabel("Current Player: " + Game.playerID);
+					titleCurrentPlayerPanel.setFont(font.deriveFont(Font.PLAIN, 48f));
+					currentPlayerPanel.add(titleCurrentPlayerPanel, gbc);
 
-//					if (result == JOptionPane.YES_OPTION) {
-//						System.out.println(firstName.getText() + " : " + lastName.getText());
-//					} else {
-//						System.out.println("Canceled");
-//					}
+					JLabel itemsCurrentPlayer = new JLabel("Items:");
+					itemsCurrentPlayer.setFont(font.deriveFont(Font.PLAIN, 24f));
+					currentPlayerPanel.add(itemsCurrentPlayer, gbc);
+
+					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
+						JLabel tempLabel = new JLabel(i.getId());
+						tempLabel.setFont(font.deriveFont(Font.PLAIN, 36f));
+						currentPlayerPanel.add(tempLabel, gbc);
+					}
+
+					UIManager.put("OptionPane.minimumSize", new Dimension(640, 20));
+					UIManager.put("OptionPane.background", new ColorUIResource(204, 255, 255));
+					UIManager.put("Panel.background", new ColorUIResource(204, 255, 255));
+					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), panel, "Inventory",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				if (arg0.getButton() == MouseEvent.BUTTON3) {
-					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
-				}
+				// implement methods for mouse event
 			}
 
 		});
@@ -502,20 +401,21 @@ public class GameView extends JPanel {
 		this.gamePanel = gamePanel;
 	}
 
+	/**
+	 * JPanel hatterenek ciklussal torteno beallitasa
+	 * illetve a mapon levo Tile-ok kozotti szomszedsagi kapcsolatok
+	 * megjelenitese egy vilagoskek vonallal
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// setBackground(Color.BLUE);
 		java.net.URL imgWaterDeep = MenuView.class.getResource("images/iceWaterDeep.png");
 		java.net.URL imgWaterDeepAlt = MenuView.class.getResource("images/iceWaterDeepAlt.png");
-		java.net.URL imgWaterDeepStar = MenuView.class.getResource("images/iceWaterDeepStars.png");
-		java.net.URL imgWaterDeepStarAlt = MenuView.class.getResource("images/iceWaterDeepStarsAlt.png");
 
 		if (imgWaterDeep != null && imgWaterDeepAlt != null) {
 			ImageIcon waterDeep = new ImageIcon(imgWaterDeep);
 			ImageIcon waterDeepAlt = new ImageIcon(imgWaterDeepAlt);
-			ImageIcon waterDeepStars = new ImageIcon(imgWaterDeepStar);
-			ImageIcon waterDeepStarsAlt = new ImageIcon(imgWaterDeepStarAlt);
 
 			for (int i = 0; i < 20; i++) {
 				for (int j = 0; j < 11; j++) {
@@ -527,6 +427,7 @@ public class GameView extends JPanel {
 				}
 			}
 		}
+
 		for (Tile t : Game.getTiles()) {
 			for (Tile neigh : t.getNeighbours()) {
 				int x1, y1, x2, y2;
@@ -546,6 +447,5 @@ public class GameView extends JPanel {
 	public void EndGame(boolean losestate, String msg) {
 		EndView end = new EndView(this.baseGameController, losestate, msg);
 		this.baseGameController.EndGame(end);
-
 	}
 }
