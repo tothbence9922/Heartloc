@@ -25,6 +25,7 @@ public abstract class Tile implements Drawable {
 
 	protected String id;
 	protected int load = 0;
+
 	protected int amountOfSnow;
 	protected int numOfTargetItems;
 	protected int capacity;
@@ -158,6 +159,14 @@ public abstract class Tile implements Drawable {
 	public int getLoad() {
 		return this.load;
 	}
+	/**
+	 * 
+	 * Bealitja a jegtabla aktualis terheleset
+	 * @param load
+	 */
+	public void setLoad(int load) {
+		this.load = load;
+	}
 
 	/**
 	 * Jegtabla letrehozasa utan annak inicializalast vegzo metodus, ebben dol el,
@@ -223,6 +232,8 @@ public abstract class Tile implements Drawable {
 	public void remove(Player p) {
 		players.remove(p);
 		entities.remove(p);
+		this.setLoad(getLoad() - 1);
+		
 	}
 
 	/**

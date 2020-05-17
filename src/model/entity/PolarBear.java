@@ -22,6 +22,8 @@ public class PolarBear extends Entity {
 		t.receive(this);
 
 		setCurrentTile(t);
+		if(t.getPlayers().size() != 0)
+			t.getPlayers().get(0).getEaten("I ate you bro!");
 
 	}
 
