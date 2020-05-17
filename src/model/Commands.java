@@ -621,65 +621,61 @@ public class Commands {
 			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
-				for (int i = 0; i < Game.getPlayer(cmd[1]).getInventory().size(); i++) {
-					if (Game.getPlayer(cmd[1]).getInventory().get(i).digWithFragileShovel()) {
-						for (Tile t : Game.getTiles()) {
-							for (Player p : t.getPlayers()) {
-								if (p.getId().equals(cmd[1])) {
-									t.dig(2);
-									if (p.getInventory().get(i).getNumOfUses() == 0) {
-										p.getInventory().remove(p.getInventory().get(i));
-									}
-									p.setEnergy(p.getEnergy() - 1);
-									couldDig = true;
-								}
+				couldDig=true;
+				for (Tile t : Game.getTiles()) {
+					for (Player p : t.getPlayers()) {
+						if (p.getId().equals(cmd[1])) {
+							t.dig(2);
+							for (Item i : t.getItems()) {
+								p.addToInventory(i);
+
 							}
+							t.setItems(new ArrayList<Item>());
+							break;
 						}
-						break;
 					}
 				}
 
 			} else if (cmd[2].equals("shovel")) {
-				for (int i = 0; i < Game.getPlayer(cmd[1]).getInventory().size(); i++) {
-					if (Game.getPlayer(cmd[1]).getInventory().get(i).dig()) {
-						for (Tile t : Game.getTiles()) {
-							for (Player p : t.getPlayers()) {
-								if (p.getId().equals(cmd[1])) {
-									t.dig(2);
-									p.setEnergy(p.getEnergy() - 1);
-									couldDig = true;
-								}
+				couldDig=true;
+				for (Tile t : Game.getTiles()) {
+					for (Player p : t.getPlayers()) {
+						if (p.getId().equals(cmd[1])) {
+							t.dig(2);
+							for (Item i : t.getItems()) {
+								p.addToInventory(i);
+
 							}
+							t.setItems(new ArrayList<Item>());
+							break;
 						}
-						break;
 					}
 				}
 
 			}
-		}
+			
+			/**
+			 * Finds the player's tile and then digs with hand moves the items from the tile
+			 * to the player's inventory
+			 */
+			if (!couldDig) {
+				for (Tile t : Game.getTiles()) {
+					for (Player p : t.getPlayers()) {
+						if (p.getId().equals(cmd[1])) {
+							t.dig(1);
+							for (Item i : t.getItems()) {
+								p.addToInventory(i);
 
-		/**
-		 * Finds the player's tile and then digs with hand moves the items from the tile
-		 * to the player's inventory
-		 */
-		if (!couldDig) {
-			for (Tile t : Game.getTiles()) {
-				for (Player p : t.getPlayers()) {
-					if (p.getId().equals(cmd[1])) {
-						t.dig(1);
-						for (Item i : t.getItems()) {
-							p.addToInventory(i);
-
+							}
+							t.setItems(new ArrayList<Item>());
+							break;
 						}
-						t.setItems(new ArrayList<Item>());
-						p.setEnergy(p.getEnergy() - 1);
-						break;
 					}
 				}
 			}
-		}
 
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+		}
 	}
 
 	public static void buildIgloo(String[] cmd) {
