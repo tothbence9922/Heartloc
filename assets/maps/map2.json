@@ -3,7 +3,7 @@
 		{
 			"id": "t1",
 			"snow": 1,
-			"capacity": 2,
+			"capacity": 3,
 			"hole": 1,
 			"neighbours": [
 				"t5",
@@ -34,7 +34,7 @@
 		{
 			"id": "t3",
 			"snow": 2,
-			"capacity": 3,
+			"capacity": 4,
 			"hole": 0,
 			"neighbours": [
 				"t6",
@@ -72,8 +72,8 @@
 			"neighbours": [
 				"t1",
 				"t6",
-				"t10",
-				"t9"
+				"t9",
+				"t10"
 			],
 			"entities": [
 			],
@@ -124,7 +124,7 @@
 		{
 			"id": "t8",
 			"snow": 0,
-			"capacity": 2,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t3",
@@ -161,7 +161,7 @@
 		{
 			"id": "t10",
 			"snow": 5,
-			"capacity": 2,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t5",
@@ -265,9 +265,9 @@
 			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
-				"t15",
 				"t11",
-				"t12"
+				"t12",
+				"t15"
 			],
 			"entities": [
 				"Exp1"
