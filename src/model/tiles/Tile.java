@@ -145,7 +145,8 @@ public abstract class Tile implements Drawable {
 				items.get(i).setVisible(true);
 			}
 			this.amountOfSnow = 0;
-			for(Item i : items) Game.view.remove(i.view);
+			for(Item i : items) Game.view.removeItemView(i.view);
+			Game.view.updatePanel();
 			return this.items;
 		}
 		return null;
@@ -224,6 +225,12 @@ public abstract class Tile implements Drawable {
 	 */
 	public void remove(Entity e) {
 		entities.remove(e);
+	}
+	public void remove(PolarBear pb) {
+		entities.remove(pb);
+		bears.remove(pb);
+		this.setLoad(getLoad() - 1);
+
 	}
 
 	/**

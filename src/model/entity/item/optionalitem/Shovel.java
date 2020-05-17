@@ -1,5 +1,10 @@
 package model.entity.item.optionalitem;
 
+import java.io.IOException;
+
+import controller.GameRunner;
+import view.entity.ShovelView;
+
 /**
  * Az egyik opcionális tárgyat, az ásót (Shovel) megvalósító és reprezentáló
  * osztály.
@@ -8,6 +13,12 @@ public class Shovel extends OptionalItem {
 
 	public Shovel(String id) {
 		super(id);
+		try {
+			view = new ShovelView(GameRunner.baseGameController);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

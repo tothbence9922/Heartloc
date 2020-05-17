@@ -54,6 +54,7 @@ public class GameView extends JPanel {
 	private JButton btnIgloo;
 	private JButton btnTent;
 	private JButton btnDrop;
+	private JButton btnRocket;
 
 	private JButton curPlayerIndicator;
 
@@ -69,6 +70,11 @@ public class GameView extends JPanel {
 			e.printStackTrace();
 		}
 		return singleInstance;
+	}
+
+	public void removeItemView(EntityView view) {
+		itemViews.remove(view);
+		updatePanel();
 	}
 
 	public void addView(Tile t, TileView v) {
@@ -148,6 +154,7 @@ public class GameView extends JPanel {
 		java.net.URL urlIgloo = MenuView.class.getResource("images/igloo.png");
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
 		java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
+		java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
 
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
@@ -155,6 +162,7 @@ public class GameView extends JPanel {
 		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 		ImageIcon iconTent = new ImageIcon(urlTent);
 		ImageIcon iconDrop = new ImageIcon(urlDrop);
+		ImageIcon iconRocket = new ImageIcon(urlRocket);
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
@@ -194,6 +202,12 @@ public class GameView extends JPanel {
 		btnDrop.setBackground(btnBackgroundColour);
 		btnDrop.setFocusPainted(false);
 
+		btnRocket = new JButton("");
+		temp = iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		btnRocket.setIcon(new ImageIcon(temp));
+		btnRocket.setBackground(btnBackgroundColour);
+		btnRocket.setFocusPainted(false);
+
 		buildPanel();
 		buildListeners();
 	}
@@ -221,8 +235,8 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnExplore);
 		buttonsPanel.add(btnIgloo);
 		buttonsPanel.add(btnTent);
-
 		buttonsPanel.add(btnDrop);
+		buttonsPanel.add(btnRocket);
 	}
 
 	/**
@@ -262,7 +276,7 @@ public class GameView extends JPanel {
 		 */
 		btnFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+
 				Game.getPlayer(Game.playerID).step("useFood " + Game.playerID);
 			}
 		});
@@ -299,11 +313,12 @@ public class GameView extends JPanel {
 				Game.getPlayer(Game.playerID).step("drop " + Game.playerID);
 			}
 		});
-		/*
-		 * btnRocket.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent click) {
-		 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
-		 */
+
+		btnRocket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				Game.getPlayer(Game.playerID).step("useRocket " + Game.playerID);
+			}
+		});
 
 		this.addMouseListener(new MouseListener() {
 
@@ -387,7 +402,7 @@ public class GameView extends JPanel {
 						tempLabel.setFont(font.deriveFont(Font.PLAIN, 36f));
 						currentPlayerPanel.add(tempLabel, gbc);
 					}
-					
+
 					UIManager.put("OptionPane.minimumSize", new Dimension(640, 20));
 					UIManager.put("OptionPane.background", new ColorUIResource(204, 255, 255));
 					UIManager.put("Panel.background", new ColorUIResource(204, 255, 255));

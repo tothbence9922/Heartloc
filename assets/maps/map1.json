@@ -3,7 +3,7 @@
 		{
 			"id": "t1",
 			"snow": 2,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t5"
@@ -12,14 +12,12 @@
 				"Exp1"
 			],
 			"items": [
-				"Car1"
 			]
 		},
-		
 		{
 			"id": "t2",
 			"snow": 3,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 1,
 			"neighbours": [
 				"t3",
@@ -32,11 +30,10 @@
 			"items": [
 			]
 		},
-		
 		{
 			"id": "t3",
 			"snow": 1,
-			"capacity":4,
+			"capacity": 4,
 			"hole": 0,
 			"neighbours": [
 				"t2",
@@ -46,15 +43,13 @@
 			"entities": [
 			],
 			"items": [
-				"Foo1",
-				"Bea1"
+				"Foo1"
 			]
 		},
-		
 		{
 			"id": "t4",
 			"snow": 4,
-			"capacity":3,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t7"
@@ -66,11 +61,10 @@
 				"Rop1"
 			]
 		},
-		
 		{
 			"id": "t5",
 			"snow": 3,
-			"capacity":2,
+			"capacity": 2,
 			"hole": 0,
 			"neighbours": [
 				"t1",
@@ -83,11 +77,10 @@
 				"Foo2"
 			]
 		},
-		
 		{
 			"id": "t6",
 			"snow": 1,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t2",
@@ -96,17 +89,20 @@
 			],
 			"entities": [
 				"Esk1"
+				
 			],
 			"items": [
 				"Foo3",
-				"iTen2"
+				"iTen2",
+				"Bea",
+				"Gun",
+				"Car"
 			]
 		},
-		
 		{
 			"id": "t7",
 			"snow": 2,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t3",
@@ -120,11 +116,10 @@
 				"Sho1"
 			]
 		},
-		
 		{
 			"id": "t8",
 			"snow": 0,
-			"capacity":2,
+			"capacity": 2,
 			"hole": 0,
 			"neighbours": [
 				"t11",
@@ -135,11 +130,10 @@
 			"items": [
 			]
 		},
-		
 		{
 			"id": "t9",
 			"snow": 0,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t2",
@@ -150,15 +144,13 @@
 			"entities": [
 			],
 			"items": [
-				"Sho2",
-				"Gun1"
+				"Sho2"
 			]
 		},
-		
 		{
 			"id": "t10",
 			"snow": 2,
-			"capacity":-1,
+			"capacity": -1,
 			"hole": 0,
 			"neighbours": [
 				"t3",
@@ -171,11 +163,10 @@
 				"Rop1"
 			]
 		},
-		
 		{
 			"id": "t11",
-			"snow":5,
-			"capacity":3,
+			"snow": 5,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t7",
@@ -188,11 +179,10 @@
 				"Wet1"
 			]
 		},
-		
 		{
 			"id": "t12",
-			"snow":3,
-			"capacity":3,
+			"snow": 3,
+			"capacity": 3,
 			"hole": 0,
 			"neighbours": [
 				"t8",

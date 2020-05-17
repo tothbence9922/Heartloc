@@ -68,23 +68,11 @@ public abstract class Player extends Entity {
 			int x = currentTile.view.getX();
 			int y = currentTile.view.getY() + 45;
 			inventory.get(0).view.setPos(x, y);
+			Game.view.addView(inventory.get(0).view);
 			inventory.get(0).view.setVisible(true);
-			Game.view.add(inventory.get(0).view);
 			inventory.remove(0);
 			Game.view.updatePanel();
 		}
-	}
-
-	/**
-	 * A targyak a jaték kezdeten a jegtablakba vannak fagyva. Miutan kiastak oket
-	 * es lathatoak, fel lehet venni a targyakat.
-	 * 
-	 */
-	public void pickup() {
-		for (Item i : currentTile.getItems()) {
-			inventory.add(i);
-		}
-		currentTile.getItems().clear();
 	}
 
 	/**
