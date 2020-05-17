@@ -64,21 +64,19 @@ public class GameView extends JPanel {
 
 	private JLabel labelGame;
 
-	private JButton btnRope;
 	private JButton btnShovel;
 	private JButton btnFood;
 	private JButton btnCartridge;
 	private JButton btnGun;
-	//private JButton btnBeacon;
+	// private JButton btnBeacon;
 	private JButton btnSpecial;
 
 	private JButton curPlayerIndicator;
-  private JButton btnIgloo;
+	private JButton btnIgloo;
 	private JButton btnTent;
 	private JButton btnTentItem;
 	private JButton btnWetsuit;
 	private JButton btnBuild;
-	//private JButton btnRocket;
 
 
 	public static boolean syncObject = false;
@@ -101,7 +99,7 @@ public class GameView extends JPanel {
 	public void addView(Tile t, TileView v) {
 		v.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " +t.getId());
+				Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
 			}
 		});
 		tileViews.add(v);
@@ -133,9 +131,9 @@ public class GameView extends JPanel {
 				int y = p.view.getY();
 				int width = 10;
 				int height = 30;
-				curPlayerIndicator.setBounds(x + p.view.getWidth()/2 - width/2, y - height, width, height);
-				System.out.println(String.valueOf(p.view.getX()) +"  "+ String.valueOf(p.view.getY()));
-				
+				curPlayerIndicator.setBounds(x + p.view.getWidth() / 2 - width / 2, y - height, width, height);
+				System.out.println(String.valueOf(p.view.getX()) + "  " + String.valueOf(p.view.getY()));
+
 			}
 		}
 		add(curPlayerIndicator);
@@ -177,47 +175,35 @@ public class GameView extends JPanel {
 		 * JButton("F"); btnCartridge = new JButton("C"); btnGun = new JButton("G");
 		 * btnFlare = new JButton("F"); btnSpecial = new JButton("*");
 		 */
-
-		java.net.URL urlRope = MenuView.class.getResource("images/rope.png");
 		java.net.URL urlShovel = MenuView.class.getResource("images/shovel.png");
 		java.net.URL urlFood = MenuView.class.getResource("images/food.png");
 		java.net.URL urlCartridge = MenuView.class.getResource("images/cartridge.png");
 		java.net.URL urlGun = MenuView.class.getResource("images/gun.png");
-		//java.net.URL urlBeacon = MenuView.class.getResource("images/beacon.png");
+		java.net.URL urlBeacon = MenuView.class.getResource("images/beacon.png");
 		java.net.URL urlSpecial = MenuView.class.getResource("images/explore.png");
 		java.net.URL urlIgloo = MenuView.class.getResource("images/igloo.png");
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
 		java.net.URL urlTentItem = MenuView.class.getResource("images/tentitem.png");
 		java.net.URL urlWetsuit = MenuView.class.getResource("images/wetsuit.png");
 		java.net.URL urlBuild = MenuView.class.getResource("images/build.png");
-		//java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
-
-		ImageIcon iconRope = new ImageIcon(urlRope);
+		java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
 		ImageIcon iconCartridge = new ImageIcon(urlCartridge);
 		ImageIcon iconGun = new ImageIcon(urlGun);
-		//ImageIcon iconBeacon = new ImageIcon(urlBeacon);
+		ImageIcon iconBeacon = new ImageIcon(urlBeacon);
 		ImageIcon iconSpecial = new ImageIcon(urlSpecial);
 		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 		ImageIcon iconTent = new ImageIcon(urlTent);
 		ImageIcon iconTentItem = new ImageIcon(urlTentItem);
 		ImageIcon iconWetsuit = new ImageIcon(urlWetsuit);
 		ImageIcon iconBuild = new ImageIcon(urlBuild);
-		//ImageIcon iconRocket = new ImageIcon(urlRocket);
-		
-		
+		ImageIcon iconRocket = new ImageIcon(urlRocket);
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
-		btnRope = new JButton("");
-		Image temp = iconRope.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnRope.setIcon(new ImageIcon(temp));
-		btnRope.setBackground(btnBackgroundColour);
-		btnRope.setFocusPainted(false);
-
 		btnShovel = new JButton("");
-		temp = iconShovel.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		Image temp = iconShovel.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnShovel.setIcon(new ImageIcon(temp));
 		btnShovel.setBackground(btnBackgroundColour);
 		btnShovel.setFocusPainted(false);
@@ -240,56 +226,57 @@ public class GameView extends JPanel {
 		btnGun.setBackground(btnBackgroundColour);
 		btnGun.setFocusPainted(false);
 
-		// TODO BEACON, STB ITEMEK
-		/*btnBeacon = new JButton("");
-		temp = iconBeacon.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnBeacon.setIcon(new ImageIcon(temp));
-		btnBeacon.setBackground(btnBackgroundColour);
-		btnBeacon.setFocusPainted(false);*/
-		
+		/*
+		 * btnBeacon = new JButton(""); temp =
+		 * iconBeacon.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		 * btnBeacon.setIcon(new ImageIcon(temp));
+		 * btnBeacon.setBackground(btnBackgroundColour);
+		 * btnBeacon.setFocusPainted(false);
+		 */
+
 		btnSpecial = new JButton("");
 		temp = iconSpecial.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnSpecial.setIcon(new ImageIcon(temp));
 		btnSpecial.setBackground(btnBackgroundColour);
 		btnSpecial.setFocusPainted(false);
-		
+
 		btnIgloo = new JButton("");
-		temp = iconIgloo.getImage().getScaledInstance(32, 32,java.awt.Image.SCALE_SMOOTH);
+		temp = iconIgloo.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnIgloo.setIcon(new ImageIcon(temp));
 		btnIgloo.setBackground(btnBackgroundColour);
 		btnIgloo.setFocusPainted(false);
-		
+
 		btnTent = new JButton("");
-		temp = iconTent.getImage().getScaledInstance(32, 32,java.awt.Image.SCALE_SMOOTH);
+		temp = iconTent.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnTent.setIcon(new ImageIcon(temp));
 		btnTent.setBackground(btnBackgroundColour);
 		btnTent.setFocusPainted(false);
-		
+
 		btnTentItem = new JButton("");
-		temp = iconTentItem.getImage().getScaledInstance(32, 32,java.awt.Image.SCALE_SMOOTH);
+		temp = iconTentItem.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnTentItem.setIcon(new ImageIcon(temp));
 		btnTentItem.setBackground(btnBackgroundColour);
 		btnTentItem.setFocusPainted(false);
-		
+
 		btnWetsuit = new JButton("");
-		temp = iconWetsuit.getImage().getScaledInstance(32, 32,java.awt.Image.SCALE_SMOOTH);
+		temp = iconWetsuit.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnWetsuit.setIcon(new ImageIcon(temp));
 		btnWetsuit.setBackground(btnBackgroundColour);
 		btnWetsuit.setFocusPainted(false);
-		
+
 		btnBuild = new JButton("");
-		temp = iconBuild.getImage().getScaledInstance(32, 32,java.awt.Image.SCALE_SMOOTH);
+		temp = iconBuild.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnBuild.setIcon(new ImageIcon(temp));
 		btnBuild.setBackground(btnBackgroundColour);
 		btnBuild.setFocusPainted(false);
-		
-		/*btnRocket = new JButton("");
-		temp = iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnRocket.setIcon(new ImageIcon(temp));
-		btnRocket.setBackground(btnBackgroundColour);
-		btnRocket.setFocusPainted(false);*/
-		
-		
+
+		/*
+		 * btnRocket = new JButton(""); temp =
+		 * iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		 * btnRocket.setIcon(new ImageIcon(temp));
+		 * btnRocket.setBackground(btnBackgroundColour);
+		 * btnRocket.setFocusPainted(false);
+		 */
 
 		buildPanel();
 		buildListeners();
@@ -314,13 +301,12 @@ public class GameView extends JPanel {
 
 		buttonsPanel.setOpaque(false);
 
-		buttonsPanel.add(btnRope);
 		buttonsPanel.add(btnShovel);
 		buttonsPanel.add(btnFood);
 		buttonsPanel.add(btnCartridge);
 
 		buttonsPanel.add(btnGun);
-		//buttonsPanel.add(btnBeacon);
+		// buttonsPanel.add(btnBeacon);
 
 		buttonsPanel.add(btnSpecial);
 		buttonsPanel.add(btnIgloo);
@@ -328,9 +314,8 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnTentItem);
 		buttonsPanel.add(btnWetsuit);
 		buttonsPanel.add(btnBuild);
-		//buttonsPanel.add(btnRocket);
-		
-		
+		// buttonsPanel.add(btnRocket);
+
 		/*
 		 * buttonsPanel.add(new EskimoView(baseGameController)); buttonsPanel.add(new
 		 * ExplorerView(baseGameController)); buttonsPanel.add(new
@@ -355,11 +340,6 @@ public class GameView extends JPanel {
 	 * Add listener to the button, notifies controller
 	 */
 	private void buildListeners() {
-		btnRope.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useRope " + Game.playerID);
-			}
-		});
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
@@ -380,21 +360,21 @@ public class GameView extends JPanel {
 				Game.getPlayer(Game.playerID).step("useGun " + Game.playerID);
 			}
 		});
-		/*btnBeacon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useBeacon" + Game.playerID);
-			}
-		});*/
+		/*
+		 * btnBeacon.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent click) {
+		 * Game.getPlayer(Game.playerID).step("useBeacon" + Game.playerID); } });
+		 */
 		// TODO BEACON, STB ITEMEK
 		btnSpecial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useSpecial " + Game.playerID);
 			}
 		});
-    
-  btnIgloo.addActionListener(new ActionListener() {
+
+		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useIgloo" + Game.playerID);
+				Game.getPlayer(Game.playerID).step("buildIgloo" + Game.playerID);
 			}
 		});
 		btnTent.addActionListener(new ActionListener() {
@@ -416,13 +396,13 @@ public class GameView extends JPanel {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useBuild" + Game.playerID);
 			}
-		});/*
-		btnRocket.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID);
-			}
-		});*/
-    
+		});
+		/*
+			 * btnRocket.addActionListener(new ActionListener() { public void
+			 * actionPerformed(ActionEvent click) {
+			 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
+			 */
+
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -431,36 +411,37 @@ public class GameView extends JPanel {
 				Point p = arg0.getPoint();
 				Rectangle rect = new Rectangle(p);
 				rect.width = rect.height = 1;
-				
-				for (Tile t :Game.getTiles()) {
-					if (t.view.getBounds().intersects(rect)) Game.getPlayer(Game.playerID).step("move " + Game.playerID +" "+t.getId());
+
+				for (Tile t : Game.getTiles()) {
+					if (t.view.getBounds().intersects(rect))
+						Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
 				}
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 	}
 
@@ -512,10 +493,10 @@ public class GameView extends JPanel {
 			}
 		}
 	}
-	
-	public void EndGame(boolean losestate){
+
+	public void EndGame(boolean losestate) {
 		EndView end = new EndView(this.baseGameController, losestate);
 		this.baseGameController.EndGame(end);
-		
+
 	}
 }
