@@ -114,26 +114,7 @@ public class Game {
 		view.EndGame(losestate);
 	}
 
-	public static void generateStorm(String string) {
-		if (string.equals("deterministic")) {
-			for (Tile t : tiles) {
-				if (t.getPlayers().size() != 0) {
-					if (!t.hasIgloo()) {
-						if (t.hasTent()) {
-							// t.setHasTent(false);
-							break;
-						}
-						for (Player p : t.getPlayers()) {
-							p.damage(1);
-						}
-					}
-				}
-				t.addSnow(1);
-			}
-		}
-	}
-
-	public static void generateStorm() {
+	public static void generateStorm() {		
 		for (Tile t : tiles) {
 			if (t.getPlayers().size() != 0) {
 				if (!t.hasIgloo()) {
@@ -143,6 +124,9 @@ public class Game {
 					}
 					for (Player p : t.getPlayers()) {
 						p.damage(1);
+						if (p.getTemperature() < 1) {
+							p.die();
+						}
 					}
 				}
 			}

@@ -56,8 +56,6 @@ public class Commands {
 				exploreTile(tokens);
 			} else if (tokens[0].equals("move")) {
 				move(tokens);
-			} else if (tokens[0].equals("createStorm")) {
-				createStorm(tokens);
 			} else if (tokens[0].equals("dig")) {
 				dig(tokens);
 			} else if (tokens[0].equals("buildIgloo")) {
@@ -563,16 +561,6 @@ public class Commands {
 
 		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
-	}
-
-	public static void createStorm(String[] cmd) throws ParseException {
-		if (cmd.length > 1) {
-			Game.generateStorm(cmd[1]);
-		} else {
-			Game.generateStorm();
-		}
-
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	public static void exploreTile(String[] cmd) {

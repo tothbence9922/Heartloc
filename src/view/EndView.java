@@ -26,13 +26,12 @@ public class EndView extends JPanel {
 	private boolean lose;
 	private GameController baseGameController;
 	private JLabel labelGame;
-	private JButton btnStartGame;
 	private JButton btnExit;
 	private GridBagLayout baseLayout;
 	
-	public EndView(GameController baseGameController, boolean losestate) {
+	public EndView(GameController baseGameController, boolean loseState) {
 		this.baseGameController = baseGameController;
-		lose = losestate;
+		lose = loseState;
 		Font font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
@@ -49,18 +48,9 @@ public class EndView extends JPanel {
 		
 		baseLayout = new GridBagLayout();
     
-		btnStartGame = new JButton("Start new game");
-		btnStartGame.setForeground(Color.DARK_GRAY);
-		btnStartGame.setFont(font.deriveFont(Font.PLAIN, 48f));
-		/* disable background color and focus outline */
-		btnStartGame.setOpaque(false);
-		btnStartGame.setContentAreaFilled(false);
-		btnStartGame.setBorderPainted(false);
-		btnStartGame.setFocusPainted(false);
-		
 		btnExit = new JButton("Exit");
 		btnExit.setForeground(Color.DARK_GRAY);
-		btnExit.setFont(font.deriveFont(Font.PLAIN, 48f));
+		btnExit.setFont(font.deriveFont(Font.PLAIN, 90f));
 		btnExit.setOpaque(false);
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
@@ -86,7 +76,6 @@ public class EndView extends JPanel {
         gbc.weighty = 1;
         
         JPanel buttons = new JPanel(new GridBagLayout());
-        buttons.add(btnStartGame, gbc);
         buttons.add(btnExit, gbc);		
         buttons.setOpaque(false);	// do not display background over the other panel
        
@@ -98,25 +87,7 @@ public class EndView extends JPanel {
 	/**
 	 * Add listener to the button, notifies controller
 	 */
-	private void buildListeners() {
-		btnStartGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-								
-				baseGameController.getGameFrame().changePanel(new MapSelectionView(baseGameController));
-			}
-		});
-		
-		/* add hover effect */
-		btnStartGame.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	btnStartGame.setForeground(Color.WHITE);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	btnStartGame.setForeground(Color.DARK_GRAY);
-		    }
-		});
-		
+	private void buildListeners() {		
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				System.exit(1);
