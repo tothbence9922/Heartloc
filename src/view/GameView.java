@@ -7,11 +7,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -19,9 +22,14 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import controller.GameController;
 import model.Game;
+import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
 import view.entity.EntityView;
@@ -120,7 +128,6 @@ public class GameView extends JPanel {
 			add(iv);
 		for (TileView tv : tileViews)
 			add(tv);
-		
 
 	}
 
@@ -320,7 +327,30 @@ public class GameView extends JPanel {
 	private void buildListeners() {
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
+				
+				boolean couldDig = false;
+			
+				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
+					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
+						couldDig=true;
+						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
+	
+						break;
+					}
+				}
+				if(!couldDig) {
+					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
+						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
+							couldDig=true;
+							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
+		
+							break;
+						}
+					}
+				}
+				if(!couldDig) {
+					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
+				}
 			}
 		});
 		btnFood.addActionListener(new ActionListener() {
@@ -389,7 +419,7 @@ public class GameView extends JPanel {
 				Point p = arg0.getPoint();
 				Rectangle rect = new Rectangle(p);
 				rect.width = rect.height = 1;
-				
+
 				for (Tile t : Game.getTiles()) {
 					Rectangle r = new Rectangle(t.view.getX(), t.view.getY(), 128, 128);
 					if (r.intersects(rect))
@@ -411,14 +441,54 @@ public class GameView extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+				if (arg0.getButton() == MouseEvent.BUTTON3) {
+					JPanel panel = new JPanel(new BorderLayout());
+					
+					JPanel stats = new JPanel(new GridBagLayout());
+					JPanel currentPlayer = new JPanel(new GridBagLayout());
+
+					panel.add(stats, BorderLayout.WEST);
+					panel.add(currentPlayer, BorderLayout.EAST);
+
+					
+					
+					
+					
+					String currentPlayerInventory = "";
+					
+					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
+						currentPlayerInventory += i.getId();
+						currentPlayerInventory += ", ";
+					}
+
+					currentPlayer.add(new JLabel("Name: " + Game.playerID + " | Temperature: "
+							+ Game.getPlayer(Game.playerID).getBodyTemperature() + " | Work capability: "
+							+ Game.getPlayer(Game.playerID).getEnergy() + " | Items: " + currentPlayerInventory));
+
+//					JTextField firstName = new JTextField(10);
+//					panel.add(firstName);
+//
+//					panel.add(new JLabel("Last Name"));
+//					JTextField lastName = new JTextField(10);
+//					panel.add(lastName);
+					
+					JOptionPane.showConfirmDialog(baseGameController.getGameFrame(), panel, "Inventory", 1);
+
+//					if (result == JOptionPane.YES_OPTION) {
+//						System.out.println(firstName.getText() + " : " + lastName.getText());
+//					} else {
+//						System.out.println("Canceled");
+//					}
+				}
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-
+				if (arg0.getButton() == MouseEvent.BUTTON3) {
+					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+				}
 			}
 
 		});
