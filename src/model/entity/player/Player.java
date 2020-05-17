@@ -109,9 +109,10 @@ public abstract class Player extends Entity {
 	 */
 	public void die() {
 		this.bodyTemperature = 0;
+		System.out.println("ASDASDADSASDD");
+		Game.Defeat();
 		// Game.getInstance();
 		// Game.Defeat();
-		// Game.EndGame();
 	}
 
 	/**
@@ -339,22 +340,20 @@ public abstract class Player extends Entity {
 
 	@Override
 	public int step(String msg) {
-		// TODO
 
-		if (energy == 0) {
+		if (energy <= 0) {
 			Collections.rotate(Game.getPlayers(), -1);
 			Game.setPlayerID(Game.getPlayers().get(0).getId());
-			System.out.println("CURRENT PLAYER ID: " + Game.getPlayerID());
+			Game.view.updatePanel();
 			if (Game.getPlayers().get(0).getId() == Game.getFirstPlayerID()) {
 				Game.nextRound();
 			}
+
 		}
 		if (energy > 0) {
 			Commands.choseCommand(msg);
-
+			Game.view.updatePanel();
 			energy--;
-		} else {
-			energy = 5;
 		}
 		return energy;
 	}

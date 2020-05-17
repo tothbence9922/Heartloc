@@ -10,6 +10,7 @@ import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
+import view.EndView;
 import view.GameView;
 
 public class Game {
@@ -33,7 +34,7 @@ public class Game {
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
 
-	public GameView view;
+	public static GameView view;
 
 	private Game(GameController baseGameController) {
 		view = GameView.getInstance(baseGameController);
@@ -101,38 +102,19 @@ public class Game {
 	 * meghívását, ekkor a játékos gyõzelmét könyvelhetjük el.
 	 */
 	public void victory() {
-		// TODO : WINSCREEN
-		EndGame();
+		boolean losestate = false;
+		EndGame(losestate);
 	}
 
 	/**
 	 * A játék végekor meghívódó metódus, mellyel véglegesíthetjük a játék állását
 	 * és lezárhatjuk a játékot.
 	 */
-	public static void EndGame() {
-		// TODO : ENDING THE GAME?
+	public static void EndGame(boolean losestate) {
+		view.EndGame(losestate);
 	}
 
-	public static void generateStorm(String string) {
-		if (string.equals("deterministic")) {
-			for (Tile t : tiles) {
-				if (t.getPlayers().size() != 0) {
-					if (!t.hasIgloo()) {
-						if (t.hasTent()) {
-							// t.setHasTent(false);
-							break;
-						}
-						for (Player p : t.getPlayers()) {
-							p.damage(1);
-						}
-					}
-				}
-				t.addSnow(1);
-			}
-		}
-	}
-
-	public static void generateStorm() {
+	public static void generateStorm() {		
 		for (Tile t : tiles) {
 			if (t.getPlayers().size() != 0) {
 				if (!t.hasIgloo()) {
@@ -142,6 +124,9 @@ public class Game {
 					}
 					for (Player p : t.getPlayers()) {
 						p.damage(1);
+						if (p.getTemperature() < 1) {
+							p.die();
+						}
 					}
 				}
 			}
@@ -230,10 +215,13 @@ public class Game {
 	
 	public static void nextRound() {
 		for(PolarBear pb : bears) pb.step("MOVE");
+		view.updatePanel();
 		generateStorm();
+		for(Player p : players) p.setEnergy(5);
 	}
 
 	public static void Defeat() {
-		// TODO
+		boolean losestate = true;
+		EndGame(losestate);
 	}
 }

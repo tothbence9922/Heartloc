@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import controller.GameRunner;
@@ -53,8 +56,6 @@ public class Commands {
 				exploreTile(tokens);
 			} else if (tokens[0].equals("move")) {
 				move(tokens);
-			} else if (tokens[0].equals("createStorm")) {
-				createStorm(tokens);
 			} else if (tokens[0].equals("dig")) {
 				dig(tokens);
 			} else if (tokens[0].equals("buildIgloo")) {
@@ -562,16 +563,6 @@ public class Commands {
 
 	}
 
-	public static void createStorm(String[] cmd) throws ParseException {
-		if (cmd.length > 1) {
-			Game.generateStorm(cmd[1]);
-		} else {
-			Game.generateStorm();
-		}
-
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
-	}
-
 	public static void exploreTile(String[] cmd) {
 
 		System.out.println("Capacity: " + Game.getPlayer(cmd[1]).exploreTile(cmd[2]));
@@ -587,69 +578,45 @@ public class Commands {
 			return;
 		}
 
-		if (cmd[1].equals("PolarBear")) {
-			Tile temp = new StableTile("");
-			Tile newt = new StableTile("");
-			Entity tempPol = new PolarBear("Pol1");
+		Tile tempTile = new StableTile("");
+		Player tempPlayer = new Explorer("");
 
-			for (Tile oldtile : Game.getTiles()) {
-				for (Entity e : oldtile.getBears()) {
-					if (e.getId().equals("Pol1")) {
-						tempPol = e;
-						temp = oldtile;
-						break;
-
-					}
-				}
-				if (!(temp.getId().equals(""))) {
+		for (Tile oldtile : Game.getTiles()) {
+			for (Player p : oldtile.getPlayers()) {
+				if (p.getId().equals(cmd[1])) {
+					tempPlayer = p;
+					tempTile = oldtile;
 					break;
 				}
 			}
-
-			for (Tile newtile : Game.getTiles()) {
-				if (newtile.getId().equals(cmd[2])) {
-					newt = newtile;
-					newtile.receive(tempPol);
-					temp.remove(tempPol);
-					break;
-
-				}
-			}
-
-			for (Player p : newt.getPlayers()) {
-				newt.remove(p);
-				p.die();
-			}
-		} else {
-			Tile tempTile = new StableTile("");
-			Player tempPlayer = new Explorer("");
-
-			for (Tile oldtile : Game.getTiles()) {
-				for (Player p : oldtile.getPlayers()) {
-					if (p.getId().equals(cmd[1])) {
-
-						tempPlayer = p;
-						tempTile = oldtile;
-						break;
-
-					}
-				}
-				if (!tempPlayer.getId().equals("")) {
-					break;
-				}
-			}
-
-			for (Tile newTile : Game.getTiles()) {
-				if (newTile.getId().equals(cmd[2])) {
-					tempPlayer.setCurrentTile(tempTile);
-					tempPlayer.move(newTile);
-					break;
-
-				}
+			if (!tempPlayer.getId().equals("")) {
+				break;
 			}
 		}
 
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+		for (Tile newTile : Game.getTiles()) {
+			if (newTile.getId().equals(cmd[2])) {
+				boolean isNeighbour = false;
+				for (Tile t : newTile.getNeighbours()) {
+					if(t.getId() == tempTile.getId()) isNeighbour = true;
+				}
+				if(isNeighbour) {
+				Random r = new Random();
+				tempPlayer.setCurrentTile(tempTile);
+				tempPlayer.move(newTile);
+				int x = newTile.view.getX();
+				int y = newTile.view.getY();
+				tempPlayer.view.setBounds(x + r.nextInt(32) , y, 64, 85);
+				
+				Game.view.updatePanel();
+				}else {tempPlayer.setEnergy(tempPlayer.getEnergy()+1);}
+				break;
+
+			}
+		}
+		Game.view.updatePanel();
+
+		// System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 
 	/**
