@@ -10,7 +10,7 @@ public class FragileShovelView extends ItemView {
 
 	public FragileShovelView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(FragileShovelView.class.getResource("../images/shovel.png"));
+		icon = new ImageIcon(FragileShovelView.class.getResource("../images/shovel-24x24.png"));
 		this.setIcon(icon);
 }
 

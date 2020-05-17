@@ -1,10 +1,6 @@
 package model.entity.item.targetitem;
 
-import controller.GameRunner;
-import view.entity.RocketView;
-
 public class Rocket extends TargetItem {
-	
 	
 	// static variable single_instance of type Singleton 
     private static Rocket single_instance = null; 
@@ -12,7 +8,6 @@ public class Rocket extends TargetItem {
     // private constructor restricted to this class itself 
     private Rocket(String id) { 
     	super(id);
-    	view = new RocketView(GameRunner.baseGameController);
     } 
   /**
    *  a Singleton tervezesi mintat kovetve visszater egy

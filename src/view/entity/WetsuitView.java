@@ -10,7 +10,7 @@ public class WetsuitView extends ItemView {
 
 	public WetsuitView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(WetsuitView.class.getResource("../images/wetsuit.png"));
+		icon = new ImageIcon(WetsuitView.class.getResource("../images/wetsuit-24x24.png"));
 		this.setIcon(icon);
 	}
 

@@ -16,6 +16,7 @@ public abstract class Item extends Entity {
 
 	public void setVisible(boolean b) {
 		this.visible = b;
+		view.setVisible(b);
 	}
 
 	/**

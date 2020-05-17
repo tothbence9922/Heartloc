@@ -10,7 +10,7 @@ public class FoodView extends ItemView {
 
 	public FoodView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(FoodView.class.getResource("../images/food.png"));
+		icon = new ImageIcon(FoodView.class.getResource("../images/food-24x24.png"));
 		this.setIcon(icon);
 	}
 

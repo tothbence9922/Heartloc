@@ -192,6 +192,37 @@ public class MapSelectionView extends JPanel {
 			
 			}
 		});
+		
+		mapTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				/*
+				 * Create game here
+				 * sample code: 
+				 * 
+				 * Widget temp = new Widget();
+				 * baseGameController.getGameFactory.getWidgetList().add(temp);
+				 */
+				String selectedMap = mapTextField.getText();
+				try {
+				numOfEsk = Integer.parseInt(eskTextField.getText());
+				} catch(NumberFormatException e) {
+					numOfEsk = 2;
+				}
+				try {
+					numOfExp= Integer.parseInt(expTextField.getText());
+					} catch(NumberFormatException e) {
+						numOfExp= 1;
+					}
+				String[] tokens = {"loadMap", selectedMap};
+				
+				//System.out.println("NUMOFEXP: " + String.valueOf(numOfExp) + " NUMOFESK " + String.valueOf(numOfEsk));
+				baseGameController.setGame(tokens, numOfEsk, numOfExp);
+				//JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "Yey a new window!");
+				
+				baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
+			
+			}
+		});
 	
 		
 		expTextField.addFocusListener(new FocusListener() {

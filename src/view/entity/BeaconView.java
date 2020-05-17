@@ -1,5 +1,7 @@
 package view.entity;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 import controller.GameController;
@@ -10,7 +12,8 @@ public class BeaconView extends ItemView {
 
 	public BeaconView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(BeaconView.class.getResource("../images/gun.png"));
+		icon = new ImageIcon(BeaconView.class.getResource("../images/beacon-24x24.png"));
+
 		this.setIcon(icon);
 	}
 

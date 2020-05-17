@@ -53,6 +53,8 @@ public class GameView extends JPanel {
 	private JButton btnExplore;
 	private JButton btnIgloo;
 	private JButton btnTent;
+	private JButton btnDrop;
+
 
 	private JButton curPlayerIndicator;
 
@@ -106,8 +108,6 @@ public class GameView extends JPanel {
 				int width = 10;
 				int height = 30;
 				curPlayerIndicator.setBounds(x + p.view.getWidth() / 2 - width / 2, y - height, width, height);
-				System.out.println(String.valueOf(p.view.getX()) + "  " + String.valueOf(p.view.getY()));
-
 			}
 		}
 		add(curPlayerIndicator);
@@ -148,12 +148,16 @@ public class GameView extends JPanel {
 		java.net.URL urlSpecial = MenuView.class.getResource("images/explore.png");
 		java.net.URL urlIgloo = MenuView.class.getResource("images/igloo.png");
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
+    java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
+		
 
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
 		ImageIcon iconSpecial = new ImageIcon(urlSpecial);
 		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 		ImageIcon iconTent = new ImageIcon(urlTent);
+		ImageIcon iconDrop = new ImageIcon(urlDrop);
+
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
@@ -187,6 +191,12 @@ public class GameView extends JPanel {
 		btnTent.setBackground(btnBackgroundColour);
 		btnTent.setFocusPainted(false);
 
+		btnDrop = new JButton("");
+		temp = iconDrop.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		btnDrop.setIcon(new ImageIcon(temp));
+		btnDrop.setBackground(btnBackgroundColour);
+		btnDrop.setFocusPainted(false);
+
 		buildPanel();
 		buildListeners();
 	}
@@ -214,6 +224,8 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnExplore);
 		buttonsPanel.add(btnIgloo);
 		buttonsPanel.add(btnTent);
+
+		buttonsPanel.add(btnDrop);
 	}
 
 	/**
@@ -227,28 +239,31 @@ public class GameView extends JPanel {
 		 */
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-
-				boolean couldDig = false;
-
+			
+				boolean hasTool = false;
+			
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-						couldDig = true;
+						hasTool=true;
+
 						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
 
 						break;
 					}
 				}
-				if (!couldDig) {
+				if(!hasTool) {
 					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-							couldDig = true;
+							hasTool=true;
+
 							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
 
 							break;
 						}
 					}
 				}
-				if (!couldDig) {
+
+				else {
 					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
 				}
 			}
@@ -292,6 +307,27 @@ public class GameView extends JPanel {
 				Game.getPlayer(Game.playerID).step("useTent" + Game.playerID);
 			}
 		});
+
+		btnTentItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				Game.getPlayer(Game.playerID).step("useTentitem" + Game.playerID);
+			}
+		});
+		btnWetsuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				Game.getPlayer(Game.playerID).step("useWetsuit" + Game.playerID);
+			}
+		});
+		btnDrop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				Game.getPlayer(Game.playerID).step("drop " + Game.playerID);
+			}
+		});
+		/*
+		 * btnRocket.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent click) {
+		 * Game.getPlayer(Game.playerID).step("useRocket" + Game.playerID); } });
+		 */
 
 		this.addMouseListener(new MouseListener() {
 
@@ -357,7 +393,7 @@ public class GameView extends JPanel {
 					statsPanel.add(title, gbc);
 					for (Player p : Game.getPlayers()) {
 						JLabel tempLabel = new JLabel(
-								p.getId() + " – " + p.getBodyTemperature() + " – " + p.getEnergy());
+								p.getId() + " Â– " + p.getBodyTemperature() + " Â– " + p.getEnergy());
 						tempLabel.setFont(font.deriveFont(Font.PLAIN, 48f));
 						statsPanel.add(tempLabel, gbc);
 					}

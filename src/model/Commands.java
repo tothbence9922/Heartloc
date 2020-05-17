@@ -71,6 +71,8 @@ public class Commands {
 				useRocket(tokens);
 			} else if (tokens[0].equals("buildTent")) {
 				buildTent(tokens);
+			} else if (tokens[0].equals("drop")) {
+				drop(tokens);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -556,7 +558,7 @@ public class Commands {
 
 		// Ha nem eleg hosszu a parancs biztosan rossz
 		if (cmd.length != 3) {
-			System.out.println("Valami nem jó! A parancs kinézete: move játékosnév mezõnév ");
+			System.out.println("Valami nem jÃ³! A parancs kinÃ©zete: move jÃ¡tÃ©kosnÃ©v mezÃµnÃ©v ");
 			return;
 		}
 
@@ -605,15 +607,14 @@ public class Commands {
 	}
 
 	/**
-	 * A dig függvény szimulálása, 2 paraméterrel rendelkezik (a cmd[1] és cmd[2]
-	 * értékek: - cmd[1]: játékost azonosítja - cmd[2]: az eszközt (shovel,
+	 * A dig fÃ¼ggvÃ©ny szimulÃ¡lÃ¡sa, 2 paramÃ©terrel rendelkezik (a cmd[1] Ã©s cmd[2]
+	 * Ã©rtÃ©kek: - cmd[1]: jÃ¡tÃ©kost azonosÃ­tja - cmd[2]: az eszkÃ¶zt (shovel,
 	 * fragileShovel, none - hand)
 	 * 
 	 * @param cmd
 	 * @throws ParseException
 	 */
 	public static void dig(String[] cmd) throws ParseException {
-		boolean couldDig = false;
 
 		if (cmd.length > 2) {
 			/**
@@ -621,15 +622,12 @@ public class Commands {
 			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
-				couldDig = true;
+
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
-							t.dig(2);
-							for (Item i : t.getItems()) {
-								p.addToInventory(i);
-
-							}
+							p.addToInventory(t.dig(2));
+							
 							t.setItems(new ArrayList<Item>());
 							break;
 						}
@@ -637,15 +635,11 @@ public class Commands {
 				}
 
 			} else if (cmd[2].equals("shovel")) {
-				couldDig = true;
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
-							t.dig(2);
-							for (Item i : t.getItems()) {
-								p.addToInventory(i);
+							p.addToInventory(t.dig(2));
 
-							}
 							t.setItems(new ArrayList<Item>());
 							break;
 						}
@@ -659,15 +653,11 @@ public class Commands {
 		 * Finds the player's tile and then digs with hand moves the items from the tile
 		 * to the player's inventory
 		 */
-		if (!couldDig) {
+		else {
 			for (Tile t : Game.getTiles()) {
 				for (Player p : t.getPlayers()) {
 					if (p.getId().equals(cmd[1])) {
-						t.dig(1);
-						for (Item i : t.getItems()) {
-							p.addToInventory(i);
-
-						}
+						p.addToInventory(t.dig(1));
 						t.setItems(new ArrayList<Item>());
 						break;
 					}
@@ -693,6 +683,14 @@ public class Commands {
 				break;
 		}
 		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+	}
+
+	public static void drop(String[] cmd) {
+		if (cmd.length != 2) {
+			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
+		}
+
+		Game.getPlayer(cmd[1]).drop();
 	}
 
 	public static boolean useBeacon(String[] cmd) {

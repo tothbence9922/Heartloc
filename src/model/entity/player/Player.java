@@ -62,9 +62,16 @@ public abstract class Player extends Entity {
 	 * Player all aki eldobta.
 	 * 
 	 */
-	public void drop(Item i) {
-		currentTile.getItems().add(i);
-		inventory.remove(i);
+	public void drop() {
+		if (!inventory.isEmpty()) {
+			currentTile.getItems().add(inventory.get(0));
+			int x = currentTile.view.getX();
+			int y = currentTile.view.getY() + 45;
+			inventory.get(0).view.setPos(x, y);
+			inventory.get(0).view.setVisible(true);
+			Game.view.add(inventory.get(0).view);
+			inventory.remove(0);
+		}
 	}
 
 	/**
@@ -88,7 +95,7 @@ public abstract class Player extends Entity {
 		currentTile.remove(this);
 		t.receive(this);
 		setCurrentTile(t);
-		if(t.getBears().size() != 0) {
+		if (t.getBears().size() != 0) {
 			this.getEaten("I ate you Bro ;) Yummy!");
 		}
 		this.energy--;
@@ -113,10 +120,7 @@ public abstract class Player extends Entity {
 	 */
 	public void die(String msg) {
 		this.bodyTemperature = 0;
-		System.out.println("ASDASDADSASDD");
 		Game.Defeat(msg);
-		// Game.getInstance();
-		// Game.Defeat();
 	}
 
 	/**
@@ -270,7 +274,10 @@ public abstract class Player extends Entity {
 	 * @param i: Item
 	 */
 	public void addToInventory(Item i) {
-		this.inventory.add(i);
+		if (i != null)this.inventory.add(i);
+	}
+	public void addToInventory(ArrayList<Item> iA) {
+		if (iA != null) this.inventory.addAll(iA);
 	}
 
 	/*******************************
@@ -353,15 +360,14 @@ public abstract class Player extends Entity {
 				Game.nextRound();
 			}
 
-		}
-		if (energy > 0) {
+		} else if (energy > 0) {
 			Commands.choseCommand(msg);
 			Game.view.updatePanel();
 			energy--;
 		}
 		return energy;
 	}
-	
+
 	public void getEaten(String msg) {
 		die(msg);
 	}
