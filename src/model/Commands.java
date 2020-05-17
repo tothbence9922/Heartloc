@@ -626,12 +626,17 @@ public class Commands {
 			for (Tile t : Game.getTiles()) {
 				for (Player p : t.getPlayers()) {
 					if (p.getId().equals(cmd[1])) {
+  						if(t.getAmountOfSnow()==1) {
 						ArrayList<Item> items = t.dig(1);
 						p.addToInventory(items);
 						if (items != null)
 							for (Item i : items)
 								Game.view.removeItemView(i.view);
 						t.setItems(new ArrayList<Item>());
+						}
+						else {
+							p.addToInventory(t.dig(1));
+						}
 						break;
 					}
 				}
