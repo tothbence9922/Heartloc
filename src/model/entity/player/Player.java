@@ -107,10 +107,10 @@ public abstract class Player extends Entity {
 	 * Ha bizonyos szint ala csokken a jatekos testhomerseklete, akkor fagyhalalt
 	 * hal. Ez a metodus kezdemenyezi ezt a folyamatot.
 	 */
-	public void die() {
+	public void die(String msg) {
 		this.bodyTemperature = 0;
 		System.out.println("ASDASDADSASDD");
-		Game.Defeat();
+		Game.Defeat(msg);
 		// Game.getInstance();
 		// Game.Defeat();
 	}
@@ -217,7 +217,7 @@ public abstract class Player extends Entity {
 		if (scream() > 0)
 			return;
 
-		die();
+		die("A player drowned...");
 	}
 
 	/**

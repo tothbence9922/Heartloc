@@ -8,7 +8,7 @@ import view.entity.FoodView;
  * valamit. Ez a valami az étel - Food, melyet ez az osztály reprezentál.
  */
 public class Food extends OptionalItem {
-		
+
 	public Food(String id) {
 		super(id);
 		view = new FoodView(GameRunner.baseGameController);
@@ -26,5 +26,5 @@ public class Food extends OptionalItem {
 	public boolean eat() {
 		return true;
 	}
-	
+
 }

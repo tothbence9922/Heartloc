@@ -112,8 +112,8 @@ public class MapLoader {
 							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
 								pb.setCurrentTile(t);
 						}
+						Game.addPolarBear(pb);
 
-						tiles.get(tileIter).addPolarBear(pb);
 						tiles.get(tileIter).receive(pb);
 					} else if (entityArray.get(entityIter).contains("Ten")) {
 						Tent t = new Tent(entityArray.get(entityIter));
@@ -171,7 +171,7 @@ public class MapLoader {
 			int curPlayer = 0;
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
-
+					// TODO MEGOLDANI H LYUKASRA NE RAKJA
 					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
@@ -181,7 +181,6 @@ public class MapLoader {
 					for (int p = 0; p < t.getPlayers().size(); p++) {
 						t.getPlayers().get(p).view.setPos(t.view.getBounds().x, t.view.getBounds().y);
 						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
-
 					}
 
 					for (PolarBear pb : t.getBears()) {

@@ -8,8 +8,7 @@ import view.entity.WetsuitView;
  * képes túlélni vízbeeés után, sérülés nélkül.
  */
 public class Wetsuit extends OptionalItem {
-	
-	
+
 	public Wetsuit(String id) {
 		super(id);
 		view = new WetsuitView(GameRunner.baseGameController);
@@ -26,5 +25,5 @@ public class Wetsuit extends OptionalItem {
 	public boolean wear() {
 		return true;
 	}
-	
+
 }

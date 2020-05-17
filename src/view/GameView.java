@@ -389,9 +389,10 @@ public class GameView extends JPanel {
 				Point p = arg0.getPoint();
 				Rectangle rect = new Rectangle(p);
 				rect.width = rect.height = 1;
-
+				
 				for (Tile t : Game.getTiles()) {
-					if (t.view.getBounds().intersects(rect))
+					Rectangle r = new Rectangle(t.view.getX(), t.view.getY(), 128, 128);
+					if (r.intersects(rect))
 						Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
 				}
 			}
@@ -472,8 +473,8 @@ public class GameView extends JPanel {
 		}
 	}
 
-	public void EndGame(boolean losestate) {
-		EndView end = new EndView(this.baseGameController, losestate);
+	public void EndGame(boolean losestate, String msg) {
+		EndView end = new EndView(this.baseGameController, losestate, msg);
 		this.baseGameController.EndGame(end);
 
 	}

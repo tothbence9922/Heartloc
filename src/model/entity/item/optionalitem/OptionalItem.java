@@ -10,10 +10,9 @@ import view.entity.ItemView;
  */
 public abstract class OptionalItem extends Item {
 
-	
 	public OptionalItem(String id) {
 		super(id);
 		view = new ItemView(GameRunner.baseGameController);
 	}
-	
+
 }

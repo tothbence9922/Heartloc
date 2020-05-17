@@ -5,7 +5,7 @@ package model.entity.item.optionalitem;
  * osztály.
  */
 public class Shovel extends OptionalItem {
-	
+
 	public Shovel(String id) {
 		super(id);
 	}

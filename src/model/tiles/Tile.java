@@ -181,8 +181,25 @@ public abstract class Tile implements Drawable {
 		return true;
 	}
 
+	/**
+	 * A parameterben kapott entitast a jegtablara mozgatja
+	 * 
+	 * @param e
+	 * @return boolean
+	 */
+	public boolean receive(PolarBear e) {
+		this.load++;
+		bears.add(e);
+		if (!players.isEmpty()) {
+			players.get(0).die("A bear ate a player...");
+		}
+		return true;
+	}
+
 	public boolean receive(Player p) {
 		this.load++;
+		if (!bears.isEmpty() && !players.isEmpty())
+			players.get(0).die("A bear ate a player...");
 		// entities.add(p);
 
 		players.add(p);
@@ -214,11 +231,7 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean getHasHole() {
-		if (this.hasHole) {
-			return true;
-		} else {
-			return false;
-		}
+		return hasHole;
 	}
 
 	/**
@@ -269,12 +282,6 @@ public abstract class Tile implements Drawable {
 				p.damage(1);
 			}
 		}
-	}
-
-	public void addPolarBear(PolarBear polarBear) {
-		bears.add(polarBear);
-		// entities.add(polarBear);
-		Game.addPolarBear(polarBear);
 	}
 
 	public void addIgloo(Igloo igloo) {

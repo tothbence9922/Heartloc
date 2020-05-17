@@ -28,8 +28,8 @@ public class EndView extends JPanel {
 	private JLabel labelGame;
 	private JButton btnExit;
 	private GridBagLayout baseLayout;
-	
-	public EndView(GameController baseGameController, boolean loseState) {
+
+	public EndView(GameController baseGameController, boolean loseState, String msg) {
 		this.baseGameController = baseGameController;
 		lose = loseState;
 		Font font = null;
@@ -37,17 +37,18 @@ public class EndView extends JPanel {
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
-		}  
+		}
 
-		if(lose)
-			labelGame = new JLabel("You Lose!");
+		if (lose)
+			labelGame = new JLabel("<html><body style='text-align:center'>You Lose!<br>" + msg + "</body></html>");
 		else
-			labelGame = new JLabel("You Win! You saved our ass!");
+			labelGame = new JLabel("<html><body style='text-align:center'>You Win! You saved our arses!<br> ${'msg'} </body></html>");
+
 		labelGame.setFont(font.deriveFont(Font.PLAIN, 120f));
 		labelGame.setForeground(Color.WHITE);
-		
+
 		baseLayout = new GridBagLayout();
-    
+
 		btnExit = new JButton("Exit");
 		btnExit.setForeground(Color.DARK_GRAY);
 		btnExit.setFont(font.deriveFont(Font.PLAIN, 90f));
@@ -55,63 +56,62 @@ public class EndView extends JPanel {
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setFocusPainted(false);
-	
-		
+
 		buildPanel();
 		buildLayout();
 		buildListeners();
 	}
-	
+
 	private void buildLayout() {
-			
+
 	}
 
 	private void buildPanel() {
 		GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.NORTH;
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.anchor = GridBagConstraints.NORTH;
 
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weighty = 1;
-        
-        JPanel buttons = new JPanel(new GridBagLayout());
-        buttons.add(btnExit, gbc);		
-        buttons.setOpaque(false);	// do not display background over the other panel
-       
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.weighty = 1;
+
+		JPanel buttons = new JPanel(new GridBagLayout());
+		buttons.add(btnExit, gbc);
+		buttons.setOpaque(false); // do not display background over the other panel
+
 		this.setLayout(baseLayout);
 		this.add(labelGame, gbc);
-		this.add(buttons, gbc);	
+		this.add(buttons, gbc);
 	}
-	
+
 	/**
 	 * Add listener to the button, notifies controller
 	 */
-	private void buildListeners() {		
+	private void buildListeners() {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				System.exit(1);
 			}
 		});
-		
-		btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	btnExit.setForeground(Color.WHITE);
-		    }
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	btnExit.setForeground(Color.DARK_GRAY);
-		    }
+		btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnExit.setForeground(Color.WHITE);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnExit.setForeground(Color.DARK_GRAY);
+			}
 		});
 	}
-	
+
 	@Override
-	  protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
-	    java.net.URL imageURL = MenuView.class.getResource("images/background-menu.jpg");
-	    if (imageURL != null) {
-	    	ImageIcon icon = new ImageIcon(imageURL);
-	        g.drawImage(icon.getImage(), 0, -20, null);
-	    }
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		java.net.URL imageURL = MenuView.class.getResource("images/background-menu.jpg");
+		if (imageURL != null) {
+			ImageIcon icon = new ImageIcon(imageURL);
+			g.drawImage(icon.getImage(), 0, -20, null);
+		}
 	}
 }

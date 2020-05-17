@@ -9,28 +9,28 @@ import model.tiles.Tile;
 import view.GameView;
 
 public class PolarBear extends Entity {
-	
+
 	private Tile currentTile = new StableTile("");
-	
+
 	public PolarBear(String id) {
 		super(id);
 	}
-	
+
 	public void move(Tile t) {
 		currentTile.remove(this);
-		
+
 		t.receive(this);
-		
+
 		setCurrentTile(t);
-		
+
 	}
 
 	@Override
 	public int step(String msg) {
 		Random r = new Random();
-		for(Tile t : currentTile.getNeighbours()) {
-			int go = r.nextInt()%2;
-			if(go == 0) {
+		for (Tile t : currentTile.getNeighbours()) {
+			int go = r.nextInt() % 2;
+			if (go == 0) {
 				move(t);
 				this.view.setBounds(t.view.getBounds());
 				GameView.getInstance(GameRunner.baseGameController).updatePanel();
@@ -39,7 +39,7 @@ public class PolarBear extends Entity {
 		}
 		return -1;
 	}
-	
+
 	public void setCurrentTile(Tile t) {
 		this.currentTile = t;
 	}

@@ -5,7 +5,6 @@ import view.entity.FragileShovelView;
 
 public class FragileShovel extends OptionalItem {
 
-	
 	private int numOfUses = 3;
 
 	public FragileShovel(String id) {
@@ -14,11 +13,14 @@ public class FragileShovel extends OptionalItem {
 	}
 
 	/**
-	 * A játékos, ha rendelkezik FragileShovel-lel, használhatja azt, hogy egy ásással két egységnyi havat
-	 * tüntethessen el.
-	 * Mivel alapból numOfUses = 3, így három használat után "eltörik" az ásó.
-	 * @return A visszatérési értéke a logikai igaz (true), amennyiben numOfUses > 0, ezzel jelzi hogy
-	 *         sikeresen használta a FragileShovel Itemet a játékos. Ha már eltörött az ásó, visszatérése logikai hamis (false) lesz.
+	 * A játékos, ha rendelkezik FragileShovel-lel, használhatja azt, hogy egy
+	 * ásással két egységnyi havat tüntethessen el. Mivel alapból numOfUses = 3, így
+	 * három használat után "eltörik" az ásó.
+	 * 
+	 * @return A visszatérési értéke a logikai igaz (true), amennyiben numOfUses >
+	 *         0, ezzel jelzi hogy sikeresen használta a FragileShovel Itemet a
+	 *         játékos. Ha már eltörött az ásó, visszatérése logikai hamis (false)
+	 *         lesz.
 	 */
 	@Override
 	public boolean digWithFragileShovel() {
@@ -30,7 +32,7 @@ public class FragileShovel extends OptionalItem {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public int getNumOfUses() {
 		return numOfUses;

@@ -129,13 +129,17 @@ public class MapSelectionView extends JPanel {
 				 * baseGameController.getGameFactory.getWidgetList().add(temp);
 				 */
 				String selectedMap = mapTextField.getText();
+				if (selectedMap.contentEquals("")) selectedMap = "map15";
 				try {
 				numOfEsk = Integer.parseInt(eskTextField.getText());
 				} catch(NumberFormatException e) {
 					numOfEsk = 2;
+					if (numOfEsk > 5) numOfEsk = 5;
+
 				}
 				try {
 					numOfExp= Integer.parseInt(expTextField.getText());
+					if (numOfExp > 5) numOfExp = 5;
 					} catch(NumberFormatException e) {
 						numOfExp= 1;
 					}

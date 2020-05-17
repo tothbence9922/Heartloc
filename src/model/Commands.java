@@ -79,8 +79,7 @@ public class Commands {
 	}
 
 	public static void loadMap(String[] cmd, int eskNum, int expNum) throws ParseException {
-		String[] maps = { "map1", "map2", "map3", "map4", "map5", "map6", "map7", "map8", "map9", "map10", "map11",
-				"map12", "map13", "map14", "map15", "map16", "map17" };
+		String[] maps = { "map1", "map2", "map3", "map4", "map5" };
 
 		if (cmd.length > 1) {
 			try {
@@ -105,10 +104,6 @@ public class Commands {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public static void writeMap(String[] cmd) {
-
 	}
 
 	public static boolean createCurrentMap(String path) throws FileNotFoundException, IOException, ParseException {
@@ -216,16 +211,6 @@ public class Commands {
 			for (Tile tile : Game.getTiles())
 				if (tile.getId().equals(cmd[1]))
 					tile.setHasIgloo(true);
-
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
-
-	}
-
-	public static void addPolarBear(String[] cmd) throws ParseException {
-		if (cmd.length > 1)
-			for (Tile tile : Game.getTiles())
-				if (tile.getId().equals(cmd[1]))
-					tile.addPolarBear(new PolarBear("Pol" + (Game.getPolarBears().size() + 1)));
 
 		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 

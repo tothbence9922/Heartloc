@@ -7,14 +7,18 @@ public abstract class Entity {
 	protected int weight;
 	protected String id;
 	public EntityView view;
-	
-	public void Update() { view.Draw();}
-	
+
+	public void Update() {
+		view.Draw();
+	}
+
 	/**
-	 * Az Entity absztrakt ososztaly konstruktora. A parameterben kapott string lesz az entitas azonositoja.
+	 * Az Entity absztrakt ososztaly konstruktora. A parameterben kapott string lesz
+	 * az entitas azonositoja.
+	 * 
 	 * @param id Az entitas ezt a stringet kapja azonositokent.
 	 */
-	public Entity(String id){
+	public Entity(String id) {
 		this.id = id;
 	}
 
@@ -25,7 +29,8 @@ public abstract class Entity {
 	/**
 	 * A jatek soran ez a metodus felel a tevekenysegek megkezdeseert
 	 * 
-	 * @return int A jatekosokat reprezentalo osztalyok eseten megadja, mennyi munkakedve maradt a tevekenyseg elvegzese utan az adott jatekosnak.
+	 * @return int A jatekosokat reprezentalo osztalyok eseten megadja, mennyi
+	 *         munkakedve maradt a tevekenyseg elvegzese utan az adott jatekosnak.
 	 */
 	public int step(String msg) {
 		// TODO Auto-generated method stub

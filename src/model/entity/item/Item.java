@@ -8,7 +8,7 @@ import view.entity.ItemView;
 public abstract class Item extends Entity {
 
 	protected boolean visible = false;
-	
+
 	public Item(String id) {
 		super(id);
 		view = new ItemView(GameRunner.baseGameController);
@@ -19,10 +19,12 @@ public abstract class Item extends Entity {
 	}
 
 	/**
-	 * A kotel targy hasznalatat vegzo metodus. 
+	 * A kotel targy hasznalatat vegzo metodus.
+	 * 
 	 * @param p - Melyik jatekost akarjuk kihuzni.
-	 * @return - Ha az Item (-bol szarmazo objektum) kotel, akkor visszateresi erteke True/Igaz,
-	 * ellenkezo esetben False/Hamis, mivel huzni csak a kotel targgyal tudunk a programban.
+	 * @return - Ha az Item (-bol szarmazo objektum) kotel, akkor visszateresi
+	 *         erteke True/Igaz, ellenkezo esetben False/Hamis, mivel huzni csak a
+	 *         kotel targgyal tudunk a programban.
 	 */
 	public boolean pull(Player p) {
 		return false;
@@ -81,9 +83,10 @@ public abstract class Item extends Entity {
 	public boolean buildTent() {
 		return false;
 	}
-	
+
 	/**
-	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem jatekost reprezental.
+	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem
+	 * jatekost reprezental.
 	 */
 	@Override
 	public int step(String msg) {
@@ -93,5 +96,5 @@ public abstract class Item extends Entity {
 	public int getNumOfUses() {
 		return -1;
 	}
-	
+
 }

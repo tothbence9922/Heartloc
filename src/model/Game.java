@@ -11,9 +11,9 @@ import model.tiles.Tile;
 import view.GameView;
 
 public class Game {
-	
-	public static String playerID ="LudMan";
-	public static String firstPlayerID ="LudMan";
+
+	public static String playerID = "LudMan";
+	public static String firstPlayerID = "LudMan";
 
 	public static String getFirstPlayerID() {
 		return firstPlayerID;
@@ -100,18 +100,18 @@ public class Game {
 	 */
 	public void victory() {
 		boolean losestate = false;
-		EndGame(losestate);
+		EndGame(losestate, "Congratulations!");
 	}
 
 	/**
 	 * A játék végekor meghívódó metódus, mellyel véglegesíthetjük a játék állását
 	 * és lezárhatjuk a játékot.
 	 */
-	public static void EndGame(boolean losestate) {
-		view.EndGame(losestate);
+	public static void EndGame(boolean losestate, String msg) {
+		view.EndGame(losestate, msg);
 	}
 
-	public static void generateStorm() {		
+	public static void generateStorm() {
 		for (Tile t : tiles) {
 			if (t.getPlayers().size() != 0) {
 				if (!t.hasIgloo()) {
@@ -122,7 +122,7 @@ public class Game {
 					for (Player p : t.getPlayers()) {
 						p.damage(1);
 						if (p.getTemperature() < 1) {
-							p.die();
+							p.die("The storm killed a player...");
 						}
 					}
 				}
@@ -201,7 +201,7 @@ public class Game {
 	public static void addItem(Item item) {
 		Game.items.add(item);
 	}
-	
+
 	public static String getPlayerID() {
 		return playerID;
 	}
@@ -209,16 +209,18 @@ public class Game {
 	public static void setPlayerID(String playerID) {
 		Game.playerID = playerID;
 	}
-	
+
 	public static void nextRound() {
-		for(PolarBear pb : bears) pb.step("MOVE");
+		for (PolarBear pb : bears)
+			pb.step("MOVE");
 		view.updatePanel();
 		generateStorm();
-		for(Player p : players) p.setEnergy(5);
+		for (Player p : players)
+			p.setEnergy(5);
 	}
 
-	public static void Defeat() {
+	public static void Defeat(String msg) {
 		boolean losestate = true;
-		EndGame(losestate);
+		EndGame(losestate, msg);
 	}
 }

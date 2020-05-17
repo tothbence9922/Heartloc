@@ -9,8 +9,7 @@ import view.entity.RopeView;
  * osztály. Segítségével a játékosok megmenthetik bajbajuttott társaikat.
  */
 public class Rope extends OptionalItem {
-	
-	
+
 	public Rope(String id) {
 		super(id);
 		view = new RopeView(GameRunner.baseGameController);
