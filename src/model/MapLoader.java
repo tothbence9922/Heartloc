@@ -13,9 +13,11 @@ import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
 import model.org.json.simple.parser.ParseException;
 import model.Game;
+import model.entity.Building;
 import model.entity.Igloo;
 import model.entity.PolarBear;
 import model.entity.Tent;
+import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
 import model.entity.item.optionalitem.Rope;
@@ -118,12 +120,11 @@ public class MapLoader {
 					} else if (entityArray.get(entityIter).contains("Ten")) {
 						Tent t = new Tent(entityArray.get(entityIter));
 						tiles.get(tileIter).setHasTent(true);
-						// tiles.get(tileIter).receive(t);
+						tiles.get(tileIter).getBuildings().add(t);
 					} else if (entityArray.get(entityIter).contains("Igl")) {
 						Igloo ig = new Igloo(entityArray.get(entityIter));
-						// tiles.get(tileIter).addBuilding(ig);
 						tiles.get(tileIter).setHasTent(true);
-						// tiles.get(tileIter).receive(ig);
+						tiles.get(tileIter).getBuildings().add(ig);
 					}
 				}
 				for (int itemIter = 0; itemIter < itemArray.size(); itemIter++) {// 2. -> itemek
@@ -153,13 +154,11 @@ public class MapLoader {
 			// Creation of players
 			for (int esk = 0; esk < eskNum; esk++) {
 				String id = "Esk" + String.valueOf(esk + 1);
-				System.out.println(id);
 				Eskimo newEs = new Eskimo(id);
 				players.add(newEs);
 			}
 			for (int exp = 0; exp < expNum; exp++) {
 				String id = "Exp" + String.valueOf(exp + 1);
-				System.out.println(id);
 
 				Explorer newEx = new Explorer(id);
 				players.add(newEx);
@@ -175,18 +174,31 @@ public class MapLoader {
 					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
+						players.get(curPlayer).setCurrentTile(t);
 						curPlayer++;
 					}
 
 					for (int p = 0; p < t.getPlayers().size(); p++) {
-						t.getPlayers().get(p).view.setPos(t.view.getBounds().x, t.view.getBounds().y);
+						t.getPlayers().get(p).view.setPos(t.view.getX() + r.nextInt(32), t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
+					}
+					
+					for (Item it : t.getItems()) {
+						it.view.setLayout(null);
+						it.view.setPos(t.view.getX(), t.view.getY() + 45);
+						GameView.getInstance(GameRunner.baseGameController).addView(it.view);
+					}
+
+					for (Building b : t.getBuildings()) {
+						b.view.setLayout(null);
+						b.view.setPos(t.view.getX() + 10, t.view.getY() + 60);
+						GameView.getInstance(GameRunner.baseGameController).addView(b.view);
 					}
 
 					for (PolarBear pb : t.getBears()) {
 						pb.view = new PolarBearView(GameRunner.baseGameController);
 						pb.view.setLayout(null);
-						pb.view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
+						pb.view.setPos(t.view.getX() + 32, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
 					// TODO hogolyok hozzadasa ertektol fuggoen
@@ -195,14 +207,12 @@ public class MapLoader {
 				}
 			}
 
-			System.out.println(GameView.getInstance(GameRunner.baseGameController).getGamePanel().getSize());
 			Game.getInstance(GameRunner.baseGameController);
 			Game.setTiles(tiles);
 
 			Game.setPlayers(players);
 			Game.setPlayerID(players.get(0).getId());
 			Game.setFirstPlayerID(players.get(0).getId());
-			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 
 			GameView.getInstance(GameRunner.baseGameController).updatePanel();
 		} catch (ParseException e) {

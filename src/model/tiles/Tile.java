@@ -5,7 +5,6 @@ import java.util.Random;
 
 import model.entity.Building;
 import model.entity.Entity;
-import model.entity.Hole;
 import model.entity.Igloo;
 import model.entity.Tent;
 import model.entity.item.Item;
@@ -41,6 +40,7 @@ public abstract class Tile implements Drawable {
 	protected ArrayList<PolarBear> bears = new ArrayList<PolarBear>(); // TODO beirni a holland dokumentumba
 	protected ArrayList<Tile> neighbours = new ArrayList<Tile>(); // TODO beirni a holland dokumentumba
 	protected ArrayList<Item> items = new ArrayList<Item>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<Building> buildings = new ArrayList<Building>(); // TODO beirni a holland dokumentumba
 
 	protected Igloo igloo;
 
@@ -145,9 +145,9 @@ public abstract class Tile implements Drawable {
 				items.get(i).setVisible(true);
 			}
 			this.amountOfSnow = 0;
+			for(Item i : items) Game.view.remove(i.view);
 			return this.items;
 		}
-
 		return null;
 	}
 
@@ -159,9 +159,11 @@ public abstract class Tile implements Drawable {
 	public int getLoad() {
 		return this.load;
 	}
+
 	/**
 	 * 
 	 * Bealitja a jegtabla aktualis terheleset
+	 * 
 	 * @param load
 	 */
 	public void setLoad(int load) {
@@ -233,7 +235,7 @@ public abstract class Tile implements Drawable {
 		players.remove(p);
 		entities.remove(p);
 		this.setLoad(getLoad() - 1);
-		
+
 	}
 
 	/**
@@ -315,6 +317,10 @@ public abstract class Tile implements Drawable {
 
 	public ArrayList<Player> getPlayers() {
 		return this.players;
+	}
+
+	public ArrayList<Building> getBuildings() {
+		return this.buildings;
 	}
 
 	public boolean getDefense() {

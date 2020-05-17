@@ -137,6 +137,10 @@ public class Game {
 		return bears;
 	}
 
+	public static void addBuilding(Building b) {
+		buildings.add(b);
+	}
+
 	public static void addPolarBear(PolarBear pb) {
 		Game.bears.add(pb);
 	}

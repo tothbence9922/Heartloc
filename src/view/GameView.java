@@ -62,7 +62,7 @@ public class GameView extends JPanel {
 	private JButton btnTent;
 	private JButton btnTentItem;
 	private JButton btnWetsuit;
-	private JButton btnBuild;
+	private JButton btnDrop;
 
 	public static boolean syncObject = false;
 
@@ -117,8 +117,6 @@ public class GameView extends JPanel {
 				int width = 10;
 				int height = 30;
 				curPlayerIndicator.setBounds(x + p.view.getWidth() / 2 - width / 2, y - height, width, height);
-				System.out.println(String.valueOf(p.view.getX()) + "  " + String.valueOf(p.view.getY()));
-
 			}
 		}
 		add(curPlayerIndicator);
@@ -170,8 +168,9 @@ public class GameView extends JPanel {
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
 		java.net.URL urlTentItem = MenuView.class.getResource("images/tentitem.png");
 		java.net.URL urlWetsuit = MenuView.class.getResource("images/wetsuit.png");
-		java.net.URL urlBuild = MenuView.class.getResource("images/build.png");
+		java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
 		java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
+		
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
 		ImageIcon iconCartridge = new ImageIcon(urlCartridge);
@@ -182,7 +181,7 @@ public class GameView extends JPanel {
 		ImageIcon iconTent = new ImageIcon(urlTent);
 		ImageIcon iconTentItem = new ImageIcon(urlTentItem);
 		ImageIcon iconWetsuit = new ImageIcon(urlWetsuit);
-		ImageIcon iconBuild = new ImageIcon(urlBuild);
+		ImageIcon iconDrop = new ImageIcon(urlDrop);
 		ImageIcon iconRocket = new ImageIcon(urlRocket);
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
@@ -249,11 +248,11 @@ public class GameView extends JPanel {
 		btnWetsuit.setBackground(btnBackgroundColour);
 		btnWetsuit.setFocusPainted(false);
 
-		btnBuild = new JButton("");
-		temp = iconBuild.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnBuild.setIcon(new ImageIcon(temp));
-		btnBuild.setBackground(btnBackgroundColour);
-		btnBuild.setFocusPainted(false);
+		btnDrop = new JButton("");
+		temp = iconDrop.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		btnDrop.setIcon(new ImageIcon(temp));
+		btnDrop.setBackground(btnBackgroundColour);
+		btnDrop.setFocusPainted(false);
 
 		/*
 		 * btnRocket = new JButton(""); temp =
@@ -298,7 +297,7 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnTent);
 		buttonsPanel.add(btnTentItem);
 		buttonsPanel.add(btnWetsuit);
-		buttonsPanel.add(btnBuild);
+		buttonsPanel.add(btnDrop);
 		// buttonsPanel.add(btnRocket);
 
 		/*
@@ -328,27 +327,27 @@ public class GameView extends JPanel {
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				
-				boolean couldDig = false;
+				boolean hasTool = false;
 			
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-						couldDig=true;
+						hasTool=true;
 						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
 	
 						break;
 					}
 				}
-				if(!couldDig) {
+				if(!hasTool) {
 					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-							couldDig=true;
+							hasTool=true;
 							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
 		
 							break;
 						}
 					}
 				}
-				if(!couldDig) {
+				if(!hasTool) {
 					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
 				}
 			}
@@ -400,9 +399,9 @@ public class GameView extends JPanel {
 				Game.getPlayer(Game.playerID).step("useWetsuit" + Game.playerID);
 			}
 		});
-		btnBuild.addActionListener(new ActionListener() {
+		btnDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useBuild" + Game.playerID);
+				Game.getPlayer(Game.playerID).step("drop " + Game.playerID);
 			}
 		});
 		/*

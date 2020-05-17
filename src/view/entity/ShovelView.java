@@ -12,7 +12,7 @@ public class ShovelView extends ItemView {
 
 	public ShovelView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		icon = new ImageIcon(ShovelView.class.getResource("../images/shovel.png"));
+		icon = new ImageIcon(ShovelView.class.getResource("../images/shovel-24x24.png"));
 	}
 
 }

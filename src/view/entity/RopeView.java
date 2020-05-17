@@ -10,7 +10,7 @@ public class RopeView extends ItemView {
 
 	public RopeView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(RopeView.class.getResource("../images/rope.png"));
+		icon = new ImageIcon(RopeView.class.getResource("../images/rope-24x24.png"));
 		this.setIcon(icon);
 	}
 
