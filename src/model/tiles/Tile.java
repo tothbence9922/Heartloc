@@ -403,8 +403,6 @@ public abstract class Tile implements Drawable {
 	}
 
 	public void addPlayer(Player p) {
-		entities.add(p);
-		Game.addPlayer(p);
 	}
 
 	public void setHasHole(boolean hasHole) {

@@ -231,7 +231,9 @@ public class Game {
 	
 	public static void nextRound() {
 		for(PolarBear pb : bears) pb.step("MOVE");
+		view.updatePanel();
 		generateStorm();
+		for(Player p : players) p.setEnergy(5);
 	}
 
 	public static void Defeat() {
