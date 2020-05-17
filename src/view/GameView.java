@@ -3,6 +3,9 @@ package view;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -26,6 +29,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 import controller.GameController;
 import model.Game;
@@ -327,28 +332,28 @@ public class GameView extends JPanel {
 	private void buildListeners() {
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+
 				boolean couldDig = false;
-			
+
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-						couldDig=true;
+						couldDig = true;
 						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
-	
+
 						break;
 					}
 				}
-				if(!couldDig) {
+				if (!couldDig) {
 					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-							couldDig=true;
+							couldDig = true;
 							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
-		
+
 							break;
 						}
 					}
 				}
-				if(!couldDig) {
+				if (!couldDig) {
 					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
 				}
 			}
@@ -443,42 +448,59 @@ public class GameView extends JPanel {
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == MouseEvent.BUTTON3) {
 					JPanel panel = new JPanel(new BorderLayout());
-					
-					JPanel stats = new JPanel(new GridBagLayout());
-					JPanel currentPlayer = new JPanel(new GridBagLayout());
 
-					panel.add(stats, BorderLayout.WEST);
-					panel.add(currentPlayer, BorderLayout.EAST);
+					JPanel statsPanel = new JPanel(new GridBagLayout());
+					JPanel currentPlayerPanel = new JPanel(new GridBagLayout());
 
-					
-					
-					
-					
-					String currentPlayerInventory = "";
-					
-					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
-						currentPlayerInventory += i.getId();
-						currentPlayerInventory += ", ";
+					statsPanel.setOpaque(false);
+					currentPlayerPanel.setOpaque(false);
+					panel.setOpaque(false);
+
+					panel.add(statsPanel, BorderLayout.WEST);
+					panel.add(currentPlayerPanel, BorderLayout.EAST);
+
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.gridwidth = GridBagConstraints.REMAINDER;
+					gbc.anchor = GridBagConstraints.NORTH;
+					gbc.fill = GridBagConstraints.HORIZONTAL;
+					gbc.weighty = 0;
+
+					Font font = null;
+					try {
+						font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
+					} catch (FontFormatException | IOException e) {
+						e.printStackTrace();
 					}
 
-					currentPlayer.add(new JLabel("Name: " + Game.playerID + " | Temperature: "
-							+ Game.getPlayer(Game.playerID).getBodyTemperature() + " | Work capability: "
-							+ Game.getPlayer(Game.playerID).getEnergy() + " | Items: " + currentPlayerInventory));
+					JLabel title = new JLabel("Player name \t | Temp \t | Capability");
+					title.setFont(font.deriveFont(Font.PLAIN, 24f));
+					statsPanel.add(title, gbc);
+					for (Player p : Game.getPlayers()) {
+						JLabel tempLabel = new JLabel(
+								p.getId() + " – " + p.getBodyTemperature() + " – " + p.getEnergy());
+						tempLabel.setFont(font.deriveFont(Font.PLAIN, 48f));
+						statsPanel.add(tempLabel, gbc);
+					}
 
-//					JTextField firstName = new JTextField(10);
-//					panel.add(firstName);
-//
-//					panel.add(new JLabel("Last Name"));
-//					JTextField lastName = new JTextField(10);
-//					panel.add(lastName);
-					
-					JOptionPane.showConfirmDialog(baseGameController.getGameFrame(), panel, "Inventory", 1);
+					JLabel titleCurrentPlayerPanel = new JLabel("Current Player: " + Game.playerID);
+					titleCurrentPlayerPanel.setFont(font.deriveFont(Font.PLAIN, 48f));
+					currentPlayerPanel.add(titleCurrentPlayerPanel, gbc);
 
-//					if (result == JOptionPane.YES_OPTION) {
-//						System.out.println(firstName.getText() + " : " + lastName.getText());
-//					} else {
-//						System.out.println("Canceled");
-//					}
+					JLabel itemsCurrentPlayer = new JLabel("Items:");
+					itemsCurrentPlayer.setFont(font.deriveFont(Font.PLAIN, 24f));
+					currentPlayerPanel.add(itemsCurrentPlayer, gbc);
+
+					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
+						JLabel tempLabel = new JLabel(i.getId());
+						tempLabel.setFont(font.deriveFont(Font.PLAIN, 36f));
+						currentPlayerPanel.add(tempLabel, gbc);
+					}
+
+					UIManager.put("OptionPane.minimumSize", new Dimension(640, 20));
+					UIManager.put("OptionPane.background", new ColorUIResource(204, 255, 255));
+					UIManager.put("Panel.background", new ColorUIResource(204, 255, 255));
+					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), panel, "Inventory",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			}
