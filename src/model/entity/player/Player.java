@@ -111,7 +111,6 @@ public abstract class Player extends Entity {
 		this.bodyTemperature = 0;
 		// Game.getInstance();
 		// Game.Defeat();
-		// Game.EndGame();
 	}
 
 	/**

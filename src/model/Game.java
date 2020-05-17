@@ -10,6 +10,7 @@ import model.entity.PolarBear;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
+import view.EndView;
 import view.GameView;
 
 public class Game {
@@ -33,7 +34,7 @@ public class Game {
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
 
-	public GameView view;
+	public static GameView view;
 
 	private Game(GameController baseGameController) {
 		view = GameView.getInstance(baseGameController);
@@ -101,16 +102,16 @@ public class Game {
 	 * meghívását, ekkor a játékos gyõzelmét könyvelhetjük el.
 	 */
 	public void victory() {
-		// TODO : WINSCREEN
-		EndGame();
+		boolean losestate = false;
+		EndGame(losestate);
 	}
 
 	/**
 	 * A játék végekor meghívódó metódus, mellyel véglegesíthetjük a játék állását
 	 * és lezárhatjuk a játékot.
 	 */
-	public static void EndGame() {
-		// TODO : ENDING THE GAME?
+	public static void EndGame(boolean losestate) {
+		view.EndGame(losestate);
 	}
 
 	public static void generateStorm(String string) {
@@ -234,6 +235,7 @@ public class Game {
 	}
 
 	public static void Defeat() {
-		// TODO
+		boolean losestate = true;
+		EndGame(losestate);
 	}
 }

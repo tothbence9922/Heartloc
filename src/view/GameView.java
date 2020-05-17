@@ -335,4 +335,10 @@ public class GameView extends JPanel {
 			}
 		}
 	}
+	
+	public void EndGame(boolean losestate){
+		EndView end = new EndView(this.baseGameController, losestate);
+		this.baseGameController.EndGame(end);
+		
+	}
 }

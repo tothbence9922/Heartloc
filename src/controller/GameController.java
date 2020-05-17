@@ -1,9 +1,12 @@
 package controller;
 
+import javax.swing.JPanel;
+
 import model.Commands;
 import model.Game;
 import model.org.json.simple.parser.ParseException;
 import view.ApplicationFrame;
+import view.EndView;
 
 /**
  * Handle communication between model and view
@@ -35,5 +38,8 @@ public class GameController {
 	
 	public void start() {
 		applicationFrame = new ApplicationFrame(this);
+	}
+	public void EndGame(JPanel end) {
+		this.applicationFrame.changePanel(end);
 	}
 }
