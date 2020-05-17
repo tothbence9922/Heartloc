@@ -558,7 +558,7 @@ public class Commands {
 
 		// Ha nem eleg hosszu a parancs biztosan rossz
 		if (cmd.length != 3) {
-			System.out.println("Valami nem jÛ! A parancs kinÈzete: move j·tÈkosnÈv mezınÈv ");
+			System.out.println("Valami nem j√≥! A parancs kin√©zete: move j√°t√©kosn√©v mez√µn√©v ");
 			return;
 		}
 
@@ -607,8 +607,8 @@ public class Commands {
 	}
 
 	/**
-	 * A dig f¸ggvÈny szimul·l·sa, 2 paramÈterrel rendelkezik (a cmd[1] Ès cmd[2]
-	 * ÈrtÈkek: - cmd[1]: j·tÈkost azonosÌtja - cmd[2]: az eszkˆzt (shovel,
+	 * A dig f√ºggv√©ny szimul√°l√°sa, 2 param√©terrel rendelkezik (a cmd[1] √©s cmd[2]
+	 * √©rt√©kek: - cmd[1]: j√°t√©kost azonos√≠tja - cmd[2]: az eszk√∂zt (shovel,
 	 * fragileShovel, none - hand)
 	 * 
 	 * @param cmd
@@ -622,6 +622,7 @@ public class Commands {
 			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
+
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
@@ -657,7 +658,6 @@ public class Commands {
 				for (Player p : t.getPlayers()) {
 					if (p.getId().equals(cmd[1])) {
 						p.addToInventory(t.dig(1));
-
 						t.setItems(new ArrayList<Item>());
 						break;
 					}
