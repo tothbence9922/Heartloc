@@ -33,7 +33,7 @@ public class Game {
 	private static ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	private static ArrayList<Building> buildings = new ArrayList<Building>();
 
-	public GameView view;
+	public static GameView view;
 
 	private Game(GameController baseGameController) {
 		view = GameView.getInstance(baseGameController);
@@ -230,7 +230,9 @@ public class Game {
 	
 	public static void nextRound() {
 		for(PolarBear pb : bears) pb.step("MOVE");
+		view.updatePanel();
 		generateStorm();
+		for(Player p : players) p.setEnergy(5);
 	}
 
 	public static void Defeat() {

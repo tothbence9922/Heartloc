@@ -12,8 +12,12 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,6 +34,7 @@ import javax.swing.border.Border;
 
 import controller.GameController;
 import model.Game;
+import model.entity.player.Player;
 import model.tiles.Tile;
 import view.entity.BeaconView;
 import view.entity.EntityView;
@@ -66,6 +71,7 @@ public class GameView extends JPanel {
 	private JButton btnGun;
 	private JButton btnBeacon;
 	private JButton btnSpecial;
+	private JButton curPlayerIndicator;
 
 	public static boolean syncObject = false;
 
@@ -84,7 +90,12 @@ public class GameView extends JPanel {
 		return singleInstance;
 	}
 
-	public void addView(TileView v) {
+	public void addView(Tile t, TileView v) {
+		v.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " +t.getId());
+			}
+		});
 		tileViews.add(v);
 	}
 
@@ -101,12 +112,32 @@ public class GameView extends JPanel {
 	}
 
 	private void drawPanel() {
-		for (EntityView ew : entityViews)
-			add(ew);
-		for (ItemView iw : itemViews)
-			add(iw);
-		for (TileView tw : tileViews)
-			add(tw);
+		for (Player p : Game.getPlayers()) {
+			if (p.getId() == Game.getPlayerID()) {
+				curPlayerIndicator = new JButton("");
+				curPlayerIndicator.setIcon(new ImageIcon(MenuView.class.getResource("images/gun.png")));
+				curPlayerIndicator.setLayout(null);
+				curPlayerIndicator.setOpaque(false);
+				curPlayerIndicator.setContentAreaFilled(false);
+				curPlayerIndicator.setBorderPainted(false);
+				curPlayerIndicator.setFocusable(false);
+				int x = p.view.getX();
+				int y = p.view.getY();
+				int width = 10;
+				int height = 30;
+				curPlayerIndicator.setBounds(x + p.view.getWidth()/2 - width/2, y - height, width, height);
+				System.out.println(String.valueOf(p.view.getX()) +"  "+ String.valueOf(p.view.getY()));
+				
+			}
+		}
+		add(curPlayerIndicator);
+		for (EntityView ev : entityViews)
+			add(ev);
+		for (ItemView iv : itemViews)
+			add(iv);
+		for (TileView tv : tileViews)
+			add(tv);
+
 	}
 
 	public void updatePanel() {
@@ -114,6 +145,8 @@ public class GameView extends JPanel {
 		drawPanel();
 		try {
 			buildHUD();
+			validate();
+			repaint();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,8 +160,6 @@ public class GameView extends JPanel {
 
 		gamePanel = new JPanel(new GridBagLayout());
 		buttonsPanel = new JPanel(new GridBagLayout());
-
-		
 
 		baseLayout = new GridBagLayout();
 		gamePanel.setOpaque(false);
@@ -210,7 +241,7 @@ public class GameView extends JPanel {
 	private void buildHUD() throws IOException {
 		add(gamePanel, BorderLayout.CENTER);
 		add(buttonsPanel, BorderLayout.SOUTH);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.NORTH;
@@ -284,6 +315,45 @@ public class GameView extends JPanel {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).step("useSpecial " + Game.playerID);
 			}
+		});
+		this.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				Point p = arg0.getPoint();
+				Rectangle rect = new Rectangle(p);
+				rect.width = rect.height = 1;
+				
+				for (Tile t :Game.getTiles()) {
+					if (t.view.getBounds().intersects(rect)) Game.getPlayer(Game.playerID).step("move " + Game.playerID +" "+t.getId());
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 	}
 

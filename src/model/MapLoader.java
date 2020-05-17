@@ -47,7 +47,6 @@ public class MapLoader {
 
 	public static void readMapFromJSON(String path, int eskNum, int expNum) throws FileNotFoundException, IOException {
 		try {
-			// TODO Itt fogok valtoztatni
 			Game.getInstance(GameRunner.baseGameController).ClearMap();
 
 			JSONParser parser = new JSONParser();
@@ -82,8 +81,8 @@ public class MapLoader {
 			int j = 0;
 
 			while (curTile < tiles.size()) {
-				tiles.get(curTile++).view.setPos(125 + stepX * j++, 20 + stepY * i);// TODO szepiteni a tileok
-																					// elhelyezkedeset
+				tiles.get(curTile++).view.setPos(128 + stepX * j++, 64 + stepY * i);
+
 				if (j % n == 0) {
 					j = 0;
 					i++;
@@ -105,8 +104,8 @@ public class MapLoader {
 					}
 				}
 				for (int entityIter = 0; entityIter < entityArray.size(); entityIter++) {// 1. -> entity-k
-					
-					 if (entityArray.get(entityIter).contains("Pol")) {
+
+					if (entityArray.get(entityIter).contains("Pol")) {
 						PolarBear pb = new PolarBear(entityArray.get(entityIter));
 
 						for (Tile t : tiles) {
@@ -180,11 +179,11 @@ public class MapLoader {
 					}
 
 					for (int p = 0; p < t.getPlayers().size(); p++) {
-						// t.getPlayers().get(p).view = new EskimoView(GameRunner.baseGameController);
-						t.getPlayers().get(p).view.setPos(t.view.getBounds().x + 32, t.view.getBounds().y);
+						t.getPlayers().get(p).view.setPos(t.view.getBounds().x, t.view.getBounds().y);
 						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
-						
+
 					}
+
 					for (PolarBear pb : t.getBears()) {
 						pb.view = new PolarBearView(GameRunner.baseGameController);
 						pb.view.setLayout(null);
@@ -192,7 +191,7 @@ public class MapLoader {
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
 					// TODO hogolyok hozzadasa ertektol fuggoen
-					GameView.getInstance(GameRunner.baseGameController).getGamePanel().add(t.view);
+					GameView.getInstance(GameRunner.baseGameController).addView(t, t.view);
 
 				}
 			}
@@ -205,7 +204,7 @@ public class MapLoader {
 			Game.setPlayerID(players.get(0).getId());
 			Game.setFirstPlayerID(players.get(0).getId());
 			System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
-			
+
 			GameView.getInstance(GameRunner.baseGameController).updatePanel();
 		} catch (ParseException e) {
 			e.printStackTrace();
