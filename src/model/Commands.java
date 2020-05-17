@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import javax.swing.JOptionPane;
+
 import controller.GameRunner;
 import model.org.json.simple.JSONObject;
 import model.org.json.simple.parser.JSONParser;
@@ -607,33 +609,47 @@ public class Commands {
 	}
 
 	/**
-	 * A dig függvény szimulálása, 2 paraméterrel rendelkezik (a cmd[1] és cmd[2]
-	 * értékek: - cmd[1]: játékost azonosítja - cmd[2]: az eszközt (shovel,
-	 * fragileShovel, none - hand)
+	 * A dig függvény szimulálása, 2 paraméterrel rendelkezik (a cmd[1] és
+	 * cmd[2] értékek: - cmd[1]: játékost azonosítja - cmd[2]: az eszközt
+	 * (shovel, fragileShovel, none - hand)
 	 * 
 	 * @param cmd
 	 * @throws ParseException
 	 */
 	public static void dig(String[] cmd) throws ParseException {
 
-		if (cmd.length > 2) {
+		if (cmd.length < 3) {
+			/**
+			 * Finds the player's tile and then digs with hand moves the items from the tile
+			 * to the player's inventory
+			 */
+			for (Tile t : Game.getTiles()) {
+				for (Player p : t.getPlayers()) {
+					if (p.getId().equals(cmd[1])) {
+						p.addToInventory(t.dig(1));
+						t.setItems(new ArrayList<Item>());
+						break;
+					}
+				}
+			}
+		} else if (cmd.length < 4) {
 			/**
 			 * Runs through the inventory of the the player if "couldDig" (so shovel or
 			 * fragileShovel exists)
 			 */
 			if (cmd[2].equals("fragileshovel")) {
-
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
 						if (p.getId().equals(cmd[1])) {
 							p.addToInventory(t.dig(2));
-							
+
 							t.setItems(new ArrayList<Item>());
+							Game.view.updatePanel();
+
 							break;
 						}
 					}
 				}
-
 			} else if (cmd[2].equals("shovel")) {
 				for (Tile t : Game.getTiles()) {
 					for (Player p : t.getPlayers()) {
@@ -641,25 +657,10 @@ public class Commands {
 							p.addToInventory(t.dig(2));
 
 							t.setItems(new ArrayList<Item>());
+							Game.view.updatePanel();
+
 							break;
 						}
-					}
-				}
-
-			}
-		}
-
-		/**
-		 * Finds the player's tile and then digs with hand moves the items from the tile
-		 * to the player's inventory
-		 */
-		else {
-			for (Tile t : Game.getTiles()) {
-				for (Player p : t.getPlayers()) {
-					if (p.getId().equals(cmd[1])) {
-						p.addToInventory(t.dig(1));
-						t.setItems(new ArrayList<Item>());
-						break;
 					}
 				}
 			}
@@ -791,15 +792,20 @@ public class Commands {
 			System.out.println("Hiba: formatumnak igy kene kineznie: " + cmd[0] + " Exp1");
 			return;
 		}
-
+		boolean ateFood = false;
 		for (Item it : Game.getPlayer(cmd[1]).getInventory()) {
 			if (it.eat()) {
 				Game.getPlayer(cmd[1]).heal(1);
 				Game.getPlayer(cmd[1]).getInventory().remove(it);
+				ateFood = true;
 				break;
 			}
 		}
-
+		if (!ateFood) {
+			Game.getPlayer(cmd[1]).setEnergy(Game.getPlayer(cmd[1]).getEnergy() + 1);
+			JOptionPane.showMessageDialog(GameRunner.baseGameController.getGameFrame(),
+					"There is no food in your inventory!", "", JOptionPane.ERROR_MESSAGE);
+		}
 		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
 	}
 

@@ -71,6 +71,7 @@ public abstract class Player extends Entity {
 			inventory.get(0).view.setVisible(true);
 			Game.view.add(inventory.get(0).view);
 			inventory.remove(0);
+			Game.view.updatePanel();
 		}
 	}
 
@@ -96,9 +97,8 @@ public abstract class Player extends Entity {
 		t.receive(this);
 		setCurrentTile(t);
 		if (t.getBears().size() != 0) {
-			this.getEaten("I ate you Bro ;) Yummy!");
+			this.getEaten("You shall not pass!! - said the polarbear");
 		}
-		this.energy--;
 
 		if (currentTile.getCapacity() != (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
 			for (Player p : currentTile.getPlayers()) {

@@ -55,7 +55,6 @@ public class GameView extends JPanel {
 	private JButton btnTent;
 	private JButton btnDrop;
 
-
 	private JButton curPlayerIndicator;
 
 	public static boolean syncObject = false;
@@ -148,8 +147,7 @@ public class GameView extends JPanel {
 		java.net.URL urlSpecial = MenuView.class.getResource("images/explore.png");
 		java.net.URL urlIgloo = MenuView.class.getResource("images/igloo.png");
 		java.net.URL urlTent = MenuView.class.getResource("images/tent.png");
-    java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
-		
+		java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
 
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
@@ -157,7 +155,6 @@ public class GameView extends JPanel {
 		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 		ImageIcon iconTent = new ImageIcon(urlTent);
 		ImageIcon iconDrop = new ImageIcon(urlDrop);
-
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
@@ -229,43 +226,34 @@ public class GameView extends JPanel {
 	}
 
 	/**
-	 * Add listeners to buttons on the screen
-	 * notifies controller
+	 * Add listeners to buttons on the screen notifies controller
 	 */
 	private void buildListeners() {
 		/**
-		 * Listener for dig method
-		 * variations include: shovel, fragile shovel, 'hand'
+		 * Listener for dig method variations include: shovel, fragile shovel, 'hand'
 		 */
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-			
-				boolean hasTool = false;
-			
+
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
 					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-						hasTool=true;
 
 						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
 
-						break;
+						return;
 					}
 				}
-				if(!hasTool) {
-					for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
-						if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-							hasTool=true;
+				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
+					if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
 
-							Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
+						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
 
-							break;
-						}
+						return;
 					}
 				}
 
-				else {
-					Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
-				}
+				Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
+
 			}
 		});
 
@@ -274,13 +262,13 @@ public class GameView extends JPanel {
 		 */
 		btnFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
+				
 				Game.getPlayer(Game.playerID).step("useFood " + Game.playerID);
 			}
 		});
 
 		/**
-		 * Listener for Explorer's ability 
-		 * checks capacity of nearby Tiles
+		 * Listener for Explorer's ability checks capacity of nearby Tiles
 		 */
 		btnExplore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -289,8 +277,7 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for Eskimo's ability
-		 * builds an Igloo on the current Tile
+		 * Listener for Eskimo's ability builds an Igloo on the current Tile
 		 */
 		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -299,8 +286,7 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for building a tent
-		 * builds a tent on the current Tile
+		 * Listener for building a tent builds a tent on the current Tile
 		 */
 		btnTent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -345,10 +331,10 @@ public class GameView extends JPanel {
 			}
 
 			/**
-			 * Az eger jobb gombbal torteno kattintasara megjelenit egy osszegzo
-			 * panelt, amin bal oldalt a jatekban reszt vevok ID-ja, elete es munkakedve 
-			 * jelenik meg, jobb oldalt pedig az aktualis jatekos neve es 
-			 * az inventoryjaban levo Itemek nevei
+			 * Az eger jobb gombbal torteno kattintasara megjelenit egy osszegzo panelt,
+			 * amin bal oldalt a jatekban reszt vevok ID-ja, elete es munkakedve jelenik
+			 * meg, jobb oldalt pedig az aktualis jatekos neve es az inventoryjaban levo
+			 * Itemek nevei
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -401,7 +387,7 @@ public class GameView extends JPanel {
 						tempLabel.setFont(font.deriveFont(Font.PLAIN, 36f));
 						currentPlayerPanel.add(tempLabel, gbc);
 					}
-
+					
 					UIManager.put("OptionPane.minimumSize", new Dimension(640, 20));
 					UIManager.put("OptionPane.background", new ColorUIResource(204, 255, 255));
 					UIManager.put("Panel.background", new ColorUIResource(204, 255, 255));
@@ -428,9 +414,8 @@ public class GameView extends JPanel {
 	}
 
 	/**
-	 * JPanel hatterenek ciklussal torteno beallitasa
-	 * illetve a mapon levo Tile-ok kozotti szomszedsagi kapcsolatok
-	 * megjelenitese egy vilagoskek vonallal
+	 * JPanel hatterenek ciklussal torteno beallitasa illetve a mapon levo Tile-ok
+	 * kozotti szomszedsagi kapcsolatok megjelenitese egy vilagoskek vonallal
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {

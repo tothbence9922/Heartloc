@@ -218,7 +218,7 @@ public class Game {
 		for (PolarBear pb : bears)
 			pb.step("MOVE");
 		view.updatePanel();
-		generateStorm();
+		//generateStorm();
 		for (Player p : players)
 			p.setEnergy(5);
 	}
