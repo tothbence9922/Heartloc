@@ -19,6 +19,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,6 +30,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 import controller.GameController;
+import controller.GameRunner;
 import model.Game;
 import model.entity.item.Item;
 import model.entity.player.Player;
@@ -35,6 +38,7 @@ import model.tiles.Tile;
 import view.entity.EntityView;
 import view.entity.IglooView;
 import view.entity.ItemView;
+import view.entity.SnowView;
 import view.tiles.TileView;
 
 public class GameView extends JPanel {
@@ -45,6 +49,7 @@ public class GameView extends JPanel {
 	private ArrayList<TileView> tileViews = new ArrayList<TileView>();
 	private ArrayList<EntityView> entityViews = new ArrayList<EntityView>();
 	private ArrayList<ItemView> itemViews = new ArrayList<ItemView>();
+	private ArrayList<SnowView> snowViews = new ArrayList<SnowView>();
 
 	private JPanel gamePanel;
 	private JPanel buttonsPanel;
@@ -61,6 +66,7 @@ public class GameView extends JPanel {
 
 	public static boolean syncObject = false;
 	private static GameView singleInstance = null;
+	public static boolean usingSpecial = false;
 
 	public static GameView getInstance(GameController baseGameController) {
 		try {
@@ -75,6 +81,11 @@ public class GameView extends JPanel {
 
 	public void removeItemView(EntityView view) {
 		itemViews.remove(view);
+		updatePanel();
+	}
+
+	public void removeSnowView(EntityView view) {
+		snowViews.remove(view);
 		updatePanel();
 	}
 
@@ -93,6 +104,10 @@ public class GameView extends JPanel {
 
 	public void addView(ItemView v) {
 		itemViews.add(v);
+	}
+
+	public void addView(SnowView v) {
+		snowViews.add(v);
 	}
 
 	private void clearPanel() {
@@ -121,8 +136,12 @@ public class GameView extends JPanel {
 			add(ev);
 		for (ItemView iv : itemViews)
 			add(iv);
-		for (TileView tv : tileViews)
+		for (SnowView sw : snowViews) {
+			add(sw);
+		}
+		for (TileView tv : tileViews) {
 			add(tv);
+		}
 
 	}
 
@@ -240,6 +259,14 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnRocket);
 	}
 
+	private Object[] appendValue(Object[] obj, Object newObj) {
+
+		ArrayList<Object> temp = new ArrayList<Object>(Arrays.asList(obj));
+		temp.add(newObj);
+		return temp.toArray();
+
+	}
+
 	/**
 	 * Add listeners to buttons on the screen notifies controller
 	 */
@@ -285,9 +312,38 @@ public class GameView extends JPanel {
 		/**
 		 * Listener for Explorer's ability checks capacity of nearby Tiles
 		 */
+
 		btnExplore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useSpecial " + Game.playerID);
+				usingSpecial = true;
+
+				Object[] options = { "" };
+
+				for (int i = 0; i < Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().size(); i++) {
+					options = appendValue(options,
+							Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().get(i).getId());
+				}
+
+				Object[] newOptions = Arrays.copyOfRange(options, 1, options.length);
+
+				int n = JOptionPane.showOptionDialog(baseGameController.getGameFrame(),
+						"Which tile would you like to explore?", "Explore a Tile!", JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE, null, newOptions, null);
+
+				if (n != -1) {
+					boolean canbuild;
+					int energybefore = Game.getPlayer(Game.playerID).getEnergy();
+					int energyafter = Game.getPlayer(Game.playerID).step("exploreTile " + Game.playerID + " "
+							+ Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().get(n));
+					if (energybefore == energyafter)
+						canbuild = false;
+					else {
+						canbuild = true;
+					}
+					if (!canbuild)
+						JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "You can't explore, sorry.",
+								"Explore(r) error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -299,17 +355,17 @@ public class GameView extends JPanel {
 				boolean canbuild;
 				int energybefore = Game.getPlayer(Game.playerID).getEnergy();
 				int energyafter = Game.getPlayer(Game.playerID).step("buildIgloo " + Game.playerID);
-				if(energybefore == energyafter)
+				if (energybefore == energyafter)
 					canbuild = false;
 				else {
 					canbuild = true;
-					//Game.getTile(Game.playerID).view.add(new IglooView(baseGameController));
+					// Game.getTile(Game.playerID).view.add(new IglooView(baseGameController));
 					Game.getPlayer(Game.playerID).getCurrentTile().view.add(new IglooView(baseGameController));
 					Game.view.updatePanel();
 				}
-				if(!canbuild)
-				JOptionPane.showMessageDialog(baseGameController.getGameFrame(),
-						"You can't build an Igloo, sorry.", "Igloo build error", JOptionPane.ERROR_MESSAGE);
+				if (!canbuild)
+					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "You can't build an Igloo, sorry.",
+							"Igloo build error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 
@@ -344,8 +400,12 @@ public class GameView extends JPanel {
 
 				for (Tile t : Game.getTiles()) {
 					Rectangle r = new Rectangle(t.view.getX(), t.view.getY(), 128, 128);
-					if (r.intersects(rect))
-						Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
+					if (usingSpecial) {
+
+					} else {
+						if (r.intersects(rect))
+							Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
+					}
 				}
 			}
 

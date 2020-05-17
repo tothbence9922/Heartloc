@@ -36,9 +36,7 @@ public class Explorer extends Player {
 		
 		if (energy > 0) {
 			for (Tile t : Game.getTiles()) {
-				if (t.getId().equals(chosenTile)) {
-					
-					energy--;					
+				if (t.getId().equals(chosenTile)) {				
 					return t.getCapacity();
 				}
 			}

@@ -3,6 +3,7 @@ package model.tiles;
 import java.util.ArrayList;
 import java.util.Random;
 
+import controller.GameRunner;
 import model.entity.Building;
 import model.entity.Entity;
 import model.entity.Igloo;
@@ -12,6 +13,8 @@ import model.entity.player.Player;
 import model.Drawable;
 import model.Game;
 import model.entity.PolarBear;
+import model.entity.Snow;
+import view.entity.SnowView;
 import view.tiles.TileView;
 
 /**
@@ -33,14 +36,16 @@ public abstract class Tile implements Drawable {
 	protected boolean hasIgloo = false;
 	protected boolean hasTent = false;
 	protected boolean hasPolarBear = false;
-	protected boolean showCapacity = false; // TODO beirni a holland dokumentumba
+	protected boolean showCapacity = false;
 
-	protected ArrayList<Entity> entities = new ArrayList<Entity>(); // TODO beirni a holland dokumentumba
-	protected ArrayList<Player> players = new ArrayList<Player>(); // TODO beirni a holland dokumentumba
-	protected ArrayList<PolarBear> bears = new ArrayList<PolarBear>(); // TODO beirni a holland dokumentumba
-	protected ArrayList<Tile> neighbours = new ArrayList<Tile>(); // TODO beirni a holland dokumentumba
-	protected ArrayList<Item> items = new ArrayList<Item>(); // TODO beirni a holland dokumentumba
-	protected ArrayList<Building> buildings = new ArrayList<Building>(); // TODO beirni a holland dokumentumba
+	protected ArrayList<Entity> entities = new ArrayList<Entity>();
+	protected ArrayList<Player> players = new ArrayList<Player>();
+	protected ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
+	protected ArrayList<Tile> neighbours = new ArrayList<Tile>();
+	protected ArrayList<Item> items = new ArrayList<Item>(); 
+	protected ArrayList<Building> buildings = new ArrayList<Building>();
+	protected ArrayList<Snow> snows = new ArrayList<Snow>();
+
 
 	protected Igloo igloo;
 
@@ -139,16 +144,20 @@ public abstract class Tile implements Drawable {
 	 */
 	public ArrayList<Item> dig(int amount) {
 		this.removeSnow(amount);
-
+		
 		if (this.amountOfSnow <= 0) {
 			for (int i = 0; i < items.size(); i++) {
 				items.get(i).setVisible(true);
 			}
+			for (Snow s : snows) Game.view.remove(s.view);
+			this.snows.clear();
 			this.amountOfSnow = 0;
 			for(Item i : items) Game.view.removeItemView(i.view);
 			Game.view.updatePanel();
 			return this.items;
 		}
+		
+		Game.view.updatePanel();
 		return null;
 	}
 
@@ -279,6 +288,10 @@ public abstract class Tile implements Drawable {
 	 */
 	public void addSnow(int amount) {
 		amountOfSnow += amount;
+		for (int i = 0; i < amount; i++) {
+			snows.add(new Snow("Sno"+snows.size()));
+			Game.view.addView(snows.get(snows.size()-1).view);
+		}
 	}
 
 	/**
@@ -288,16 +301,34 @@ public abstract class Tile implements Drawable {
 	 */
 	public void removeSnow(int amount) {
 		amountOfSnow -= amount;
+		
+		for (int i = 0; i < amount; i++) {
+			if (snows.size() != 0) {
+				Game.view.removeSnowView(snows.get(0).view);
+				snows.remove(0);
+			}
+		}
+		
+		Game.view.updatePanel();
 	}
 
 	/**
 	 * Hovihar kezdetet jelenti
 	 */
 	public void storm(Random r) {
-		amountOfSnow += r.nextInt(3);
-		if (amountOfSnow > 5)
+		int newSnowAmount = r.nextInt(3);
+		amountOfSnow += newSnowAmount;
+		for (int i = 0; i < newSnowAmount; i++) {
+			snows.add(new Snow("Sno" + snows.size()));
+		}
+		
+		if (amountOfSnow > 5) {
 			amountOfSnow = 5;
-		if (this.hasIgloo == false || this.hasTent == false) { // TODO minek a get/set ezekhez ha itt csak így?
+			for (int i = snows.size()-1; i > 5; i--) {
+				snows.remove(i);
+			}
+		}
+		if (this.hasIgloo == false || this.hasTent == false) {
 			for (Player p : players) {
 				p.damage(1);
 			}
@@ -403,6 +434,10 @@ public abstract class Tile implements Drawable {
 
 	public void setAmountOfSnow(int amountOfSnow) {
 		this.amountOfSnow = amountOfSnow;
+		this.snows.clear();
+		for (int i = 0; i < amountOfSnow; i++) {
+			snows.add(new Snow("Sno" + snows.size()));
+		}
 	}
 
 	public int getCapacity() {
@@ -455,6 +490,14 @@ public abstract class Tile implements Drawable {
 
 	public void setBears(ArrayList<PolarBear> bears) {
 		this.bears = bears;
+	}
+	
+	public ArrayList<Snow> getSnows() {
+		return snows;
+	}
+
+	public void setSnows(ArrayList<Snow> snows) {
+		this.snows = snows;
 	}
 
 }

@@ -182,6 +182,7 @@ public abstract class Player extends Entity {
 	 *         Explorer hivta
 	 */
 	public int exploreTile(String chosenTile) {
+		this.energy++;
 		return -2;
 	}
 
@@ -340,7 +341,6 @@ public abstract class Player extends Entity {
 
 	@Override
 	public int step(String msg) {
-
 		if (energy <= 0) {
 			Collections.rotate(Game.getPlayers(), -1);
 			Game.setPlayerID(Game.getPlayers().get(0).getId());

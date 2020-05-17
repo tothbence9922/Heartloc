@@ -17,6 +17,7 @@ import model.entity.Building;
 import model.entity.Igloo;
 import model.entity.PolarBear;
 import model.entity.Tent;
+import model.entity.Snow;
 import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
@@ -38,6 +39,7 @@ import view.entity.EntityView;
 import view.entity.EskimoView;
 import view.entity.ExplorerView;
 import view.entity.PolarBearView;
+import view.entity.SnowView;
 import view.tiles.StableTileView;
 
 public class MapLoader {
@@ -164,8 +166,6 @@ public class MapLoader {
 				players.add(newEx);
 			}
 
-			// TODO
-			// Player(esk, exp), PB, Itemek, minden view-jat letrehozni tileokra illeszkedve
 			Random r = new Random();
 			int curPlayer = 0;
 			while (curPlayer < players.size()) {
@@ -200,15 +200,22 @@ public class MapLoader {
 						pb.view.setPos(t.view.getX() + 32, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
-					// TODO hogolyok hozzadasa ertektol fuggoen
+					
+					int sw = 1;
+					for (Snow s : t.getSnows()) {
+						s.view = new SnowView(GameRunner.baseGameController);
+						s.view.setLayout(null);
+						s.view.setPos(t.view.getX() + sw * 10, t.view.getY() + 80);
+						sw++;
+						GameView.getInstance(GameRunner.baseGameController).addView(s.view);
+					}
+					
 					GameView.getInstance(GameRunner.baseGameController).addView(t, t.view);
-
 				}
 			}
 
 			Game.getInstance(GameRunner.baseGameController);
 			Game.setTiles(tiles);
-
 			Game.setPlayers(players);
 			Game.setPlayerID(players.get(0).getId());
 			Game.setFirstPlayerID(players.get(0).getId());

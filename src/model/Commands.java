@@ -1,5 +1,8 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.GameRunner;
@@ -33,6 +37,8 @@ import model.entity.player.Explorer;
 import model.entity.player.Player;
 import model.tiles.StableTile;
 import model.tiles.Tile;
+import view.GameView;
+import view.entity.IglooView;
 
 /**
  * @author vabe9
@@ -551,9 +557,20 @@ public class Commands {
 
 	public static void exploreTile(String[] cmd) {
 
-		System.out.println("Capacity: " + Game.getPlayer(cmd[1]).exploreTile(cmd[2]));
-
-		System.out.println((Game.getInstance(GameRunner.baseGameController)).toString());
+		int capacity = Game.getPlayer(cmd[1]).exploreTile(cmd[2]);
+		
+		System.out.println("Capacity: " + capacity);
+		
+		if (capacity != -2) {
+			JLabel capacityTitle = new JLabel(Integer.toString(capacity));
+			capacityTitle.setForeground(Color.BLACK);
+			
+			Game.getTile(cmd[2]).view.add(capacityTitle);
+			
+			Game.view.updatePanel();
+			
+		}
+		GameView.usingSpecial = false;
 	}
 
 	public static void move(String[] cmd) throws ParseException {

@@ -40,8 +40,6 @@ public class Eskimo extends Player implements Drawable {
 					chosenTile.getPlayers().get(i).pushToWater();
 				}
 			}
-			
-			this.energy--;
 			return true;
 		}
 		return false;
