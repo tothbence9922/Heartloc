@@ -17,7 +17,7 @@ public class GunView extends ItemView {
 
 	public GunView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(GunView.class.getResource("../images/gun-24x24.png"));
+		icon = new ImageIcon(this.getClass().getResource("../images/gun-24x24.png"));
 		this.setIcon(icon);
 	}
 

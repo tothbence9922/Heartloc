@@ -25,7 +25,7 @@ public class SnowView extends EntityView {
 		super(baseGameController);
 		this.w = this.h = 32;
 		//Beolvassuk a hogolyok megjeleniteseert felelos kepet
-		icon = new ImageIcon(SnowView.class.getResource("../images/snowBallBig-32x32.png"));
+		icon = new ImageIcon(this.getClass().getResource("../images/snowBallBig-32x32.png"));
 		this.setIcon(icon);
 	}
 }
