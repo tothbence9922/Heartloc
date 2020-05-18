@@ -101,7 +101,8 @@ public class MapSelectionView extends JPanel {
 		expTextField.setFont(font.deriveFont(Font.PLAIN, 60f));
 
 		/**
-		 * Gombok hozzaadasa a panelhez, ezeket formazzuk a kivant modon
+		 * Gombok hozzaadasa a panelhez, ezeket formazzuk meg a lenti modon, tobbek kozott:
+		 * Font meret,kinezet beallitasa, gomb hatterszinenek es korvonalanak letiltasa
 		 */
 		btnStartGame = new JButton("Start");
 		btnStartGame.setForeground(Color.DARK_GRAY);
@@ -112,6 +113,9 @@ public class MapSelectionView extends JPanel {
 		btnStartGame.setBorderPainted(false);
 		btnStartGame.setFocusPainted(false);
 
+		/**
+		 * A fentihez hasonlo modon jarunk el az exit gombnal is
+		 */
 		btnBack = new JButton("Exit");
 		btnBack.setForeground(Color.DARK_GRAY);
 		btnBack.setFont(font.deriveFont(Font.PLAIN, 48f));
@@ -127,7 +131,7 @@ public class MapSelectionView extends JPanel {
 
 	/**
 	 * A panel strukturajaert felelos fuggveny, itt allutjuk be tobbek kozott a gombok,labelek elrendezeset
-	 * Itt kerulnek a fent emlitett komonensek hozzáadása a panelhez
+	 * Itt kerulnek a fent emlitett komponensek hozzáadása a panelhez
 	 */
 	private void buildPanel() {
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -223,6 +227,7 @@ public class MapSelectionView extends JPanel {
 				boolean gameSet = baseGameController.setGame(tokens, numOfEsk, numOfExp);
 
 				if (gameSet)
+					//A panel megvaltoztatasa annak szerit , milyen gombot nyomtunk le.
 					baseGameController.getGameFrame().changePanel(GameView.getInstance(baseGameController));
 
 			}

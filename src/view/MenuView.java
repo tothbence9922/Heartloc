@@ -73,7 +73,7 @@ public class MenuView extends JPanel {
 		btnStartGame = new JButton("Start");
 		btnStartGame.setForeground(Color.DARK_GRAY);
 		btnStartGame.setFont(font.deriveFont(Font.PLAIN, 48f));
-		/* disable background color and focus outline */
+		//Kivesszuk a hatterszint és a fokuszt
 		btnStartGame.setOpaque(false);
 		btnStartGame.setContentAreaFilled(false);
 		btnStartGame.setBorderPainted(false);
@@ -117,6 +117,9 @@ public class MenuView extends JPanel {
 	
 	/**
 	 * A Listenerek letehozasaert felelos fuggveny, itt rendeljuk hozza oket a gombokhoz.
+	 * Majd a nevuk altal adott viselkedest hajtjak vegre lenyomakskor,
+	 * A start button-nel betoltodik a MapselectionView
+	 * Az exit gombbal pedig bzarodik az egesz program.
 	 */
 	private void buildListeners() {
 		btnStartGame.addActionListener(new ActionListener() {
