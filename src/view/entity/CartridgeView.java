@@ -17,8 +17,11 @@ public class CartridgeView extends ItemView {
 
 	public CartridgeView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(CartridgeView.class.getResource("../images/cartridge-24x24.png"));
-		this.setIcon(icon);
+		ImageIcon tmp = new ImageIcon(CartridgeView.class.getResource("../images/cartridge-24x24.png"));
+		if(tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}
 	}
 
 }

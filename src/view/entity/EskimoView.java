@@ -17,8 +17,10 @@ public class EskimoView extends PlayerView{
 
 	public EskimoView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(EskimoView.class.getResource("../images/eskimo.png"));
-		this.setIcon(icon);
-	}
+		ImageIcon tmp = new ImageIcon(EskimoView.class.getResource("../images/eskimo.png"));
+		if(tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}	}
 
 }

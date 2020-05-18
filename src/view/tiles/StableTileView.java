@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 import controller.GameController;
+import view.entity.TentView;
 import view.tiles.TileView;
 /**
  * A stabil tablak megjeleniteseert felelos osztaly
@@ -17,11 +18,13 @@ public class StableTileView extends TileView {
 	 * 
 	 * A Stabil tabla kepenek eltaroasa az osztalyban
 	 */
-	protected static final ImageIcon icon = new ImageIcon(StableTileView.class.getResource("../images/tile.png"));
-
 	public StableTileView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		this.setIcon(icon);
+		ImageIcon tmp = new ImageIcon(StableTileView.class.getResource("../images/tile.png"));
+		if (tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}
 	}
 
 

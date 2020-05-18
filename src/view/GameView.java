@@ -82,8 +82,7 @@ public class GameView extends JPanel {
 	private JButton btnRocket;
 
 	/**
-	 * Aktualis jatekost jelolo (2020.05.17 idopontban a feje felett megjeleno),
-	 * listener nelkuli indikator
+	 * Aktualis jatekost jelolo, listener nelkuli indikator
 	 */
 	private JButton curPlayerIndicator;
 
@@ -227,7 +226,7 @@ public class GameView extends JPanel {
 			int sc = 1;
 			for (Snow s : t.getSnows()) {
 				SnowView sv = new SnowView(GameRunner.baseGameController);
-				s.view= sv;
+				s.view = sv;
 				sv.setLayout(null);
 				sv.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
 				sc++;
@@ -289,7 +288,7 @@ public class GameView extends JPanel {
 		/**
 		 * ImageIconok keszitese a kinyert eleresi utvonalakkal
 		 */
-		
+
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
 		/**
@@ -304,7 +303,7 @@ public class GameView extends JPanel {
 			btnShovel.setBackground(btnBackgroundColour);
 			btnShovel.setFocusPainted(false);
 		}
-		
+
 		if (urlFood != null) {
 			ImageIcon iconFood = new ImageIcon(urlFood);
 			btnFood = new JButton("");
@@ -313,7 +312,7 @@ public class GameView extends JPanel {
 			btnFood.setBackground(btnBackgroundColour);
 			btnFood.setFocusPainted(false);
 		}
-		
+
 		if (urlSpecial != null) {
 			ImageIcon iconSpecial = new ImageIcon(urlSpecial);
 			btnExplore = new JButton("");
@@ -322,7 +321,7 @@ public class GameView extends JPanel {
 			btnExplore.setBackground(btnBackgroundColour);
 			btnExplore.setFocusPainted(false);
 		}
-		
+
 		if (urlIgloo != null) {
 			ImageIcon iconIgloo = new ImageIcon(urlIgloo);
 			btnIgloo = new JButton("");
@@ -331,7 +330,7 @@ public class GameView extends JPanel {
 			btnIgloo.setBackground(btnBackgroundColour);
 			btnIgloo.setFocusPainted(false);
 		}
-		
+
 		if (urlTent != null) {
 			ImageIcon iconTent = new ImageIcon(urlTent);
 			btnTent = new JButton("");
@@ -340,7 +339,7 @@ public class GameView extends JPanel {
 			btnTent.setBackground(btnBackgroundColour);
 			btnTent.setFocusPainted(false);
 		}
-		
+
 		if (urlDrop != null) {
 			ImageIcon iconDrop = new ImageIcon(urlDrop);
 			btnDrop = new JButton("");
@@ -349,7 +348,7 @@ public class GameView extends JPanel {
 			btnDrop.setBackground(btnBackgroundColour);
 			btnDrop.setFocusPainted(false);
 		}
-		
+
 		if (urlRocket != null) {
 			ImageIcon iconRocket = new ImageIcon(urlRocket);
 			btnRocket = new JButton("");
@@ -358,8 +357,6 @@ public class GameView extends JPanel {
 			btnRocket.setBackground(btnBackgroundColour);
 			btnRocket.setFocusPainted(false);
 		}
-
-		
 
 		/**
 		 * Panel elkeszitese a fent inicializalt gombokkal
@@ -572,7 +569,7 @@ public class GameView extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 			}
 
 			@Override

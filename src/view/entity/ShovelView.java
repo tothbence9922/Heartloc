@@ -19,9 +19,11 @@ public class ShovelView extends ItemView {
 
 	public ShovelView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		icon = new ImageIcon(ShovelView.class.getResource("../images/shovel-24x24.png"));
-		this.setIcon(icon);
-
+		ImageIcon tmp = new ImageIcon(ShovelView.class.getResource("../images/shovel-24x24.png"));
+		if (tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}
 	}
 
 }

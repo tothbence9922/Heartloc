@@ -19,12 +19,14 @@ public class UnstableTileView extends TileView {
 	/**
 	 * Az instabil jegtabla kepet eltaroljuk egy ImageIcon tipusu valtozoban.
 	 */
-	protected static final ImageIcon icon = new ImageIcon(UnstableTileView.class.getResource("../images/tile.png"));
 
 	public UnstableTileView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		this.setIcon(icon);
-	}
+		ImageIcon tmp = new ImageIcon(UnstableTileView.class.getResource("../images/tile.png"));
+		if (tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}	}
 
 
 }

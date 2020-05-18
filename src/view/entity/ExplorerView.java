@@ -10,9 +10,11 @@ import javax.swing.ImageIcon;
  */
 
 import controller.GameController;
+
 /**
  * 
  * Az felfedezo megjeleniteseert felelos osztaly.
+ * 
  * @author Gabor
  *
  */
@@ -25,8 +27,11 @@ public class ExplorerView extends PlayerView {
 		/**
 		 * A felfedezo megjeleniteseert felelos kep betoltese
 		 */
-		icon = new ImageIcon(ExplorerView.class.getResource("../images/explorer.png"));
-		this.setIcon(icon);
+		ImageIcon tmp = new ImageIcon(ExplorerView.class.getResource("../images/explorer.png"));
+		if (tmp != null) {
+			icon = tmp;
+			this.setIcon(icon);
+		}
 	}
 
 }

@@ -22,8 +22,8 @@ public class BuildingView extends EntityView {
 		java.net.URL temp = BeaconView.class.getResource("../images/beacon-24x24.png");
 		if (temp != null) {			
 			icon = new ImageIcon(temp);
+			this.setIcon(icon);
 		}
-		this.setIcon(icon);
 
 }
 
