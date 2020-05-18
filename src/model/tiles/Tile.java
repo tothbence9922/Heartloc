@@ -210,8 +210,9 @@ public abstract class Tile implements Drawable {
 	 */
 	public boolean receive(PolarBear e) {
 		this.load++;
+		if (!bears.isEmpty() && !players.isEmpty())
+			players.get(0).die("A bear ate a player...");
 		bears.add(e);
-
 		return true;
 	}
 
@@ -219,7 +220,6 @@ public abstract class Tile implements Drawable {
 		this.load++;
 		if (!bears.isEmpty() && !players.isEmpty())
 			players.get(0).die("A bear ate a player...");
-
 		players.add(p);
 		return true;
 	}
@@ -470,10 +470,7 @@ public abstract class Tile implements Drawable {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-
-	public void addPlayer(Player p) {
-	}
-
+	
 	public void setHasHole(boolean hasHole) {
 		this.hasHole = hasHole;
 	}

@@ -175,7 +175,6 @@ public class MapLoader {
 						GameView.getInstance(GameRunner.baseGameController).addLabel(hv);
 					}
 					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
-						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
 						players.get(curPlayer).setCurrentTile(t);
 						curPlayer++;
