@@ -30,7 +30,6 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 import controller.GameController;
-import controller.GameRunner;
 import model.Game;
 import model.entity.item.Item;
 import model.entity.player.Player;
@@ -42,20 +41,35 @@ import view.entity.ItemView;
 import view.entity.SnowView;
 import view.tiles.TileView;
 
+/**
+ * A jatek soran hasznalt fo view, Singleton tervezesi modszert alkalmazva:
+ * privat konstruktora van, ra referenciat egy statikus getInstance metodussal lehet szerezni,
+ * mely az elso meghivas alkalmaval inicializalja is az osztalyt 
+ */
 public class GameView extends JPanel {
 
 	private static final long serialVersionUID = -3883592817908195829L;
 	private GameController baseGameController;
 
+	/**
+	 * Game soran hasznalt view tarolok
+	 */
 	private ArrayList<TileView> tileViews = new ArrayList<TileView>();
 	private ArrayList<EntityView> entityViews = new ArrayList<EntityView>();
 	private ArrayList<ItemView> itemViews = new ArrayList<ItemView>();
 	private ArrayList<SnowView> snowViews = new ArrayList<SnowView>();
 	private ArrayList<BuildingView> buildingViews = new ArrayList<BuildingView>();
 
+	/**
+	 * Game-ben hasznalt panelek, az elsoben a jatek rajzolodik ki, a massodikban
+	 * pedig a jatek iranyitasara szolgalo gombok
+	 */
 	private JPanel gamePanel;
 	private JPanel buttonsPanel;
 
+	/**
+	 * A jatek iranyitasara szolgalo gombok
+	 */
 	private JButton btnShovel;
 	private JButton btnFood;
 	private JButton btnExplore;
@@ -64,33 +78,58 @@ public class GameView extends JPanel {
 	private JButton btnDrop;
 	private JButton btnRocket;
 
+	/**
+	 * Aktualis jatekost jelolo (2020.05.17 idopontban a feje felett megjeleno),
+	 * listener nelkuli indikator
+	 */
 	private JButton curPlayerIndicator;
 
 	public static boolean syncObject = false;
 	private static GameView singleInstance = null;
 	public static boolean usingSpecial = false;
 
+	/**
+	 * Singleton tervezesi mintat kovetve kialakitott getInstance metodus
+	 * 
+	 * @param baseGameController
+	 * @return GameView referencia
+	 */
 	public static GameView getInstance(GameController baseGameController) {
 		try {
 			if (singleInstance == null)
 				singleInstance = new GameView(baseGameController);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return singleInstance;
 	}
 
+	/**
+	 * Eltavolit egy Itemet a panelrol
+	 * 
+	 * @param view
+	 */
 	public void removeItemView(EntityView view) {
 		itemViews.remove(view);
 		updatePanel();
 	}
 
+	/**
+	 * Eltavolit egy havat abrazolo hogolyot a panelrol
+	 * 
+	 * @param view
+	 */
 	public void removeSnowView(EntityView view) {
 		snowViews.remove(view);
 		updatePanel();
 	}
 
+	/**
+	 * Uj view-t es egy listenert ad hozza valamennyi tile-hoz
+	 * 
+	 * @param t - tile
+	 * @param v - tile-hoz tartozo view
+	 */
 	public void addView(Tile t, TileView v) {
 		v.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -102,26 +141,55 @@ public class GameView extends JPanel {
 		tileViews.add(v);
 	}
 
+	/**
+	 * Entity view-t ad hozza a panelhez
+	 * 
+	 * @param v
+	 */
 	public void addView(EntityView v) {
 		entityViews.add(v);
 	}
 
+	/**
+	 * Item view-t ad hozza a panelhez
+	 * 
+	 * @param v
+	 */
 	public void addView(ItemView v) {
 		itemViews.add(v);
 	}
 
+	/**
+	 * Building view-t ad hozza a panelhez
+	 * 
+	 * @param v
+	 */
 	public void addView(BuildingView v) {
 		buildingViews.add(v);
 	}
-
+  
+  /**
+	 * Snow view-t ad hozza a panelhez
+	 * 
+	 * @param v
+	 */
 	public void addView(SnowView v) {
 		snowViews.add(v);
 	}
 
+	/**
+	 * Valamennyi hozzaadott view-t kitorol a panelrol, kiuriti az egeszet ezaltal
+	 * elokeszitve az ujrarajzolast
+	 */
 	private void clearPanel() {
 		this.removeAll();
 	}
 
+	/**
+	 * Kirajzolja az osszes, a jatekban jelenlevo viewt olyan sorrendben, hogy ne
+	 * fedjek egymast (swing forditott sorrendben jarja be a dolgokat, tehat az
+	 * utoljara hozzaadott kerul eloszor kirajzolasra
+	 */
 	private void drawPanel() {
 		for (Player p : Game.getPlayers()) {
 			if (p.getId() == Game.getPlayerID()) {
@@ -158,6 +226,9 @@ public class GameView extends JPanel {
 
 	}
 
+	/**
+	 * a view ujrarajzolasa, mely valtoztatasok eseten kerul meghivasra
+	 */
 	public void updatePanel() {
 		clearPanel();
 		drawPanel();
@@ -166,7 +237,6 @@ public class GameView extends JPanel {
 			validate();
 			repaint();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -181,6 +251,10 @@ public class GameView extends JPanel {
 
 		gamePanel.setOpaque(false);
 
+		/**
+		 * Kepek eleresi helyenek megszerzese olyan modon, hogy bundling utan is
+		 * megtalalja oket
+		 */
 		java.net.URL urlShovel = MenuView.class.getResource("images/shovel.png");
 		java.net.URL urlFood = MenuView.class.getResource("images/food.png");
 		java.net.URL urlSpecial = MenuView.class.getResource("images/explore.png");
@@ -189,6 +263,9 @@ public class GameView extends JPanel {
 		java.net.URL urlDrop = MenuView.class.getResource("images/arrow.png");
 		java.net.URL urlRocket = MenuView.class.getResource("images/rocket.png");
 
+		/**
+		 * ImageIconok keszitese a kinyert eleresi utvonalakkal
+		 */
 		ImageIcon iconShovel = new ImageIcon(urlShovel);
 		ImageIcon iconFood = new ImageIcon(urlFood);
 		ImageIcon iconSpecial = new ImageIcon(urlSpecial);
@@ -199,6 +276,9 @@ public class GameView extends JPanel {
 
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
+		/**
+		 * Gombok inicializalasa: hatter, ikon es a fokusz letiltasanak beallitasa
+		 */
 		btnShovel = new JButton("");
 		Image temp = iconShovel.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		btnShovel.setIcon(new ImageIcon(temp));
@@ -241,7 +321,14 @@ public class GameView extends JPanel {
 		btnRocket.setBackground(btnBackgroundColour);
 		btnRocket.setFocusPainted(false);
 
+		/**
+		 * Panel elkeszitese a fent inicializalt gombokkal
+		 */
 		buildPanel();
+
+		/**
+		 * Listenerek hozzaadasa a fentebb inicializalt gombokhoz
+		 */
 		buildListeners();
 	}
 
@@ -249,6 +336,13 @@ public class GameView extends JPanel {
 		buildHUD();
 	}
 
+	/**
+	 * Hozzaadja az osszes gombot a Heads-up-Displayhez, ami a kepernyo aljan,
+	 * kozepen jelenik meg, es segitsegevel valik iranyithatova a jatek (kivetel ez
+	 * alol a mozgas, ami a tile-okra kattintassal oldhato meg
+	 * 
+	 * @throws IOException
+	 */
 	private void buildHUD() throws IOException {
 		add(gamePanel, BorderLayout.CENTER);
 		add(buttonsPanel, BorderLayout.SOUTH);
@@ -272,6 +366,13 @@ public class GameView extends JPanel {
 		buttonsPanel.add(btnRocket);
 	}
 
+	/**
+	 * Uj ertek hozzaadas egy Object tombhoz
+	 * 
+	 * @param obj
+	 * @param newObj
+	 * @return
+	 */
 	private Object[] appendValue(Object[] obj, Object newObj) {
 
 		ArrayList<Object> temp = new ArrayList<Object>(Arrays.asList(obj));
@@ -296,7 +397,8 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for eat method so that players could heal
+		 * Ha a jatekos taskajaban talalhato Food, akkor azt ezzel a gombbal el tudja
+		 * hasznalni, ezatlal megnovelve sajat eletet
 		 */
 		btnFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -308,26 +410,45 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for Explorer's ability checks capacity of nearby Tiles
+		 * Explorerek kepesseget erre a gombra torteno kattintassal lehet aktivalni:
+		 * ilyenkor felugrik egy panel, amibol kivalaszthato, hogy melyik mezonek a
+		 * teherbirasat szeretnenk megkapni
 		 */
-
 		btnExplore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				usingSpecial = true;
 
+				/**
+				 * A JOptionPanelben megjelenitendo gombok szovegeit tartalmazo object tomb
+				 */
 				Object[] options = { "" };
 
+				/**
+				 * Szomszedos mezok megkeresese, ID-k (string) hozzaadasa az options tarolohoz
+				 */
 				for (int i = 0; i < Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().size(); i++) {
 					options = appendValue(options,
 							Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().get(i).getId());
 				}
 
+				/**
+				 * Options taroloban elso elemkent szerepel egy "", ezert itt balra shiftelunk
+				 * egyel
+				 */
 				Object[] newOptions = Arrays.copyOfRange(options, 1, options.length);
 
+				/**
+				 * A JOptionPanelben megjelenitendo gombok 0-1-2... ertekekkel ternek vissza, ha
+				 * rajuk kattintunk, ezt taroljuk el egy valtozoban
+				 */
 				int n = JOptionPane.showOptionDialog(baseGameController.getGameFrame(),
 						"Which tile would you like to explore?", "Explore a Tile!", JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.QUESTION_MESSAGE, null, newOptions, null);
 
+				/**
+				 * Ha X-szel zartuk be a panel, akkor a visszateresi ertek -1, amit a get()
+				 * fuggvenyben hasznalva eleresi hibat dobna, ezzel ezt kizarjuk
+				 */
 				if (n != -1) {
 
 					boolean canExplore;
@@ -350,7 +471,9 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for Eskimo's ability builds an Igloo on the current Tile
+		 * Eskimok kepesseget erre a gombra torteno kattintassal lehet aktivalni:
+		 * ilyenkor egy uj Igloo epul azon a Tile-on, amelyiken az Eskimo a gombra
+		 * kattintas pillanataban all
 		 */
 		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -367,7 +490,7 @@ public class GameView extends JPanel {
 		});
 
 		/**
-		 * Listener for building a tent builds a tent on the current Tile
+		 * Tentet epit az aktualis mezore, ha van a jatekos taskajaban TentItem
 		 */
 		btnTent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -377,6 +500,11 @@ public class GameView extends JPanel {
 			}
 		});
 
+		/**
+		 * Eldobja a jatekos inventoryjabol a 0. elemet, igy egyreszt adhato etel a
+		 * raszorulo csapattarsnak, valamint a jatek megnyeresehez is hasznalni kell,
+		 * mivel cel, hogy mindegyik item egy tile-on legyen
+		 */
 		btnDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).drop();
@@ -385,6 +513,10 @@ public class GameView extends JPanel {
 			}
 		});
 
+		/**
+		 * Ha valamennyi szukseges item a birtokunkban van, akkor ezzel a gombbal
+		 * suthetjuk el a rocketet, amivel a jatekot meg tudjuk nyerni
+		 */
 		btnRocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				Game.getPlayer(Game.playerID).assembleRocket();
@@ -393,14 +525,27 @@ public class GameView extends JPanel {
 			}
 		});
 
+		/**
+		 * Eger kattintasanak detektalasa
+		 */
 		this.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				/**
+				 * Rectangle letrehozasa a kattintasok pontosabb meghatarozasahoz, kezelesehez
+				 */
 				Point p = e.getPoint();
 				Rectangle rect = new Rectangle(p);
 				rect.width = rect.height = 1;
 
+				/**
+				 * Osszes tile-on vegigiteral, ha a kattintas helye (a krealt rect) az egyiknek
+				 * a hatarain belul talalhato, akkor oda mozgatja a jatekost (amennyiben az a
+				 * tile szomszedos azzal, amelyiken a jatekos all)
+				 * 
+				 * @see player.move
+				 */
 				for (Tile t : Game.getTiles()) {
 					Rectangle r = new Rectangle(t.view.getX(), t.view.getY(), 128, 128);
 					if (usingSpecial) {
@@ -443,6 +588,9 @@ public class GameView extends JPanel {
 					currentPlayerPanel.setOpaque(false);
 					panel.setOpaque(false);
 
+					/**
+					 * Jobb es bal oldali panelek hozzaadasa
+					 */
 					panel.add(statsPanel, BorderLayout.WEST);
 					panel.add(currentPlayerPanel, BorderLayout.EAST);
 
@@ -452,6 +600,9 @@ public class GameView extends JPanel {
 					gbc.fill = GridBagConstraints.HORIZONTAL;
 					gbc.weighty = 0;
 
+					/**
+					 * Hasznalt betutipus beallitasa
+					 */
 					Font font = null;
 					try {
 						font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
@@ -459,9 +610,16 @@ public class GameView extends JPanel {
 						ex.printStackTrace();
 					}
 
+					/**
+					 * Cim a bal oldali panelen megjeleno adatoknak
+					 */
 					JLabel title = new JLabel("Player name \t | Temp \t | Capability");
 					title.setFont(font.deriveFont(Font.PLAIN, 24f));
 					statsPanel.add(title, gbc);
+
+					/**
+					 * Bal oldali panel feltoltese a jatekosok adataival
+					 */
 					for (Player p : Game.getPlayers()) {
 						JLabel tempLabel = new JLabel(
 								p.getId() + " - " + p.getBodyTemperature() + " - " + p.getEnergy());
@@ -469,6 +627,9 @@ public class GameView extends JPanel {
 						statsPanel.add(tempLabel, gbc);
 					}
 
+					/**
+					 * Cim a jobb oldali panelen megjeleno adatoknak
+					 */
 					JLabel titleCurrentPlayerPanel = new JLabel("Current Player: " + Game.playerID);
 					titleCurrentPlayerPanel.setFont(font.deriveFont(Font.PLAIN, 48f));
 					currentPlayerPanel.add(titleCurrentPlayerPanel, gbc);
@@ -477,12 +638,19 @@ public class GameView extends JPanel {
 					itemsCurrentPlayer.setFont(font.deriveFont(Font.PLAIN, 24f));
 					currentPlayerPanel.add(itemsCurrentPlayer, gbc);
 
+					/**
+					 * A jobb oldali panel feltoltese a jatekos inventoryjaban levo dolgokkal
+					 */
 					for (Item i : Game.getPlayer(Game.playerID).getInventory()) {
 						JLabel tempLabel = new JLabel(i.getId());
 						tempLabel.setFont(font.deriveFont(Font.PLAIN, 36f));
 						currentPlayerPanel.add(tempLabel, gbc);
 					}
 
+					/**
+					 * A megjelenitett JOptionPane parametereinek beallitasara kulon UIManager-t
+					 * hasznalunk. Igy konnyen allithato a kivant minimum meret es a hatterszin
+					 */
 					UIManager.put("OptionPane.minimumSize", new Dimension(640, 20));
 					UIManager.put("OptionPane.background", new ColorUIResource(204, 255, 255));
 					UIManager.put("Panel.background", new ColorUIResource(204, 255, 255));
@@ -534,6 +702,10 @@ public class GameView extends JPanel {
 			}
 		}
 
+		/**
+		 * A jatekban a szomszedos mezok koze egy vilagos szinu vonalat rajzol, egyfele
+		 * vizualis visszajelzest adva
+		 */
 		for (Tile t : Game.getTiles()) {
 			for (Tile neigh : t.getNeighbours()) {
 				int x1, y1, x2, y2;
@@ -550,6 +722,12 @@ public class GameView extends JPanel {
 		}
 	}
 
+	/**
+	 * Jatek veget elindito fuggveny
+	 * 
+	 * @param losestate
+	 * @param msg
+	 */
 	public void EndGame(boolean losestate, String msg) {
 		EndView end = new EndView(this.baseGameController, losestate, msg);
 		this.baseGameController.EndGame(end);
