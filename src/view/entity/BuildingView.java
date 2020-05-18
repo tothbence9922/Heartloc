@@ -20,6 +20,8 @@ public class BuildingView extends EntityView {
 		h = 40;
 		w = 50;
 		icon = new ImageIcon(BuildingView.class.getResource("../images/igloo.png"));
+		this.setIcon(icon);
+
 }
 
 }

@@ -1,15 +1,8 @@
 package view;
 
-import java.io.IOException;
-import java.net.URL;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.text.html.ImageView;
-
 import controller.GameController;
-import view.tiles.TileView;
 
 public class View extends JLabel {
 

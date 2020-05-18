@@ -17,6 +17,7 @@ public class SnowView extends EntityView {
 	
 	public SnowView(GameController baseGameController){
 		super(baseGameController);
+		this.w = this.h = 32;
 		icon = new ImageIcon(SnowView.class.getResource("../images/snowBallBig-32x32.png"));
 		this.setIcon(icon);
 	}

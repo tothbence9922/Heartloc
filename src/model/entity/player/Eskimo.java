@@ -35,8 +35,11 @@ public class Eskimo extends Player implements Drawable {
 	public boolean buildIgloo() {
 		if (energy > 0) {
 			currentTile.addIgloo(new Igloo("Igl " + Game.getBuildings().size()));
-
-			if (currentTile.getCapacity() < currentTile.getPlayers().size() + 1) {
+			if (currentTile.getCapacity() == -1) {
+				energy--;
+				return true;
+			}
+			if (currentTile.getCapacity() < currentTile.getLoad()) {
 				for (int i = 0; i < currentTile.getPlayers().size(); i++) {
 					currentTile.getPlayers().get(i).pushToWater();
 				}

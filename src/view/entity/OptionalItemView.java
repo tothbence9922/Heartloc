@@ -17,7 +17,6 @@ public class OptionalItemView extends ItemView {
 
 	public OptionalItemView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		// TODO Auto-generated constructor stub
 	}
 
 }

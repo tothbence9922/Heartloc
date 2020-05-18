@@ -16,8 +16,7 @@ public class EntityView extends View {
 
 	public EntityView(GameController baseGameController) {
 		super(baseGameController);
-		this.w = 64;
-		this.h = 85;
+
 	}
 
 }

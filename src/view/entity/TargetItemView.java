@@ -17,7 +17,6 @@ public class TargetItemView extends ItemView {
 
 	public TargetItemView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		// TODO Auto-generated constructor stub
 	}
 
 }

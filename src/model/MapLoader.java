@@ -168,6 +168,12 @@ public class MapLoader {
 			int curPlayer = 0;
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
+					if(t.getHasHole()) {
+						HoleView hv = new HoleView(GameRunner.baseGameController);
+						hv.setLayout(null);
+						hv.setPos(t.view.getX()+15, t.view.getY());
+						GameView.getInstance(GameRunner.baseGameController).addLabel(hv);
+					}
 					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.addPlayer(players.get(curPlayer));
 						t.receive(players.get(curPlayer));
@@ -198,22 +204,18 @@ public class MapLoader {
 						pb.view.setPos(t.view.getX() + 32, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
-					if(t.getHasHole()) {
-						HoleView hv = new HoleView(GameRunner.baseGameController);
-						hv.setBounds(t.view.getBounds());
-						GameView.getInstance(GameRunner.baseGameController).addView(hv);
-					}
-					
+										
 					int sw = 1;
 					for (Snow s : t.getSnows()) {
 						s.view = new SnowView(GameRunner.baseGameController);
 						s.view.setLayout(null);
-						s.view.setPos(t.view.getX() + sw * 10, t.view.getY() + 80);
+						s.view.setPos(t.view.getX() + sw * 10, t.view.getY() + 105);
 						sw++;
 						GameView.getInstance(GameRunner.baseGameController).addView(s.view);
 					}
 					
 					GameView.getInstance(GameRunner.baseGameController).addView(t, t.view);
+					
 				}
 			}
 

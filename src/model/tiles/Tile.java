@@ -154,7 +154,10 @@ public abstract class Tile implements Drawable {
 			this.amountOfSnow = 0;
 			for(Item i : items) Game.view.removeItemView(i.view);
 			Game.view.updatePanel();
-			return this.items;
+			ArrayList<Item> ret = new ArrayList<Item>();
+			for(int i = 0; i < items.size(); i++) ret.add(items.get(i));
+			items.clear();
+			return ret;
 		}
 		
 		Game.view.updatePanel();
@@ -336,6 +339,7 @@ public abstract class Tile implements Drawable {
 	}
 
 	public void addIgloo(Igloo igloo) {
+		load++;
 		hasIgloo = true;
 		buildings.add(igloo);
 		igloo.view.setBounds(this.view.getBounds());

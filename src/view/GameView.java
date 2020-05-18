@@ -230,7 +230,6 @@ public class GameView extends JPanel {
 			add(sv);
 		}
 		for (HoleView hv : holeViews) {
-			System.out.println("YEEEHAAAA");
 			add(hv);
 		}
 		for (BuildingView bv : buildingViews) {
