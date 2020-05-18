@@ -15,7 +15,9 @@ public class BeaconView extends ItemView {
 
 	public BeaconView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(BeaconView.class.getResource("../images/beacon-24x24.png"));
+		java.net.URL temp = BeaconView.class.getResource("../images/beacon-24x24.png");
+		if (temp != null) 
+			icon = new ImageIcon(temp);
 
 		this.setIcon(icon);
 	}

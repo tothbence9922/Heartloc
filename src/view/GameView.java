@@ -289,60 +289,77 @@ public class GameView extends JPanel {
 		/**
 		 * ImageIconok keszitese a kinyert eleresi utvonalakkal
 		 */
-		ImageIcon iconShovel = new ImageIcon(urlShovel);
-		ImageIcon iconFood = new ImageIcon(urlFood);
-		ImageIcon iconSpecial = new ImageIcon(urlSpecial);
-		ImageIcon iconIgloo = new ImageIcon(urlIgloo);
-		ImageIcon iconTent = new ImageIcon(urlTent);
-		ImageIcon iconDrop = new ImageIcon(urlDrop);
-		ImageIcon iconRocket = new ImageIcon(urlRocket);
-
+		
 		Color btnBackgroundColour = new Color(225, 225, 225);
 
 		/**
 		 * Gombok inicializalasa: hatter, ikon es a fokusz letiltasanak beallitasa
 		 */
-		btnShovel = new JButton("");
-		Image temp = iconShovel.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnShovel.setIcon(new ImageIcon(temp));
-		btnShovel.setBackground(btnBackgroundColour);
-		btnShovel.setFocusPainted(false);
+		Image temp;
+		if (urlShovel != null) {
+			ImageIcon iconShovel = new ImageIcon(urlShovel);
+			btnShovel = new JButton("");
+			temp = iconShovel.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnShovel.setIcon(new ImageIcon(temp));
+			btnShovel.setBackground(btnBackgroundColour);
+			btnShovel.setFocusPainted(false);
+		}
+		
+		if (urlFood != null) {
+			ImageIcon iconFood = new ImageIcon(urlFood);
+			btnFood = new JButton("");
+			temp = iconFood.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnFood.setIcon(new ImageIcon(temp));
+			btnFood.setBackground(btnBackgroundColour);
+			btnFood.setFocusPainted(false);
+		}
+		
+		if (urlSpecial != null) {
+			ImageIcon iconSpecial = new ImageIcon(urlSpecial);
+			btnExplore = new JButton("");
+			temp = iconSpecial.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnExplore.setIcon(new ImageIcon(temp));
+			btnExplore.setBackground(btnBackgroundColour);
+			btnExplore.setFocusPainted(false);
+		}
+		
+		if (urlIgloo != null) {
+			ImageIcon iconIgloo = new ImageIcon(urlIgloo);
+			btnIgloo = new JButton("");
+			temp = iconIgloo.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnIgloo.setIcon(new ImageIcon(temp));
+			btnIgloo.setBackground(btnBackgroundColour);
+			btnIgloo.setFocusPainted(false);
+		}
+		
+		if (urlTent != null) {
+			ImageIcon iconTent = new ImageIcon(urlTent);
+			btnTent = new JButton("");
+			temp = iconTent.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnTent.setIcon(new ImageIcon(temp));
+			btnTent.setBackground(btnBackgroundColour);
+			btnTent.setFocusPainted(false);
+		}
+		
+		if (urlDrop != null) {
+			ImageIcon iconDrop = new ImageIcon(urlDrop);
+			btnDrop = new JButton("");
+			temp = iconDrop.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnDrop.setIcon(new ImageIcon(temp));
+			btnDrop.setBackground(btnBackgroundColour);
+			btnDrop.setFocusPainted(false);
+		}
+		
+		if (urlRocket != null) {
+			ImageIcon iconRocket = new ImageIcon(urlRocket);
+			btnRocket = new JButton("");
+			temp = iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+			btnRocket.setIcon(new ImageIcon(temp));
+			btnRocket.setBackground(btnBackgroundColour);
+			btnRocket.setFocusPainted(false);
+		}
 
-		btnFood = new JButton("");
-		temp = iconFood.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnFood.setIcon(new ImageIcon(temp));
-		btnFood.setBackground(btnBackgroundColour);
-		btnFood.setFocusPainted(false);
-
-		btnExplore = new JButton("");
-		temp = iconSpecial.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnExplore.setIcon(new ImageIcon(temp));
-		btnExplore.setBackground(btnBackgroundColour);
-		btnExplore.setFocusPainted(false);
-
-		btnIgloo = new JButton("");
-		temp = iconIgloo.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnIgloo.setIcon(new ImageIcon(temp));
-		btnIgloo.setBackground(btnBackgroundColour);
-		btnIgloo.setFocusPainted(false);
-
-		btnTent = new JButton("");
-		temp = iconTent.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnTent.setIcon(new ImageIcon(temp));
-		btnTent.setBackground(btnBackgroundColour);
-		btnTent.setFocusPainted(false);
-
-		btnDrop = new JButton("");
-		temp = iconDrop.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnDrop.setIcon(new ImageIcon(temp));
-		btnDrop.setBackground(btnBackgroundColour);
-		btnDrop.setFocusPainted(false);
-
-		btnRocket = new JButton("");
-		temp = iconRocket.getImage().getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		btnRocket.setIcon(new ImageIcon(temp));
-		btnRocket.setBackground(btnBackgroundColour);
-		btnRocket.setFocusPainted(false);
+		
 
 		/**
 		 * Panel elkeszitese a fent inicializalt gombokkal

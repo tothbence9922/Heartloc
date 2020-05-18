@@ -19,7 +19,10 @@ public class BuildingView extends EntityView {
 		super(baseGameController);
 		h = 40;
 		w = 50;
-		icon = new ImageIcon(BuildingView.class.getResource("../images/igloo.png"));
+		java.net.URL temp = BeaconView.class.getResource("../images/beacon-24x24.png");
+		if (temp != null) {			
+			icon = new ImageIcon(temp);
+		}
 		this.setIcon(icon);
 
 }
