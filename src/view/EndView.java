@@ -6,7 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,13 +13,18 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import controller.GameController;
 
+/**
+ * A jatek veget jelento kepernyo, mely akkor jelenik meg, amikor egy jatekos
+ * valamilyen modon meghalt, ezaltal veget er a jatek. Ennek az okat egy
+ * parameterkent atadott valtozonak koszonhetoen meg is jeleniti
+ *
+ */
 public class EndView extends JPanel {
 	/**
-	 * 
+	 * Auto-generated serial variable
 	 */
 	private static final long serialVersionUID = -1748399399482164668L;
 	private boolean lose;
@@ -39,16 +43,20 @@ public class EndView extends JPanel {
 			e.printStackTrace();
 		}
 
+		/**
+		 * JLabelbe tetszoleges formatumban megjeleniti az uzenetet HTML kod
+		 * segitsegevel es kozepre zarja
+		 */
 		if (lose)
 			labelGame = new JLabel("<html><body style='text-align:center'>You Lose!<br>" + msg + "</body></html>");
 		else
-			labelGame = new JLabel("<html><body style='text-align:center'>You Win! You saved our arses!<br> ${'msg'} </body></html>");
+			labelGame = new JLabel(
+					"<html><body style='text-align:center'>You Win! You saved our arses!<br> ${'msg'} </body></html>");
 
 		labelGame.setFont(font.deriveFont(Font.PLAIN, 120f));
 		labelGame.setForeground(Color.WHITE);
 
 		baseLayout = new GridBagLayout();
-
 		btnExit = new JButton("Exit");
 		btnExit.setForeground(Color.DARK_GRAY);
 		btnExit.setFont(font.deriveFont(Font.PLAIN, 90f));
@@ -58,14 +66,13 @@ public class EndView extends JPanel {
 		btnExit.setFocusPainted(false);
 
 		buildPanel();
-		buildLayout();
 		buildListeners();
 	}
 
-	private void buildLayout() {
-
-	}
-
+	/**
+	 * Megadja a szukseges constrainteket, letrehoz egy uj panelt, amin mejeleniti a
+	 * gombot
+	 */
 	private void buildPanel() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -94,6 +101,10 @@ public class EndView extends JPanel {
 			}
 		});
 
+		/**
+		 * Hover effekt szimulalasa (amikor kilep az eger akkor visszaallitja a
+		 * kezdetben hasznalt szinre, mikor belep az eger, akkor pedig feherre
+		 */
 		btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				btnExit.setForeground(Color.WHITE);
@@ -105,6 +116,9 @@ public class EndView extends JPanel {
 		});
 	}
 
+	/**
+	 * Hatterkep beallitasa
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

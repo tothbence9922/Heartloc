@@ -6,7 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,12 +13,10 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import controller.GameController;
 
 public class MenuView extends JPanel {
-	
 
 	private static final long serialVersionUID = -5113606236074548822L;
 	private GameController baseGameController;
@@ -61,17 +58,11 @@ public class MenuView extends JPanel {
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setFocusPainted(false);
-	
 		
 		buildPanel();
-		buildLayout();
 		buildListeners();
 	}
 	
-	private void buildLayout() {
-			
-	}
-
 	private void buildPanel() {
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
