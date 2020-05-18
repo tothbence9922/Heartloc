@@ -123,6 +123,8 @@ public class Game {
 				t.addSnow(1);
 			}
 		}
+		Game.view.updatePanel();
+
 	}
 
 	public static ArrayList<PolarBear> getPolarBears() {

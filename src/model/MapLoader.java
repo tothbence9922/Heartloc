@@ -204,14 +204,12 @@ public class MapLoader {
 						pb.view.setPos(t.view.getX() + 32, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
 					}
-										
-					int sw = 1;
-					for (Snow s : t.getSnows()) {
-						s.view = new SnowView(GameRunner.baseGameController);
-						s.view.setLayout(null);
-						s.view.setPos(t.view.getX() + sw * 10, t.view.getY() + 105);
-						sw++;
-						GameView.getInstance(GameRunner.baseGameController).addView(s.view);
+					for (int sc = 1; sc < 6; sc++) {
+						SnowView s = new SnowView(GameRunner.baseGameController);
+						s.setLayout(null);
+						s.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
+						if(sc < t.getSnows().size()) s.setVisible(true);
+						GameView.getInstance(GameRunner.baseGameController).addView(s);
 					}
 					
 					GameView.getInstance(GameRunner.baseGameController).addView(t, t.view);

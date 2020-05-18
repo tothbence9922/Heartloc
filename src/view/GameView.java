@@ -189,13 +189,6 @@ public class GameView extends JPanel {
 		snowViews.add(v);
 	}
 
-	/**
-	 * Valamennyi hozzaadott view-t kitorol a panelrol, kiuriti az egeszet ezaltal
-	 * elokeszitve az ujrarajzolast
-	 */
-	private void clearPanel() {
-		this.removeAll();
-	}
 
 	/**
 	 * Kirajzolja az osszes, a jatekban jelenlevo viewt olyan sorrendben, hogy ne
@@ -248,8 +241,7 @@ public class GameView extends JPanel {
 	 * a view ujrarajzolasa, mely valtoztatasok eseten kerul meghivasra
 	 */
 	public void updatePanel() {
-		clearPanel();
-		drawPanel();
+		removeAll();		drawPanel();
 		try {
 			buildHUD();
 			revalidate();

@@ -48,7 +48,6 @@ public class Eskimo extends Player implements Drawable {
 			return true;
 		}
 		return false;
-
 	}
 
 	@Override

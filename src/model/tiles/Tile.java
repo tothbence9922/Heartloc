@@ -42,10 +42,9 @@ public abstract class Tile implements Drawable {
 	protected ArrayList<Player> players = new ArrayList<Player>();
 	protected ArrayList<PolarBear> bears = new ArrayList<PolarBear>();
 	protected ArrayList<Tile> neighbours = new ArrayList<Tile>();
-	protected ArrayList<Item> items = new ArrayList<Item>(); 
+	protected ArrayList<Item> items = new ArrayList<Item>();
 	protected ArrayList<Building> buildings = new ArrayList<Building>();
 	protected ArrayList<Snow> snows = new ArrayList<Snow>();
-
 
 	protected Igloo igloo;
 
@@ -144,23 +143,21 @@ public abstract class Tile implements Drawable {
 	 */
 	public ArrayList<Item> dig(int amount) {
 		this.removeSnow(amount);
-		
+
 		if (this.amountOfSnow <= 0) {
 			for (int i = 0; i < items.size(); i++) {
 				items.get(i).setVisible(true);
 			}
-			for (Snow s : snows) Game.view.remove(s.view);
-			this.snows.clear();
-			this.amountOfSnow = 0;
-			for(Item i : items) Game.view.removeItemView(i.view);
-			Game.view.updatePanel();
+
 			ArrayList<Item> ret = new ArrayList<Item>();
-			for(int i = 0; i < items.size(); i++) ret.add(items.get(i));
+			for (int i = 0; i < items.size(); i++) {
+				ret.add(items.get(i));
+			Game.view.remove(items.get(i).view);
+			}
 			items.clear();
 			return ret;
 		}
-		
-		Game.view.updatePanel();
+
 		return null;
 	}
 
@@ -223,7 +220,6 @@ public abstract class Tile implements Drawable {
 		if (!bears.isEmpty() && !players.isEmpty())
 			players.get(0).die("A bear ate a player...");
 
-
 		players.add(p);
 		return true;
 	}
@@ -236,6 +232,7 @@ public abstract class Tile implements Drawable {
 	public void remove(Entity e) {
 		entities.remove(e);
 	}
+
 	public void remove(PolarBear pb) {
 		entities.remove(pb);
 		bears.remove(pb);
@@ -290,9 +287,8 @@ public abstract class Tile implements Drawable {
 	public void addSnow(int amount) {
 		amountOfSnow += amount;
 		for (int i = 0; i < amount; i++) {
-			snows.add(new Snow("Sno"+snows.size()));
-			Game.view.addView(snows.get(snows.size()-1).view);
-			snows.get(snows.size()-1).view.setVisible(true);
+			snows.add(new Snow("Sno" + snows.size()));
+			Game.view.addView(snows.get((snows.size() - 1)).view);
 
 		}
 	}
@@ -304,14 +300,15 @@ public abstract class Tile implements Drawable {
 	 */
 	public void removeSnow(int amount) {
 		amountOfSnow -= amount;
-		
+
 		for (int i = 0; i < amount; i++) {
 			if (snows.size() != 0) {
 				Game.view.removeSnowView(snows.get(0).view);
 				snows.remove(0);
 			}
 		}
-		
+		if (amountOfSnow < 0)
+			amountOfSnow = 0;
 		Game.view.updatePanel();
 	}
 
@@ -324,10 +321,10 @@ public abstract class Tile implements Drawable {
 		for (int i = 0; i < newSnowAmount; i++) {
 			snows.add(new Snow("Sno" + snows.size()));
 		}
-		
+
 		if (amountOfSnow > 5) {
 			amountOfSnow = 5;
-			for (int i = snows.size()-1; i > 5; i--) {
+			for (int i = snows.size() - 1; i > 5; i--) {
 				snows.remove(i);
 			}
 		}
@@ -343,7 +340,7 @@ public abstract class Tile implements Drawable {
 		hasIgloo = true;
 		buildings.add(igloo);
 		igloo.view.setBounds(this.view.getBounds());
-		
+
 		Game.view.addView(igloo.view);
 		igloo.view.setVisible(true);
 		Game.view.updatePanel();
@@ -407,7 +404,7 @@ public abstract class Tile implements Drawable {
 	public void setItems(ArrayList<Item> i) {
 		this.items.clear();
 		this.items.addAll(i);
-		
+
 	}
 
 	public boolean hasIgloo() {
@@ -497,7 +494,7 @@ public abstract class Tile implements Drawable {
 	public void setBears(ArrayList<PolarBear> bears) {
 		this.bears = bears;
 	}
-	
+
 	public ArrayList<Snow> getSnows() {
 		return snows;
 	}

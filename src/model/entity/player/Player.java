@@ -8,6 +8,7 @@ import java.util.Random;
 import controller.GameRunner;
 import model.Game;
 import model.entity.Entity;
+import model.entity.Igloo;
 import model.entity.PolarBear;
 import model.entity.Tent;
 import model.entity.item.Item;
@@ -75,7 +76,7 @@ public abstract class Player extends Entity {
 	 */
 	public void drop() {
 		if (!inventory.isEmpty()) {
-			currentTile.getItems().add(inventory.get(0));
+			currentTile.addItem(inventory.get(0));
 			int x = currentTile.view.getX();
 			int y = currentTile.view.getY() + 45;
 			inventory.get(0).view.setPos(x, y);
@@ -108,7 +109,7 @@ public abstract class Player extends Entity {
 		setCurrentTile(t);
 
 		if (t.getBears().size() != 0) {
-			this.getEaten("You shall not pass!! - said the polarbear");
+			this.getEaten("You..shall..not..pass!! said the polarbear");
 		}
 
 		if (currentTile.getCapacity() != (-1) && currentTile.getCapacity() < currentTile.getLoad()) {
@@ -239,8 +240,9 @@ public abstract class Player extends Entity {
 			}
 		}
 		ArrayList<Item> itemsDug = currentTile.dig(1);
-		if (itemsDug != null)
+		if (itemsDug != null) {
 			inventory.addAll(itemsDug);
+		}
 
 	}
 
@@ -272,27 +274,23 @@ public abstract class Player extends Entity {
 	 */
 	public boolean buildTent() {
 		if (energy > 0) {
-			boolean hasTent = false;
-			for (Item i : inventory) {
-				if (i.buildTent()) {
-					hasTent = true;
-					inventory.remove(i);
-					break;
+			for (Item it : inventory) {
+				if (it.buildTent()) {
+					currentTile.addTent(new Tent("Ten " + Game.getBuildings().size()));
+					if (currentTile.getCapacity() == -1) {
+						energy--;
+						return true;
+					}
+					if (currentTile.getCapacity() < currentTile.getLoad()) {
+						for (int i = 0; i < currentTile.getPlayers().size(); i++) {
+							currentTile.getPlayers().get(i).pushToWater();
+						}
+					}
+					energy--;
+					inventory.remove(it);
+					return true;
 				}
 			}
-			if (!hasTent)
-				return false;
-
-			currentTile.addTent(new Tent("Tent " + Game.getBuildings().size()));
-
-			if (currentTile.getCapacity() < currentTile.getPlayers().size() + 1) {
-				for (int i = 0; i < currentTile.getPlayers().size(); i++) {
-					currentTile.getPlayers().get(i).pushToWater();
-				}
-			}
-
-			this.energy--;
-			return true;
 		}
 		return false;
 	}
