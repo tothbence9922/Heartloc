@@ -17,7 +17,6 @@ import model.entity.Building;
 import model.entity.Igloo;
 import model.entity.PolarBear;
 import model.entity.Tent;
-import model.entity.Snow;
 import model.entity.item.Item;
 import model.entity.item.optionalitem.Food;
 import model.entity.item.optionalitem.FragileShovel;
@@ -113,10 +112,11 @@ public class MapLoader {
 						for (Tile t : tiles) {
 							if (startTileMap.get(entityArray.get(entityIter)) == t.getId())
 								pb.setCurrentTile(t);
+
 						}
 						Game.addPolarBear(pb);
-
 						tiles.get(tileIter).receive(pb);
+
 					} else if (entityArray.get(entityIter).contains("Ten")) {
 						Tent t = new Tent(entityArray.get(entityIter));
 						tiles.get(tileIter).setHasTent(true);
@@ -168,13 +168,13 @@ public class MapLoader {
 			int curPlayer = 0;
 			while (curPlayer < players.size()) {
 				for (Tile t : tiles) {
-					if(t.getHasHole()) {
+					if (t.getHasHole()) {
 						HoleView hv = new HoleView(GameRunner.baseGameController);
 						hv.setLayout(null);
-						hv.setPos(t.view.getX()+15, t.view.getY());
+						hv.setPos(t.view.getX() + 15, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addLabel(hv);
 					}
-					if (!t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
+					if ( t.getBears().isEmpty() && !t.getHasHole() && curPlayer < players.size() && r.nextInt(100) > 35) {
 						t.receive(players.get(curPlayer));
 						players.get(curPlayer).setCurrentTile(t);
 						curPlayer++;
@@ -184,11 +184,11 @@ public class MapLoader {
 						t.getPlayers().get(p).view.setPos(t.view.getX() + r.nextInt(32), t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
 					}
-					
+
 					for (Item it : t.getItems()) {
 						it.view.setLayout(null);
-						//it.view.setPos(t.view.getX(), t.view.getY() + 45);
-						//GameView.getInstance(GameRunner.baseGameController).addView(it.view);
+						// it.view.setPos(t.view.getX(), t.view.getY() + 45);
+						// GameView.getInstance(GameRunner.baseGameController).addView(it.view);
 					}
 
 					for (Building b : t.getBuildings()) {
@@ -207,12 +207,13 @@ public class MapLoader {
 						SnowView s = new SnowView(GameRunner.baseGameController);
 						s.setLayout(null);
 						s.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
-						if(sc < t.getSnows().size()) s.setVisible(true);
+						if (sc < t.getSnows().size())
+							s.setVisible(true);
 						GameView.getInstance(GameRunner.baseGameController).addView(s);
 					}
-					
+
 					GameView.getInstance(GameRunner.baseGameController).addView(t, t.view);
-					
+
 				}
 			}
 

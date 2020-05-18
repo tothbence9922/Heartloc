@@ -4,8 +4,6 @@ import controller.GameRunner;
 import model.Drawable;
 import model.Game;
 import model.entity.Igloo;
-import model.entity.Tent;
-import model.tiles.Tile;
 import view.entity.EskimoView;
 
 /**

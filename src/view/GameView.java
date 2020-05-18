@@ -227,6 +227,7 @@ public class GameView extends JPanel {
 			int sc = 1;
 			for (Snow s : t.getSnows()) {
 				SnowView sv = new SnowView(GameRunner.baseGameController);
+				s.view= sv;
 				sv.setLayout(null);
 				sv.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
 				sc++;
@@ -672,7 +673,6 @@ public class GameView extends JPanel {
 					 */
 					Rectangle rect = new Rectangle(t.view.getX(), t.view.getY(), t.view.getWidth(), t.view.getHeight());
 					if (rect.contains(e.getPoint())) {
-						System.out.println(("KATTINTOTTTAAAAK"));
 						Game.getPlayer(Game.playerID).move(t);
 						Game.getPlayer(Game.playerID).step();
 					}

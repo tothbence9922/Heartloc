@@ -2,14 +2,11 @@ package model.entity.player;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.io.IOException;
-
 import javax.swing.JLabel;
 
 import controller.GameRunner;
 import model.Game;
 import model.tiles.Tile;
-import view.GameView;
 import view.entity.ExplorerView;
 
 /**

@@ -28,13 +28,11 @@ public class EndView extends JPanel {
 	 */
 	private static final long serialVersionUID = -1748399399482164668L;
 	private boolean lose;
-	private GameController baseGameController;
 	private JLabel labelGame;
 	private JButton btnExit;
 	private GridBagLayout baseLayout;
 
 	public EndView(GameController baseGameController, boolean loseState, String msg) {
-		this.baseGameController = baseGameController;
 		lose = loseState;
 		Font font = null;
 		try {

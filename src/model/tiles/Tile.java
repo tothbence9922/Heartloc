@@ -3,7 +3,6 @@ package model.tiles;
 import java.util.ArrayList;
 import java.util.Random;
 
-import controller.GameRunner;
 import model.entity.Building;
 import model.entity.Entity;
 import model.entity.Igloo;
@@ -14,8 +13,6 @@ import model.Drawable;
 import model.Game;
 import model.entity.PolarBear;
 import model.entity.Snow;
-import view.GameView;
-import view.entity.SnowView;
 import view.tiles.TileView;
 
 /**

@@ -1,20 +1,16 @@
 package model.entity.player;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
 import controller.GameRunner;
 import model.Game;
 import model.entity.Entity;
-import model.entity.Igloo;
-import model.entity.PolarBear;
 import model.entity.Tent;
 import model.entity.item.Item;
 import model.tiles.StableTile;
 import model.tiles.Tile;
-import view.GameView;
 import view.entity.ExplorerView;
 
 /**

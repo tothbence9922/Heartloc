@@ -1,7 +1,5 @@
 package view.entity;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 import controller.GameController;
