@@ -203,7 +203,7 @@ public class GameView extends JPanel {
 		for (Player p : Game.getPlayers()) {
 			if (p.getId() == Game.getPlayerID()) {
 				curPlayerIndicator = new JButton("");
-				curPlayerIndicator.setIcon(new ImageIcon(this.getClass().getResource("/images/arrow-slim.png")));
+				curPlayerIndicator.setIcon(new ImageIcon(this.getClass().getResource("images/arrow-slim.png")));
 				curPlayerIndicator.setLayout(null);
 				curPlayerIndicator.setOpaque(false);
 				curPlayerIndicator.setContentAreaFilled(false);
@@ -279,13 +279,13 @@ public class GameView extends JPanel {
 		 * Kepek eleresi helyenek megszerzese olyan modon, hogy bundling utan is
 		 * megtalalja oket
 		 */
-		java.net.URL urlShovel = this.getClass().getResource("/images/shovel.png");
-		java.net.URL urlFood = this.getClass().getResource("/images/food.png");
-		java.net.URL urlSpecial = this.getClass().getResource("/images/explore.png");
-		java.net.URL urlIgloo = this.getClass().getResource("/images/igloo.png");
-		java.net.URL urlTent = this.getClass().getResource("/images/tent.png");
-		java.net.URL urlDrop = this.getClass().getResource("/images/arrow.png");
-		java.net.URL urlRocket = this.getClass().getResource("/images/rocket.png");
+		java.net.URL urlShovel = this.getClass().getResource("images/shovel.png");
+		java.net.URL urlFood = this.getClass().getResource("images/food.png");
+		java.net.URL urlSpecial = this.getClass().getResource("images/explore.png");
+		java.net.URL urlIgloo = this.getClass().getResource("images/igloo.png");
+		java.net.URL urlTent = this.getClass().getResource("images/tent.png");
+		java.net.URL urlDrop = this.getClass().getResource("images/arrow.png");
+		java.net.URL urlRocket = this.getClass().getResource("images/rocket.png");
 
 		/**
 		 * ImageIconok keszitese a kinyert eleresi utvonalakkal
@@ -699,8 +699,8 @@ public class GameView extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// setBackground(Color.BLUE);
-		java.net.URL imgWaterDeep = this.getClass().getResource("/images/iceWaterDeep.png");
-		java.net.URL imgWaterDeepAlt = this.getClass().getResource("/images/iceWaterDeepAlt.png");
+		java.net.URL imgWaterDeep = this.getClass().getResource("images/iceWaterDeep.png");
+		java.net.URL imgWaterDeepAlt = this.getClass().getResource("images/iceWaterDeepAlt.png");
 
 		if (imgWaterDeep != null && imgWaterDeepAlt != null) {
 			ImageIcon waterDeep = new ImageIcon(imgWaterDeep);
