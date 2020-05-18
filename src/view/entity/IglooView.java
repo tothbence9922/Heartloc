@@ -17,7 +17,7 @@ public class IglooView extends BuildingView {
 
 	public IglooView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(this.getClass().getResource("../images/igloo.png"));
+		icon = new ImageIcon(this.getClass().getResource("./images/igloo.png"));
 		this.setIcon(icon);
 	}
 

@@ -25,7 +25,7 @@ public class ExplorerView extends PlayerView {
 		/**
 		 * A felfedezo megjeleniteseert felelos kep betoltese
 		 */
-		icon = new ImageIcon(this.getClass().getResource("../images/explorer.png"));
+		icon = new ImageIcon(this.getClass().getResource("./images/explorer.png"));
 		this.setIcon(icon);
 	}
 

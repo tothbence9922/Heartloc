@@ -19,7 +19,7 @@ public class PolarBearView extends EntityView {
 
 	public PolarBearView(GameController baseGameController) throws IOException {
 		super(baseGameController);
-		icon = new ImageIcon(this.getClass().getResource("../images/bear.png"));
+		icon = new ImageIcon(this.getClass().getResource("./images/bear.png"));
 		this.setIcon(icon);
 	}
 

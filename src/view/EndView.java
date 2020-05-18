@@ -120,7 +120,7 @@ public class EndView extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		java.net.URL imageURL = this.getClass().getResource("images/background-menu.jpg");
+		java.net.URL imageURL = this.getClass().getResource("/images/background-menu.jpg");
 		if (imageURL != null) {
 			ImageIcon icon = new ImageIcon(imageURL);
 			g.drawImage(icon.getImage(), 0, -20, null);
