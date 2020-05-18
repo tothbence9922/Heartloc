@@ -33,6 +33,9 @@ public abstract class Player extends Entity {
 		super(id);
 		view = new ExplorerView(GameRunner.baseGameController);
 	}
+	/**
+	 * toString metodus, overrideolva a Player abszrakt ososztalyban
+	 */
 
 	@Override
 	public String toString() {
@@ -53,6 +56,10 @@ public abstract class Player extends Entity {
 		return playerString;
 
 	}
+	/**
+	 * Az eat metodus meghivasakor, a jatekosok eletereje megnovekszik eggyel, amennyiben rendelkezik a jatekos
+	 * etellel.
+	 */
 
 	public void eat() {
 		for (Item i : inventory) {
@@ -219,7 +226,12 @@ public abstract class Player extends Entity {
 	public boolean buildIgloo() {
 		return false;
 	}
-
+	/**
+	 * A jatekosok minden korben ashatnak a Tile-okon.
+	 * Annak fuggvenyeben, hogy milyen tipusu asoval rendelkeznek:
+	 * Shovel / FragileShovel
+	 * Egy illetve 2 egységnyi havat tudnak ellapatolni az adott Tileokrol.
+	 */
 	public void dig() {
 		energy--;
 		for (Item i : inventory) {
@@ -335,7 +347,10 @@ public abstract class Player extends Entity {
 		if (i != null)
 			this.inventory.add(i);
 	}
-
+	/**
+	 * Hozzadja a parameterkent kapott itemeket a jatekos itemeihez.
+	 * @param iA
+	 */
 	public void addToInventory(ArrayList<Item> iA) {
 		if (iA != null)
 			this.inventory.addAll(iA);
@@ -365,7 +380,10 @@ public abstract class Player extends Entity {
 		}
 		return false;
 	}
-
+	/**
+	 * Beallitja a parameterkent kapott Tile-t, az aktualis Tilenak
+	 * @param t
+	 */
 	public void setCurrentTile(Tile t) {
 		currentTile = t;
 		Random r = new Random();
@@ -373,47 +391,80 @@ public abstract class Player extends Entity {
 		int y = t.view.getY();
 		view.setBounds(x + r.nextInt(32), y, 64, 85);
 	}
-
+	/**
+	 * Visszaadja az energy attributum erteket.
+	 * @return energy.
+	 */
 	public int getEnergy() {
 		return energy;
 	}
-
+	/**
+	 * Beallitja a parameterkent kapott int tipusu attributumot az energy-nek.
+	 * @param amount
+	 */
 	public void setEnergy(int amount) {
 		energy = amount;
 	}
-
+	/**
+	 * Visszadja az inventory ArrayList-et.
+	 * @return inventory
+	 */
 	public ArrayList<Item> getInventory() {
 		return inventory;
 	}
-
+	/**
+	 * Beallitja a paramerkent kapott listat, az osztaly listajanak.
+	 * @param inventory
+	 */
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
 	}
-
+	/**
+	 * Visszaadja a testhomersekletet erteket.
+	 * @return bodyTemperature
+	 */
 	public int getTemperature() {
 		return bodyTemperature;
 	}
-
+	/**
+	 * Visszaadja a weight valtozo erteket.
+	 * @return weight
+	 */
 	public int getWeight() {
 		return weight;
 	}
-
+	/**
+	 * Beallitja a weight attributum erteket a parameterkent kapott int valtozo ertekere.
+	 * @param weight
+	 */
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-
+	/**
+	 * Visszadja a testhomersekletet.
+	 * @return bodyTemperature
+	 */
 	public int getBodyTemperature() {
 		return bodyTemperature;
 	}
-
+	/**
+	 * Beallitja a parameterkent kapott int valtozo erteket a testhomersekletnek.
+	 * @param bodyTemperature
+	 */
 	public void setBodyTemperature(int bodyTemperature) {
 		this.bodyTemperature = bodyTemperature;
 	}
-
+	/**
+	 * Az aktualis Tile-t visszaadja.
+	 * @return currentTile
+	 */
 	public Tile getCurrentTile() {
 		return currentTile;
 	}
-
+	/**
+	 * A jatekosok mozgasast megvalosito fuggveny.
+	 * @ return energy
+	 */
 	@Override
 	public int step() {
 		if (energy <= 0) {
@@ -429,7 +480,10 @@ public abstract class Player extends Entity {
 		}
 		return energy;
 	}
-
+	/**
+	 * A jatek veget jelzo fuggveny.
+	 * @param msg
+	 */
 	public void getEaten(String msg) {
 		die(msg);
 	}

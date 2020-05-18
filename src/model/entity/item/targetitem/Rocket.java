@@ -1,5 +1,11 @@
 package model.entity.item.targetitem;
-
+/**
+ * 
+ * A jatek megnyeresehez ezt a harom reszbol allo jelzoraketat(Rocket)
+ * szukseges osszeallitani.
+ * A harom resz: Cartridge,Beacon,Gun
+ * 
+ */
 public class Rocket extends TargetItem {
 	
 	// static variable single_instance of type Singleton 
