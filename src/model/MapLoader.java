@@ -39,13 +39,29 @@ import view.entity.PolarBearView;
 import view.entity.SnowView;
 import view.tiles.StableTileView;
 
+/**
+ * A jatek betoltoseert felelos osztaly
+ * Segitsegevel hozhato letre JSON fajlbol a palya
+ *
+ */
 public class MapLoader {
 
+	/**
+	 * Alapertelmezett dimenziok
+	 */
 	private static int HEIGHT = 768;
 	private static int WIDTH = 1366;
 
 	public static HashMap<String, String> startTileMap = new HashMap<String, String>();
 
+	/**
+	 * JSON fajl feldolgozasa, abbol a jatek letrehozasa
+	 * @param path
+	 * @param eskNum
+	 * @param expNum
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static void readMapFromJSON(String path, int eskNum, int expNum) throws FileNotFoundException, IOException {
 		try {
 			Game.getInstance(GameRunner.baseGameController).ClearMap();
@@ -229,6 +245,11 @@ public class MapLoader {
 		}
 	}
 
+	/**
+	 * Segedfuggveny, Entity-k beolvasasara
+	 * @param array
+	 * @return
+	 */
 	public ArrayList<String> readEntities(JSONArray array) {
 		ArrayList<String> entityIdArray = new ArrayList<String>();
 		for (int j = 0; j < array.size(); j++) {
@@ -238,6 +259,11 @@ public class MapLoader {
 		return entityIdArray;
 	}
 
+	/**
+	 * Segedfuggveny, a Tile szomszedainak beolvasasara
+	 * @param array
+	 * @return
+	 */
 	public static ArrayList<String> readNeighbours(JSONArray array) {
 		ArrayList<String> neighbourIdArray = new ArrayList<String>();
 		for (int j = 0; j < array.size(); j++) {
@@ -247,6 +273,11 @@ public class MapLoader {
 		return neighbourIdArray;
 	}
 
+	/**
+	 * Segedfuggveny, a Tile-on szereplo Itemek beolvasasara
+	 * @param array
+	 * @return
+	 */
 	public static ArrayList<String> readItems(JSONArray array) {
 		ArrayList<String> itemIdArray = new ArrayList<String>();
 		for (int j = 0; j < array.size(); j++) {
@@ -257,7 +288,7 @@ public class MapLoader {
 	}
 
 	/**
-	 * @param tile       A Tile objektum, amit inicializalunk jelenleg.
+	 * @param tile	A Tile objektum, amit inicializalunk jelenleg.
 	 * @param tileObject A JSONObject objektum, amely alapjan inicializalunk.
 	 * @return A jelenleg inicializalt Tile szomszedjainak(0.elem), rajta levo
 	 *         Entity-k(1. elem), es rajta levo Item-ek(2. elem) azonositojat

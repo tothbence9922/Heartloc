@@ -7,7 +7,7 @@ public class GameRunner {
 
 	public static GameController baseGameController;
 	/**
-	 * main fuggveny, ahonnan a program elinditja a jatekot
+	 * A jatek belepesi pontja
 	 * @param args
 	 */
 	public static void main(String[] args) {

@@ -33,10 +33,10 @@ public abstract class Player extends Entity {
 		super(id);
 		view = new ExplorerView(GameRunner.baseGameController);
 	}
+	
 	/**
 	 * toString metodus, overrideolva a Player abszrakt ososztalyban
 	 */
-
 	@Override
 	public String toString() {
 		String itemString = "";
@@ -56,11 +56,11 @@ public abstract class Player extends Entity {
 		return playerString;
 
 	}
+	
 	/**
 	 * Az eat metodus meghivasakor, a jatekosok eletereje megnovekszik eggyel, amennyiben rendelkezik a jatekos
 	 * etellel.
 	 */
-
 	public void eat() {
 		for (Item i : inventory) {
 			if (i.eat()) {
