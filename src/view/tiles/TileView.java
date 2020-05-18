@@ -5,7 +5,11 @@ import java.io.IOException;
 import controller.GameController;
 import model.tiles.Tile;
 import view.View;
-
+/**
+ * A jegtablak megjeleniteseert felelos ososztaly.
+ * @author Gabor
+ *
+ */
 public class TileView extends View {
 	private static final long serialVersionUID = 7891103595669365281L;
 
