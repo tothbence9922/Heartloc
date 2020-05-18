@@ -17,8 +17,8 @@ public class BuildingView extends EntityView {
 
 	public BuildingView(GameController baseGameController){
 		super(baseGameController);
-		h = 64;
-		w = 64;
+		h = 40;
+		w = 50;
 		icon = new ImageIcon(BuildingView.class.getResource("../images/igloo.png"));
 }
 

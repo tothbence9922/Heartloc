@@ -102,7 +102,7 @@ public abstract class Player extends Entity {
 			return;
 		}
 		this.energy--;
-		
+
 		currentTile.remove(this);
 		t.receive(this);
 		setCurrentTile(t);
@@ -273,9 +273,16 @@ public abstract class Player extends Entity {
 	public boolean buildTent() {
 		if (energy > 0) {
 			boolean hasTent = false;
-			for(Item i : inventory) if(i.buildTent()) hasTent = true;
-			if (!hasTent) return false;
-			
+			for (Item i : inventory) {
+				if (i.buildTent()) {
+					hasTent = true;
+					inventory.remove(i);
+					break;
+				}
+			}
+			if (!hasTent)
+				return false;
+
 			currentTile.addTent(new Tent("Tent " + Game.getBuildings().size()));
 
 			if (currentTile.getCapacity() < currentTile.getPlayers().size() + 1) {

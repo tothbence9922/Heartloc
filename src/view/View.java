@@ -5,12 +5,13 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.text.html.ImageView;
 
 import controller.GameController;
 import view.tiles.TileView;
 
-public class View extends JButton {
+public class View extends JLabel {
 
 	protected ImageIcon icon;
 
@@ -30,15 +31,11 @@ public class View extends JButton {
 
 		// So our JButton is transparent, only icons will appear
 		setOpaque(false);
-		setContentAreaFilled(false);
-		setBorderPainted(false);
 		setFocusable(false);
 
-		URL entityImage = TileView.class.getResource("../images/gun.png");
 		// BufferedImage myPicture = ImageIO.read(new File(entityImage.toString()));
 		// JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 
-		setIcon(new ImageIcon(entityImage));
 	}
 
 	public void Draw() {

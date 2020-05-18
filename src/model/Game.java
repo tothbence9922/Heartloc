@@ -213,7 +213,7 @@ public class Game {
 	public static void nextRound() {
 		for (PolarBear pb : bears)
 			pb.step();
-		//generateStorm();
+		generateStorm();
 		for (Player p : players)
 			p.setEnergy(5);
 		for (Building b : buildings)

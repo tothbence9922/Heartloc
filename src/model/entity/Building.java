@@ -15,6 +15,10 @@ public class Building extends Entity {
 		return -1;
 	}
 
+	public boolean destroy() {
+		return false;
+	}
+	
 	public Building(String id) {
 		super(id);
 		view = new BuildingView(GameRunner.baseGameController);

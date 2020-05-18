@@ -211,9 +211,7 @@ public abstract class Tile implements Drawable {
 	public boolean receive(PolarBear e) {
 		this.load++;
 		bears.add(e);
-		if (!players.isEmpty()) {
-			players.get(0).die("A bear ate a player...");
-		}
+
 		return true;
 	}
 
@@ -221,7 +219,7 @@ public abstract class Tile implements Drawable {
 		this.load++;
 		if (!bears.isEmpty() && !players.isEmpty())
 			players.get(0).die("A bear ate a player...");
-		// entities.add(p);
+
 
 		players.add(p);
 		return true;
@@ -260,7 +258,7 @@ public abstract class Tile implements Drawable {
 	 * @return boolean
 	 */
 	public boolean getHasHole() {
-		return hasHole;
+		return this.hasHole;
 	}
 
 	/**
@@ -291,6 +289,8 @@ public abstract class Tile implements Drawable {
 		for (int i = 0; i < amount; i++) {
 			snows.add(new Snow("Sno"+snows.size()));
 			Game.view.addView(snows.get(snows.size()-1).view);
+			snows.get(snows.size()-1).view.setVisible(true);
+
 		}
 	}
 
@@ -338,7 +338,10 @@ public abstract class Tile implements Drawable {
 	public void addIgloo(Igloo igloo) {
 		hasIgloo = true;
 		buildings.add(igloo);
+		igloo.view.setBounds(this.view.getBounds());
+		
 		Game.view.addView(igloo.view);
+		igloo.view.setVisible(true);
 		Game.view.updatePanel();
 	}
 
@@ -388,11 +391,6 @@ public abstract class Tile implements Drawable {
 		this.showCapacity = b;
 	}
 
-	public int getDistance(Tile t) {
-		// TODO adtam hozza parameter tile-t , igy elv mar szamolhato..
-		return -123124;
-	}
-
 	public ArrayList<Item> getItems() {
 		return items;
 	}
@@ -405,6 +403,7 @@ public abstract class Tile implements Drawable {
 	public void setItems(ArrayList<Item> i) {
 		this.items.clear();
 		this.items.addAll(i);
+		
 	}
 
 	public boolean hasIgloo() {
@@ -478,13 +477,13 @@ public abstract class Tile implements Drawable {
 		this.hasHole = hasHole;
 	}
 
-	public void addBuilding(Building b) {
-		this.entities.add(b);
-		// Game.addBuilding(b);
-	}
-
 	public void addTent(Tent tent) {
-		this.hasTent = true;
+		hasTent = true;
+		buildings.add(tent);
+		Game.view.addView(tent.view);
+		tent.view.setBounds(this.view.getBounds());
+		tent.view.setVisible(true);
+		Game.view.updatePanel();
 	}
 
 	public ArrayList<PolarBear> getBears() {

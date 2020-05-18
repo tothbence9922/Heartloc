@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +19,6 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,15 +34,15 @@ import model.entity.player.Player;
 import model.tiles.Tile;
 import view.entity.BuildingView;
 import view.entity.EntityView;
-import view.entity.IglooView;
+import view.entity.HoleView;
 import view.entity.ItemView;
 import view.entity.SnowView;
 import view.tiles.TileView;
 
 /**
  * A jatek soran hasznalt fo view, Singleton tervezesi modszert alkalmazva:
- * privat konstruktora van, ra referenciat egy statikus getInstance metodussal lehet szerezni,
- * mely az elso meghivas alkalmaval inicializalja is az osztalyt 
+ * privat konstruktora van, ra referenciat egy statikus getInstance metodussal
+ * lehet szerezni, mely az elso meghivas alkalmaval inicializalja is az osztalyt
  */
 public class GameView extends JPanel {
 
@@ -59,6 +57,8 @@ public class GameView extends JPanel {
 	private ArrayList<ItemView> itemViews = new ArrayList<ItemView>();
 	private ArrayList<SnowView> snowViews = new ArrayList<SnowView>();
 	private ArrayList<BuildingView> buildingViews = new ArrayList<BuildingView>();
+	private ArrayList<HoleView> holeViews = new ArrayList<HoleView>();
+	private ArrayList<JLabel> labels = new ArrayList<JLabel>();
 
 	/**
 	 * Game-ben hasznalt panelek, az elsoben a jatek rajzolodik ki, a massodikban
@@ -131,14 +131,17 @@ public class GameView extends JPanel {
 	 * @param v - tile-hoz tartozo view
 	 */
 	public void addView(Tile t, TileView v) {
-		v.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).move(t);
-				Game.getPlayer(Game.playerID).step();
-
-			}
-		});
 		tileViews.add(v);
+	}
+	
+	/**
+	 * Uj view-t es egy listenert ad hozza valamennyi tile-hoz
+	 * 
+	 * @param t - tile
+	 * @param v - tile-hoz tartozo view
+	 */
+	public void addView(HoleView hv) {
+		holeViews.add(hv);
 	}
 
 	/**
@@ -158,6 +161,15 @@ public class GameView extends JPanel {
 	public void addView(ItemView v) {
 		itemViews.add(v);
 	}
+	
+	/**
+	 * JLabel-t ad hozza a panelhez, melyeken lathato lesz adott tileok kapacitasa
+	 * 
+	 * @param v
+	 */
+	public void addLabel(JLabel v) {
+		labels.add(v);
+	}
 
 	/**
 	 * Building view-t ad hozza a panelhez
@@ -167,8 +179,8 @@ public class GameView extends JPanel {
 	public void addView(BuildingView v) {
 		buildingViews.add(v);
 	}
-  
-  /**
+
+	/**
 	 * Snow view-t ad hozza a panelhez
 	 * 
 	 * @param v
@@ -217,8 +229,15 @@ public class GameView extends JPanel {
 		for (SnowView sv : snowViews) {
 			add(sv);
 		}
+		for (HoleView hv : holeViews) {
+			System.out.println("YEEEHAAAA");
+			add(hv);
+		}
 		for (BuildingView bv : buildingViews) {
 			add(bv);
+		}
+		for (JLabel jl : labels) {
+			add(jl);
 		}
 		for (TileView tv : tileViews) {
 			add(tv);
@@ -234,7 +253,7 @@ public class GameView extends JPanel {
 		drawPanel();
 		try {
 			buildHUD();
-			validate();
+			revalidate();
 			repaint();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -529,15 +548,12 @@ public class GameView extends JPanel {
 		 * Eger kattintasanak detektalasa
 		 */
 		this.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				/**
 				 * Rectangle letrehozasa a kattintasok pontosabb meghatarozasahoz, kezelesehez
 				 */
-				Point p = e.getPoint();
-				Rectangle rect = new Rectangle(p);
-				rect.width = rect.height = 1;
 
 				/**
 				 * Osszes tile-on vegigiteral, ha a kattintas helye (a krealt rect) az egyiknek
@@ -547,15 +563,10 @@ public class GameView extends JPanel {
 				 * @see player.move
 				 */
 				for (Tile t : Game.getTiles()) {
-					Rectangle r = new Rectangle(t.view.getX(), t.view.getY(), 128, 128);
-					if (usingSpecial) {
-
-					} else {
-						if (r.intersects(rect)) {
-							Game.getPlayer(Game.playerID).move(t);
-							Game.getPlayer(Game.playerID).step();
-						}
-
+					Rectangle rect = new Rectangle(t.view.getX(), t.view.getY(), t.view.getWidth(), t.view.getHeight());
+					if (rect.contains(e.getPoint())) {
+						Game.getPlayer(Game.playerID).move(t);
+						Game.getPlayer(Game.playerID).step();
 					}
 				}
 			}

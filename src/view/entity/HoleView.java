@@ -13,11 +13,11 @@ import controller.GameController;
 
 public class HoleView extends EntityView {
 
-	private static final long serialVersionUID = -3299152365267062000L;
+	private static final long serialVersionUID = 7810509466025772430L;
 
 	public HoleView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(GunView.class.getResource("../images/gun.png")); // TODO MAKE IT A HOLE!!
+		icon = new ImageIcon(HoleView.class.getResource("../images/hole.png"));
 	}
 
 }

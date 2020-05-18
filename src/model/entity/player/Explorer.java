@@ -1,6 +1,7 @@
 package model.entity.player;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 
 import javax.swing.JLabel;
@@ -18,7 +19,7 @@ import view.entity.ExplorerView;
  * kepesseg, ugyanis az instabil jegtablak nagy veszelyt jelentenek.
  */
 public class Explorer extends Player {
-	
+
 	public Explorer(String id) {
 		super(id);
 		this.bodyTemperature = 4;
@@ -37,10 +38,19 @@ public class Explorer extends Player {
 	 */
 	@Override
 	public int exploreTile(String chosenTile) {
-		
+
 		if (energy > 0) {
 			for (Tile t : Game.getTiles()) {
-				if (t.getId().equals(chosenTile)) {				
+				if (t.getId().equals(chosenTile)) {
+					String cap ="FIX";
+					if (t.getCapacity() > 1) cap = String.valueOf(t.getCapacity());
+					JLabel capacityLabel = new JLabel(cap);
+					capacityLabel.setFont(new Font("Verdana", Font.PLAIN, 15));
+					capacityLabel.setForeground(Color.BLACK);
+					capacityLabel.setBounds(t.view.getX() - 10, t.view.getY(), 30, 30);
+					Game.view.addLabel(capacityLabel);
+					Game.view.updatePanel();
+
 					return t.getCapacity();
 				}
 			}
@@ -48,4 +58,3 @@ public class Explorer extends Player {
 		return -3;
 	}
 }
-

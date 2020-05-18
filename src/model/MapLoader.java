@@ -35,6 +35,7 @@ import model.tiles.StableTile;
 import model.tiles.Tile;
 import model.tiles.UnstableTile;
 import view.GameView;
+import view.entity.HoleView;
 import view.entity.PolarBearView;
 import view.entity.SnowView;
 import view.tiles.StableTileView;
@@ -196,6 +197,11 @@ public class MapLoader {
 						pb.view.setLayout(null);
 						pb.view.setPos(t.view.getX() + 32, t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(pb.view);
+					}
+					if(t.getHasHole()) {
+						HoleView hv = new HoleView(GameRunner.baseGameController);
+						hv.setBounds(t.view.getBounds());
+						GameView.getInstance(GameRunner.baseGameController).addView(hv);
 					}
 					
 					int sw = 1;
