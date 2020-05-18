@@ -554,24 +554,7 @@ public class GameView extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				/**
-				 * Rectangle letrehozasa a kattintasok pontosabb meghatarozasahoz, kezelesehez
-				 */
-
-				/**
-				 * Osszes tile-on vegigiteral, ha a kattintas helye (a krealt rect) az egyiknek
-				 * a hatarain belul talalhato, akkor oda mozgatja a jatekost (amennyiben az a
-				 * tile szomszedos azzal, amelyiken a jatekos all)
-				 * 
-				 * @see player.move
-				 */
-				for (Tile t : Game.getTiles()) {
-					Rectangle rect = new Rectangle(t.view.getX(), t.view.getY(), t.view.getWidth(), t.view.getHeight());
-					if (rect.contains(e.getPoint())) {
-						Game.getPlayer(Game.playerID).move(t);
-						Game.getPlayer(Game.playerID).step();
-					}
-				}
+				
 			}
 
 			@Override
@@ -675,8 +658,25 @@ public class GameView extends JPanel {
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// implement methods for mouse event
+			public void mouseReleased(MouseEvent e) {
+				/**
+				 * Osszes tile-on vegigiteral, ha a kattintas helye (a krealt rect) az egyiknek
+				 * a hatarain belul talalhato, akkor oda mozgatja a jatekost (amennyiben az a
+				 * tile szomszedos azzal, amelyiken a jatekos all)
+				 * 
+				 * @see player.move
+				 */
+				for (Tile t : Game.getTiles()) {
+					/**
+					 * Rectangle letrehozasa a kattintasok pontosabb meghatarozasahoz, kezelesehez
+					 */
+					Rectangle rect = new Rectangle(t.view.getX(), t.view.getY(), t.view.getWidth(), t.view.getHeight());
+					if (rect.contains(e.getPoint())) {
+						System.out.println(("KATTINTOTTTAAAAK"));
+						Game.getPlayer(Game.playerID).move(t);
+						Game.getPlayer(Game.playerID).step();
+					}
+				}
 			}
 
 		});
