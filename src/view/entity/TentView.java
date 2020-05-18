@@ -22,7 +22,7 @@ public class TentView extends BuildingView {
 	public TentView(GameController baseGameController){
 		super(baseGameController);
 		//A sator megepitese utan ez a beolvasott png felel a grafikus reprezentaciert.
-		icon = new ImageIcon(this.getClass().getResource("../images/tent.png"));
+		icon = new ImageIcon(TentView.class.getResource("../images/tent.png"));
 		this.setIcon(icon);
 	}
 

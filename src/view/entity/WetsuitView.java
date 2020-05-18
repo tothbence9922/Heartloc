@@ -23,7 +23,7 @@ public class WetsuitView extends ItemView {
 	public WetsuitView(GameController baseGameController){
 		super(baseGameController);
 		//Az item megjeleniteseert felelos kep betoltese fajlbol.
-		icon = new ImageIcon(this.getClass().getResource("../images/wetsuit-24x24.png"));
+		icon = new ImageIcon(WetsuitView.class.getResource("../images/wetsuit-24x24.png"));
 		this.setIcon(icon);
 	}
 

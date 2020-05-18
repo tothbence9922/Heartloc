@@ -17,7 +17,7 @@ public class HoleView extends EntityView {
 
 	public HoleView(GameController baseGameController){
 		super(baseGameController);
-		icon = new ImageIcon(this.getClass().getResource("../images/hole-96x96.png"));
+		icon = new ImageIcon(HoleView.class.getResource("../images/hole-96x96.png"));
 		this.setIcon(icon);
 	}
 
