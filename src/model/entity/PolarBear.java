@@ -3,7 +3,6 @@ package model.entity;
 import java.util.Random;
 
 import controller.GameRunner;
-import model.entity.player.Player;
 import model.tiles.StableTile;
 import model.tiles.Tile;
 import view.GameView;
@@ -28,7 +27,7 @@ public class PolarBear extends Entity {
 	}
 
 	@Override
-	public int step(String msg) {
+	public int step() {
 		Random r = new Random();
 		for (Tile t : currentTile.getNeighbours()) {
 			int go = r.nextInt() % 2;

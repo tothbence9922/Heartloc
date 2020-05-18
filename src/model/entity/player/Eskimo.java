@@ -2,7 +2,9 @@ package model.entity.player;
 
 import controller.GameRunner;
 import model.Drawable;
+import model.Game;
 import model.entity.Igloo;
+import model.entity.Tent;
 import model.tiles.Tile;
 import view.entity.EskimoView;
 
@@ -12,7 +14,7 @@ import view.entity.EskimoView;
  * hovihar nem tesz kart bennuk.
  */
 public class Eskimo extends Player implements Drawable {
-	
+
 	public Eskimo(String id) {
 		super(id);
 		this.bodyTemperature = 5;
@@ -23,26 +25,27 @@ public class Eskimo extends Player implements Drawable {
 	}
 
 	/**
-	 * Az ososztalybol szarmazo metodus,
-	 * mely itt az Eszkimo kepesseget valositja meg: epit egy iglut arra a
-	 * jegtablara, ahol az Eszkimo all.
+	 * Az ososztalybol szarmazo metodus, mely itt az Eszkimo kepesseget valositja
+	 * meg: epit egy iglut arra a jegtablara, ahol az Eszkimo all.
 	 * 
 	 * @param t - az a Tile ami all az Eszkimo.
 	 * @return sikeresen felepetett Iglu eseten true, ellenkezo esetben false.
 	 */
 	@Override
-	public boolean buildIgloo(Tile chosenTile) {
+	public boolean buildIgloo() {
 		if (energy > 0) {
-			chosenTile.addIgloo(new Igloo("Igl" + String.valueOf(Igloo.numOfIgloos)));
-			
-			if (chosenTile.getCapacity() < chosenTile.getPlayers().size() + 1) {
-				for (int i = 0; i < chosenTile.getPlayers().size(); i++) {
-					chosenTile.getPlayers().get(i).pushToWater();
+			currentTile.addIgloo(new Igloo("Igl " + Game.getBuildings().size()));
+
+			if (currentTile.getCapacity() < currentTile.getPlayers().size() + 1) {
+				for (int i = 0; i < currentTile.getPlayers().size(); i++) {
+					currentTile.getPlayers().get(i).pushToWater();
 				}
 			}
+			energy--;
 			return true;
 		}
 		return false;
+
 	}
 
 	@Override

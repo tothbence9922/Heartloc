@@ -32,7 +32,7 @@ public abstract class Entity {
 	 * @return int A jatekosokat reprezentalo osztalyok eseten megadja, mennyi
 	 *         munkakedve maradt a tevekenyseg elvegzese utan az adott jatekosnak.
 	 */
-	public int step(String msg) {
+	public int step() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

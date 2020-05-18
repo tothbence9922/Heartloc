@@ -15,14 +15,6 @@ public class Game {
 	public static String playerID = "LudMan";
 	public static String firstPlayerID = "LudMan";
 
-	public static String getFirstPlayerID() {
-		return firstPlayerID;
-	}
-
-	public static void setFirstPlayerID(String firstPlayerID) {
-		Game.firstPlayerID = firstPlayerID;
-	}
-
 	private static Game single_instance = null;
 
 	private static ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -175,6 +167,10 @@ public class Game {
 	public static ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
+	public static ArrayList<Building> getBuildings() {
+		return buildings;
+	}
 
 	public static void setPlayers(ArrayList<Player> players) {
 		Game.players = players;
@@ -216,15 +212,29 @@ public class Game {
 
 	public static void nextRound() {
 		for (PolarBear pb : bears)
-			pb.step("MOVE");
-		view.updatePanel();
+			pb.step();
 		//generateStorm();
 		for (Player p : players)
 			p.setEnergy(5);
+		for (Building b : buildings)
+			b.step();
+		view.updatePanel();
 	}
 
 	public static void Defeat(String msg) {
 		boolean losestate = true;
 		EndGame(losestate, msg);
+	}
+	
+	public static String getFirstPlayerID() {
+		return firstPlayerID;
+	}
+
+	public static void setFirstPlayerID(String firstPlayerID) {
+		Game.firstPlayerID = firstPlayerID;
+	}
+	
+	public Player getCurrentPlayer() {
+		return (getPlayer(playerID));
 	}
 }

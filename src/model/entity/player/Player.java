@@ -3,9 +3,9 @@ package model.entity.player;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 import controller.GameRunner;
-import model.Commands;
 import model.Game;
 import model.entity.Entity;
 import model.entity.PolarBear;
@@ -57,6 +57,17 @@ public abstract class Player extends Entity {
 
 	}
 
+	public void eat() {
+		for (Item i : inventory) {
+			if (i.eat()) {
+				bodyTemperature++;
+				inventory.remove(i);
+				energy--;
+				return;
+			}
+		}
+	}
+
 	/**
 	 * A targyak (Item-ek) eldobhatok, ekkor arra a Tile-re kerulnek amin az a
 	 * Player all aki eldobta.
@@ -72,6 +83,7 @@ public abstract class Player extends Entity {
 			inventory.get(0).view.setVisible(true);
 			inventory.remove(0);
 			Game.view.updatePanel();
+			energy--;
 		}
 	}
 
@@ -81,9 +93,20 @@ public abstract class Player extends Entity {
 	 * @param t az a Tile amelyikre a jatekos mozogni kivan
 	 */
 	public void move(Tile t) {
+		boolean isNeighbour = false;
+		for (Tile tt : currentTile.getNeighbours())
+			if (tt.getId().contentEquals(t.getId()))
+				isNeighbour = true;
+
+		if (!isNeighbour) {
+			return;
+		}
+		this.energy--;
+		
 		currentTile.remove(this);
 		t.receive(this);
 		setCurrentTile(t);
+
 		if (t.getBears().size() != 0) {
 			this.getEaten("You shall not pass!! - said the polarbear");
 		}
@@ -100,6 +123,8 @@ public abstract class Player extends Entity {
 			this.pushToWater();
 
 		}
+		Game.view.updatePanel();
+
 	}
 
 	/**
@@ -159,8 +184,10 @@ public abstract class Player extends Entity {
 			if (i.useTargetItem())
 				cnt++;
 		}
-		if (cnt >= 3)
+		if (cnt >= 3) {
+			Game.victory();
 			return true;
+		}
 		return false;
 	}
 
@@ -182,7 +209,6 @@ public abstract class Player extends Entity {
 	 *         Explorer hivta
 	 */
 	public int exploreTile(String chosenTile) {
-		this.energy++;
 		return -2;
 	}
 
@@ -193,9 +219,29 @@ public abstract class Player extends Entity {
 	 * @param chosenTile
 	 * @return
 	 */
-	public boolean buildIgloo(Tile chosenTile) {
-		this.energy++;
+	public boolean buildIgloo() {
 		return false;
+	}
+
+	public void dig() {
+		energy--;
+		for (Item i : inventory) {
+			if (i.dig()) {
+				ArrayList<Item> itemsDug = currentTile.dig(2);
+				if (itemsDug != null)
+					inventory.addAll(itemsDug);
+				return;
+			} else if (i.digWithFragileShovel()) {
+				ArrayList<Item> itemsDug = currentTile.dig(2);
+				if (itemsDug != null)
+					inventory.addAll(itemsDug);
+				return;
+			}
+		}
+		ArrayList<Item> itemsDug = currentTile.dig(1);
+		if (itemsDug != null)
+			inventory.addAll(itemsDug);
+
 	}
 
 	/**
@@ -224,13 +270,17 @@ public abstract class Player extends Entity {
 	 * @param chosenTile
 	 * @return
 	 */
-	public boolean buildTent(Tile chosenTile) {
+	public boolean buildTent() {
 		if (energy > 0) {
-			chosenTile.addTent(new Tent("Tent1"));
+			boolean hasTent = false;
+			for(Item i : inventory) if(i.buildTent()) hasTent = true;
+			if (!hasTent) return false;
+			
+			currentTile.addTent(new Tent("Tent " + Game.getBuildings().size()));
 
-			if (chosenTile.getCapacity() < chosenTile.getPlayers().size() + 1) {
-				for (int i = 0; i < chosenTile.getPlayers().size(); i++) {
-					chosenTile.getPlayers().get(i).pushToWater();
+			if (currentTile.getCapacity() < currentTile.getPlayers().size() + 1) {
+				for (int i = 0; i < currentTile.getPlayers().size(); i++) {
+					currentTile.getPlayers().get(i).pushToWater();
 				}
 			}
 
@@ -264,10 +314,13 @@ public abstract class Player extends Entity {
 	 * @param i: Item
 	 */
 	public void addToInventory(Item i) {
-		if (i != null)this.inventory.add(i);
+		if (i != null)
+			this.inventory.add(i);
 	}
+
 	public void addToInventory(ArrayList<Item> iA) {
-		if (iA != null) this.inventory.addAll(iA);
+		if (iA != null)
+			this.inventory.addAll(iA);
 	}
 
 	/*******************************
@@ -297,6 +350,10 @@ public abstract class Player extends Entity {
 
 	public void setCurrentTile(Tile t) {
 		currentTile = t;
+		Random r = new Random();
+		int x = t.view.getX();
+		int y = t.view.getY();
+		view.setBounds(x + r.nextInt(32), y, 64, 85);
 	}
 
 	public int getEnergy() {
@@ -340,7 +397,7 @@ public abstract class Player extends Entity {
 	}
 
 	@Override
-	public int step(String msg) {
+	public int step() {
 		if (energy <= 0) {
 			Collections.rotate(Game.getPlayers(), -1);
 			Game.setPlayerID(Game.getPlayers().get(0).getId());
@@ -350,9 +407,7 @@ public abstract class Player extends Entity {
 			}
 
 		} else if (energy > 0) {
-			Commands.choseCommand(msg);
 			Game.view.updatePanel();
-			energy--;
 		}
 		return energy;
 	}

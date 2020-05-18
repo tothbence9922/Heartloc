@@ -337,6 +337,9 @@ public abstract class Tile implements Drawable {
 
 	public void addIgloo(Igloo igloo) {
 		hasIgloo = true;
+		buildings.add(igloo);
+		Game.view.addView(igloo.view);
+		Game.view.updatePanel();
 	}
 
 	public void addHole() {
