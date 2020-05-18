@@ -9,12 +9,15 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import controller.GameController;
+import model.tiles.Tile;
 
 public class MenuView extends JPanel {
 
@@ -90,6 +93,7 @@ public class MenuView extends JPanel {
 			public void actionPerformed(ActionEvent click) {
 								
 				baseGameController.getGameFrame().changePanel(new MapSelectionView(baseGameController));
+				//baseGameController.getGame().getPolarBears().get(0).move(baseGameController.getGame().getTiles().get(2));
 			}
 		});
 		

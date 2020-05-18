@@ -32,8 +32,11 @@ public class PolarBear extends Entity {
 					t.getPlayers().get(0).getEaten("A polar bear has eaten " + t.getPlayers().get(0).getId());
 				}
 			}
+		} else {
+			if (t.getPlayers().size() != 0) {
+				t.getPlayers().get(0).getEaten("A polar bear has eaten " + t.getPlayers().get(0).getId());
+				}
 		}
-
 	}
 
 	@Override
