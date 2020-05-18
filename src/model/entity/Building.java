@@ -2,17 +2,16 @@ package model.entity;
 
 import controller.GameRunner;
 import view.entity.BuildingView;
-import view.entity.EntityView;
 
 public class Building extends Entity {
-	public EntityView view;
+	public BuildingView view;
 
 	/**
 	 * A step() metodus oly modon megvalositva, hogy jelezze, ez az objektum nem
 	 * jatekost reprezental.
 	 */
 	@Override
-	public int step(String msg) {
+	public int step() {
 		return -1;
 	}
 

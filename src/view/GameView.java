@@ -35,6 +35,7 @@ import model.Game;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
+import view.entity.BuildingView;
 import view.entity.EntityView;
 import view.entity.IglooView;
 import view.entity.ItemView;
@@ -50,6 +51,7 @@ public class GameView extends JPanel {
 	private ArrayList<EntityView> entityViews = new ArrayList<EntityView>();
 	private ArrayList<ItemView> itemViews = new ArrayList<ItemView>();
 	private ArrayList<SnowView> snowViews = new ArrayList<SnowView>();
+	private ArrayList<BuildingView> buildingViews = new ArrayList<BuildingView>();
 
 	private JPanel gamePanel;
 	private JPanel buttonsPanel;
@@ -92,7 +94,9 @@ public class GameView extends JPanel {
 	public void addView(Tile t, TileView v) {
 		v.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
+				Game.getPlayer(Game.playerID).move(t);
+				Game.getPlayer(Game.playerID).step();
+
 			}
 		});
 		tileViews.add(v);
@@ -104,6 +108,10 @@ public class GameView extends JPanel {
 
 	public void addView(ItemView v) {
 		itemViews.add(v);
+	}
+
+	public void addView(BuildingView v) {
+		buildingViews.add(v);
 	}
 
 	public void addView(SnowView v) {
@@ -132,12 +140,17 @@ public class GameView extends JPanel {
 			}
 		}
 		add(curPlayerIndicator);
-		for (EntityView ev : entityViews)
+		for (EntityView ev : entityViews) {
 			add(ev);
-		for (ItemView iv : itemViews)
+		}
+		for (ItemView iv : itemViews) {
 			add(iv);
-		for (SnowView sw : snowViews) {
-			add(sw);
+		}
+		for (SnowView sv : snowViews) {
+			add(sv);
+		}
+		for (BuildingView bv : buildingViews) {
+			add(bv);
 		}
 		for (TileView tv : tileViews) {
 			add(tv);
@@ -276,25 +289,8 @@ public class GameView extends JPanel {
 		 */
 		btnShovel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-
-				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
-					if (Game.getPlayer(Game.playerID).getInventory().get(i).dig()) {
-
-						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " shovel");
-
-						return;
-					}
-				}
-				for (int i = 0; i < Game.getPlayer(Game.playerID).getInventory().size(); i++) {
-					if (Game.getPlayer(Game.playerID).getInventory().get(i).digWithFragileShovel()) {
-
-						Game.getPlayer(Game.playerID).step("dig " + Game.playerID + " fragileshovel");
-
-						return;
-					}
-				}
-
-				Game.getPlayer(Game.playerID).step("dig " + Game.playerID);
+				Game.getPlayer(Game.playerID).dig();
+				Game.getPlayer(Game.playerID).step();
 
 			}
 		});
@@ -305,7 +301,9 @@ public class GameView extends JPanel {
 		btnFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 
-				Game.getPlayer(Game.playerID).step("useFood " + Game.playerID);
+				Game.getPlayer(Game.playerID).eat();
+				Game.getPlayer(Game.playerID).step();
+
 			}
 		});
 
@@ -331,18 +329,22 @@ public class GameView extends JPanel {
 						JOptionPane.QUESTION_MESSAGE, null, newOptions, null);
 
 				if (n != -1) {
-					boolean canbuild;
-					int energybefore = Game.getPlayer(Game.playerID).getEnergy();
-					int energyafter = Game.getPlayer(Game.playerID).step("exploreTile " + Game.playerID + " "
-							+ Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().get(n));
-					if (energybefore == energyafter)
-						canbuild = false;
+
+					boolean canExplore;
+					int value = Game.getPlayer(Game.playerID)
+							.exploreTile(Game.getPlayer(Game.playerID).getCurrentTile().getNeighbours().get(n).getId());
+
+					if (value == -2)
+						canExplore = false;
 					else {
-						canbuild = true;
+						canExplore = true;
+						Game.getPlayer(Game.playerID).step();
+
 					}
-					if (!canbuild)
+					if (!canExplore) {
 						JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "You can't explore, sorry.",
 								"Explore(r) error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -352,20 +354,15 @@ public class GameView extends JPanel {
 		 */
 		btnIgloo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				boolean canbuild;
-				int energybefore = Game.getPlayer(Game.playerID).getEnergy();
-				int energyafter = Game.getPlayer(Game.playerID).step("buildIgloo " + Game.playerID);
-				if (energybefore == energyafter)
-					canbuild = false;
-				else {
-					canbuild = true;
-					// Game.getTile(Game.playerID).view.add(new IglooView(baseGameController));
-					Game.getPlayer(Game.playerID).getCurrentTile().view.add(new IglooView(baseGameController));
+				boolean builded = Game.getPlayer(Game.playerID).buildIgloo();
+				if (builded) {
+					Game.getPlayer(Game.playerID).step();
 					Game.view.updatePanel();
-				}
-				if (!canbuild)
+				} else {
+
 					JOptionPane.showMessageDialog(baseGameController.getGameFrame(), "You can't build an Igloo, sorry.",
 							"Igloo build error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -374,19 +371,25 @@ public class GameView extends JPanel {
 		 */
 		btnTent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useTent " + Game.playerID);
+				Game.getPlayer(Game.playerID).buildTent();
+				Game.getPlayer(Game.playerID).step();
+
 			}
 		});
 
 		btnDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("drop " + Game.playerID);
+				Game.getPlayer(Game.playerID).drop();
+				Game.getPlayer(Game.playerID).step();
+
 			}
 		});
 
 		btnRocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				Game.getPlayer(Game.playerID).step("useRocket " + Game.playerID);
+				Game.getPlayer(Game.playerID).assembleRocket();
+				Game.getPlayer(Game.playerID).step();
+
 			}
 		});
 
@@ -403,8 +406,11 @@ public class GameView extends JPanel {
 					if (usingSpecial) {
 
 					} else {
-						if (r.intersects(rect))
-							Game.getPlayer(Game.playerID).step("move " + Game.playerID + " " + t.getId());
+						if (r.intersects(rect)) {
+							Game.getPlayer(Game.playerID).move(t);
+							Game.getPlayer(Game.playerID).step();
+						}
+
 					}
 				}
 			}

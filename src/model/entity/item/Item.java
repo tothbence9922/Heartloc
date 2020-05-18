@@ -90,7 +90,7 @@ public abstract class Item extends Entity {
 	 * jatekost reprezental.
 	 */
 	@Override
-	public int step(String msg) {
+	public int step() {
 		return -1;
 	}
 
