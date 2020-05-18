@@ -22,22 +22,51 @@ import controller.GameController;
 /**
  * A fomenubol a Start gombra torteno kattintas utan jelenik meg ez a menu, itt
  * kivalaszthato, hogy melyik palyan szeretnenk jatszani, valamint, hogy mennyi
- * jatekossal
+ * jatekossal, ha a jatekosok mennyisegen nem valtoztatunk az alpertelmezett jkerul betoltesre.
  *
  */
 public class MapSelectionView extends JPanel {
-
+	//Alapertelmezett jatekosmennyisegek
 	int numOfEsk = 2;
 	int numOfExp = 1;
 
 	private static final long serialVersionUID = -7780612029288723490L;
+	/**
+	 * Az MVC modell megvalostasahoz szukseges modon eltarlunk egy GameController entitast.
+	 */
 	private GameController baseGameController;
+	/**
+	 * A felhasznalot segito label utasitjuk ot, hogy valasszon egy palyat.
+	 */
 	private JLabel labelSelect;
+	/**
+	 * Ezzel a gombbal elindul a jatek, betoltodik a kivalasztott palya
+	 */
 	private JButton btnStartGame;
+	/**
+	 * 
+	 * Ezzel a gombbal lephetunk vissza az elozo menube
+	 */
 	private JButton btnBack;
+	/**
+	 * 
+	 * A Panel Layout-ja
+	 */
 	private GridBagLayout baseLayout;
+	/**
+	 * 
+	 * Innen olvassuk be a kivalasztott paplyat
+	 */
 	private JTextField mapTextField;
+	/*
+	 * 
+	 * Itt adhato meg az eszkimok szama a palyan
+	 */
 	private JTextField eskTextField;
+	/**
+	 * 
+	 * Itt adhato meg a felfedezok szama a palyan
+	 */
 	private JTextField expTextField;
 
 	public MapSelectionView(GameController baseGameController) {
@@ -45,11 +74,12 @@ public class MapSelectionView extends JPanel {
 
 		Font font = null;
 		try {
+			//A betutipus beallitasa
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("fonts/CHILLER.TTF"));
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
-
+		//AJatekost utasito szoveg beallitasa es betutipusanak beallitasa
 		labelSelect = new JLabel("Select a map!");
 		labelSelect.setFont(font.deriveFont(Font.PLAIN, 120f));
 		labelSelect.setForeground(Color.WHITE);
@@ -71,7 +101,7 @@ public class MapSelectionView extends JPanel {
 		expTextField.setFont(font.deriveFont(Font.PLAIN, 60f));
 
 		/**
-		 * Gombok hozzaadasa
+		 * Gombok hozzaadasa a panelhez, ezeket formazzuk a kivant modon
 		 */
 		btnStartGame = new JButton("Start");
 		btnStartGame.setForeground(Color.DARK_GRAY);
@@ -90,10 +120,15 @@ public class MapSelectionView extends JPanel {
 		btnBack.setBorderPainted(false);
 		btnBack.setFocusPainted(false);
 
+		// A Panel felepitese es Listenerek hozzaadasa a komponensekhez
 		buildPanel();
 		buildListeners();
 	}
 
+	/**
+	 * A panel strukturajaert felelos fuggveny, itt allutjuk be tobbek kozott a gombok,labelek elrendezeset
+	 * Itt kerulnek a fent emlitett komonensek hozzáadása a panelhez
+	 */
 	private void buildPanel() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -117,7 +152,7 @@ public class MapSelectionView extends JPanel {
 	}
 
 	/**
-	 * Add listener to the button, notifies controller
+	 * Listenerek letrehozasa a gombokhoz
 	 */
 	private void buildListeners() {
 		btnStartGame.addActionListener(new ActionListener() {
@@ -171,12 +206,7 @@ public class MapSelectionView extends JPanel {
 		});
 		eskTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				/*
-				 * Create game here sample code:
-				 * 
-				 * Widget temp = new Widget();
-				 * baseGameController.getGameFactory.getWidgetList().add(temp);
-				 */
+				//A valaszottt palya beolvasasa a textfield-rol
 				String selectedMap = mapTextField.getText();
 				try {
 					numOfEsk = Integer.parseInt(eskTextField.getText());
@@ -200,12 +230,7 @@ public class MapSelectionView extends JPanel {
 
 		mapTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				/*
-				 * Create game here sample code:
-				 * 
-				 * Widget temp = new Widget();
-				 * baseGameController.getGameFactory.getWidgetList().add(temp);
-				 */
+				
 				String selectedMap = mapTextField.getText();
 				try {
 					numOfEsk = Integer.parseInt(eskTextField.getText());
@@ -265,7 +290,10 @@ public class MapSelectionView extends JPanel {
 			}
 		});
 	}
-
+	/**
+	 * 
+	 * A Panel grafikus megjelenitese a felhasznalo szamara.
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

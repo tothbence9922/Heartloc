@@ -10,7 +10,13 @@ import javax.swing.ImageIcon;
  */
 
 import controller.GameController;
-
+/**
+ * 
+ * A ho megjelenitessert felelos osztaly, ez jeleniti meg a atekos szamara kis hogolyok formajaban, mennyit
+ * kell meg asnia, hogy felvehessse a tablan talalhato eszozoket.
+ * @author Gabor
+ *
+ */
 public class SnowView extends EntityView {
 
 	private static final long serialVersionUID = -8536002127200621216L;
@@ -18,6 +24,7 @@ public class SnowView extends EntityView {
 	public SnowView(GameController baseGameController){
 		super(baseGameController);
 		this.w = this.h = 32;
+		//Beolvassuk a hogolyok megjeleniteseert felelos kepet
 		icon = new ImageIcon(SnowView.class.getResource("../images/snowBallBig-32x32.png"));
 		this.setIcon(icon);
 	}

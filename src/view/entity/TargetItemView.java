@@ -10,7 +10,12 @@ import java.io.IOException;
  */
 
 import controller.GameController;
-
+/**
+ * A jatek megnyeresehez feltetlenul szukseges eszkozoket reprezentalja grafikusan az ososztaly a felasznalo szamara
+ * jatek kozben.
+ * @author Gabor
+ *
+ */
 public class TargetItemView extends ItemView {
 	
 	private static final long serialVersionUID = 7695195257329494544L;
