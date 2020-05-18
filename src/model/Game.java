@@ -10,6 +10,7 @@ import model.entity.player.Player;
 import model.tiles.Tile;
 import view.GameView;
 
+
 public class Game {
 
 	public static String playerID = "default";
@@ -78,6 +79,10 @@ public class Game {
 		return single_instance;
 	}
 
+	/**
+	 * A metodusnak a palya inicializasakor van szerepe. Esetleges masodik betolteskor
+	 * kiuritjuk a memoriaban tarolt adatokat
+	 */
 	public void ClearMap() {
 		tiles = new ArrayList<Tile>();
 		players = new ArrayList<Player>();
@@ -87,8 +92,8 @@ public class Game {
 	}
 
 	/**
-	 * A játék megnyerésekor meghívódó metódus, magával vonzza az EndGame() metódus
-	 * meghívását, ekkor a játékos gyõzelmét könyvelhetjük el.
+	 * A jatek megnyeresekor meghivodo metodus, magaval vonzza az EndGame() metodus
+	 * meghivasat, ekkor a jatekos gyozelmet konyvelhetjuk el.
 	 */
 	public static void victory() {
 		boolean losestate = false;
@@ -96,12 +101,18 @@ public class Game {
 	}
 
 	/**
-	 * A játék végekor meghívódó metódus, mellyel véglegesíthetjük a játék állását
-	 * és lezárhatjuk a játékot.
+	 * A jatek vegekor meghivodo metodus, mellyel veglegesithetjuk a jatek allasat
+	 * es lezarhatjuk a jatekot.
 	 */
 	public static void EndGame(boolean losestate, String msg) {
 		view.EndGame(losestate, msg);
 	}
+	
+	/**
+	 * Vihart general a jatekban, ha a jatekosok nem tartozkodnak valamilyen epitmenyben
+	 * lemegy egy eletuk. Emellett a vihar random tileokon havat general.
+	 * 
+	 */
 
 	public static void generateStorm() {
 		for (Tile t : tiles) {
@@ -123,28 +134,58 @@ public class Game {
 		Game.view.updatePanel();
 
 	}
+	
+	/**
+	 * A metodus hivasakor megkapjuk a jatekban tartozkodo PolarBear-eket
+	 * @return ArrayList<PolarBear>
+	 */
 
 	public static ArrayList<PolarBear> getPolarBears() {
 		return bears;
 	}
 
+	/**
+	 * A metodus a jatekhoz hozza ad egy Building-et, amit parameterben kap meg
+	 * @param b
+	 */
 	public static void addBuilding(Building b) {
 		buildings.add(b);
 	}
 
+	/**
+	 * A metodus a jatekhoz hozza ad egy PolarBear-t, amit parameterben kap meg
+	 * @param b
+	 */
 	public static void addPolarBear(PolarBear pb) {
 		Game.bears.add(pb);
 	}
+
+
+	/**
+	 * A metodus segitsegevel megkapjuk a jatekban levo Tile-okat
+	 * @return ArrayList<Tile>
+	 */
 
 	public static ArrayList<Tile> getTiles() {
 		return Game.tiles;
 	}
 
+	/**
+	 * A metodus kap parameterkent egy ArrayList<Tile>-et, majd ezekre modositja
+	 * a jatekban levo Tile-okat
+	 * @param tilesArr
+	 */
 	public static void setTiles(ArrayList<Tile> tilesArr) {
 		for (int i = 0; i < tilesArr.size(); i++)
 			Game.tiles.add(tilesArr.get(i));
 	}
 
+	/**
+	 * A metodus kap egy String id parametert, amit osszehasonlit az osszes Tile 
+	 * id-javal, ha egyezest talal, visszater azzal a Tile-al, ahol az id egyezett
+	 * @param id
+	 * @return t vagy null ha nem talaltuk meg a keresett Tile-t
+	 */
 	public static Tile getTile(String id) {
 		for (Tile t : tiles) {
 			if (t.getId().equals(id))
@@ -154,6 +195,12 @@ public class Game {
 		return null;
 	}
 
+	/**
+	 * A metodus kap egy String id parametert, amit osszehasonlit az osszes Player 
+	 * id-javal, ha egyezest talal, visszater azzal a Player-el, ahol az id egyezett
+	 * @param id
+	 * @return p vagy null ha nem talaltuk meg a keresett Playert
+	 */
 	public static Player getPlayer(String id) {
 		for (Player p : players) {
 			if (p.getId().equals(id))
@@ -163,26 +210,55 @@ public class Game {
 		return null;
 	}
 
+	/**
+	 * A metodus segitsegevel megkapjuk a jatekban levo jatekosokat(Player)
+	 * @return ArrayList<Player>
+	 */
 	public static ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
+	/**
+	 * A metodus segitsegevel megkapjuk a jatekban levo epuleteket(Building)
+	 * @return ArrayList<Building>
+	 */
 	public static ArrayList<Building> getBuildings() {
 		return buildings;
 	}
 
+	/**
+	 * A metodus kap parameterkent egy ArrayList<Player>-et, majd ezekre modositja
+	 * a jatekban levo jatekosokat
+	 * @param players
+	 */
 	public static void setPlayers(ArrayList<Player> players) {
 		Game.players = players;
 	}
 
+	/**
+	 * A metodus hozza ad egy parameterben kapott e jatekost a players ArrayList-hez
+	 * @param e
+	 */
 	public static void addPlayer(Player e) {
 		Game.players.add(e);
 	}
 
+	/**
+	 * A metodus kap parameterkent egy ArrayList<Item>-et, majd ezekre modositja
+	 * a jatekban levo Item-eket
+	 * @param itemsArr
+	 */
 	public static void setItems(ArrayList<Item> itemsArr) {
 		for (int i = 0; i < itemsArr.size(); i++)
 			Game.items.add(itemsArr.get(i));
 	}
+	
+	/**
+	 * A metodus kap egy String id parametert, amit osszehasonlit az osszes Item
+	 * id-javal, ha egyezest talal, visszater azzal az Item-el, ahol az id egyezett
+	 * @param id
+	 * @return i.getId() vagy ures String ha nem talaltuk meg a keresett Itemet
+	 */
 
 	public static String getItem(String id) {
 		for (Item i : items) {
@@ -192,23 +268,44 @@ public class Game {
 
 		return "";
 	}
+	
+	/**
+	 * A metodus segitsegevel megkapjuk a jatekban levo Item-eket
+	 * @return ArrayList<Item>
+	 */
 
 	public static ArrayList<Item> getItems() {
 		return items;
 	}
+	
+	/**
+	 * A metodus hozza ad egy parameterben kapott item Item-et az items	 ArrayList-hez
+	 * @param item
+	 */
 
 	public static void addItem(Item item) {
 		Game.items.add(item);
 	}
 
+	/**
+	 * A mteodus egy adott jatekos ID-jat adja meg
+	 * @return String
+	 */
 	public static String getPlayerID() {
 		return playerID;
 	}
 
+	/**
+	 * A metodus az adott jatekos ID-jat a modositja a parameterben megkapott ID-ra
+	 * @param playerID
+	 */
 	public static void setPlayerID(String playerID) {
 		Game.playerID = playerID;
 	}
 
+	/**
+	 * A jatek minden korenek elejen meghivodo metodus. 
+	 */
 	public static void nextRound() {
 		for (PolarBear pb : bears)
 			pb.step();
@@ -220,19 +317,39 @@ public class Game {
 		view.updatePanel();
 	}
 
+	/**
+	 * A Player die metodusanak meghivasakor automatikusan hivodik meg a Defeat metodus
+	 * ami jatek veget jelenti.
+	 * @param msg
+	 */
 	public static void Defeat(String msg) {
 		boolean losestate = true;
 		EndGame(losestate, msg);
 	}
 	
+	/**
+	 * A metodus visszater a jatekinicializalasa soran letrehozott elso 
+	 * jatekosanak ID-javal. Igy tudjuk, ha a jatekos ujra sorra kerul lement egy kor.
+	 * @return String
+	 */
 	public static String getFirstPlayerID() {
 		return firstPlayerID;
 	}
-
+	
+	
+	/**
+	 * A metodus megkapja egy jatekos ID-jat parameterkent, majd 
+	 * ot allitja "elso jatekosnak"
+	 * @param firstPlayerID
+	 */
 	public static void setFirstPlayerID(String firstPlayerID) {
 		Game.firstPlayerID = firstPlayerID;
 	}
 	
+	/**
+	 * A metodus megadj az eppen cselekvo jatekost
+	 * @return Player
+	 */
 	public Player getCurrentPlayer() {
 		return (getPlayer(playerID));
 	}
