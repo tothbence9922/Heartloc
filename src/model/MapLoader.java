@@ -181,14 +181,12 @@ public class MapLoader {
 					}
 
 					for (int p = 0; p < t.getPlayers().size(); p++) {
-						t.getPlayers().get(p).view.setPos(t.view.getX() + r.nextInt(32), t.view.getY());
 						GameView.getInstance(GameRunner.baseGameController).addView(t.getPlayers().get(p).view);
 					}
 
 					for (Item it : t.getItems()) {
 						it.view.setLayout(null);
-						// it.view.setPos(t.view.getX(), t.view.getY() + 45);
-						// GameView.getInstance(GameRunner.baseGameController).addView(it.view);
+						it.view.setPos(t.view.getX(), t.view.getY() + 45);
 					}
 
 					for (Building b : t.getBuildings()) {

@@ -225,9 +225,8 @@ public class GameView extends JPanel {
 		}
 		for (Tile t : tiles) {
 			int sc = 1;
-			for (Snow s : t.getSnows()) {
+			for (int i = 0; i < t.getAmountOfSnow(); i++) {
 				SnowView sv = new SnowView(GameRunner.baseGameController);
-				s.view= sv;
 				sv.setLayout(null);
 				sv.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
 				sc++;

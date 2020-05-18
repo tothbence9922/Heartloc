@@ -285,8 +285,8 @@ public abstract class Tile implements Drawable {
 	public void addSnow(int amount) {
 		amountOfSnow += amount;
 		if(amountOfSnow > 5) amountOfSnow = 5;
-		for (int i = 0; i < amount; i++) {
-			snows.clear();
+		snows.clear();
+		for (int i = 0; i < amountOfSnow; i++) {
 			snows.add(new Snow("Sno" + snows.size()));
 		}
 		Game.view.updatePanel();

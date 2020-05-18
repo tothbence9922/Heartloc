@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import controller.GameController;
 import model.entity.Building;
@@ -104,22 +105,22 @@ public class Game {
 	}
 
 	public static void generateStorm() {
-		for (Tile t : tiles) {
-			if (t.getPlayers().size() != 0) {
-				if (!t.hasIgloo()) {
-					if (t.hasTent()) {
-						t.setHasTent(false);
-						break;
-					}
-					for (Player p : t.getPlayers()) {
-						p.damage(1);
-					}
+		Random r = new Random();
+		
+		for(Tile t : Game.getTiles()) {
+			if(t.hasIgloo()) {
+				break;
+			}else if(t.hasTent()){
+				t.setHasTent(false);
+				break;
+			} else {
+				for (Player p : t.getPlayers()) {
+					p.damage(1);
 				}
 			}
-			if (Math.random() % 2 == 0) {
-				t.addSnow(1);
-			}
+			t.addSnow(r.nextInt(3)+1);
 		}
+		
 		Game.view.updatePanel();
 
 	}
