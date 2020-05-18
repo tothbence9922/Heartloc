@@ -5,8 +5,8 @@ import model.entity.player.Player;
 import view.entity.RopeView;
 
 /**
- * Az egyik opcionális tárgyat, a kötelet (Rope) megvalósító és reprezentáló
- * osztály. Segítségével a játékosok megmenthetik bajbajuttott társaikat.
+ * Az egyik opcionalis targyat, a kotelet (Rope) megvalosito és reprezentalo
+ * osztaly. Segitsegevel a jatekosok megmenthetik bajbajuttott tarsaikat.
  */
 public class Rope extends OptionalItem {
 
@@ -17,15 +17,15 @@ public class Rope extends OptionalItem {
 	}
 
 	/**
-	 * A játékos, ha rendelkezik Rope-pal, használhatja azt, hogy megmentse
-	 * bajbajutott társát. Miután a bajbajuttott sikít (Player::scream()), a
-	 * szomszédos jégtáblán (Tile) álló játékos, ha rendelkezik kötéllel,
-	 * automatikusan kimenti a másik játékost aki ennek hatására arra a jégtáblára
-	 * (Tile) kerül, melyen a megmentõje áll.
+	 * A jatekos, ha rendelkezik Rope-pal, hasznalhatja azt, hogy megmentse
+	 * bajbajutott tarsat. Miutan a bajbajuttott sikit (Player::scream()), a
+	 * szomszedos jegtablan (Tile) allo jatekos, ha rendelkezik kotellel,
+	 * automatikusan kimenti a masik jatekost aki ennek hatasara arra a jegtablara
+	 * (Tile) kerul, melyen a megmentoje all.
 	 * 
-	 * @param Player p - A paraméterül kapott játékos a kimentendõ játékos.
-	 * @return true A visszatérési értéke a logikai Igaz (true), ezzel jelezve hogy
-	 *         játékos sikeresen használta a kötelet (Rope).
+	 * @param Player p - A parameterul kapott jatekos a kimentendo jatekos.
+	 * @return true A visszateresi erteke a logikai Igaz (true), ezzel jelezve hogy
+	 *         jatekos sikeresen hasznalta a kotelet (Rope).
 	 */
 	@Override
 	public boolean pull(Player p) {

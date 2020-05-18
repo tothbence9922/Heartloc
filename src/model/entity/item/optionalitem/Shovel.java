@@ -1,33 +1,22 @@
 package model.entity.item.optionalitem;
 
-import java.io.IOException;
-
-import controller.GameRunner;
-import view.entity.ShovelView;
-
 /**
- * Az egyik opcionális tárgyat, az ásót (Shovel) megvalósító és reprezentáló
- * osztály.
+ * Az egyik opcionalis targyat, az asot (Shovel) megvalosito es reprezentalo
+ * osztaly.
  */
 public class Shovel extends OptionalItem {
 
 	public Shovel(String id) {
 		super(id);
-		try {
-			view = new ShovelView(GameRunner.baseGameController);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	/**
-	 * A játékos, ha rendelkezik Shovel-lel, használhatja azt, hogy ásson vele.
-	 * Ezzel két egységnyi havat takaríthat el, azonban Itemet nem vehet fel Shovel
-	 * használatával.
+	 * A jatekos, ha rendelkezik Shovel-lel, hasznalhatja azt, hogy asson vele.
+	 * Ezzel ket egysegnyi havat takarithat el, azonban Itemet nem vehet fel Shovel
+	 * hasznalataval.
 	 * 
-	 * @return Visszatérési értéke a logikai Igaz (true), ezzel jelezve hogy a
-	 *         játékos sikeresen használta az Ásó (Shovel) Itemet.
+	 * @return Visszateresi erteke a logikai Igaz (true), ezzel jelezve hogy a
+	 *         jatekos sikeresen hasznalta az Aso (Shovel) Itemet.
 	 */
 	@Override
 	public boolean dig() {

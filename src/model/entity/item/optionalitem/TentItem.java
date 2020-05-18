@@ -3,8 +3,15 @@ package model.entity.item.optionalitem;
 import controller.GameRunner;
 import view.entity.TentView;
 
+/**
+ * A TentItem osztaly reprezentalja a jatekos egy lehetséges targyat, mellyel
+ * kepes egy Tentet felallitani.
+ */
 public class TentItem extends OptionalItem {
-
+	
+	/**
+	 * A TentItem letrehozásakor egy TentViewt is letrhozunk, amit elhelyezunk a palyan.
+	 */
 	public TentItem(String id) {
 		super(id);
 		view = new TentView(GameRunner.baseGameController);
