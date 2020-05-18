@@ -12,8 +12,8 @@ import view.GameView;
 
 public class Game {
 
-	public static String playerID = "LudMan";
-	public static String firstPlayerID = "LudMan";
+	public static String playerID = "default";
+	public static String firstPlayerID = "default";
 
 	private static Game single_instance = null;
 
