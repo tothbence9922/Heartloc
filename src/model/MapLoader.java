@@ -274,7 +274,7 @@ public class MapLoader {
 		} else {
 			tile = new UnstableTile(id, 0);
 		}
-		tile.addSnow(snow);
+		tile.setAmountOfSnow(snow);
 
 		boolean val = (hole > 0) ? true : false;
 		tile.setHasHole(val);

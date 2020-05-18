@@ -14,6 +14,7 @@ import model.Drawable;
 import model.Game;
 import model.entity.PolarBear;
 import model.entity.Snow;
+import view.GameView;
 import view.entity.SnowView;
 import view.tiles.TileView;
 
@@ -152,7 +153,7 @@ public abstract class Tile implements Drawable {
 			ArrayList<Item> ret = new ArrayList<Item>();
 			for (int i = 0; i < items.size(); i++) {
 				ret.add(items.get(i));
-			Game.view.remove(items.get(i).view);
+				Game.view.remove(items.get(i).view);
 			}
 			items.clear();
 			return ret;
@@ -286,11 +287,12 @@ public abstract class Tile implements Drawable {
 	 */
 	public void addSnow(int amount) {
 		amountOfSnow += amount;
+		if(amountOfSnow > 5) amountOfSnow = 5;
 		for (int i = 0; i < amount; i++) {
+			snows.clear();
 			snows.add(new Snow("Sno" + snows.size()));
-			Game.view.addView(snows.get((snows.size() - 1)).view);
-
 		}
+		Game.view.updatePanel();
 	}
 
 	/**
@@ -299,17 +301,15 @@ public abstract class Tile implements Drawable {
 	 * @param amount
 	 */
 	public void removeSnow(int amount) {
-		amountOfSnow -= amount;
+		if (amountOfSnow > 0) amountOfSnow -= amount;
 
 		for (int i = 0; i < amount; i++) {
 			if (snows.size() != 0) {
-				Game.view.removeSnowView(snows.get(0).view);
 				snows.remove(0);
 			}
 		}
 		if (amountOfSnow < 0)
 			amountOfSnow = 0;
-		Game.view.updatePanel();
 	}
 
 	/**
@@ -470,7 +470,7 @@ public abstract class Tile implements Drawable {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-	
+
 	public void setHasHole(boolean hasHole) {
 		this.hasHole = hasHole;
 	}
@@ -498,6 +498,7 @@ public abstract class Tile implements Drawable {
 
 	public void setSnows(ArrayList<Snow> snows) {
 		this.snows = snows;
+		this.amountOfSnow = snows.size();
 	}
 
 }

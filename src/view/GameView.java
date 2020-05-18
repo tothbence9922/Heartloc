@@ -28,7 +28,9 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 import controller.GameController;
+import controller.GameRunner;
 import model.Game;
+import model.entity.Snow;
 import model.entity.item.Item;
 import model.entity.player.Player;
 import model.tiles.Tile;
@@ -53,6 +55,7 @@ public class GameView extends JPanel {
 	 * Game soran hasznalt view tarolok
 	 */
 	private ArrayList<TileView> tileViews = new ArrayList<TileView>();
+	public static ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private ArrayList<EntityView> entityViews = new ArrayList<EntityView>();
 	private ArrayList<ItemView> itemViews = new ArrayList<ItemView>();
 	private ArrayList<SnowView> snowViews = new ArrayList<SnowView>();
@@ -98,6 +101,7 @@ public class GameView extends JPanel {
 		try {
 			if (singleInstance == null)
 				singleInstance = new GameView(baseGameController);
+			tiles = Game.getTiles();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -110,7 +114,7 @@ public class GameView extends JPanel {
 	 * @param view
 	 */
 	public void removeItemView(EntityView view) {
-		itemViews.remove(view);
+		itemViews.clear();
 		updatePanel();
 	}
 
@@ -120,7 +124,7 @@ public class GameView extends JPanel {
 	 * @param view
 	 */
 	public void removeSnowView(EntityView view) {
-		snowViews.remove(view);
+		snowViews.clear();
 		updatePanel();
 	}
 
@@ -133,7 +137,7 @@ public class GameView extends JPanel {
 	public void addView(Tile t, TileView v) {
 		tileViews.add(v);
 	}
-	
+
 	/**
 	 * Uj view-t es egy listenert ad hozza valamennyi tile-hoz
 	 * 
@@ -161,7 +165,7 @@ public class GameView extends JPanel {
 	public void addView(ItemView v) {
 		itemViews.add(v);
 	}
-	
+
 	/**
 	 * JLabel-t ad hozza a panelhez, melyeken lathato lesz adott tileok kapacitasa
 	 * 
@@ -188,7 +192,6 @@ public class GameView extends JPanel {
 	public void addView(SnowView v) {
 		snowViews.add(v);
 	}
-
 
 	/**
 	 * Kirajzolja az osszes, a jatekban jelenlevo viewt olyan sorrendben, hogy ne
@@ -217,10 +220,18 @@ public class GameView extends JPanel {
 			add(ev);
 		}
 		for (ItemView iv : itemViews) {
+			iv.setLayout(null);
 			add(iv);
 		}
-		for (SnowView sv : snowViews) {
-			add(sv);
+		for (Tile t : tiles) {
+			int sc = 1;
+			for (Snow s : t.getSnows()) {
+				SnowView sv = new SnowView(GameRunner.baseGameController);
+				sv.setLayout(null);
+				sv.setPos(t.view.getX() + sc * 10, t.view.getY() + 105);
+				sc++;
+				add(sv);
+			}
 		}
 		for (HoleView hv : holeViews) {
 			add(hv);
@@ -241,7 +252,8 @@ public class GameView extends JPanel {
 	 * a view ujrarajzolasa, mely valtoztatasok eseten kerul meghivasra
 	 */
 	public void updatePanel() {
-		removeAll();		drawPanel();
+		removeAll();
+		drawPanel();
 		try {
 			buildHUD();
 			revalidate();
@@ -539,7 +551,7 @@ public class GameView extends JPanel {
 		 * Eger kattintasanak detektalasa
 		 */
 		this.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				/**

@@ -27,7 +27,6 @@ public class FragileShovel extends OptionalItem {
 	 */
 	@Override
 	public boolean digWithFragileShovel() {
-		System.out.println("Dig");
 		if (numOfUses > 0) {
 			numOfUses--;
 		} else {

@@ -113,9 +113,6 @@ public class Game {
 					}
 					for (Player p : t.getPlayers()) {
 						p.damage(1);
-						if (p.getTemperature() < 1) {
-							p.die("The storm killed a player...");
-						}
 					}
 				}
 			}

@@ -231,17 +231,31 @@ public abstract class Player extends Entity {
 				ArrayList<Item> itemsDug = currentTile.dig(2);
 				if (itemsDug != null)
 					inventory.addAll(itemsDug);
+				for(Item it : itemsDug) {
+					//it.view.setBounds(view.getBounds());
+					it.view.setVisible(false);
+				}
 				return;
 			} else if (i.digWithFragileShovel()) {
 				ArrayList<Item> itemsDug = currentTile.dig(2);
+
 				if (itemsDug != null)
 					inventory.addAll(itemsDug);
+				for(Item it : itemsDug) {
+					//it.view.setBounds(view.getBounds());
+					it.view.setVisible(false);
+				}
 				return;
 			}
 		}
 		ArrayList<Item> itemsDug = currentTile.dig(1);
 		if (itemsDug != null) {
 			inventory.addAll(itemsDug);
+			for(Item it : itemsDug) {
+				//it.view.setBounds(view.getBounds());
+				it.view.setVisible(false);
+			}
+
 		}
 
 	}
@@ -311,6 +325,9 @@ public abstract class Player extends Entity {
 	 */
 	public void damage(int amount) {
 		bodyTemperature -= amount;
+		if (bodyTemperature < 1) {
+			die("The storm killed a player...");
+		}
 	}
 
 	/**
