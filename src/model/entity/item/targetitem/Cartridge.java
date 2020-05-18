@@ -2,7 +2,14 @@ package model.entity.item.targetitem;
 
 import controller.GameRunner;
 import view.entity.CartridgeView;
-
+/**
+ * 
+ * A jatek befejezesehez szuksegunk van a jelzoraketara.
+ * Harom reszbol allo jelzoraketa, egyik eleme a patron.(Cartridge)
+ * A harom kulonallo resz a jegmezokon talalhato.
+ * Osszeszerelesukhoz egy egyseg munkara van szukseg.
+ *
+ */
 public class Cartridge extends TargetItem {
 	
 	
