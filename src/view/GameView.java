@@ -405,7 +405,7 @@ public class GameView extends JPanel {
 	}
 
 	/**
-	 * Add listeners to buttons on the screen notifies controller
+	 * Listenerek hozzaadasa a gombokhoz
 	 */
 	private void buildListeners() {
 		/**
