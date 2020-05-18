@@ -5,8 +5,8 @@ import model.entity.item.Item;
 import view.entity.ItemView;
 
 /**
- * A játék során használható opcionális tárgyak (OptionalItem-ek): Food, Rope,
- * Shovel, Wetsuit absztrakt õsosztálya.
+ * A jatek soran hasznalhato opcionalis targyak (OptionalItem-ek): Food, Rope,
+ * Shovel, Wetsuit absztrakt ososztalya.
  */
 public abstract class OptionalItem extends Item {
 

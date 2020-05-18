@@ -4,6 +4,13 @@ import javax.swing.ImageIcon;
 
 import controller.GameController;
 
+/**
+ * Az MVC modell alapjan a megjelelenitesert felelos egyik osztaly. Ebben az esetben a
+ * Food megjeleniteseert felel.
+ * @author cserik
+ *
+ */
+
 public class FoodView extends ItemView {
 
 	private static final long serialVersionUID = 4392885773958212933L;

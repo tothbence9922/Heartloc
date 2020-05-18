@@ -4,8 +4,8 @@ import controller.GameRunner;
 import view.entity.WetsuitView;
 
 /**
- * A Wetsuit osztály reprezentálja a játékos egy lehetséges tárgyát, mellyel
- * képes túlélni vízbeeés után, sérülés nélkül.
+ * A Wetsuit osztaly reprezentalja a jatekos egy lehetseges targyat, mellyel
+ * kepes tulelni vizbeeses utan, serules nelkul.
  */
 public class Wetsuit extends OptionalItem {
 
@@ -15,11 +15,11 @@ public class Wetsuit extends OptionalItem {
 	}
 
 	/**
-	 * A Wetsuit használata automatikus, ha a játékosnak van Wetsuitja és vízbe
-	 * esik, automatikusan használja.
+	 * A Wetsuit hasznalata automatikus, ha a jatekosnak van Wetsuitja és vizbe
+	 * esik, automatikusan hasznalja.
 	 * 
-	 * @return Visszatérési értéke a logikai Igaz (true), ezzel jelezve hogy a
-	 *         játékosnak van ilyen Item-e és szükség esetén sikeresen használta.
+	 * @return Visszateresi erteke a logikai Igaz (true), ezzel jelezve hogy a
+	 *         jatekosnak van ilyen Item-e es szukseg eseten sikeresen hasznalta.
 	 */
 	@Override
 	public boolean wear() {

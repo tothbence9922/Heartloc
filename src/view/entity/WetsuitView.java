@@ -2,6 +2,13 @@ package view.entity;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Az MVC modell alapjan a megjelelenitesert felelos egyik osztaly. Ebben az esetben a
+ * Wetsuit megjeleniteseert felel.
+ * @author cserik
+ *
+ */
+
 import controller.GameController;
 
 public class WetsuitView extends ItemView {

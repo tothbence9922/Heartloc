@@ -2,6 +2,13 @@ package view.entity;
 
 import java.io.IOException;
 
+/**
+ * Az MVC modell alapjan a megjelelenitesert felelos egyik osztaly. Ebben az esetben a
+ * TargetItem megjeleniteseert felel.
+ * @author cserik
+ *
+ */
+
 import controller.GameController;
 
 public class TargetItemView extends ItemView {

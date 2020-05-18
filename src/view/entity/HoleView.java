@@ -4,6 +4,13 @@ import javax.swing.ImageIcon;
 
 import controller.GameController;
 
+/**
+ * Az MVC modell alapjan a megjelelenitesert felelos egyik osztaly. Ebben az esetben a
+ * Hole megjeleniteseert felel.
+ * @author cserik
+ *
+ */
+
 public class HoleView extends EntityView {
 
 	private static final long serialVersionUID = -3299152365267062000L;

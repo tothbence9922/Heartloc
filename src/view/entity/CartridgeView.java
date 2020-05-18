@@ -4,6 +4,12 @@ import javax.swing.ImageIcon;
 
 import controller.GameController;
 
+/**
+ * Az MVC modell alapjan a megjelelenitesert felelos egyik osztaly. Ebben az esetben a
+ * Cartridge megjeleniteseert felel.
+ * @author cserik
+ *
+ */
 public class CartridgeView extends ItemView {
 
 	
